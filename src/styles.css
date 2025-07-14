@@ -75,6 +75,19 @@ div ul li:hover {
   align-items: center;
 }
 
+#bg-image-half-size {
+  width: 100%;
+  height: 30vh;
+  background-image: url("/assets/taipei-night-2.jpg");
+  background-repeat: no-repeat;
+  background-position: center center; 
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
 /* regions component */
 #regions-container {
   background-color: white;
@@ -85,3 +98,18 @@ div ul li:hover {
   font-size: 30px;
   margin-top: 16px;
 } 
+
+/* destinations component */
+
+/* city component */ 
+#destinations-grid {
+
+}
+
+.destination-card {
+
+}
+
+.destination-card h3 {
+  
+}

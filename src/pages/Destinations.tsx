@@ -20,6 +20,7 @@ const Destinations = () => {
   return (
     <>
       <div id="bg-image-half-size"></div>
+      <h1 id="destinations-title">Destinations</h1>
       <div id="destinations-grid"></div>
       <div id="dummy-map"></div>
     </>

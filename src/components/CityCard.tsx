@@ -2,12 +2,13 @@
 const taiwanLatLng = { lat: 23.7, lng: 121.0 };
 // 6 cities we're doing for now
 const cities = {
-  "Taipei City" : 'assets/destinations/taipei.jpg',
-  "Hualien City" : 'assets/destinations/hualien.jpg',
-  "Yilan City" : 'assets/destinations/yilan.jpg',
-  "Taichung City" : 'assets/destinations/taichung.jpg',
-  "Tainan City" : 'assets/destinations/tainan.jpg',
-  "Kaohsiung City" : 'assets/destinations/kaohsiung.jpg'
+  // task: turn value into arrays that holds image src and short description of city *DONE*
+  "Taipei City" : ['assets/destinations/taipei.jpg', "Modern capital with night markets and Taipei 101."], 
+  "Hualien City" : ['assets/destinations/hualien.jpg', "Coastal town near cliffs and Taroko Gorge."],
+  "Yilan City" : ['assets/destinations/yilan.jpg', "Peaceful area known for hot springs and farms."],
+  "Taichung City" : ['assets/destinations/taichung.jpg', "Cultural hub and birthplace of bubble tea."],
+  "Tainan City" : ['assets/destinations/tainan.jpg', "Oldest city with temples and local snacks."],
+  "Kaohsiung City" : ['assets/destinations/kaohsiung.jpg', "Port city with art, beaches, and skyline."],
 };
 
 for (const key in cities) {
@@ -32,13 +33,17 @@ export async function cityCard(cityname: string) {
       console.log(results);
       const grid = document.getElementById("destinations-grid")!;
 
+      // extra checking for typescript validity
       if (results && results.length > 0) 
       {
         const card = document.createElement("div")!;
-        const imgSrc = cities[cityname as keyof typeof cities];
+        const imgSrc = cities[cityname as keyof typeof cities][0];
+        const cityDescription = cities[cityname as keyof typeof cities][1];
         console.log(imgSrc);
         card.className = "destination-card";
-        card.innerHTML = `<img src=${imgSrc} class='city-image'/><h3>${results[0].name}</h3><p>Some Description</p>`
+        // task: turn into links
+        // task: pretty up the cards and add hover effects 
+        card.innerHTML = `<img src=${imgSrc} class='city-image'/><div class="city-text"><h3>${results[0].name}</h3><p>${cityDescription}</p></div>`
         grid.append(card);
       }
     } 

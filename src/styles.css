@@ -107,14 +107,13 @@ div ul li:hover {
   grid-template-columns: auto auto auto;
   justify-content: center;
   align-items: center;
-  background-color: #06091f;
 }
 
 .destination-card {
-  background-color: rgb(255, 47, 47);
-  border: 1px solid black;
-  margin: 16px;
-  max-width: 300px;
+  border: 2px solid lightgrey;
+  margin: 24px;
+  max-width: 280px;
+  border-radius: 16px;
 }
 
 .destination-card h3 {
@@ -122,6 +121,20 @@ div ul li:hover {
 }
 
 .city-image {
-  height: 250px;
+  height: 180px;
   width: 100%;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  overflow: hidden;
 }
+
+.city-text {
+  margin: 12px;
+}
+
+#destinations-title {
+  font-weight: 650;
+  font-size: 30px;
+  margin-top: 16px;
+  text-align: center;
+} 

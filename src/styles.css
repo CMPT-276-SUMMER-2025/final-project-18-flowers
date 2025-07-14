@@ -75,5 +75,13 @@ div ul li:hover {
   align-items: center;
 }
 
-#home-title {
+/* regions component */
+#regions-container {
+  background-color: white;
 }
+
+#regions-title {
+  font-weight: 650;
+  font-size: 30px;
+  margin-top: 16px;
+} 

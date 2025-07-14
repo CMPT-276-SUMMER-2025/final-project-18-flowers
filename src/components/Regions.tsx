@@ -4,7 +4,7 @@ const Regions = () => {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
   return (
     <div id="regions-container" className='flex flex-col w-full justify-center items-center'>
-      <h1 id="regions-title">Regions of Taipei</h1>
+      <h1 id="regions-title">Regions of Taiwan</h1>
       <div className='border-0 rounded-4xl overflow-hidden m-6'>
         <APIProvider apiKey={apiKey}>
           <Map 

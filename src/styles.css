@@ -103,13 +103,25 @@ div ul li:hover {
 
 /* city component */ 
 #destinations-grid {
-
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: center;
+  align-items: center;
+  background-color: #06091f;
 }
 
 .destination-card {
-
+  background-color: rgb(255, 47, 47);
+  border: 1px solid black;
+  margin: 16px;
+  max-width: 300px;
 }
 
 .destination-card h3 {
-  
+  font-weight: 700;
+}
+
+.city-image {
+  height: 250px;
+  width: 100%;
 }

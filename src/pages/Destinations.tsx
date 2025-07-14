@@ -1,36 +1,29 @@
-import City from "../components/City"
-import { useEffect } from "react";
+import { useEffect } from 'react';
+import { cityCard } from '../components/CityCard';
+
+/* 
+Notice on why you might see content doubled!
+----
+React 19 (the React version we're working with) in Strict Mode (look in App.tsx) intentionally runs the useEffect() function twice in development only, not in production so no worries.
+*/
 
 const Destinations = () => {
-
-  // ensure that block of code is only loaded after the loading of the component
   useEffect(() => {
-    async function initMap() {
-      // get the Google Maps Library, specifically the Map object 
-      const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
+    cityCard("Taipei City");
+    cityCard("Hualien City");
+    cityCard("Yilan City");
+    cityCard("Kaohsiung City");
+    cityCard("Tainan City");
+    cityCard("Taichung City");
+  }, [])
 
-      // create new map object (2 required parameters)
-      new Map(document.getElementById('map') as HTMLElement, {
-        center: { lat: 25.0330, lng: 121.5654}, // set coordinates to taipei city 
-        zoom: 8, // set zoom to 8 
-      });
-    }
-    // initialize the map 
-    initMap();
-  }, []); // empty array dependency so the effect only runs once
-
-  // page content 
   return (
     <>
-      <div>
-        <div id="bg-image-half-size"></div>
-      </div>
-      <div id="map" style={{ width: "100%", height: "400px" }}></div>
-      <div>
-        <City></City>
-      </div>
+      <div id="bg-image-half-size"></div>
+      <div id="destinations-grid"></div>
+      <div id="dummy-map"></div>
     </>
-  )
+  );
 }
 
 export default Destinations

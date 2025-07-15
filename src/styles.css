@@ -16,12 +16,22 @@ body, html {
 }
 
 /* navbar component */
-nav {
+#nav-clear {
   position: absolute;
   display: flex;
   width: 100%;
   padding: 0px 28px 0px 28px;
   color: rgb(226, 226, 226);
+  z-index: 24;
+}
+
+#nav-solid {
+  position: block;
+  display: flex;
+  width: 100%;
+  padding: 0px 28px 0px 28px;
+  background-color: white;
+  color: black;
   z-index: 24;
 }
 
@@ -41,7 +51,7 @@ div ul li {
 }
 
 div ul li:hover {
-  color: white;
+  color: red;
 }
 
 #nav-left {
@@ -100,6 +110,11 @@ div ul li:hover {
 } 
 
 /* destinations component */
+#destination-thumb {
+  height: 40vh;
+  width: 100%;
+  object-fit: cover;
+}
 
 /* city component */ 
 #destinations-grid {

@@ -16,11 +16,11 @@ const Destinations = () => {
   return (
     <>
       <div>
-        <img src={taipeiThumbnail} alt="Thumbnail of Destination Page" id="destination-thumb" />
+        <img src={taipeiThumbnail} alt="Thumbnail of Destination Page" id="dest-thumb" />
       </div>
-      
-      <h1 id="destinations-title">Find Your Destination</h1>
-      <div id="destinations-grid" className="grid grid-cols-[repeat(2,auto)] lg:grid-cols-[repeat(3,auto)]">
+
+      <h1 id="dest-title">Find Your Destination</h1>
+      <div id="dest-grid" className="grid grid-cols-[repeat(2,auto)] lg:grid-cols-[repeat(3,auto)]">
         {cityNames.map(name => (
           <CityCard key={name} cityname={name} />
         ))}

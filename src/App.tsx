@@ -35,10 +35,10 @@ function AppContent() {
 
   console.log("pathname: " + pathname);
 
-  if (pathname === "/destinations" || pathname === "/interests") {
+  if (pathname === "/") {
     return (
       <>
-        <NavBarSolid></NavBarSolid>
+        <NavBar />
         <Routes>
           <Route path='/' element={<Home />}></Route>
           <Route path='/destinations' element={<Destinations />}></Route>
@@ -50,13 +50,13 @@ function AppContent() {
 
   return( 
     <>
-      <NavBar></NavBar>
+      <NavBarSolid />
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/destinations' element={<Destinations />}></Route>
         <Route path='/interests' element={<Interests />}></Route>
       </Routes>
-    </> 
+    </>
   );
 }
 

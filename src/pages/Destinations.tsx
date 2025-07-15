@@ -20,8 +20,8 @@ const Destinations = () => {
   return (
     <>
       <div><img src="assets/taipei-night.jpeg" alt="destination-thumbnail" id="destination-thumb"/></div>
-      <h1 id="destinations-title">Destinations</h1>
-      <div id="destinations-grid"></div>
+      <h1 id="destinations-title">Find Your Destination</h1>
+      <div id="destinations-grid" className='grid grid-cols-[repeat(2,auto)] lg:grid-cols-[repeat(3,auto)]'></div>
       <div id="dummy-map"></div>
     </>
   );

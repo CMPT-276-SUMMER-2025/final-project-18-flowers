@@ -118,17 +118,22 @@ div ul li:hover {
 
 /* city component */ 
 #destinations-grid {
-  display: grid;
-  grid-template-columns: auto auto auto;
+  width: 100%;
+  /* display: grid;
+  grid-template-columns: repeat(3, auto); */
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
 }
 
 .destination-card {
-  border: 2px solid lightgrey;
-  margin: 24px;
-  max-width: 280px;
+  border: 0px solid transparent;
+  margin: 12px;
+  max-width: 264px;
   border-radius: 16px;
+  box-shadow: 4px 8px 8px hsl(0deg 0% 0% / 0.38);
+  display: flex;
+  flex-direction: column;
+  max-height: 300px;
 }
 
 .destination-card h3 {
@@ -136,20 +141,26 @@ div ul li:hover {
 }
 
 .city-image {
-  height: 180px;
+  height: 164px;
   width: 100%;
+  object-fit: cover;
   border-top-left-radius: 14px;
   border-top-right-radius: 14px;
   overflow: hidden;
 }
 
 .city-text {
-  margin: 12px;
+  margin: 24px;
+  min-height: 100px;
+}
+
+.city-text p {
+  font-size: smaller;
 }
 
 #destinations-title {
   font-weight: 650;
   font-size: 30px;
-  margin-top: 16px;
+  margin: 36px 0px 12px 0px;
   text-align: center;
 } 

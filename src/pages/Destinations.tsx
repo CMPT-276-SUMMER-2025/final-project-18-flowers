@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { cityCard } from '../components/CityCard';
+import Regions from "../components/Regions"
 
 /* 
 Notice on why you might see content doubled!
@@ -23,6 +24,7 @@ const Destinations = () => {
       <h1 id="destinations-title">Find Your Destination</h1>
       <div id="destinations-grid" className='grid grid-cols-[repeat(2,auto)] lg:grid-cols-[repeat(3,auto)]'></div>
       <div id="dummy-map"></div>
+      <Regions></Regions>
     </>
   );
 }

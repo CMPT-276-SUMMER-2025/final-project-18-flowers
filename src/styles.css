@@ -16,12 +16,22 @@ body, html {
 }
 
 /* navbar component */
-nav {
+#nav-clear {
   position: absolute;
   display: flex;
   width: 100%;
   padding: 0px 28px 0px 28px;
   color: rgb(226, 226, 226);
+  z-index: 24;
+}
+
+#nav-solid {
+  position: block;
+  display: flex;
+  width: 100%;
+  padding: 0px 28px 0px 28px;
+  background-color: white;
+  color: black;
   z-index: 24;
 }
 
@@ -41,7 +51,7 @@ div ul li {
 }
 
 div ul li:hover {
-  color: white;
+  color: red;
 }
 
 #nav-left {
@@ -100,16 +110,57 @@ div ul li:hover {
 } 
 
 /* destinations component */
+#destination-thumb {
+  height: 40vh;
+  width: 100%;
+  object-fit: cover;
+}
 
 /* city component */ 
 #destinations-grid {
-
+  width: 100%;
+  /* display: grid;
+  grid-template-columns: repeat(3, auto); */
+  justify-content: center;
+  align-items: stretch;
 }
 
 .destination-card {
-
+  border: 0px solid transparent;
+  margin: 12px;
+  max-width: 264px;
+  border-radius: 16px;
+  box-shadow: 4px 8px 8px hsl(0deg 0% 0% / 0.38);
+  display: flex;
+  flex-direction: column;
+  max-height: 300px;
 }
 
 .destination-card h3 {
-  
+  font-weight: 700;
 }
+
+.city-image {
+  height: 164px;
+  width: 100%;
+  object-fit: cover;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  overflow: hidden;
+}
+
+.city-text {
+  margin: 24px;
+  min-height: 100px;
+}
+
+.city-text p {
+  font-size: smaller;
+}
+
+#destinations-title {
+  font-weight: 650;
+  font-size: 30px;
+  margin: 36px 0px 12px 0px;
+  text-align: center;
+} 

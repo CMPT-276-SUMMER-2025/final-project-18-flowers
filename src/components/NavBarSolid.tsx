@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 
-const NavBar = () => {
+const NavBarSolid = () => {
   return (
     <>
-      <nav id="nav-clear"> 
+      <nav id="nav-solid"> 
         <div id="nav-left"><Link to="/">Taiwan Explorers</Link></div>
         <div id="nav-center">
           <ul>
@@ -18,4 +18,4 @@ const NavBar = () => {
   )
 }
 
-export default NavBar
+export default NavBarSolid

@@ -9,6 +9,7 @@ import NavBarSolid from './components/NavBarSolid';
 import Home from './pages/Home';
 import Destinations from './pages/Destinations';
 import Interests from './pages/Interests';
+import CityInterests from './components/CityInterests';
 
 function App() {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
@@ -43,6 +44,7 @@ function AppContent() {
           <Route path='/' element={<Home />}></Route>
           <Route path='/destinations' element={<Destinations />}></Route>
           <Route path='/interests' element={<Interests />}></Route>
+          <Route path="/destinations/:id" element={<CityInterests />} />
         </Routes>
       </>
     );
@@ -55,6 +57,7 @@ function AppContent() {
         <Route path='/' element={<Home />}></Route>
         <Route path='/destinations' element={<Destinations />}></Route>
         <Route path='/interests' element={<Interests />}></Route>
+        <Route path="/destinations/:id" element={<CityInterests />} />
       </Routes>
     </>
   );

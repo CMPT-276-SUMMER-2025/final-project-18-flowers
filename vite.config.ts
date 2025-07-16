@@ -8,6 +8,6 @@ export default defineConfig({
   preview: {
     host: true,
     port: 8080, // optional, but helps Render detect the port
-    allowedHosts: ['final-project-18-flowers.onrender.com']
+    allowedHosts: ['final-project-18-flowers.onrender.com', 'taiwanexplorers.onrender.com']
   }
 })

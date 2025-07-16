@@ -5,4 +5,9 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  preview: {
+    host: true,
+    port: 8080, // optional, but helps Render detect the port
+    allowedHosts: ['final-project-18-flowers.onrender.com']
+  }
 })

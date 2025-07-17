@@ -42,7 +42,7 @@ const CityInterests = () => {
   return (
     <div>
       <h1>City Interests Page for Item: {id}</h1>
-      <h1>Hello World</h1>
+      <h1>{id}</h1>
       {/* Display City Interests Content Here */}
     </div>
   )

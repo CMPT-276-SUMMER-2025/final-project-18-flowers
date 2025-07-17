@@ -26,19 +26,13 @@ const Regions = () => {
             }}
           >
             {/* taipei city marker */}
-            <Marker position={{ lat: 25.0329, lng: 121.5654 }}></Marker>  
+            <Marker position={{ lat: 25.0329, lng: 121.5654 }} 
+          
+  
+            ></Marker>  
             {/* hualien city marker */}
             <Marker position={{ lat: 23.9742, lng: 121.6016 }}></Marker>  
             {/* yilan city marker */}
-            <Marker position={{ lat: 24.7571, lng: 121.7539 }}></Marker>
-            {/* taichung city marker */}
-            <Marker position={{ lat: 25.0329, lng: 121.5654 }}></Marker>  
-            {/* taipei city marker */}
-            <Marker position={{ lat: 24.1477, lng: 120.6736 }}></Marker>  
-            {/* taichung city marker */}
-            <Marker position={{ lat: 23.0000, lng: 120.2270 }}></Marker> 
-            {/* kaohsiung city marker */}
-            <Marker position={{ lat: 22.6273, lng: 120.3014 }}></Marker>  
           </Map>
         </APIProvider>
       </div>
@@ -47,3 +41,13 @@ const Regions = () => {
 };
 
 export default Regions;
+
+// <Marker position={{ lat: 24.7571, lng: 121.7539 }}></Marker>
+{/* taichung city marker */}
+// <Marker position={{ lat: 25.0329, lng: 121.5654 }}></Marker>  
+{/* taipei city marker */}
+// <Marker position={{ lat: 24.1477, lng: 120.6736 }}></Marker>  
+{/* taichung city marker */}
+// <Marker position={{ lat: 23.0000, lng: 120.2270 }}></Marker> 
+{/* kaohsiung city marker */}
+// <Marker position={{ lat: 22.6273, lng: 120.3014 }}></Marker>  

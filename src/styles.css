@@ -99,6 +99,7 @@ div ul li:hover {
 }
 
 /* regions component */
+
 #regions-container {
   background-color: white;
 }
@@ -110,22 +111,31 @@ div ul li:hover {
 } 
 
 /* destinations component */
-#destination-thumb {
+
+#dest-thumb {
   height: 40vh;
   width: 100%;
   object-fit: cover;
 }
 
-/* city component */ 
-#destinations-grid {
+#dest-title {
+  font-weight: 650;
+  font-size: 30px;
+  margin: 36px 0px 12px 0px;
+  text-align: center;
+} 
+
+#dest-grid {
   width: 100%;
-  /* display: grid;
-  grid-template-columns: repeat(3, auto); */
+  display: grid;
+  grid-template-columns: repeat(3, auto);
   justify-content: center;
   align-items: stretch;
 }
 
-.destination-card {
+/* city card component */
+
+.dest-card {
   border: 0px solid transparent;
   margin: 12px;
   max-width: 264px;
@@ -136,11 +146,7 @@ div ul li:hover {
   max-height: 300px;
 }
 
-.destination-card h3 {
-  font-weight: 700;
-}
-
-.city-image {
+.city-img {
   height: 164px;
   width: 100%;
   object-fit: cover;
@@ -149,18 +155,15 @@ div ul li:hover {
   overflow: hidden;
 }
 
-.city-text {
+.city-txt {
   margin: 24px;
   min-height: 100px;
 }
 
-.city-text p {
-  font-size: smaller;
+.city-txt h3 {
+  font-weight: 700;
 }
 
-#destinations-title {
-  font-weight: 650;
-  font-size: 30px;
-  margin: 36px 0px 12px 0px;
-  text-align: center;
-} 
+.city-txt p {
+  font-size: smaller;
+}

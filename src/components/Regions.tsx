@@ -84,6 +84,7 @@ const Regions = () => {
             >
               { citiesLatLng.map((city) => (
                 <Marker   
+                  key={city.id}
                   position={ city.coord }
                   icon={ (activeSymbolID === city.id) ? 
                     ((activeButton === city.id) ? clickedHoverSymbol : hoverSymbol) : ((activeButton === city.id) ? clickedBaseSymbol : baseSymbol) }

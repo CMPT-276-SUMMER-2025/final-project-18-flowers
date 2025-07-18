@@ -102,13 +102,26 @@ div ul li:hover {
 
 #regions-container {
   background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 auto;
+  width: 65%;
 }
 
 #regions-title {
   font-weight: 650;
   font-size: 30px;
   margin-top: 16px;
+  text-align: center;
 } 
+
+.region-content {
+  background-color: transparent;
+  height: 720px;
+  width: 300px;
+  border: 4px solid black;
+}
 
 /* destinations component */
 

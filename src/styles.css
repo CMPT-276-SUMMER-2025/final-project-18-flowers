@@ -180,3 +180,56 @@ div ul li:hover {
 .city-txt p {
   font-size: smaller;
 }
+
+/* city interests component */
+
+.ci-thumb {
+  width: 100%;
+  height: 45vh;
+  object-fit: cover;
+}
+
+.ci-header {
+  font-size: 54px;
+  font-weight: 600;
+  margin: 54px 54px 42px 54px;
+}
+
+.ci-description {
+  text-align: center;
+  margin: 48px;
+}
+
+/* attraction component */
+#attraction-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  column-gap: 16px;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.attraction-name {
+  font-weight: 600;
+  font-size: 12px;
+  background-color: red;
+  margin: 8px;
+  overflow-wrap: break-word;
+}
+
+.attraction-photo {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin: 8px;
+}
+
+/* hoetl component */
+#hotel-container {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

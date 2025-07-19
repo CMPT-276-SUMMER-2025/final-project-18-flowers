@@ -1,4 +1,8 @@
 import { useParams } from "react-router-dom";
+import { cityInterestsData } from "../data/cityData";
+import Attractions from "../components/Attractions";
+import Hotels from "../components/Hotels";
+import Restaurants from "../components/Restaurants";
 
 /* REQS
 ----
@@ -20,31 +24,36 @@ the only difference is a static map of the attraction and scheduling (get schedu
 */
 
 const CityInterests = () => {
-  const { id } = useParams();
+  const { id } = useParams();  
+  // taipei-city -> taipei city -> [taipei, city] 
+  const wordsArr = id?.replace("-", " ").split(" ") ?? []; 
+  // taipei => T + aipei and city => C + ity => Taipei City 
+  const header = wordsArr.map((word: string) => 
+    word.charAt(0).toUpperCase() + word.slice(1)
+  ).join(" ");
 
-  console.log("ID CHECK: " + id);
+  console.log(header);
 
-  // async function getAttractions() {
-  //   const {Place} = await google.maps.importLibrary("places");
-
-  //   const options = { 
-  //     id: "place ID goes here",
-  //     requestedLanguage: "en",
-  //   }
-
-  //   const service = new Place({
-  //     options,
-  //   });
-
-
-  // }
+  const [imgSrc, description] = cityInterestsData[header as keyof typeof cityInterestsData] || ["", ""];
+  
+  console.log(imgSrc);
+  console.log(description);
 
   return (
-    <div>
-      <h1>City Interests Page for Item: {id}</h1>
-      <h1>Hello World</h1>
-      {/* Display City Interests Content Here */}
-    </div>
+    <>
+      <div>
+        <h1 className="ci-header">{header}</h1>
+        {/* <h1>ID: {id}</h1> */}
+        <img src={imgSrc} alt={header} className="ci-thumb"></img>
+        <p className="ci-description">{description}</p>
+        {/* Display City Interests Content Here */}
+      </div>
+      <Attractions cityname={header}></Attractions>
+      <div className="commodities-container">
+        <Hotels cityname={header}></Hotels>
+        <Restaurants cityname={header}></Restaurants>
+      </div>
+    </>
   )
 }
 

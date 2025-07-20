@@ -23,6 +23,7 @@ const Attractions = ({ cityname } : Props) => {
       setPlaces(mockPlacesAttractions);
       return; 
     }
+    console.log("You just spend money!");
 
     async function getAttractions() {
       const { Place, SearchByTextRankPreference } = await google.maps.importLibrary('places') as google.maps.PlacesLibrary;
@@ -56,23 +57,26 @@ const Attractions = ({ cityname } : Props) => {
   }, [cityname]);
   
   return (
-    <div id="attraction-container">
-      {places.map((place) => (
-        <Link to={`${place.displayName?.toLowerCase().replace(/\s+/g, "-")}`}>
-          <div key={place.id}>
-            {
-              place.photoUrl && 
-              <img src={place.photoUrl} 
-                    alt={ place.displayName || 'Tourism Attraction' } 
-                    loading="lazy"
-                    className="attraction-photo"
-              />
-            }
-            <h3 className='attraction-name'>{place.displayName}</h3>
-          </div>
-        </Link>
-      ))}
-    </div>
+    <>
+      <h1 id="attraction-title">Attractions</h1>
+      <div id="attraction-container">
+        {places.map((place) => (
+          <Link to={`${place.displayName?.toLowerCase().replace(/\s+/g, "-")}`}>
+            <div key={place.id}>
+              {
+                place.photoUrl && 
+                <img src={place.photoUrl} 
+                      alt={ place.displayName || 'Tourism Attraction' } 
+                      loading="lazy"
+                      className="attraction-photo"
+                />
+              }
+              <h3 className='attraction-name'>{place.displayName}</h3>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </>
   )
 }
 

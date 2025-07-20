@@ -28,6 +28,7 @@ const Restaurants = ({ cityname } : Props) => {
       setPlaces(mockPlacesRestaurants);
       return; 
     }
+    console.log("You just spend money!");
     async function getHotels() {
       const { Place, SearchNearbyRankPreference } = await google.maps.importLibrary('places') as google.maps.PlacesLibrary;
       const myRequest = {
@@ -62,23 +63,26 @@ const Restaurants = ({ cityname } : Props) => {
   }, [cityname]);
   
   return (
-    <div id="hotel-container">
-      {places.map((place) => (
-        <Link key={place.id} to={`${place.displayName?.toLowerCase().replace(/\s+/g, "-")}`}>
-          <div>
-            {
-              place.photoUrl && 
-              <img src={place.photoUrl} 
-                    alt={ place.displayName || 'Tourism Attraction' } 
-                    loading="lazy"
-                    className="attraction-photo"
-              />
-            }
-            <h3 className='attraction-name'>{place.displayName}</h3>
-          </div>
-        </Link>
-      ))}
-    </div>
+    <>
+      <div className="commodity-container">
+        <h1 className="commodity-title">Restaurants</h1>
+        {places.map((place) => (
+          <Link key={place.id} to={`${place.displayName?.toLowerCase().replace(/\s+/g, "-")}`}>
+            <div className='restaurant-content'>
+              {
+                place.photoUrl && 
+                <img src={place.photoUrl} 
+                      alt={ place.displayName || 'Tourism Attraction' } 
+                      loading="lazy"
+                      className="commodity-photo"
+                />
+              }
+              <h3 className='commodity-name'>{place.displayName}</h3>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </>
   )
 }
 

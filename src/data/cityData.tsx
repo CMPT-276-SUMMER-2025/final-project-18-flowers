@@ -1,4 +1,4 @@
-// destinations map data 
+// destinations cards data 
 export const cities = {
   "Taipei City" : ['/assets/destinations/taipei.jpg', "Modern capital with night markets and Taipei 101."], 
   "Hualien City" : ['/assets/destinations/hualien.jpg', "Coastal town near cliffs and Taroko Gorge."],
@@ -43,6 +43,7 @@ export const citiesLatLng = [
   } // Taichung
 ];
 
+// city interests page data 
 export const cityInterestsData = {
   "Taipei City" : [
     '/assets/destinations/taipei.jpg', 
@@ -53,12 +54,29 @@ export const cityInterestsData = {
     '/assets/city-interests/ci-hualien.jpg', 
       "Hualien City (花蓮市, Huālián Shì) is the largest city on Taiwan's east coast and the seat of Hualien County. Nestled between the Pacific Ocean and the Central Mountain Range, it is renowned for its stunning natural landscapes and relaxed coastal charm. The city serves as a gateway to some of Taiwan's most famous attractions, including Taroko Gorge, one of the island's top scenic wonders. Historically, Hualien was home to indigenous peoples long before Chinese settlers arrived in the Qing Dynasty. The area developed slowly compared to Taiwan's western plains, preserving much of its natural beauty. During Japanese rule (1895–1945), Hualien underwent significant modernization, and many architectural traces from this era remain today. Modern Hualien blends cultural diversity, vibrant night markets, and a slower pace of life with breathtaking views of mountains and ocean. Visitors can enjoy the local cuisine, explore seaside parks, or venture into the surrounding national parks. For those seeking tranquility and nature, Hualien is one of Taiwan's most captivating destinations.",
   ],
-  "Yilan City" : ['/assets/city-interests/ci-yilan.jpg', "Peaceful area known for hot springs and farms."],
-  "Taichung City" : ['/assets/city-interests/ci-taichung.jpg', "Cultural hub and birthplace of bubble tea."],
-  "Tainan City" : ['/assets/city-interests/ci-tainan.jpg', "Oldest city with temples and local snacks."],
-  "Kaohsiung City" : ['/assets/city-iSnterests/ci-kaohsiung.jpg', "Port city with art, beaches, and skyline."],
+  "Yilan City" : 
+  [
+    '/assets/city-interests/ci-yilan.jpg', 
+      "Peaceful area known for hot springs and farms.",
+  ],
+  "Taichung City" : 
+  [
+    '/assets/city-interests/ci-taichung.jpg', 
+      "Cultural hub and birthplace of bubble tea.",
+  ],
+  "Tainan City" : 
+  [
+    '/assets/city-interests/ci-tainan.jpg', 
+      "Oldest city with temples and local snacks.",
+  ],
+  "Kaohsiung City" : 
+  [
+    '/assets/city-iSnterests/ci-kaohsiung.jpg', 
+      "Port city with art, beaches, and skyline.",
+  ],
 };
 
+// attractions data to save costs while developing for city interests page
 export const mockPlacesAttractions = [
   {
     id: '1',
@@ -107,48 +125,50 @@ export const mockPlacesAttractions = [
   },
 ];
 
+// hotels data to save costs while developing for city interests page
 export const mockPlacesHotels = [
   {
-    id: '1',
-    displayName: 'W Taipei',
+    id: 'h1',
+    displayName: 'Hotel Sea',
     photoUrl: '/assets/hotels/hotel-1.jpg',
   },
   {
-    id: '2',
-    displayName: 'The Grand Hotel',
+    id: 'h2',
+    displayName: 'Hotel Star',
     photoUrl: '/assets/hotels/hotel-2.jpg',
   },
   {
-    id: '3',
-    displayName: 'Mandarin Oriental, Taipei',
+    id: 'h3',
+    displayName: 'Hotel Jungle',
     photoUrl: '/assets/hotels/hotel-3.jpg',
   },
   {
-    id: '4',
-    displayName: 'Hotel Eclat Taipei',
+    id: 'h4',
+    displayName: 'Hotel Galaxy',
     photoUrl: '/assets/hotels/hotel-4.jpg',
   },
 ];
 
+// restaurants data to save costs while developing for city interests page
 export const mockPlacesRestaurants = [
   {
     id: 'r1',
-    displayName: 'Restaurant A',
+    displayName: 'Restaurant N',
     photoUrl: '/assets/restaurants/res-1.jpg',
   },
   {
     id: 'r2',
-    displayName: 'Le Palais',
+    displayName: 'Restaurant W',
     photoUrl: '/assets/restaurants/res-2.jpg',
   },
   {
     id: 'r3',
-    displayName: 'Mazendo',
+    displayName: 'Restaurant S',
     photoUrl: '/assets/restaurants/res-3.jpg',
   },
   {
     id: 'r4',
-    displayName: 'Coast MMHG',
+    displayName: 'Restaurant E',
     photoUrl: '/assets/restaurants/res-4.jpg',
   },
 ];

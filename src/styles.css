@@ -201,6 +201,12 @@ div ul li:hover {
 }
 
 /* attraction component */
+
+#attraction-title {
+  font-weight: 900;
+  text-align: center;
+}
+
 #attraction-container {
   width: 100%;
   display: grid;
@@ -225,11 +231,53 @@ div ul li:hover {
   margin: 8px;
 }
 
-/* hoetl component */
-#hotel-container {
-  width: 40%;
+/* commodity (hotels and restaurants) component */
+
+.commodity-title {
+  font-weight: 900;
+  font-size: xx-large;
+}
+
+.commodities-container {
+  background-color: #161a31;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black
+}
+
+.commodity-container {
+  width: 70%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: aquamarine;
+  margin: 24px;
+  border: 1px solid black
+}
+
+.commodity-photo {
+  width: 100%;
+  height: 124px;
+  min-width: 124px;
+  object-fit: cover;
+  background-color: red;
+}
+
+.commodity-name {
+  font-weight: 600;
+  margin-left: 16px;
+}
+
+.hotel-content {
+  display: flex;
+  width: 400px;
+  margin: 12px;
+  background-color: chocolate;
+}
+
+.restaurant-content { 
+  display: flex;
+  margin: 12px;
+  background-color: chocolate;
 }

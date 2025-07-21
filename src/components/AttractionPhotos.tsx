@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react"; // use effect needed for API handling, use state to trigger UI updates 
-import { Link } from "react-router-dom"; // use to turn city cards into clickable links 
+import { useState, useEffect } from "react";
 
 type Props = { attract: string; }
 type TPhoto = { url: string; };

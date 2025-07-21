@@ -10,9 +10,10 @@ body, html {
   --white-transparent: rgba(255, 255, 255, 0.5);
   --color-primary: #030412;
   --color-midnight: #06091f;
-  --color-navy: #161a31;
-  --color-indigo: #1f1e39;
-  --color-storm: #282b4b;
+  /* font weights */
+  --fw-normal: 400; /* body text */
+  --fw-medium: 500; /* buttons or subheadings */
+  --fw-bold: 700; /* headings or emphasis */
 }
 
 /* navbar component */
@@ -189,16 +190,23 @@ div ul li:hover {
 
 /* city interests component */
 
+.container {
+  width: 70%;
+  margin: 0 auto;
+  max-width: 1200px; /* prevent from getting too wide if user monitor is too wide */
+}
+
 .ci-thumb {
-  width: 100%;
+  width: 100vw;
   height: 45vh;
   object-fit: cover;
 }
 
 .ci-header, h1 {
   font-size: 54px;
-  font-weight: 800;
-  margin: 54px 54px 42px 54px;
+  font-weight: var(--fw-bold);
+  margin: 48px;
+  position: relative;
 }
 
 .ci-description {
@@ -206,14 +214,13 @@ div ul li:hover {
   text-align: left;
   margin: 48px;
   margin-left: 15%;
+  white-space: pre-line;
 }
 
 /* attraction component */
 
 #attraction-title {
-  font-size: 30px;
-  font-weight: 800;
-  text-align: center;
+  font-weight: var(--fw-medium);
 }
 
 #attraction-container {

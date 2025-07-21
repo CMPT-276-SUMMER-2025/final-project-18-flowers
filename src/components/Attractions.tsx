@@ -23,7 +23,7 @@ const Attractions = ({ cityname } : Props) => {
       setPlaces(mockPlacesAttractions);
       return; 
     }
-    console.log("You just spend money!");
+    console.log("You just spent money!");
 
     async function getAttractions() {
       const { Place, SearchByTextRankPreference } = await google.maps.importLibrary('places') as google.maps.PlacesLibrary;

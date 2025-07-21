@@ -58,20 +58,20 @@ const Attractions = ({ cityname } : Props) => {
   
   return (
     <>
-      <h1 id="attraction-title">Attractions</h1>
-      <div id="attraction-container">
+      <h1 id="attractions-title">Attractions</h1>
+      <div id="attractions-container">
         {places.map((place) => (
           <Link to={`${place.displayName?.toLowerCase().replace(/\s+/g, "-")}`}>
-            <div key={place.id} className="attraction">
+            <div key={place.id} className="attractions">
               {
                 place.photoUrl && 
                 <img src={place.photoUrl} 
                       alt={ place.displayName || 'Tourism Attraction' } 
                       loading="lazy"
-                      className="attraction-photo"
+                      className="attractions-photo"
                 />
               }
-              <h3 className='attraction-name'>{place.displayName}</h3>
+              <h3 className='attractions-name'>{place.displayName}</h3>
             </div>
           </Link>
         ))}

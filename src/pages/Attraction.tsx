@@ -57,15 +57,18 @@ const Attraction = () => {
   return (
     <>
     <div>
-      <h1>{formatAttractionName(attract)}</h1>
+      <h1 className="attraction-title">{formatAttractionName(attract)}</h1>
       <AttractionPhotos attract={formatAttractionName(attract)}></AttractionPhotos>
-      {coord && <AttractionMap lat={coord.lat} lng={coord.lng}></AttractionMap>}
       {/* opening hours */}
+      <div className="container">
+        {coord && <AttractionMap lat={coord.lat} lng={coord.lng}></AttractionMap>}
+        <div className="commodities-container">
+          {coord && <NearbyHotels lat={coord.lat} lng={coord.lng}></NearbyHotels>}
+          {coord && <NearbyRestaurants lat={coord.lat} lng={coord.lng}></NearbyRestaurants>}
+        </div>
+      </div>
     </div>
-    <div className="commodities-container">
-      {coord && <NearbyHotels lat={coord.lat} lng={coord.lng}></NearbyHotels>}
-      {coord && <NearbyRestaurants lat={coord.lat} lng={coord.lng}></NearbyRestaurants>}
-    </div>
+      
     </>
   )
 }

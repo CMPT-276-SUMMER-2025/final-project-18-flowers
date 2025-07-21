@@ -72,7 +72,7 @@ const NearbyHotels = ({ lat, lng }  : Props) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <div className='hotel-content'>
+            <div className='commodity-content'>
               {
                 place.photoUrl && 
                 <img src={place.photoUrl} 

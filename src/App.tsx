@@ -4,6 +4,7 @@ import { BrowserRouter as Router,
          useLocation
 } from 'react-router-dom';
 import { APIProvider } from '@vis.gl/react-google-maps';
+import ScrollToTop from './components/scrollToTop';
 import NavBar from './components/NavBar';
 import NavBarSolid from './components/NavBarSolid';
 import Home from './pages/Home';
@@ -42,6 +43,7 @@ function AppContent() {
     return (
       <>
         <NavBar />
+        <ScrollToTop></ScrollToTop>
         <Routes>
           <Route path='/' element={<Home />}></Route>
           <Route path='/destinations' element={<Destinations />}></Route>
@@ -57,6 +59,7 @@ function AppContent() {
   return( 
     <>
       <NavBarSolid />
+      <ScrollToTop></ScrollToTop>
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/destinations' element={<Destinations />}></Route>

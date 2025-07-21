@@ -7,7 +7,7 @@ type Props = { cityname: string };
 
 const saveAPICost = true;
 
-const Commodities = ({ cityname } : Props) => {
+const Hotels = ({ cityname } : Props) => {
   // type alias TPlace object that holds id, displayName
   type TPlace = {
     id: string;
@@ -85,4 +85,4 @@ const Commodities = ({ cityname } : Props) => {
   )
 }
 
-export default Commodities
+export default Hotels

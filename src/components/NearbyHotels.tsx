@@ -10,7 +10,7 @@ type Props = {
 
 const saveAPICost = true;
 
-const Commodities = ({ lat, lng }  : Props) => {
+const NearbyHotels = ({ lat, lng }  : Props) => {
   // type alias TPlace object that holds id, displayName
   type TPlace = {
     id: string;
@@ -89,4 +89,4 @@ const Commodities = ({ lat, lng }  : Props) => {
   )
 }
 
-export default Commodities
+export default NearbyHotels;

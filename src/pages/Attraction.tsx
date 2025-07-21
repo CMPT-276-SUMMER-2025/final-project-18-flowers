@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AttractionMap from "../components/AttractionMap";
-import NearbyHotels from "../components/Hotels";
+import NearbyHotels from "../components/NearbyHotels";
 import Restaurants from "../components/Restaurants";
 
 type Coord = { lat: number; lng: number };

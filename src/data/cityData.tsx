@@ -129,22 +129,22 @@ export const mockPlacesAttractions = [
 export const mockPlacesHotels = [
   {
     id: 'h1',
-    displayName: 'Hotel Sea',
+    displayName: 'Grand Hotel Taipei',
     photoUrl: '/assets/hotels/hotel-1.jpg',
   },
   {
     id: 'h2',
-    displayName: 'Hotel Star',
+    displayName: 'Taipei Garden',
     photoUrl: '/assets/hotels/hotel-2.jpg',
   },
   {
     id: 'h3',
-    displayName: 'Hotel Jungle',
+    displayName: 'CitizenM Taipei North Gate',
     photoUrl: '/assets/hotels/hotel-3.jpg',
   },
   {
     id: 'h4',
-    displayName: 'Hotel Galaxy',
+    displayName: 'Palais de Chine',
     photoUrl: '/assets/hotels/hotel-4.jpg',
   },
 ];
@@ -153,22 +153,22 @@ export const mockPlacesHotels = [
 export const mockPlacesRestaurants = [
   {
     id: 'r1',
-    displayName: 'Restaurant N',
+    displayName: 'A Joy',
     photoUrl: '/assets/restaurants/res-1.jpg',
   },
   {
     id: 'r2',
-    displayName: 'Restaurant W',
+    displayName: 'Wind City Moon',
     photoUrl: '/assets/restaurants/res-2.jpg',
   },
   {
     id: 'r3',
-    displayName: 'Restaurant S',
+    displayName: 'Liaoning Street Night Market',
     photoUrl: '/assets/restaurants/res-3.jpg',
   },
   {
     id: 'r4',
-    displayName: 'Restaurant E',
+    displayName: 'RAW Taipei',
     photoUrl: '/assets/restaurants/res-4.jpg',
   },
 ];

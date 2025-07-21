@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AttractionMap from "../components/AttractionMap";
 import NearbyHotels from "../components/NearbyHotels";
-import Restaurants from "../components/Restaurants";
+import NearbyRestaurants from "../components/NearbyRestaurants";
+import AttractionPhotos from "../components/AttractionPhotos";
 
 type Coord = { lat: number; lng: number };
 
@@ -57,14 +58,13 @@ const Attraction = () => {
     <>
     <div>
       <h1>{formatAttractionName(attract)}</h1>
+      <AttractionPhotos attract={formatAttractionName(attract)}></AttractionPhotos>
       {coord && <AttractionMap lat={coord.lat} lng={coord.lng}></AttractionMap>}
       {/* opening hours */}
-      {/* restaurants v2 column style */}
-      {/* hotels v2 column style */}
     </div>
     <div className="commodities-container">
       {coord && <NearbyHotels lat={coord.lat} lng={coord.lng}></NearbyHotels>}
-      <Restaurants cityname={formatAttractionName(attract)}></Restaurants>
+      {coord && <NearbyRestaurants lat={coord.lat} lng={coord.lng}></NearbyRestaurants>}
     </div>
     </>
   )

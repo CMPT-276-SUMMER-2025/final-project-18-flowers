@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { mockPlacesHotels } from '../data/cityData';
+import { mockPlacesRestaurants } from '../data/cityData';
 
 type Props = {
   lat: number,
@@ -8,7 +8,7 @@ type Props = {
 
 const saveAPICost = true;
 
-const NearbyHotels = ({ lat, lng }  : Props) => {
+const NearbyRestaurants = ({ lat, lng }  : Props) => {
   // type alias TPlace object that holds id, displayName
   type TPlace = {
     id: string;
@@ -18,24 +18,25 @@ const NearbyHotels = ({ lat, lng }  : Props) => {
 
 
   const [places, setPlaces] = useState<TPlace[]>([]);
-  const placeRadius = 3000;
+
+  const placeRadius = 3000; 
 
   useEffect(() => {
     if (saveAPICost) { 
-      setPlaces(mockPlacesHotels);
+      setPlaces(mockPlacesRestaurants);
       return; 
     }
     console.log("You just spend money!");
     async function getHotels() {
-      const { Place, SearchNearbyRankPreference } = await google.maps.importLibrary('places') as google.maps.PlacesLibrary;
-      
-      const myRequest = {
+        const { Place, SearchNearbyRankPreference } = await google.maps.importLibrary('places') as google.maps.PlacesLibrary;
+
+        const myRequest = {
         locationRestriction: { 
           center: { lat, lng }, 
           radius: placeRadius,
         },
         fields: ["id", "displayName", "photos"], // save cost by specifying only displayName field and photos (essentials tier => cheaper)
-        includedTypes: ["hotel", "resort_hotel"], 
+        includedTypes: ["chinese_restaurant"], 
         rankPreference: SearchNearbyRankPreference.POPULARITY, // only request relevant to query 
         maxResultCount: 4, // only request 9 places total
         language: "en-US",
@@ -59,12 +60,11 @@ const NearbyHotels = ({ lat, lng }  : Props) => {
     } 
     getHotels();
   }, [lat, lng]);
-
   
   return (
     <>
       <div className="commodity-container">
-        <h1 className="commodity-title">Nearby Hotels</h1>
+        <h1 className="commodity-title">Nearby Restaurants</h1>
         {places.map((place) => (
           <a 
             key = {place.id}
@@ -72,11 +72,11 @@ const NearbyHotels = ({ lat, lng }  : Props) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <div className='hotel-content'>
+            <div className='restaurant-content'>
               {
                 place.photoUrl && 
                 <img src={place.photoUrl} 
-                      alt={ place.displayName || 'Hotel' } 
+                      alt={ place.displayName || 'Restaurant' } 
                       loading="lazy"
                       className="commodity-photo"
                 />
@@ -90,4 +90,4 @@ const NearbyHotels = ({ lat, lng }  : Props) => {
   )
 }
 
-export default NearbyHotels;
+export default NearbyRestaurants

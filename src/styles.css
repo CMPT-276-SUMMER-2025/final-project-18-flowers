@@ -335,6 +335,29 @@ div ul li:hover {
   margin-top: 1rem;
 }
 
+.opening-hours {
+  margin: 1.5rem;
+}
+
+.opening-hours h2 {
+  font-weight: var(--fw-medium-bold);
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.opening-hours ul {
+  align-items:first baseline;
+  padding: 5px;
+  list-style-type: none;
+  /* background-color: blue;*/
+}
+
+.opening-hours li {
+  align-items:first baseline;
+  padding: 5px;
+  /*background-color: aqua;*/
+}
+
 /* commodity (hotels and restaurants) component */
 
 .commodity-title {

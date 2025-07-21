@@ -4,6 +4,8 @@ import AttractionMap from "../components/AttractionMap";
 import NearbyHotels from "../components/NearbyHotels";
 import NearbyRestaurants from "../components/NearbyRestaurants";
 import AttractionPhotos from "../components/AttractionPhotos";
+import AttractionTimetable from "../components/AttractionTimetable";
+
 
 type Coord = { lat: number; lng: number };
 
@@ -22,6 +24,7 @@ const Attraction = () => {
   console.log(attract);
 
   const [coord, setCoord] = useState<Coord | null>(null);
+  const [openingHours, setOpeningHours] = useState<string[]>([]);
 
   useEffect(() => {
     async function getAttractionInfo() { 
@@ -30,7 +33,7 @@ const Attraction = () => {
 
       const request = {
         textQuery: attract,
-        fields: ["displayName", "formattedAddress", "id", "location"], // or other needed fields
+        fields: ["displayName", "formattedAddress", "id", "location", "regularOpeningHours",], // or other needed fields
         locationBias: { lat: 25.033964, lng: 121.564468 },
         language: "en-US",
         maxResultCount: 1,
@@ -40,8 +43,11 @@ const Attraction = () => {
       const myAttraction = places[0];
       const placeId = myAttraction.id;
       const placeLatLng = myAttraction.location;
+      const hours = myAttraction.regularOpeningHours;
+
       console.log("LATLNG: " + placeLatLng);
       console.log(placeId);
+
       if (placeLatLng) {
         setCoord({
           lat: placeLatLng.lat(),
@@ -50,7 +56,12 @@ const Attraction = () => {
       } else {
         setCoord(null);
       }
+
+      if (hours?.weekdayDescriptions) {
+      setOpeningHours(hours.weekdayDescriptions);
+      }
     }
+
     getAttractionInfo();
   }, [attract]);  
 
@@ -62,6 +73,7 @@ const Attraction = () => {
       {/* opening hours */}
       <div className="container">
         {coord && <AttractionMap lat={coord.lat} lng={coord.lng}></AttractionMap>}
+        <AttractionTimetable hours={openingHours} />
         <div className="commodities-container">
           {coord && <NearbyHotels lat={coord.lat} lng={coord.lng}></NearbyHotels>}
           {coord && <NearbyRestaurants lat={coord.lat} lng={coord.lng}></NearbyRestaurants>}

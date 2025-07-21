@@ -1,11 +1,11 @@
 // destinations cards data 
 export const cities = {
-  "Taipei City" : ['/assets/destinations/taipei.jpg', "Modern capital with night markets and Taipei 101."], 
-  "Hualien City" : ['/assets/destinations/hualien.jpg', "Coastal town near cliffs and Taroko Gorge."],
-  "Yilan City" : ['/assets/destinations/yilan.jpg', "Peaceful area known for hot springs and farms."],
-  "Taichung City" : ['/assets/destinations/taichung.jpg', "Cultural hub and birthplace of bubble tea."],
-  "Tainan City" : ['/assets/destinations/tainan.jpg', "Oldest city with temples and local snacks."],
-  "Kaohsiung City" : ['/assets/destinations/kaohsiung.jpg', "Port city with art, beaches, and skyline."],
+  "Taipei City" : ['Taipei City', '/assets/destinations/taipei.jpg', "Modern capital with night markets and Taipei 101."], 
+  "Hualien City" : ['Hualien City', '/assets/destinations/hualien.jpg', "Coastal town near cliffs and Taroko Gorge."],
+  "Yilan City" : ['Yilan City', '/assets/destinations/yilan.jpg', "Peaceful area known for hot springs and farms."],
+  "Taichung City" : ['Taichung City', '/assets/destinations/taichung.jpg', "Cultural hub and birthplace of bubble tea."],
+  "Tainan City" : ['Tainan City', '/assets/destinations/tainan.jpg', "Oldest city with temples and local snacks."],
+  "Kaohsiung City" : ['Kaohsiung City', '/assets/destinations/kaohsiung.jpg', "Port city with art, beaches, and skyline."],
 };
 
 // regions map data
@@ -15,7 +15,8 @@ export const citiesLatLng = [
     coord: { lat: 25.0329, lng: 121.5654 }, 
     header: "Taipei City", 
     description: "The bustling capital of Taiwan, known for Taipei 101, vibrant night markets, and rich cultural heritage.", 
-    region: "Northern Taiwan" 
+    region: "Northern Taiwan",
+    image: "/assets/destinations/taipei.jpg"
   }, // Taipei
   
   { 
@@ -23,7 +24,8 @@ export const citiesLatLng = [
     coord: { lat: 23.9742, lng: 121.6016 }, 
     header: "Hualien City", 
     description: "Home to Taroko Gorge and stunning coastal scenery, offering some of Taiwan's best nature spots.", 
-    region: "Eastern Taiwan" 
+    region: "Eastern Taiwan",
+    image: "/assets/destinations/hualien.jpg"
   }, // Hualien
   
   { 
@@ -31,7 +33,8 @@ export const citiesLatLng = [
     coord: { lat: 24.7571, lng: 121.7539 }, 
     header: "Yilan City", 
     description: "Famous for hot springs, lush mountains, and traditional Taiwanese culture.", 
-    region: "Northeastern Taiwan" 
+    region: "Northeastern Taiwan",
+    image: "/assets/destinations/yilan.jpg"
   }, // Yilan
   
   { 
@@ -39,7 +42,8 @@ export const citiesLatLng = [
     coord: { lat: 24.1477, lng: 120.6736 }, 
     header: "Taichung City", 
     description: "A vibrant city with cultural attractions, parks, and access to central Taiwan's mountains.", 
-    region: "Central Taiwan" 
+    region: "Central Taiwan",
+    image: "/assets/destinations/taichung.jpg"
   } // Taichung
 ];
 

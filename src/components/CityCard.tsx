@@ -40,7 +40,7 @@ export default function CityCard({ cityname } : Props) {
 
   // assign 2 values to 2 variables through "array destructing assignment"
   // this works because if you look in cityData.tsx, the values are arrays of size 2, ["img value", "description value"]
-  const [imgSrc, description] = cities[cityname as keyof typeof cities] || ["", ""]; // 
+  const [cityName, imgSrc, description] = cities[cityname as keyof typeof cities] || [" ", "", ""]; // 
 
   // create a clean url path (Hualien%20City -> hualien-city)
   const formatted = cityname.toLowerCase().replace(/\s+/g, "-");
@@ -53,7 +53,7 @@ export default function CityCard({ cityname } : Props) {
         <div className="dest-card">
           <img src={imgSrc} className="city-img" alt={placeName}/>
           <div className="city-txt">
-            <h3>{placeName}</h3>
+            <h3>{placeName || cityName}</h3>
             <p>{description}</p>
           </div>
         </div>
@@ -61,7 +61,3 @@ export default function CityCard({ cityname } : Props) {
     </div>
   );
 };
-
-// if value on left is (null) or (undefined) use right side value instead (??)
-
-// ! is a TypeScript non-null assertion operator (i.e. I'm sure this value is NOT null or undefined here) => (We already check through the ?? operator)

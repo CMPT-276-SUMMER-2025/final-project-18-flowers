@@ -114,26 +114,36 @@ div ul li:hover {
 /* regions component */
 
 #regions-container {
-  background-color: white;
+  width: 50%;
   display: flex;
   flex-direction: row;
   align-items: center;
   margin: 0 auto;
-  width: 65%;
+
 }
 
 #regions-title {
-  font-weight: 650;
-  font-size: 30px;
-  margin-top: 16px;
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-2xl);
+  margin: 48px 0px 28px 0px;
   text-align: center;
 } 
 
-.region-content {
-  background-color: transparent;
-  height: 720px;
-  width: 300px;
-  border: 4px solid black;
+.region-card {
+  margin: 8px;
+  width: 200px;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.region-txt {
+  margin: 20px 20px 20px 20px;
+  min-height: 120px;
 }
 
 /* destinations component */
@@ -149,53 +159,51 @@ div ul li:hover {
 }
 
 #dest-title {
-  font-weight: 650;
-  font-size: 30px;
-  margin: 36px 0px 12px 0px;
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-2xl);
+  margin: 48px 0px 28px 0px;
   text-align: center;
 } 
 
 #dest-grid {
-  width: 100%;
+  width: 50%;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(3, 240px);
   justify-content: center;
-  align-items: stretch;
+  align-items: center;
 }
 
 /* city card component */
 
 .dest-card {
-  border: 0px solid transparent;
-  margin: 12px;
-  max-width: 264px;
+  margin: 8px;
+  max-width: 240px;
   border-radius: 16px;
-  box-shadow: 4px 8px 8px hsl(0deg 0% 0% / 0.38);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
   display: flex;
   flex-direction: column;
-  max-height: 300px;
+  position: relative;
 }
 
 .city-img {
-  height: 164px;
-  width: 100%;
+  height: 172px;
   object-fit: cover;
   border-top-left-radius: 14px;
   border-top-right-radius: 14px;
-  overflow: hidden;
 }
 
 .city-txt {
-  margin: 24px;
-  min-height: 100px;
+  margin: 20px 20px 0px 20px;
+  min-height: 92px;
 }
 
 .city-txt h3 {
-  font-weight: 700;
+  font-weight: var(--fw-bold);
 }
 
 .city-txt p {
-  font-size: smaller;
+  font-size: var(--fs-xs);
 }
 
 /* city interests component */
@@ -308,8 +316,8 @@ div ul li:hover {
   font-size: var(--fs-2xl);
 }
 
-.commodity-container {
-}
+/* .commodity-container {
+} */
 
 .commodity-photo {
   height: 120px;

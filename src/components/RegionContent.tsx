@@ -43,6 +43,7 @@ export default function CityCard({ cityname } : Props) {
   const description = cityInfo?.description;
   const region = cityInfo?.region;
   const header = cityInfo?.header;
+  const imgSrc = cityInfo?.image;
   // create a clean url path (Hualien%20City -> hualien-city)
   const formatted = cityname.toLowerCase().replace(/\s+/g, "-");
 
@@ -51,18 +52,17 @@ export default function CityCard({ cityname } : Props) {
   return( 
     <div>
       <Link to={`/destinations/${formatted}`}>
-        <div className="dest-card">
-          <div className="city-txt">
-            <h3>{header || placeName}</h3>
-            <p>{region}</p>
-            <p>{description}</p>
+        <div className="region-card">
+          <div>
+            <img src={imgSrc} alt={header} className="city-img"></img>
+            <div className="region-txt">
+              <h3>{header || placeName}</h3>
+              <p>{region}</p>
+              <p>{description}</p>
+            </div>
           </div>
         </div>
       </Link>
     </div>
   );
 };
-
-// if value on left is (null) or (undefined) use right side value instead (??)
-
-// ! is a TypeScript non-null assertion operator (i.e. I'm sure this value is NOT null or undefined here) => (We already check through the ?? operator)

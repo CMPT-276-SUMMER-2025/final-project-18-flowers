@@ -7,7 +7,7 @@ type Coord = {
 
 const AttractionMap = ({ lat, lng }: Coord) => {
   return (
-    <div style={{ width: "600px", height: "400px" }}>
+    <div className='border-0 rounded-4xl overflow-hidden m-6' style={{ width: "600px", height: "400px" }}>
       <Map
         zoom={15}
         center={{ lat, lng }}

@@ -1,13 +1,25 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AttractionMap from "../components/AttractionMap";
+import NearbyHotels from "../components/Hotels";
+import Restaurants from "../components/Restaurants";
 
 type Coord = { lat: number; lng: number };
 
 const Attraction = () => {
+  const { attract } = useParams();
 
-  const { attract } = useParams();  
+  function formatAttractionName(slug: string | undefined) {
+    if (!slug) return '';
+    return slug
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  }
+
+
   console.log(attract);
+
   const [coord, setCoord] = useState<Coord | null>(null);
 
   useEffect(() => {
@@ -42,13 +54,19 @@ const Attraction = () => {
   }, [attract]);  
 
   return (
+    <>
     <div>
-      <h1>{attract}</h1>
+      <h1>{formatAttractionName(attract)}</h1>
       {coord && <AttractionMap lat={coord.lat} lng={coord.lng}></AttractionMap>}
       {/* opening hours */}
       {/* restaurants v2 column style */}
       {/* hotels v2 column style */}
     </div>
+    <div className="commodities-container">
+      {coord && <NearbyHotels lat={coord.lat} lng={coord.lng}></NearbyHotels>}
+      <Restaurants cityname={formatAttractionName(attract)}></Restaurants>
+    </div>
+    </>
   )
 }
 

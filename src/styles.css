@@ -195,7 +195,7 @@ div ul li:hover {
   object-fit: cover;
 }
 
-.ci-header {
+.ci-header, h1 {
   font-size: 54px;
   font-weight: 800;
   margin: 54px 54px 42px 54px;

@@ -27,7 +27,7 @@ const Restaurants = ({ cityname } : Props) => {
       setPlaces(mockPlacesRestaurants);
       return; 
     }
-    console.log("You just spend money!");
+    console.log("You just spent money!");
     async function getHotels() {
       const { Place, SearchNearbyRankPreference } = await google.maps.importLibrary('places') as google.maps.PlacesLibrary;
       const myRequest = {
@@ -72,7 +72,7 @@ const Restaurants = ({ cityname } : Props) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <div className='restaurant-content'>
+            <div className='commodity-content'>
               {
                 place.photoUrl && 
                 <img src={place.photoUrl} 

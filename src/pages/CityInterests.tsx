@@ -16,7 +16,9 @@ const CityInterests = () => {
   
   return (
     <div>
-      <h1 className="ci-header">{header}</h1>
+      <div className="ci-header-container">
+        <h1 className="ci-header">{header}</h1>
+      </div>
       <img src={imgSrc} alt={header} className="ci-thumb"></img>
       <div className="container">
         <p className="ci-description">{description}</p>

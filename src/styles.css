@@ -13,7 +13,16 @@ body, html {
   /* font weights */
   --fw-normal: 400; /* body text */
   --fw-medium: 500; /* buttons or subheadings */
+  --fw-medium-bold: 600;
   --fw-bold: 700; /* headings or emphasis */
+  /* font sizes */
+  --fs-xs: 0.75rem;   /* 12px - small text, captions */
+  --fs-sm: 0.875rem;  /* 14px - secondary text */
+  --fs-base: 1rem;    /* 16px - body text */
+  --fs-lg: 1.125rem;  /* 18px - slightly larger text */
+  --fs-xl: 1.5rem;    /* 24px - h3 */
+  --fs-2xl: 2rem;     /* 32px - h2 */
+  --fs-3xl: 2.5rem;   /* 40px - h1 */
 }
 
 /* navbar component */
@@ -51,6 +60,7 @@ div ul {
 div ul li {
   padding: 16px 16px 16px 16px;
   font-weight: 500;
+  font-size: var(--fs-sm);
 }
 
 div ul li:hover {
@@ -191,7 +201,7 @@ div ul li:hover {
 /* city interests component */
 
 .container {
-  width: 70%;
+  width: 750px;
   margin: 0 auto;
   max-width: 1200px; /* prevent from getting too wide if user monitor is too wide */
 }
@@ -202,42 +212,86 @@ div ul li:hover {
   object-fit: cover;
 }
 
-.ci-header, h1 {
+.ci-header {
   font-size: 54px;
-  font-weight: var(--fw-bold);
-  margin: 48px;
-  position: relative;
+  font-weight: var(--fw-medium-bold);
+}
+
+.ci-header-container {
+  width: 750px;
+  margin: 0 auto;
+  text-align: left;
+  padding: 48px 0px 48px 0px;
+  max-width: 1200px;
 }
 
 .ci-description {
-  width: 70%;
-  text-align: left;
-  margin: 48px;
-  margin-left: 15%;
+  margin: 48px 0px 48px 0px;
   white-space: pre-line;
+  font-size: var(--fs-base);
+}
+
+.commodities-container {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  /* border: 4px solid black; */
+  margin: 48px 0px 48px 0px;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* attraction component */
 
 #attraction-title {
   font-weight: var(--fw-medium);
+  font-size: var(--fs-2xl);
 }
 
 #attraction-container {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 200px);
-  column-gap: 16px;
-  justify-content: center;
-  align-items: stretch;
+  grid-template-columns: repeat(3, auto);
+  column-gap: 48px;
+}
+
+.attraction {
+  position: relative;
+  margin: 12px;
+}
+
+.attraction::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 40%; /* only add shading to top 40% */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
+  /* make shadow edges rounded */
+    border-top-left-radius: 8px;  
+    border-top-right-radius: 8px;
+  z-index: 4;
 }
 
 .attraction-name {
-  font-weight: 600;
-  font-size: 16px;
-  /*background-color: red;*/
-  margin: 8px;
+  font-weight: var(--fw-medium);
+  font-size: var(--fw-normal);
   overflow-wrap: break-word;
+  margin-bottom: 24px;
+  position: absolute;
+  padding: 8px;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  color: white;
+}
+
+.attraction-photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
 }
 
 .attraction-photo-gallery {
@@ -247,65 +301,33 @@ div ul li:hover {
   margin-top: 1rem;
 }
 
-.attraction-photo {
-  width: 200px;
-  height: 200px;
-  border-radius: 8px;
-  object-fit: cover;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
 /* commodity (hotels and restaurants) component */
 
 .commodity-title {
-  font-weight: 800;
-  font-size: xx-large;
-}
-
-.commodities-container {
-  margin-left: 25%;
-  width: 50%;
-  /*background-color: #161a31;*/
-  display: flex;
-  flex-direction: row;
-  align-items: left;
-  border: 1px /*solid black*/
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-2xl);
 }
 
 .commodity-container {
-  width: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /*background-color: aquamarine;*/
-  margin: 24px;
-  border: 1px /*solid black*/
 }
 
 .commodity-photo {
-  width: 100%;
-  height: 124px;
-  width: 250px;
+  height: 120px;
+  width: 120px;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
   object-fit: cover;
-  /*background-color: red;*/
 }
 
 .commodity-name {
-  font-weight: 600;
-  margin-left: 16px;
+  font-weight: var(--fw-medium);
   text-align: left;
+  margin: 12px;
 }
 
-.hotel-content {
+.commodity-content { 
   display: flex;
-  width: 400px;
-  margin: 12px;
-  /*background-color: chocolate;*/
-}
-
-.restaurant-content { 
-  display: flex;
-  margin: 12px;
-  /*background-color: chocolate;*/
+  margin: 12px 0px 12px 0px;
+  border: 1px solid lightgray;
+  border-radius: 16px;
 }

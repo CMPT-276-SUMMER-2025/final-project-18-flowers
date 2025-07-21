@@ -62,7 +62,7 @@ const Attractions = ({ cityname } : Props) => {
       <div id="attraction-container">
         {places.map((place) => (
           <Link to={`${place.displayName?.toLowerCase().replace(/\s+/g, "-")}`}>
-            <div key={place.id}>
+            <div key={place.id} className="attraction">
               {
                 place.photoUrl && 
                 <img src={place.photoUrl} 

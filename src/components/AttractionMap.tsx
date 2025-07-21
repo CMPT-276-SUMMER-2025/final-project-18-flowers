@@ -5,12 +5,12 @@ type Coord = {
   lng: number,
 }
 
-const AttractionMap = (latLng: Coord) => {
+const AttractionMap = ({ lat, lng }: Coord) => {
   return (
-    <div>
+    <div style={{ width: "600px", height: "400px" }}>
       <Map
-        zoom={4}
-        center={latLng}
+        zoom={15}
+        center={{ lat, lng }}
       ></Map>
     </div>
   )

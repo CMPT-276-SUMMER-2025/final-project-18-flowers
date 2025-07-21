@@ -11,6 +11,7 @@ import Destinations from './pages/Destinations';
 import Interests from './pages/Interests';
 import CityInterests from './pages/CityInterests';
 import Attraction from './pages/Attraction';
+import PlanTrip from './pages/PlanTrip';
 
 function App() {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
@@ -45,6 +46,7 @@ function AppContent() {
           <Route path='/' element={<Home />}></Route>
           <Route path='/destinations' element={<Destinations />}></Route>
           <Route path='/interests' element={<Interests />}></Route>
+          <Route path='/plantrip' element={<PlanTrip />}></Route>
           <Route path="/destinations/:id" element={<CityInterests />} />
           <Route path="/destinations/:id/:attract" element={<Attraction />} />
         </Routes>
@@ -59,6 +61,7 @@ function AppContent() {
         <Route path='/' element={<Home />}></Route>
         <Route path='/destinations' element={<Destinations />}></Route>
         <Route path='/interests' element={<Interests />}></Route>
+        <Route path='/plantrip' element={<PlanTrip />}></Route>
         <Route path="/destinations/:id" element={<CityInterests />} />
         <Route path="/destinations/:id/:attract" element={<Attraction />} />
       </Routes>

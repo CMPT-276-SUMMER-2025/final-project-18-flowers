@@ -25,7 +25,7 @@ const NearbyHotels = ({ lat, lng }  : Props) => {
       setPlaces(mockPlacesHotels);
       return; 
     }
-    console.log("You just spend money!");
+    console.log("You just spent money!");
     async function getHotels() {
       const { Place, SearchNearbyRankPreference } = await google.maps.importLibrary('places') as google.maps.PlacesLibrary;
       

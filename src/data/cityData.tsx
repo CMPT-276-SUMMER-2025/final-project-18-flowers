@@ -38,13 +38,31 @@ export const citiesLatLng = [
   }, // Yilan
   
   { 
+    id: "kaohsiung", 
+    coord: { lat: 22.6273, lng: 120.3014 }, 
+    header: "Kaohsiung City", 
+    description: "A major port city with art districts, night markets, historical buildings, and skyline.", 
+    region: "Southern Taiwan",
+    image: "/assets/destinations/kaohsiung.jpg"
+  }, // kaohsiung
+
+  { 
+    id: "tainan", 
+    coord: { lat: 22.9995, lng: 120.2293 }, 
+    header: "Tainan City", 
+    description: "The oldest city in Taiwan, known for its rich history, temples, and delicious local snacks.", 
+    region: "Southern Taiwan",
+    image: "/assets/destinations/tainan.jpg"
+  }, // Tainan
+
+  { 
     id: "taichung", 
     coord: { lat: 24.1477, lng: 120.6736 }, 
     header: "Taichung City", 
     description: "A vibrant city with cultural attractions, parks, and access to central Taiwan's mountains.", 
     region: "Central Taiwan",
     image: "/assets/destinations/taichung.jpg"
-  } // Taichung
+  }, // Taichung
 ];
 
 // city interests page data 
@@ -71,12 +89,12 @@ export const cityInterestsData = {
   "Tainan City" : 
   [
     '/assets/city-interests/ci-tainan.jpg', 
-      "Oldest city with temples and local snacks.",
+      "The oldest city in Taiwan, known for its rich history, temples, and delicious local snacks.",
   ],
   "Kaohsiung City" : 
   [
-    '/assets/city-iSnterests/ci-kaohsiung.jpg', 
-      "Port city with art, beaches, and skyline.",
+    '/assets/city-interests/ci-kaohsiung.jpg', 
+      "A major port city with art districts, night markets, historical buildings, and skyline.",
   ],
 };
 

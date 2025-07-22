@@ -68,6 +68,8 @@ jobs:
     steps: # steps represent sequential taks that will be executed as part of this "build" job
       - name: Checkout Repository 
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Cache node_modules # improve efficiency
         uses: actions/cache@v4

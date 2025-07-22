@@ -1,14 +1,28 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AttractionMap from "../components/AttractionMap";
+import NearbyHotels from "../components/NearbyHotels";
+import NearbyRestaurants from "../components/NearbyRestaurants";
+import AttractionPhotos from "../components/AttractionPhotos";
+import AttractionTimetable from "../components/AttractionTimetable";
+
 
 type Coord = { lat: number; lng: number };
 
 const Attraction = () => {
 
-  const { attract } = useParams();  
-  console.log(attract);
+  const { attract } = useParams();
+  function formatAttractionName(slug: string | undefined) {
+    if (!slug) return '';
+    return slug
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  }
+
   const [coord, setCoord] = useState<Coord | null>(null);
+  const [openingHours, setOpeningHours] = useState<string[]>([]);
+  const [description, setDescription] = useState<string | null>(null);
 
   useEffect(() => {
     async function getAttractionInfo() { 
@@ -17,7 +31,8 @@ const Attraction = () => {
 
       const request = {
         textQuery: attract,
-        fields: ["displayName", "formattedAddress", "id", "location"], // or other needed fields
+        fields: ["displayName", "formattedAddress", "id", "editorialSummary",  
+          "location", "regularOpeningHours",], // or other needed fields
         locationBias: { lat: 25.033964, lng: 121.564468 },
         language: "en-US",
         maxResultCount: 1,
@@ -25,10 +40,16 @@ const Attraction = () => {
 
       const { places } = await Place.searchByText(request); 
       const myAttraction = places[0];
+      const summary = myAttraction.editorialSummary;
       const placeId = myAttraction.id;
       const placeLatLng = myAttraction.location;
+      const hours = myAttraction.regularOpeningHours;
+
       console.log("LATLNG: " + placeLatLng);
       console.log(placeId);
+
+      setDescription(summary || null);
+
       if (placeLatLng) {
         setCoord({
           lat: placeLatLng.lat(),
@@ -37,18 +58,64 @@ const Attraction = () => {
       } else {
         setCoord(null);
       }
+
+      if (hours?.weekdayDescriptions) {
+      setOpeningHours(hours.weekdayDescriptions);
+      }
     }
+
     getAttractionInfo();
   }, [attract]);  
 
   return (
+    <>
     <div>
-      <h1>{attract}</h1>
-      {coord && <AttractionMap lat={coord.lat} lng={coord.lng}></AttractionMap>}
-      {/* opening hours */}
-      {/* restaurants v2 column style */}
-      {/* hotels v2 column style */}
+      <h1 className="attraction-title">{formatAttractionName(attract)}</h1>
+
+      <AttractionPhotos attract={formatAttractionName(attract)}></AttractionPhotos>
+
+      <nav className="section-nav">
+        <ul>
+          <li><a href="#Overview">Overview</a></li>
+          <li><a href="#Map">Map</a></li>
+          <li><a href="#Hours">Hours</a></li>
+          <li><a href="#Hotels">Hotels</a></li>
+          <li><a href="#Restaurants">Restaurants</a></li>
+        </ul>
+      </nav>
+
+      <div className="container">
+
+        {description && (
+          <div id="Overview" className="attraction-description">
+            <h2>Overview</h2>
+            <p>{description}</p>
+          </div>
+        )}
+
+        <div id="Map">
+          {coord && <AttractionMap lat={coord.lat} lng={coord.lng}></AttractionMap>}
+        </div>
+        
+        <div id="Hours">
+          <AttractionTimetable hours={openingHours} />
+        </div>
+
+        <div className="commodities-container">
+
+          <div id="Hotels">
+            {coord && <NearbyHotels lat={coord.lat} lng={coord.lng}></NearbyHotels>}
+          </div>
+
+          <div id="Restaurants">
+            {coord && <NearbyRestaurants lat={coord.lat} lng={coord.lng}></NearbyRestaurants>}
+          </div>
+
+        </div>
+      </div>
     </div>
+      
+    </>
   )
 }
 

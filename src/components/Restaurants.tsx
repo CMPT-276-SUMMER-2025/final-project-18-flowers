@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { mockPlacesRestaurants } from '../data/cityData';
-
 
 type Props = { cityname: string };
 
@@ -28,7 +27,7 @@ const Restaurants = ({ cityname } : Props) => {
       setPlaces(mockPlacesRestaurants);
       return; 
     }
-    console.log("You just spend money!");
+    console.log("You just spent money!");
     async function getHotels() {
       const { Place, SearchNearbyRankPreference } = await google.maps.importLibrary('places') as google.maps.PlacesLibrary;
       const myRequest = {
@@ -65,21 +64,26 @@ const Restaurants = ({ cityname } : Props) => {
   return (
     <>
       <div className="commodity-container">
-        <h1 className="commodity-title">Restaurants</h1>
+        <h1 className="commodity-title">Nearby Restaurants</h1>
         {places.map((place) => (
-          <Link key={place.id} to={`${place.displayName?.toLowerCase().replace(/\s+/g, "-")}`}>
-            <div className='restaurant-content'>
+          <a 
+            key = {place.id}
+            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.displayName || '')}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div className='commodity-content'>
               {
                 place.photoUrl && 
                 <img src={place.photoUrl} 
-                      alt={ place.displayName || 'Tourism Attraction' } 
+                      alt={ place.displayName || 'Restaurant' } 
                       loading="lazy"
                       className="commodity-photo"
                 />
               }
               <h3 className='commodity-name'>{place.displayName}</h3>
             </div>
-          </Link>
+          </a>
         ))}
       </div>
     </>

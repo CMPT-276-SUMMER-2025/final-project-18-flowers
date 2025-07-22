@@ -4,6 +4,7 @@ import { BrowserRouter as Router,
          useLocation
 } from 'react-router-dom';
 import { APIProvider } from '@vis.gl/react-google-maps';
+import ScrollToTop from './components/scrollToTop';
 import NavBar from './components/NavBar';
 import NavBarSolid from './components/NavBarSolid';
 import Home from './pages/Home';
@@ -11,9 +12,10 @@ import Destinations from './pages/Destinations';
 import Interests from './pages/Interests';
 import CityInterests from './pages/CityInterests';
 import Attraction from './pages/Attraction';
+import PlanTrip from './pages/PlanTrip';
 
 function App() {
-  const apiKey = import.meta.env.Ikkyu_VITE_GOOGLE_MAPS_API_KEY;
+  const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
   return (
     <>
@@ -41,10 +43,12 @@ function AppContent() {
     return (
       <>
         <NavBar />
+        <ScrollToTop></ScrollToTop>
         <Routes>
           <Route path='/' element={<Home />}></Route>
           <Route path='/destinations' element={<Destinations />}></Route>
           <Route path='/interests' element={<Interests />}></Route>
+          <Route path='/plantrip' element={<PlanTrip />}></Route>
           <Route path="/destinations/:id" element={<CityInterests />} />
           <Route path="/destinations/:id/:attract" element={<Attraction />} />
         </Routes>
@@ -55,15 +59,18 @@ function AppContent() {
   return( 
     <>
       <NavBarSolid />
+      <ScrollToTop></ScrollToTop>
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/destinations' element={<Destinations />}></Route>
         <Route path='/interests' element={<Interests />}></Route>
+        <Route path='/plantrip' element={<PlanTrip />}></Route>
         <Route path="/destinations/:id" element={<CityInterests />} />
         <Route path="/destinations/:id/:attract" element={<Attraction />} />
       </Routes>
     </>
-  );
-}
+    );
+  }
+
 
 export default App

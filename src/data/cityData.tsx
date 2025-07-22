@@ -1,11 +1,11 @@
 // destinations cards data 
 export const cities = {
-  "Taipei City" : ['/assets/destinations/taipei.jpg', "Modern capital with night markets and Taipei 101."], 
-  "Hualien City" : ['/assets/destinations/hualien.jpg', "Coastal town near cliffs and Taroko Gorge."],
-  "Yilan City" : ['/assets/destinations/yilan.jpg', "Peaceful area known for hot springs and farms."],
-  "Taichung City" : ['/assets/destinations/taichung.jpg', "Cultural hub and birthplace of bubble tea."],
-  "Tainan City" : ['/assets/destinations/tainan.jpg', "Oldest city with temples and local snacks."],
-  "Kaohsiung City" : ['/assets/destinations/kaohsiung.jpg', "Port city with art, beaches, and skyline."],
+  "Taipei City" : ['Taipei City', '/assets/destinations/taipei.jpg', "Modern capital with night markets and Taipei 101."], 
+  "Hualien City" : ['Hualien City', '/assets/destinations/hualien.jpg', "Coastal town near cliffs and Taroko Gorge."],
+  "Yilan City" : ['Yilan City', '/assets/destinations/yilan.jpg', "Peaceful area known for hot springs and farms."],
+  "Taichung City" : ['Taichung City', '/assets/destinations/taichung.jpg', "Cultural hub and birthplace of bubble tea."],
+  "Tainan City" : ['Tainan City', '/assets/destinations/tainan.jpg', "Oldest city with temples and local snacks."],
+  "Kaohsiung City" : ['Kaohsiung City', '/assets/destinations/kaohsiung.jpg', "Port city with art, beaches, and skyline."],
 };
 
 // regions map data
@@ -15,7 +15,8 @@ export const citiesLatLng = [
     coord: { lat: 25.0329, lng: 121.5654 }, 
     header: "Taipei City", 
     description: "The bustling capital of Taiwan, known for Taipei 101, vibrant night markets, and rich cultural heritage.", 
-    region: "Northern Taiwan" 
+    region: "Northern Taiwan",
+    image: "/assets/destinations/taipei.jpg"
   }, // Taipei
   
   { 
@@ -23,7 +24,8 @@ export const citiesLatLng = [
     coord: { lat: 23.9742, lng: 121.6016 }, 
     header: "Hualien City", 
     description: "Home to Taroko Gorge and stunning coastal scenery, offering some of Taiwan's best nature spots.", 
-    region: "Eastern Taiwan" 
+    region: "Eastern Taiwan",
+    image: "/assets/destinations/hualien.jpg"
   }, // Hualien
   
   { 
@@ -31,23 +33,43 @@ export const citiesLatLng = [
     coord: { lat: 24.7571, lng: 121.7539 }, 
     header: "Yilan City", 
     description: "Famous for hot springs, lush mountains, and traditional Taiwanese culture.", 
-    region: "Northeastern Taiwan" 
+    region: "Northeastern Taiwan",
+    image: "/assets/destinations/yilan.jpg"
   }, // Yilan
   
+  { 
+    id: "kaohsiung", 
+    coord: { lat: 22.6273, lng: 120.3014 }, 
+    header: "Kaohsiung City", 
+    description: "A major port city with art districts, night markets, historical buildings, and skyline.", 
+    region: "Southern Taiwan",
+    image: "/assets/destinations/kaohsiung.jpg"
+  }, // kaohsiung
+
+  { 
+    id: "tainan", 
+    coord: { lat: 22.9995, lng: 120.2293 }, 
+    header: "Tainan City", 
+    description: "The oldest city in Taiwan, known for its rich history, temples, and delicious local snacks.", 
+    region: "Southern Taiwan",
+    image: "/assets/destinations/tainan.jpg"
+  }, // Tainan
+
   { 
     id: "taichung", 
     coord: { lat: 24.1477, lng: 120.6736 }, 
     header: "Taichung City", 
     description: "A vibrant city with cultural attractions, parks, and access to central Taiwan's mountains.", 
-    region: "Central Taiwan" 
-  } // Taichung
+    region: "Central Taiwan",
+    image: "/assets/destinations/taichung.jpg"
+  }, // Taichung
 ];
 
 // city interests page data 
 export const cityInterestsData = {
   "Taipei City" : [
-    '/assets/destinations/taipei.jpg', 
-      "Taipei City (台北市, Táiběi Shì) is the capital and largest metropolitan area of Taiwan, serving as the political, economic, and cultural heart of the island. Located in the Taipei Basin and surrounded by lush mountains, the city offers a unique blend of modern skyscrapers, historic temples, and vibrant street culture. Taipei is renowned for its landmarks, including the towering Taipei 101, the National Palace Museum with its world-class collection of Chinese artifacts, and bustling night markets such as Shilin and Raohe. Historically, Taipei developed from a small trading settlement during the Qing Dynasty into a major administrative and commercial hub under Japanese rule (1895–1945), which left lasting influences on its architecture and infrastructure. Today, Taipei thrives as a global city, known for its efficient MRT system, thriving tech industry, and diverse culinary scene ranging from street food to Michelin-starred restaurants. Visitors can soak in hot springs in nearby Beitou, hike Elephant Mountain for panoramic views, or enjoy cultural festivals throughout the year. With its mix of modernity, history, and natural surroundings, Taipei stands as one of Asia’s most dynamic and welcoming cities.",
+    '/assets/taipei-night.jpeg', 
+      "Taipei City (台北市, Táiběi Shì) is the capital and largest metropolitan area of Taiwan, serving as the political, economic, and cultural heart of the island. Located in the Taipei Basin and surrounded by lush mountains, the city offers a unique blend of modern skyscrapers, historic temples, and vibrant street culture. Taipei is renowned for its landmarks, including the towering Taipei 101, the National Palace Museum with its world-class collection of Chinese artifacts, and bustling night markets such as Shilin and Raohe.\n\n Historically, Taipei developed from a small trading settlement during the Qing Dynasty into a major administrative and commercial hub under Japanese rule (1895–1945), which left lasting influences on its architecture and infrastructure. Today, Taipei thrives as a global city, known for its efficient MRT system, thriving tech industry, and diverse culinary scene ranging from street food to Michelin-starred restaurants.\n\n Visitors can soak in hot springs in nearby Beitou, hike Elephant Mountain for panoramic views, or enjoy cultural festivals throughout the year. With its mix of modernity, history, and natural surroundings, Taipei stands as one of Asia’s most dynamic and welcoming cities.",
   ], 
   "Hualien City" : 
   [
@@ -67,12 +89,12 @@ export const cityInterestsData = {
   "Tainan City" : 
   [
     '/assets/city-interests/ci-tainan.jpg', 
-      "Oldest city with temples and local snacks.",
+      "The oldest city in Taiwan, known for its rich history, temples, and delicious local snacks.",
   ],
   "Kaohsiung City" : 
   [
-    '/assets/city-iSnterests/ci-kaohsiung.jpg', 
-      "Port city with art, beaches, and skyline.",
+    '/assets/city-interests/ci-kaohsiung.jpg', 
+      "A major port city with art districts, night markets, historical buildings, and skyline.",
   ],
 };
 
@@ -129,22 +151,22 @@ export const mockPlacesAttractions = [
 export const mockPlacesHotels = [
   {
     id: 'h1',
-    displayName: 'Hotel Sea',
+    displayName: 'Grand Hotel Taipei',
     photoUrl: '/assets/hotels/hotel-1.jpg',
   },
   {
     id: 'h2',
-    displayName: 'Hotel Star',
+    displayName: 'Taipei Garden',
     photoUrl: '/assets/hotels/hotel-2.jpg',
   },
   {
     id: 'h3',
-    displayName: 'Hotel Jungle',
+    displayName: 'CitizenM Taipei North Gate',
     photoUrl: '/assets/hotels/hotel-3.jpg',
   },
   {
     id: 'h4',
-    displayName: 'Hotel Galaxy',
+    displayName: 'Palais de Chine',
     photoUrl: '/assets/hotels/hotel-4.jpg',
   },
 ];
@@ -153,22 +175,22 @@ export const mockPlacesHotels = [
 export const mockPlacesRestaurants = [
   {
     id: 'r1',
-    displayName: 'Restaurant N',
+    displayName: 'A Joy',
     photoUrl: '/assets/restaurants/res-1.jpg',
   },
   {
     id: 'r2',
-    displayName: 'Restaurant W',
+    displayName: 'Wind City Moon',
     photoUrl: '/assets/restaurants/res-2.jpg',
   },
   {
     id: 'r3',
-    displayName: 'Restaurant S',
+    displayName: 'Liaoning Street Night Market',
     photoUrl: '/assets/restaurants/res-3.jpg',
   },
   {
     id: 'r4',
-    displayName: 'Restaurant E',
+    displayName: 'RAW Taipei',
     photoUrl: '/assets/restaurants/res-4.jpg',
   },
 ];

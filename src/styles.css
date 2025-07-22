@@ -10,9 +10,19 @@ body, html {
   --white-transparent: rgba(255, 255, 255, 0.5);
   --color-primary: #030412;
   --color-midnight: #06091f;
-  --color-navy: #161a31;
-  --color-indigo: #1f1e39;
-  --color-storm: #282b4b;
+  /* font weights */
+  --fw-normal: 400; /* body text */
+  --fw-medium: 500; /* buttons or subheadings */
+  --fw-medium-bold: 600;
+  --fw-bold: 700; /* headings or emphasis */
+  /* font sizes */
+  --fs-xs: 0.75rem;   /* 12px - small text, captions */
+  --fs-sm: 0.875rem;  /* 14px - secondary text */
+  --fs-base: 1rem;    /* 16px - body text */
+  --fs-lg: 1.125rem;  /* 18px - slightly larger text */
+  --fs-xl: 1.5rem;    /* 24px - h3 */
+  --fs-2xl: 2rem;     /* 32px - h2 */
+  --fs-3xl: 2.5rem;   /* 40px - h1 */
 }
 
 /* navbar component */
@@ -50,6 +60,7 @@ div ul {
 div ul li {
   padding: 16px 16px 16px 16px;
   font-weight: 500;
+  font-size: var(--fs-sm);
 }
 
 div ul li:hover {
@@ -103,26 +114,36 @@ div ul li:hover {
 /* regions component */
 
 #regions-container {
-  background-color: white;
+  width: 50%;
   display: flex;
   flex-direction: row;
   align-items: center;
   margin: 0 auto;
-  width: 65%;
+
 }
 
 #regions-title {
-  font-weight: 650;
-  font-size: 30px;
-  margin-top: 16px;
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-2xl);
+  margin: 48px 0px 28px 0px;
   text-align: center;
 } 
 
-.region-content {
-  background-color: transparent;
-  height: 720px;
-  width: 300px;
-  border: 4px solid black;
+.region-card {
+  margin: 8px;
+  width: 200px;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.region-txt {
+  margin: 20px 20px 20px 20px;
+  min-height: 120px;
 }
 
 /* destinations component */
@@ -138,159 +159,285 @@ div ul li:hover {
 }
 
 #dest-title {
-  font-weight: 650;
-  font-size: 30px;
-  margin: 36px 0px 12px 0px;
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-2xl);
+  margin: 48px 0px 28px 0px;
   text-align: center;
 } 
 
 #dest-grid {
-  width: 100%;
+  width: 50%;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(3, 240px);
   justify-content: center;
-  align-items: stretch;
+  align-items: center;
 }
 
 /* city card component */
 
 .dest-card {
-  border: 0px solid transparent;
-  margin: 12px;
-  max-width: 264px;
+  margin: 8px;
+  max-width: 240px;
   border-radius: 16px;
-  box-shadow: 4px 8px 8px hsl(0deg 0% 0% / 0.38);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
   display: flex;
   flex-direction: column;
-  max-height: 300px;
+  position: relative;
 }
 
 .city-img {
-  height: 164px;
-  width: 100%;
+  height: 172px;
   object-fit: cover;
   border-top-left-radius: 14px;
   border-top-right-radius: 14px;
-  overflow: hidden;
 }
 
 .city-txt {
-  margin: 24px;
-  min-height: 100px;
+  margin: 20px 20px 0px 20px;
+  min-height: 92px;
 }
 
 .city-txt h3 {
-  font-weight: 700;
+  font-weight: var(--fw-bold);
 }
 
 .city-txt p {
-  font-size: smaller;
+  font-size: var(--fs-xs);
 }
 
 /* city interests component */
 
+.container {
+  width: 750px;
+  margin: 0 auto;
+  max-width: 1200px; /* prevent from getting too wide if user monitor is too wide */
+}
+
 .ci-thumb {
-  width: 100%;
+  width: 100vw;
   height: 45vh;
   object-fit: cover;
 }
 
 .ci-header {
   font-size: 54px;
-  font-weight: 800;
-  margin: 54px 54px 42px 54px;
+  font-weight: var(--fw-medium-bold);
+}
+
+.ci-header-container {
+  width: 750px;
+  margin: 0 auto;
+  text-align: left;
+  padding: 48px 0px 48px 0px;
+  max-width: 1200px;
 }
 
 .ci-description {
-  width: 70%;
-  text-align: left;
-  margin: 48px;
-  margin-left: 15%;
+  margin: 48px 0px 48px 0px;
+  white-space: pre-line;
+  font-size: var(--fs-base);
+}
+
+.commodities-container {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  /* border: 4px solid black; */
+  margin: 48px 0px 48px 0px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* attractions component from city-interest */
+
+#attractions-title {
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-2xl);
+}
+
+#attractions-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  column-gap: 48px;
+}
+
+.attractions {
+  position: relative;
+  margin: 12px;
+}
+
+.attractions::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 40%; /* only add shading to top 40% */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
+  /* make shadow edges rounded */
+    border-top-left-radius: 8px;  
+    border-top-right-radius: 8px;
+  z-index: 4;
+}
+
+.attractions-name {
+  font-weight: var(--fw-medium);
+  font-size: var(--fw-normal);
+  overflow-wrap: break-word;
+  margin-bottom: 24px;
+  position: absolute;
+  padding: 8px;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  color: white;
+}
+.attractions-photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+.attractions-photo-gallery {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  margin-top: 1rem;
 }
 
 /* attraction component */
-
-#attraction-title {
-  font-size: 30px;
-  font-weight: 800;
-  text-align: center;
+.section-nav {
+  display: flex;
+  gap: 1.5rem;
+  margin: 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #ccc;
 }
 
-#attraction-container {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(3, 200px);
-  column-gap: 16px;
-  justify-content: center;
-  align-items: stretch;
+.section-nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 1.5rem;
 }
 
-.attraction-name {
-  font-weight: 600;
-  font-size: 16px;
-  /*background-color: red;*/
-  margin: 8px;
-  overflow-wrap: break-word;
+.section-nav a {
+  text-decoration: none;
+  color: #838383;
+  font-size: 1.25rem;
+}
+
+.section-nav a:hover {
+  text-decoration: underline;
+}
+
+.attraction-title {
+  font-weight: var(--fw-medium-bold);
+  font-size: var(--fs-3xl);
+  margin: 20px;
+}
+
+.attraction-map {
+  width: "600px";
+  height: "400px";
+  border-radius: 4px;
 }
 
 .attraction-photo {
-  width: 200px;
-  height: 200px;
   object-fit: cover;
-  margin: 8px;
+  width: 25%;
+  height: 350px;
+}
+
+.attraction-photo-gallery {
+  display: flex;
+  gap: 0px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  margin-top: 1rem;
+}
+
+.opening-hours, .attraction-description {
+  margin: 1.5rem;
+}
+
+.opening-hours h2, .attraction-description h2{
+  font-weight: var(--fw-medium-bold);
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.attraction-description p{
+  font-size: 1.2rem;
+}
+
+.opening-hours ul {
+  align-items:first baseline;
+  padding: 5px;
+  list-style-type: none;
+  /* background-color: blue;*/
+}
+
+.opening-hours li {
+  align-items:first baseline;
+  font-size: 1rem;
+  padding: 5px;
+  /*background-color: aqua;*/
 }
 
 /* commodity (hotels and restaurants) component */
 
 .commodity-title {
-  font-weight: 800;
-  font-size: xx-large;
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-2xl);
 }
 
-.commodities-container {
-  margin-left: 25%;
-  width: 50%;
-  /*background-color: #161a31;*/
-  display: flex;
-  flex-direction: row;
-  align-items: left;
-  border: 1px /*solid black*/
-}
-
-.commodity-container {
-  width: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /*background-color: aquamarine;*/
-  margin: 24px;
-  border: 1px /*solid black*/
-}
+/* .commodity-container */
 
 .commodity-photo {
-  width: 100%;
-  height: 124px;
-  width: 250px;
+  height: 120px;
+  width: 120px;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
   object-fit: cover;
-  /*background-color: red;*/
 }
 
 .commodity-name {
-  font-weight: 600;
-  margin-left: 16px;
+  font-weight: var(--fw-medium);
   text-align: left;
+  margin: 12px;
 }
 
-.hotel-content {
+.commodity-content { 
   display: flex;
-  width: 400px;
-  margin: 12px;
-  /*background-color: chocolate;*/
+  margin: 12px 0px 12px 0px;
+  border: 1px solid lightgray;
+  border-radius: 16px;
 }
 
-.restaurant-content { 
-  display: flex;
+/* interests types component */
+
+.it-title {
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-2xl);
+}
+
+.it-element-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  column-gap: 48px;
+}
+
+#it-container {
+  width: 750px;
+  margin: 0 auto;
+  max-width: 1200px; /* prevent from getting too wide if user monitor is too wide */
+}
+
+.it-element {
+  position: relative;
   margin: 12px;
-  /*background-color: chocolate;*/
 }

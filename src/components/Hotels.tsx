@@ -75,7 +75,7 @@ const Hotels = ({ cityname } : Props) => {
               {
                 place.photoUrl && 
                 <img src={place.photoUrl} 
-                      alt={ place.displayName || 'Hotels' } 
+                      alt={ place.displayName || 'Hotel' } 
                       loading="lazy"
                       className="commodity-photo"
                 />

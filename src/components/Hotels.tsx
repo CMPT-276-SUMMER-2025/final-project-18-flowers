@@ -63,7 +63,7 @@ const Hotels = ({ cityname } : Props) => {
   return (
     <>
       <div className="commodity-container">
-        <h1 className="commodity-title">Nearby Hotels</h1>
+        <h1 className="commodity-title">Hotels</h1>
         {places.map((place) => (
           <a 
             key = {place.id}
@@ -75,7 +75,7 @@ const Hotels = ({ cityname } : Props) => {
               {
                 place.photoUrl && 
                 <img src={place.photoUrl} 
-                      alt={ place.displayName || 'Hotel' } 
+                      alt={ place.displayName || 'Hotels' } 
                       loading="lazy"
                       className="commodity-photo"
                 />

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 type Props = { attract: string; }
 type TPhoto = { url: string; };
 
+
 const AttractionPhotos = ({ attract }: Props) => {
   const [photos, setPhotos] = useState<TPhoto[]>([]);
   const [loading, setLoading] = useState(true);
@@ -29,6 +30,7 @@ const AttractionPhotos = ({ attract }: Props) => {
         }));
 
         setPhotos(imageUrls.slice(0,4));
+        
       } catch (err) {
         console.error("Failed to fetch attraction photos:", err);
       } finally {
@@ -37,6 +39,7 @@ const AttractionPhotos = ({ attract }: Props) => {
     }
 
     fetchPhotos();
+  
   }, [attract]);
 
   if (loading) return <p>Loading photos...</p>;

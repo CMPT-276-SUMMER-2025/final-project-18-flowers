@@ -69,7 +69,8 @@ function AppContent() {
         <Route path="/destinations/:id/:attract" element={<Attraction />} />
       </Routes>
     </>
-  );
-}
+    );
+  }
+
 
 export default App

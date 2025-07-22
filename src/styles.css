@@ -309,6 +309,30 @@ div ul li:hover {
 }
 
 /* attraction component */
+.section-nav {
+  display: flex;
+  gap: 1.5rem;
+  margin: 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.section-nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.section-nav a {
+  text-decoration: none;
+  color: #838383;
+  font-size: 1.25rem;
+}
+
+.section-nav a:hover {
+  text-decoration: underline;
+}
 
 .attraction-title {
   font-weight: var(--fw-medium-bold);
@@ -335,14 +359,18 @@ div ul li:hover {
   margin-top: 1rem;
 }
 
-.opening-hours {
+.opening-hours, .attraction-description {
   margin: 1.5rem;
 }
 
-.opening-hours h2 {
+.opening-hours h2, .attraction-description h2{
   font-weight: var(--fw-medium-bold);
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   margin-bottom: 0.5rem;
+}
+
+.attraction-description p{
+  font-size: 1.2rem;
 }
 
 .opening-hours ul {
@@ -354,6 +382,7 @@ div ul li:hover {
 
 .opening-hours li {
   align-items:first baseline;
+  font-size: 1rem;
   padding: 5px;
   /*background-color: aqua;*/
 }

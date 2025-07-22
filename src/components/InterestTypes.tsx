@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { mockPlacesAttractions } from '../data/cityData';
 
-type Props = { cityname: string };
+type Props = { cityname: string, type: string };
 
 const saveAPICost = false;
 
-const Attractions = ({ cityname } : Props) => {
+const InterestTypes = ({ cityname, type } : Props) => {
   // type alias TPlace object that holds id, displayName
   type TPlace = {
     id: string;
@@ -15,8 +15,6 @@ const Attractions = ({ cityname } : Props) => {
   };
 
   const [places, setPlaces] = useState<TPlace[]>([]);
-  const { id } = useParams();  
-  console.log(id);
 
   useEffect(() => {
     if (saveAPICost) { 
@@ -41,21 +39,21 @@ const Attractions = ({ cityname } : Props) => {
 
     console.log("You just spent money! (aka there goes Alex's money)");
 
-
+    const formattedType = type.replace(/_/g, " ");
 
     async function getAttractions() {
       const { Place, SearchByTextRankPreference } = await google.maps.importLibrary('places') as google.maps.PlacesLibrary;
       const myRequest = {
-        textQuery: `${cityname} tourist attractions locations`, // query 
+        textQuery: `${cityname} ${formattedType}`, // query 
         fields: ["id", "displayName", "photos"], // save cost by specifying only displayName field and photos (essentials tier => cheaper)
-        includedType: "tourist_attraction", // only request tourist attractions
+        includedType: type, // only request tourist attractions
         rankPreference: SearchByTextRankPreference.RELEVANCE, // only request relevant to query 
         minRating: 3.5, // only request places with 4.0 <= rating <= 5.0
-        maxResultCount: 15, // requests 15 places total, in case there are invalid results that includes non-english titles
-        language: "en",
-        region: 'us',
+        maxResultCount: 6, // only request 9 places total
         useStrictTypeFiltering: true,
       }
+
+      console.log("Hi: " + type);
 
       // oldName: newName 
       const { places: myPlaces } = await Place.searchByText(myRequest) as { places: google.maps.places.Place[] };
@@ -80,18 +78,17 @@ const Attractions = ({ cityname } : Props) => {
       
       setPlaces(formattedPlaces);
       localStorage.setItem(cacheKey, JSON.stringify(formattedPlaces));
-
     } 
     getAttractions();
-  }, [cityname]);
+  }, [cityname, type]);
   
   return (
-    <>
-      <h1 id="attractions-title">Attractions</h1>
-      <div id="attractions-container">
+    <div id="it-container">
+      <h1 className="it-title">{type}</h1>
+      <div className="it-element-container">
         {places.map((place) => (
-          <Link to={`${place.displayName?.toLowerCase().replace(/\s+/g, "-")}`}>
-            <div key={place.id} className="attractions">
+          <Link to={`${place.displayName?.toLowerCase().replace(/\s+/g, "-")}`} key={place.id}>
+            <div className="it-element">
               {
                 place.photoUrl && 
                 <img src={place.photoUrl} 
@@ -101,12 +98,14 @@ const Attractions = ({ cityname } : Props) => {
                 />
               }
               <h3 className='attractions-name'>{place.displayName}</h3>
+              <p>I'm a description</p>
+              <img src=""></img>
             </div>
           </Link>
         ))}
       </div>
-    </>
+    </div>
   )
 }
 
-export default Attractions
+export default InterestTypes

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import SearchBar from './SearchBar'
 
 const NavBarSolid = () => {
   return (
@@ -13,7 +14,7 @@ const NavBarSolid = () => {
             <li><Link to="/plantrip">Plan a trip</Link></li>
           </ul>
         </div>
-        <div id="nav-right">Search</div>
+        <div id="nav-right"><SearchBar></SearchBar></div>
       </nav>
     </>
   )

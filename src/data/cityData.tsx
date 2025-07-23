@@ -8,6 +8,33 @@ export const cities = {
   "Kaohsiung City" : ['Kaohsiung City', '/assets/destinations/kaohsiung.jpg', "Port city with art, beaches, and skyline."],
 };
 
+export const mockInterestData = {
+  "shopping_mall" : [
+    { id: "m1", displayName: "Mall A", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "m2", displayName: "Mall B", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "m3", displayName: "Mall C", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "m4", displayName: "Mall D", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "m5", displayName: "Mall E", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "m6", displayName: "Mall F", photoUrl: "/assets/destinations/taipei.jpg" },
+  ],
+  "amusement_park" : [
+    { id: "p1", displayName: "Park A", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "p2", displayName: "Park B", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "p3", displayName: "Park C", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "p4", displayName: "Park D", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "p5", displayName: "Park E", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "p6", displayName: "Park F", photoUrl: "/assets/destinations/taipei.jpg" },
+  ],
+  "tourist_attraction" : [  
+    { id: "t1", displayName: "Attraction A", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "t2", displayName: "Attraction B", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "t3", displayName: "Attraction C", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "t4", displayName: "Attraction D", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "t5", displayName: "Attraction E", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "t6", displayName: "Attraction F", photoUrl: "/assets/destinations/taipei.jpg" },
+  ],
+};
+
 // regions map data
 export const citiesLatLng = [
   { 

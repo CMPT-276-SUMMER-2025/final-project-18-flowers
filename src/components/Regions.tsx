@@ -5,7 +5,6 @@ import RegionContent from '../components/RegionContent';
 
 const Regions = () => {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-  console.log(apiKey);
 
   const [baseSymbol, setBaseSymbol] = useState<google.maps.Symbol | null>(null); // sets the appearance of the symbol 
   const [hoverSymbol, setHoverSymbol] = useState<google.maps.Symbol | null>(null); // sets the appearance of the symbol when hovered
@@ -25,8 +24,6 @@ const Regions = () => {
     keyboardShorcuts: false,
     gestureHandling: 'none'
   }
-
-  
 
   // API related code goes in useEffect
   useEffect(() => { 
@@ -66,7 +63,7 @@ const Regions = () => {
   return (
     <>
       <div id="dummy-map"></div>
-      <h1 id="regions-title">Regions of Taiwan</h1>
+      <h1 id="regions-title"><strong>Regions</strong> of Taiwan</h1>
 
       <div id="regions-container" className='flex flex-col w-full justify-center items-center'>
         <div className='border-0 rounded-4xl overflow-hidden m-6'>

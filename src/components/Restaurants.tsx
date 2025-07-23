@@ -64,7 +64,7 @@ const Restaurants = ({ cityname } : Props) => {
   return (
     <>
       <div className="commodity-container">
-        <h1 className="commodity-title">Nearby Restaurants</h1>
+        <h1 className="commodity-title">Restaurants</h1>
         {places.map((place) => (
           <a 
             key = {place.id}

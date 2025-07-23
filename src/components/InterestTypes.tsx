@@ -1,45 +1,65 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { mockPlacesAttractions } from '../data/cityData';
+import { mockInterestData } from '../data/cityData';
 
-type Props = { cityname: string, type: string };
 
-const saveAPICost = false;
+type interestProps = { 
+  cityname: string, // cityname
+  type: string  // type of place (e.g., amusement_park, chinese_restaurant, etc.)
+};
 
-const InterestTypes = ({ cityname, type } : Props) => {
-  // type alias TPlace object that holds id, displayName
-  type TPlace = {
+const saveAPICreditsMode = false;    
+
+const interestTypesArr = ["shopping mall", "tourist_attraction", "amusement_park"];
+
+const InterestTypes = ({ cityname, type } : interestProps) => {
+
+  type Place = {
     id: string;
     displayName?: string | null;
     photoUrl?: string;
   };
 
-  const [places, setPlaces] = useState<TPlace[]>([]);
+  const [places, setPlaces] = useState<Place[]>([]);
+  const [typeHeader, setTypeHeader] = useState('');
 
   useEffect(() => {
-    if (saveAPICost) { 
-      setPlaces(mockPlacesAttractions);
+    if (saveAPICreditsMode) { 
+      const formattedType = type.replace(/_/g, " "); 
+      const newFormattedType = formattedType
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+
+      setTypeHeader(newFormattedType + "s");
+      setPlaces(mockInterestData[type as keyof typeof mockInterestData]);
       return; 
     }
 
+    /* ---- */
     const isEnglish = (text: string | undefined | null) =>
-      text ? /^[\x00-\x7F]*$/.test(text) : false; //Checks if the result in cache is valid by checking if the result is in ASCII characters
+      text ? /^[\x00-\x7F]*$/.test(text) : false; // checks if the result in cache is valid by checking if result is in ASCII characters 
 
     const cacheKey = `attractions-${cityname}`;
     const cachedData = localStorage.getItem(cacheKey);
 
     if (cachedData) {
-      const parsed = JSON.parse(cachedData) as TPlace[];
+      const parsed = JSON.parse(cachedData) as Place[];
       const valid = parsed.filter(p => isEnglish(p.displayName));
       if (valid.length >= 9) {
-        setPlaces(valid.slice(0, 9)); //Only show the first 9 valid results in cache
+        setPlaces(valid.slice(0, 9)); // only show the first 9 valid results in cache
         return;
       }
     }
+    /* ---- */
 
-    console.log("You just spent money! (aka there goes Alex's money)");
+    const formattedType = type.replace(/_/g, " "); 
+    const newFormattedType = formattedType
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
 
-    const formattedType = type.replace(/_/g, " ");
+    setTypeHeader(newFormattedType + "s");
 
     async function getAttractions() {
       const { Place, SearchByTextRankPreference } = await google.maps.importLibrary('places') as google.maps.PlacesLibrary;
@@ -53,21 +73,21 @@ const InterestTypes = ({ cityname, type } : Props) => {
         useStrictTypeFiltering: true,
       }
 
-      console.log("Hi: " + type);
-
       // oldName: newName 
       const { places: myPlaces } = await Place.searchByText(myRequest) as { places: google.maps.places.Place[] };
 
+      /* ---- */
       const isEnglish = (text: string | undefined) =>
-        text ? /^[\x00-\x7F]*$/.test(text) : false; //Checks if the result is in English by checking if the result is in ASCII characters
+        text ? /^[\x00-\x7F]*$/.test(text) : false; // checks if the result in cache is valid by checking if result is in ASCII characters 
 
-      const filteredPlaces = myPlaces.filter( //Filters the 15 results with only english results
+      const filteredPlaces = myPlaces.filter( // filters the 6 results with english results
         (place) =>
           typeof place.displayName === "string" &&
           isEnglish(place.displayName)
       );
+      /* ---- */
 
-      const formattedPlaces = filteredPlaces.slice(0, 9).map((place) => { //Only show the first 9 valid results
+      const formattedPlaces = filteredPlaces.slice(0, 9).map((place) => { // pnly show the first 9 valid results
         const firstPhoto = place.photos?.[0];
         return ({
           id: place.id || ' ',
@@ -83,28 +103,30 @@ const InterestTypes = ({ cityname, type } : Props) => {
   }, [cityname, type]);
   
   return (
-    <div id="it-container">
-      <h1 className="it-title">{type}</h1>
-      <div className="it-element-container">
-        {places.map((place) => (
-          <Link to={`${place.displayName?.toLowerCase().replace(/\s+/g, "-")}`} key={place.id}>
-            <div className="it-element">
-              {
-                place.photoUrl && 
-                <img src={place.photoUrl} 
-                      alt={ place.displayName || 'Tourism Attraction' } 
-                      loading="lazy"
-                      className="attractions-photo"
-                />
-              }
-              <h3 className='attractions-name'>{place.displayName}</h3>
-              <p>I'm a description</p>
-              <img src=""></img>
-            </div>
-          </Link>
-        ))}
+    <>
+      <div id="it-container">
+        <h1 className="it-title">{typeHeader}</h1>
+        <div className="it-element-container">
+          {places.map((place) => (
+            <Link to={`${place.displayName?.toLowerCase().replace(/\s+/g, "-")}`} key={place.id}>
+              <div className="it-element">
+                {
+                  place.photoUrl && 
+                  <img src={place.photoUrl} 
+                        alt={ place.displayName || 'Interest Attraction' } 
+                        loading="lazy"
+                        className="it-photo"
+                  />
+                }
+                <h3 className='it-name'>{place.displayName}</h3>
+                <img src="/assets/interest-types/shopping.png" className='type-icon' alt={typeHeader}/>
+                <p className='it-description'>I'm a description</p>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

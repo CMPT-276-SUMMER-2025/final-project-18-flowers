@@ -1,26 +1,26 @@
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 
-export default function ChatBot() {
+export default function ChatBot(props) {
   //store user input to send to api
-  const [value, setValue] = useState("");
+  const [userInput, setUserInput] = useState("");
   const [error, setError] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
 
   const surpriseOptions = [
-    "Who won the latest Nobel Peace Prize?",
-    "Where does pizza come from",
-    "How do you make a BLT sandwich?",
+    "Name top 3 foods in Taiwan",
+    "Name top 3 malls in Taiwan",
+    "Name 3 fun things to do in Taiwan",
   ];
 
   function surprise() {
-    const randomValue =
+    const randomInput =
       surpriseOptions[Math.floor(Math.random() * surpriseOptions.length)];
-    setValue(randomValue);
+    setUserInput(randomInput);
   }
 
   async function getResponse() {
-    if (!value) {
+    if (!userInput) {
       setError("Error! Please ask a question!");
       return;
     }
@@ -29,7 +29,7 @@ export default function ChatBot() {
         method: "POST",
         body: JSON.stringify({
           history: chatHistory,
-          message: value,
+          message: userInput,
         }),
         headers: {
           "Content-Type": "application/json",
@@ -42,14 +42,14 @@ export default function ChatBot() {
         {
           role: "user",
           //must be array of objects
-          parts: [{text: value}]
+          parts: [{text: userInput}]
         },
         {
           role: "model",
           parts: [{text: data}]
         },
       ]);
-      setValue("");
+      setUserInput("");
     } catch (error) {
       console.error(error);
       setError("Something went wrong! Please try again later.");
@@ -57,7 +57,7 @@ export default function ChatBot() {
   }
 
   function clear() {
-    setValue("");
+    setUserInput("");
     setError("");
     setChatHistory([]);
   }
@@ -72,9 +72,9 @@ export default function ChatBot() {
       </p>
       <div className="input-container">
         <input
-          value={value}
+          value={userInput}
           placeholder="Enter your questions here!"
-          onChange={(e) => setValue(e.target.value)}
+          onChange={(e) => setUserInput(e.target.value)}
         />
         {!error && <button onClick={getResponse}>Ask me</button>}
         {error && <button onClick={clear}>Clear</button>}

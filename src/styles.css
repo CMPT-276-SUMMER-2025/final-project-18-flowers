@@ -441,3 +441,9 @@ div ul li:hover {
   position: relative;
   margin: 12px;
 }
+
+.chatbot {
+  position: fixed;
+  background-color: lightblue;
+  z-index: 24;
+}

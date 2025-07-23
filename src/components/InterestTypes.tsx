@@ -8,9 +8,9 @@ type interestProps = {
   type: string  // type of place (e.g., amusement_park, chinese_restaurant, etc.)
 };
 
-const saveAPICreditsMode = false;    
+const saveAPICreditsMode = true;    
 
-const interestTypesArr = ["shopping mall", "tourist_attraction", "amusement_park"];
+// const interestTypesArr = ["shopping mall", "tourist_attraction", "amusement_park"];
 
 const InterestTypes = ({ cityname, type } : interestProps) => {
 
@@ -105,7 +105,7 @@ const InterestTypes = ({ cityname, type } : interestProps) => {
   return (
     <>
       <div id="it-container">
-        <h1 className="it-title">{typeHeader}</h1>
+        <h1 className="it-title" id={type}>{typeHeader}</h1>
         <div className="it-element-container">
           {places.map((place) => (
             <Link to={`${place.displayName?.toLowerCase().replace(/\s+/g, "-")}`} key={place.id}>

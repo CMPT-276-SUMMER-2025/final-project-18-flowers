@@ -1,4 +1,4 @@
-import { APIProvider, Map, type MapCameraChangedEvent, ColorScheme, Marker } from '@vis.gl/react-google-maps';
+import { APIProvider, Map, ColorScheme, Marker } from '@vis.gl/react-google-maps';
 import { citiesLatLng } from '../data/cityData';
 import { useEffect, useState } from 'react';
 import RegionContent from '../components/RegionContent';

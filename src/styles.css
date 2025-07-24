@@ -444,31 +444,48 @@ div ul li:hover {
 
 /*chat bot*/
 .chatbot {
-  width: 80vw;
-  margin: 10vw;
-  height: 80vh;
+  width: 400px;
+  height: 400px;
   display: flex;
   flex-direction: column;
+  border: solid 1px black;
+  border-radius: 10px;
+  padding: 10px;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
 }
 
-.search-result {
-  margin-top: 10px;
-  overflow: scroll;
-  max-height: 600px;
-  scrollbar-width: none;
+.chat-interface-top-bar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-.surprise {
+.chat-interface-top-bar span {
+  font-size: 16px;
+}
+
+.chat-interface-top-bar button {
   background-color: #ececf1;
   color: #000;
   border-radius: 5px;
   font-weight: 600;
   padding: 4px 12px;
-  margin: 0 0 2px 5px;
   border: none;
+  cursor: pointer;
 }
 
-.input-container {
+.chatbot-output-section {
+  margin-top: 10px;
+  overflow: scroll;
+  height: 280px;
+  scrollbar-width: none;
+}
+
+.chatbot-input-container {
+  margin-top: 10px;
   width: 100%;
   display: flex;
   border: solid 0.5px #cacaca;
@@ -478,7 +495,7 @@ div ul li:hover {
   overflow: hidden;
 }
 
-.input-container input {
+.chatbot-input-container input {
   border: none;
   padding: 13px 14px;
   box-sizing: border-box;
@@ -488,13 +505,13 @@ div ul li:hover {
   font-weight: 200;
 }
 
-.input-container input::placeholder {
+.chatbot-input-container input::placeholder {
   color:#cacaca;
   font-weight: 200;
 }
 
-.input-container button {
-  min-width: 10%;
+.chatbot-input-container button {
+  width:100px;
   border: none;
   border-left: 1px solid #cacaca;
   background-color: white;
@@ -503,11 +520,11 @@ div ul li:hover {
   cursor: pointer;
 }
 
-.input-container button:active {
+.chatbot-input-container button:active {
   background-color: #cacaca;
 }
 
-.answer {
+.chatbot-answer {
   padding: 13px 14px;
   border: solid 0.5px #cacaca;
   background-color: white;
@@ -515,4 +532,17 @@ div ul li:hover {
   font-size: 15px;
   font-weight: 200;
   border-radius: 6px;
+}
+
+.chatbot-button {
+  box-sizing: border-box;
+  border:solid 1px black;
+  width: 100px;
+  height: 36px;
+  border-radius: 20px;
+  cursor: pointer;
+  justify-content:center;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
 }

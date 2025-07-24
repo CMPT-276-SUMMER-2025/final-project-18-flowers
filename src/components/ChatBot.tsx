@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 
-export default function ChatBot(props) {
+function ChatInterface(props) {
   //store user input to send to api
   const [userInput, setUserInput] = useState("");
   const [error, setError] = useState("");
@@ -63,26 +63,27 @@ export default function ChatBot(props) {
   }
 
   return (
-    <div className="chatbot">
-      <p>
-        What do you want to know?
-        <button className="surprise" onClick={surprise} disabled={chatHistory.length !== 0}>
+    <div className="chatbot" style={{ display: props.visible ? 'block' : 'none'}}>
+      <div className="chat-interface-top-bar">
+        <span>What would you like to know?</span>
+        <button onClick={surprise} disabled={chatHistory.length !== 0}>
           Surprise me!
         </button>
-      </p>
-      <div className="input-container">
+        <button onClick={props.onClose}>X</button>
+      </div>
+      <div className="chatbot-input-container">
         <input
           value={userInput}
           placeholder="Enter your questions here!"
           onChange={(e) => setUserInput(e.target.value)}
         />
-        {!error && <button onClick={getResponse}>Ask me</button>}
+        {!error && <button onClick={getResponse}>Send</button>}
         {error && <button onClick={clear}>Clear</button>}
       </div>
       {error && <p>{error}</p>}
-      <div className="search-result">
+      <div className="chatbot-output-section">
         {chatHistory.map((chatItem, index) => (
-          <div key={index} className="answer">
+          <div key={index} className="chatbot-answer">
             <h3>
               <u>{chatItem.role}:</u>
             </h3>
@@ -94,4 +95,24 @@ export default function ChatBot(props) {
       </div>
     </div>
   );
+}
+
+function ChatButton(props) {
+  return (
+    <>
+      {!props.visible && <button className="chatbot-button" onClick={props.onOpen}>Open Chat</button>}
+    </>
+  )
+}
+
+export default function ChatBot() { 
+  //keep track of whether chat is open or not
+  const [chatIsOpen, setChatIsOpen] = useState(false);
+
+  return (
+    <>
+      <ChatButton visible={chatIsOpen} onOpen={() => setChatIsOpen(true)}/>
+      <ChatInterface visible={chatIsOpen} onClose={() => setChatIsOpen(false)} />
+    </>
+  )
 }

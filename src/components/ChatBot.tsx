@@ -1,0 +1,118 @@
+import { useState } from "react";
+import ReactMarkdown from "react-markdown";
+
+function ChatInterface(props) {
+  //store user input to send to api
+  const [userInput, setUserInput] = useState("");
+  const [error, setError] = useState("");
+  const [chatHistory, setChatHistory] = useState([]);
+
+  const surpriseOptions = [
+    "Name top 3 foods in Taiwan",
+    "Name top 3 malls in Taiwan",
+    "Name 3 fun things to do in Taiwan",
+  ];
+
+  function surprise() {
+    const randomInput =
+      surpriseOptions[Math.floor(Math.random() * surpriseOptions.length)];
+    setUserInput(randomInput);
+  }
+
+  async function getResponse() {
+    if (!userInput) {
+      setError("Error! Please ask a question!");
+      return;
+    }
+    try {
+      const options = {
+        method: "POST",
+        body: JSON.stringify({
+          history: chatHistory,
+          message: userInput,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const response = await fetch("http://localhost:8000/gemini", options);
+      const data = await response.text();
+      setChatHistory((oldChatHistory) => [
+        ...oldChatHistory,
+        {
+          role: "user",
+          //must be array of objects
+          parts: [{text: userInput}]
+        },
+        {
+          role: "model",
+          parts: [{text: data}]
+        },
+      ]);
+      setUserInput("");
+    } catch (error) {
+      console.error(error);
+      setError("Something went wrong! Please try again later.");
+    }
+  }
+
+  function clear() {
+    setUserInput("");
+    setError("");
+    setChatHistory([]);
+  }
+
+  return (
+    <div className="chatbot" style={{ display: props.visible ? 'block' : 'none'}}>
+      <div className="chat-interface-top-bar">
+        <span>What would you like to know?</span>
+        <button onClick={surprise} disabled={chatHistory.length !== 0}>
+          Surprise me!
+        </button>
+        <button onClick={props.onClose}>X</button>
+      </div>
+      <div className="chatbot-input-container">
+        <input
+          value={userInput}
+          placeholder="Enter your questions here!"
+          onChange={(e) => setUserInput(e.target.value)}
+        />
+        {!error && <button onClick={getResponse}>Send</button>}
+        {error && <button onClick={clear}>Clear</button>}
+      </div>
+      {error && <p>{error}</p>}
+      <div className="chatbot-output-section">
+        {chatHistory.map((chatItem, index) => (
+          <div key={index} className="chatbot-answer">
+            <h3>
+              <u>{chatItem.role}:</u>
+            </h3>
+            <ReactMarkdown>
+              {chatItem.parts[0].text}
+            </ReactMarkdown>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ChatButton(props) {
+  return (
+    <>
+      {!props.visible && <button className="chatbot-button" onClick={props.onOpen}>Open Chat</button>}
+    </>
+  )
+}
+
+export default function ChatBot() { 
+  //keep track of whether chat is open or not
+  const [chatIsOpen, setChatIsOpen] = useState(false);
+
+  return (
+    <>
+      <ChatButton visible={chatIsOpen} onOpen={() => setChatIsOpen(true)}/>
+      <ChatInterface visible={chatIsOpen} onClose={() => setChatIsOpen(false)} />
+    </>
+  )
+}

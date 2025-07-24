@@ -210,9 +210,8 @@ div ul li:hover {
 /* regions component */
 
 #regions-container {
-  width: 50%;
+  width: 100%;
   display: flex;
-  flex-direction: row;
   align-items: center;
   margin: 0 auto;
 }
@@ -235,6 +234,10 @@ div ul li:hover {
   flex-direction: column;
   background-color: var(--color-primary);
   color: white;
+}
+
+.map-container {
+  width: 600px;
 }
 
 /* regions content component */

@@ -30,14 +30,14 @@ const Attractions = ({ cityname } : Props) => {
     const cacheKey = `attractions-${cityname}`;
     const cachedData = localStorage.getItem(cacheKey);
 
-    // if (cachedData) {
-    //   const parsed = JSON.parse(cachedData) as TPlace[];
-    //   const valid = parsed.filter(p => isEnglish(p.displayName));
-    //   if (valid.length >= 9) {
-    //     setPlaces(valid.slice(0, 9)); //Only show the first 9 valid results in cache
-    //     return;
-    //   }
-    // }
+    if (cachedData) {
+      const parsed = JSON.parse(cachedData) as TPlace[];
+      const valid = parsed.filter(p => isEnglish(p.displayName));
+      if (valid.length >= 9) {
+        setPlaces(valid.slice(0, 9)); //Only show the first 9 valid results in cache
+        return;
+      }
+    }
 
     async function getAttractions() {
       const { Place, SearchByTextRankPreference } = await google.maps.importLibrary('places') as google.maps.PlacesLibrary;

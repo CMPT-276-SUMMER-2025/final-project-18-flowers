@@ -17,15 +17,14 @@ const AttractionMap = ({ lat, lng }: Coord) => {
 
   useEffect(() => {
     async function defineSymbol() {
-      const { SymbolPath } = await google.maps.importLibrary("core") as google.maps.CoreLibrary;
-
       const baseSymbol: google.maps.Symbol = {
-        path: SymbolPath.CIRCLE,
-        fillColor: "red",
-        fillOpacity: 0.7,
-        scale: 16,
+        //path for a custom drop pin marker
+        path: "M0-48c-9.94,0-18,8.06-18,18c0,11.6,18,30,18,30s18-18.4,18-30C18-39.94,9.94-48,0-48z M0-34a6,6 0 1,0 0,12a6,6 0 1,0 0,-12",        
+        fillColor: "crimson",
+        fillOpacity: 1,
+        scale: 0.75,
         strokeColor: "black",
-        strokeWeight: 2,
+        strokeWeight: 1,
       };
       
       setSymbol(baseSymbol);

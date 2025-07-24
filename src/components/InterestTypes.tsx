@@ -8,7 +8,7 @@ type interestProps = {
   type: string  // type of place (e.g., amusement_park, chinese_restaurant, etc.)
 };
 
-const saveAPICreditsMode = true;    
+const saveAPICreditsMode = false;    
 
 // const interestTypesArr = ["shopping mall", "tourist_attraction", "amusement_park"];
 
@@ -69,7 +69,7 @@ const InterestTypes = ({ cityname, type } : interestProps) => {
         includedType: type, // only request tourist attractions
         rankPreference: SearchByTextRankPreference.RELEVANCE, // only request relevant to query 
         minRating: 3.5, // only request places with 4.0 <= rating <= 5.0
-        maxResultCount: 15, // only request 9 places total
+        maxResultCount: 15, // only request 15 places total
         useStrictTypeFiltering: true,
       }
 
@@ -79,12 +79,18 @@ const InterestTypes = ({ cityname, type } : interestProps) => {
       /* ---- */
       const isEnglish = (text: string | undefined) =>
         text ? /^[\x00-\x7F]*$/.test(text) : false; // checks if the result in cache is valid by checking if result is in ASCII characters 
-
-      const filteredPlaces = myPlaces.filter( // filters the 6 results with english results
-        (place) =>
-          typeof place.displayName === "string" &&
-          isEnglish(place.displayName)
+      
+      const filteredPlaces = myPlaces.filter( // filters the 6 results with english results and results without the word "tour" in them
+        (place) => {
+          const name = place.displayName;
+          return (
+            typeof name === "string" &&
+            isEnglish(name) &&
+            !name.toLowerCase().includes("tour")
+          );
+        }
       );
+
       /* ---- */
 
       const formattedPlaces = filteredPlaces.slice(0, 6).map((place) => { //Only show the first 6 valid results

@@ -25,19 +25,19 @@ const InterestTypes = ({ cityname, type } : Props) => {
     const isEnglish = (text: string | undefined | null) =>
       text ? /^[\x00-\x7F]*$/.test(text) : false; //Checks if the result in cache is valid by checking if the result is in ASCII characters
 
-    const cacheKey = `attractions-${cityname}`;
+    const cacheKey = `attractions-${cityname}-${type}`;
     const cachedData = localStorage.getItem(cacheKey);
 
     if (cachedData) {
       const parsed = JSON.parse(cachedData) as TPlace[];
       const valid = parsed.filter(p => isEnglish(p.displayName));
-      if (valid.length >= 9) {
-        setPlaces(valid.slice(0, 9)); //Only show the first 9 valid results in cache
+      if (valid.length >= 6) {
+        setPlaces(valid.slice(0, 6)); //Only show the first 9 valid results in cache
         return;
       }
     }
 
-    console.log("You just spent money! (aka there goes Alex's money)");
+    console.log("You just spent money! (aka there goes Ryan's money)");
 
     const formattedType = type.replace(/_/g, " ");
 
@@ -49,7 +49,7 @@ const InterestTypes = ({ cityname, type } : Props) => {
         includedType: type, // only request tourist attractions
         rankPreference: SearchByTextRankPreference.RELEVANCE, // only request relevant to query 
         minRating: 3.5, // only request places with 4.0 <= rating <= 5.0
-        maxResultCount: 6, // only request 9 places total
+        maxResultCount: 15, // only request 9 places total
         useStrictTypeFiltering: true,
       }
 
@@ -67,7 +67,7 @@ const InterestTypes = ({ cityname, type } : Props) => {
           isEnglish(place.displayName)
       );
 
-      const formattedPlaces = filteredPlaces.slice(0, 9).map((place) => { //Only show the first 9 valid results
+      const formattedPlaces = filteredPlaces.slice(0, 6).map((place) => { //Only show the first 9 valid results
         const firstPhoto = place.photos?.[0];
         return ({
           id: place.id || ' ',

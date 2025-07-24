@@ -16,12 +16,12 @@ const Regions = () => {
   const [cityName, setCityName] = useState("Taipei City");
 
   const taiwanLatLng = { lat: 23.6978, lng: 120.9605 }; 
+
   const mapOptions = { 
     fullscreenControl: false,
     streetViewControl: false,
     mapTypeControl: false,
-    disableDefaultUI: true,
-    keyboardShorcuts: false,
+    keyboardShortcuts: false,
     gestureHandling: 'none'
   }
 
@@ -73,11 +73,12 @@ const Regions = () => {
               defaultCenter={ taiwanLatLng }
               style={{ width: "600px", height: "750px" }}
               colorScheme={ColorScheme.LIGHT}
-              onCameraChanged={ (ev: MapCameraChangedEvent) =>
-                console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
-              }
+              // onCameraChanged={ (ev: MapCameraChangedEvent) =>
+              //   console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
+              // }
               // @ts-expect-error ensures expected errors
               options={ mapOptions }
+              disableDefaultUI
             >
               { citiesLatLng.map((city) => (
                 <Marker   

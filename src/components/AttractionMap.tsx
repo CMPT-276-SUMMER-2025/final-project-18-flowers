@@ -41,8 +41,12 @@ const AttractionMap = ({ lat, lng }: Coord) => {
           zoom={15}
           mapId=""
           style={{ width: "100%", height: "100%" }}
-          gestureHandling="none"
+          fullscreenControl={false}
+          streetViewControl={false}
+          mapTypeControl={false}
           disableDefaultUI
+          keyboardShortcuts={false}
+          gestureHandling='none'
         >
           {symbol && (
             <Marker position={{ lat, lng }} icon={symbol} />

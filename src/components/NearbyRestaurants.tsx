@@ -6,7 +6,7 @@ type Props = {
   lng: number,
  };
 
-const saveAPICost = true;
+const saveAPICost = false;
 
 const NearbyRestaurants = ({ lat, lng }  : Props) => {
   // type alias TPlace object that holds id, displayName

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import AttractionMap from "../components/AttractionMap";
 import NearbyHotels from "../components/NearbyHotels";
 import NearbyRestaurants from "../components/NearbyRestaurants";
@@ -68,67 +69,53 @@ const Attraction = () => {
   }, [attract]);  
 
   return (
-    <>
     <div>
-      <h1 className="attraction-title">{formatAttractionName(attract)}</h1>
+      {/* Attraction Page Title & 3 Attraction Photos */}
+      <div className="attraction-content-container">
+        <h1 className="attraction-title">{formatAttractionName(attract)}</h1>
+        <AttractionPhotos attract={formatAttractionName(attract)}></AttractionPhotos>
+      </div>
 
-      <AttractionPhotos attract={formatAttractionName(attract)}></AttractionPhotos>
-
+      {/* Anchor Navigation Bar */}
       <nav className="section-nav">
         <ul>
-          <li><a href="#Overview">Overview</a></li>
-          <li><a href="#Map">Map</a></li>
-          <li><a href="#Hours">Hours</a></li>
-          <li><a href="#Hotels">Hotels</a></li>
-          <li><a href="#Restaurants">Restaurants</a></li>
+          <HashLink to="#overview" className="anchor-link">Overview</HashLink>
+          <HashLink to="#attraction-map" className="anchor-link">Map</HashLink>
+          <HashLink to="#hours" className="anchor-link">Hours</HashLink>
+          <HashLink to="#hotels" className="anchor-link">Hotels</HashLink>
+          <HashLink to="#restaurants" className="anchor-link">Restaurants</HashLink>
         </ul>
       </nav>
 
-      <div className="container">
-
+      <div className="attraction-content-container">
         {description && (
-          <div id="Overview" className="attraction-description">
+          <div id="overview" className="attraction-description">
             <h2>Overview</h2>
             <p>{description}</p>
           </div>
         )}
 
-        <div id="Map">
-          {coord && <AttractionMap lat={coord.lat} lng={coord.lng}></AttractionMap>}
+        <div className="map-and-hours-section">
+          <div id="attraction-map">
+            {coord && <AttractionMap lat={coord.lat} lng={coord.lng}></AttractionMap>}
+          </div>
         </div>
-        
-        <div id="Hours">
+
+        <div id="hours">
           <AttractionTimetable hours={openingHours} />
         </div>
-
+  
         <div className="commodities-container">
-
-          <div id="Hotels">
+          <div id="hotels">
             {coord && <NearbyHotels lat={coord.lat} lng={coord.lng}></NearbyHotels>}
           </div>
-
-          <div id="Restaurants">
+          <div id="restaurants">
             {coord && <NearbyRestaurants lat={coord.lat} lng={coord.lng}></NearbyRestaurants>}
           </div>
-
         </div>
-      </div>
+      </div>  
     </div>
-      
-    </>
   )
 }
-
-
-      /*
-      const geofinder = new Geocoder();
-      const geoRequest = {
-        address: placeId,
-      };
-      geofinder.geocode(geoRequest, () => {
-        // get the latitude and longitude of the place ID 
-      });
-
-      */
 
 export default Attraction

@@ -29,7 +29,7 @@ const AttractionPhotos = ({ attract }: Props) => {
           url: photo.getURI({ maxWidth: 400, maxHeight: 300 }),
         }));
 
-        setPhotos(imageUrls.slice(0,4));
+        setPhotos(imageUrls.slice(0,2)); // number of photos
         
       } catch (err) {
         console.error("Failed to fetch attraction photos:", err);

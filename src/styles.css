@@ -396,90 +396,98 @@ div ul li:hover {
   box-shadow: 0 4px 8px rgba(0,0,0,0.5);
 }
 
-.attractions-photo-gallery {
-  display: grid;
-  gap: 12px;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  margin-top: 1rem;
+/* attraction (the page not the grids) component */
+
+.attraction-content-container {
+  width: 65%;
+  margin: 0 auto;
+  max-width: 1200px; /* prevent from getting too wide if user monitor is too wide */
 }
 
-/* attraction component */
-.section-nav {
-  display: flex;
-  gap: 1.5rem;
-  margin: 1rem 0;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid #ccc;
-}
-
-.section-nav ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 1.5rem;
-}
-
-.section-nav a {
-  text-decoration: none;
-  color: #838383;
-  font-size: 1.25rem;
-}
-
-.section-nav a:hover {
-  text-decoration: underline;
+#attraction-map {
+  margin: 0;
 }
 
 .attraction-title {
   font-weight: var(--fw-medium-bold);
   font-size: var(--fs-3xl);
-  margin: 20px;
+  margin: 64px 0px 40px 0px;
+  width: 70%;
+  text-align: left;
+}
+
+.section-nav {
+  display: flex;
+  justify-content: left;
+  margin: 48px auto;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #ccc;
+  width: 65%;
+}
+
+.section-nav ul {
+  list-style-type: none;
+  padding: 0;
+  gap: 1.5rem;
+}
+
+.anchor-link {
+  text-decoration: none;
+  color: #838383;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
 }
 
 .attraction-map {
-  width: "600px";
+  width: "400px";
   height: "400px";
   border-radius: 4px;
 }
 
 .attraction-photo {
+  width: 400px;
+  height: 300px;
   object-fit: cover;
-  width: 25%;
-  height: 350px;
+  margin: 16px 32px 16px 0px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
 }
 
 .attraction-photo-gallery {
   display: flex;
-  gap: 0px;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  margin-top: 1rem;
+  align-items: center;
+  justify-content: left;
 }
 
-.opening-hours, .attraction-description {
-  margin: 1.5rem;
+.map-and-hours-section {
+  display: flex;
+  flex-direction: row;
 }
 
-.opening-hours h2, .attraction-description h2{
-  font-weight: var(--fw-medium-bold);
+.opening-hours h2, .attraction-description h2 {
+  font-weight: var(--fw-bold);
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
 }
 
-.attraction-description p{
+.attraction-description p {
   font-size: 1.2rem;
 }
 
 .opening-hours ul {
+  display: flex;
+  flex-direction: row;
   align-items:first baseline;
-  padding: 5px;
-  list-style-type: none;
   /* background-color: blue;*/
 }
 
 .opening-hours li {
-  align-items:first baseline;
-  font-size: 1rem;
+  font-size: var(--fs-base);
   padding: 5px;
-  /*background-color: aqua;*/
+  border: 1px solid black;
+  border-radius: 8px;
+  margin: 8px 8px 8px 0px;
+  font-size: var(--fs-xs);
 }
 
 /* commodity (hotels and restaurants) component */

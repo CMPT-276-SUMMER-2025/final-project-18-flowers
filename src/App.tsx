@@ -10,6 +10,7 @@ import NavBarSolid from './components/NavBarSolid';
 import Home from './pages/Home';
 import Destinations from './pages/Destinations';
 import Interests from './pages/Interests';
+import InterestAttraction from './pages/InterestAttraction';
 import CityInterests from './pages/CityInterests';
 import Attraction from './pages/Attraction';
 import PlanTrip from './pages/PlanTrip';
@@ -48,6 +49,7 @@ function AppContent() {
           <Route path='/' element={<Home />}></Route>
           <Route path='/destinations' element={<Destinations />}></Route>
           <Route path='/interests' element={<Interests />}></Route>
+          <Route path="/interests/:attract" element={<InterestAttraction />} />
           <Route path='/plantrip' element={<PlanTrip />}></Route>
           <Route path="/destinations/:id" element={<CityInterests />} />
           <Route path="/destinations/:id/:attract" element={<Attraction />} />
@@ -64,6 +66,7 @@ function AppContent() {
         <Route path='/' element={<Home />}></Route>
         <Route path='/destinations' element={<Destinations />}></Route>
         <Route path='/interests' element={<Interests />}></Route>
+        <Route path="/interests/:attract" element={<InterestAttraction />} />
         <Route path='/plantrip' element={<PlanTrip />}></Route>
         <Route path="/destinations/:id" element={<CityInterests />} />
         <Route path="/destinations/:id/:attract" element={<Attraction />} />

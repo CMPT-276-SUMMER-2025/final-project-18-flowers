@@ -19,7 +19,7 @@ const Destinations = () => {
         <img src={taipeiThumbnail} alt="Thumbnail of Destination Page" id="dest-thumb" />
       </div>
 
-      <h1 id="dest-title">Find Your Destination</h1>
+      <h1 id="dest-title">Find Your <strong>Destination</strong></h1>
       <div id="dest-grid" className="grid grid-cols-[repeat(2,auto)] lg:grid-cols-[repeat(3,auto)]">
         {cityNames.map(name => (
           <CityCard key={name} cityname={name} />

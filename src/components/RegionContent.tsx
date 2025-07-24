@@ -54,11 +54,11 @@ export default function CityCard({ cityname } : Props) {
       <Link to={`/destinations/${formatted}`}>
         <div className="region-card">
           <div>
-            <img src={imgSrc} alt={header} className="city-img"></img>
+            <img src={imgSrc} alt={header} className="region-city-img"></img>
             <div className="region-txt">
-              <h3>{header || placeName}</h3>
-              <p>{region}</p>
-              <p>{description}</p>
+              <h3 className="region-city-name">{header || placeName}</h3>
+              <h3 className="region">{region}</h3>
+              <p className="region-description">{description}</p>
             </div>
           </div>
         </div>

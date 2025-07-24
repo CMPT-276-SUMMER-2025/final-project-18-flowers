@@ -4,7 +4,7 @@ import { mockPlacesAttractions } from '../data/cityData';
 
 type Props = { cityname: string };
 
-const saveAPICost = false;
+const saveAPICost = true;
 
 const Attractions = ({ cityname } : Props) => {
   // type alias TPlace object that holds id, displayName
@@ -39,10 +39,6 @@ const Attractions = ({ cityname } : Props) => {
       }
     }
 
-    console.log("You just spent money! (aka there goes Alex's money)");
-
-
-
     async function getAttractions() {
       const { Place, SearchByTextRankPreference } = await google.maps.importLibrary('places') as google.maps.PlacesLibrary;
       const myRequest = {
@@ -70,7 +66,10 @@ const Attractions = ({ cityname } : Props) => {
       );
 
       const formattedPlaces = filteredPlaces.slice(0, 9).map((place) => { //Only show the first 9 valid results
-        const firstPhoto = place.photos?.[0];
+        const firstPhoto = place.photos?.[0];  
+        // DEBUG
+        console.log(place.photos);
+        console.log(firstPhoto?.getURI({ maxWidth: 300, maxHeight: 300 }));
         return ({
           id: place.id || ' ',
           displayName: place.displayName,
@@ -90,8 +89,8 @@ const Attractions = ({ cityname } : Props) => {
       <h1 id="attractions-title">Attractions</h1>
       <div id="attractions-container">
         {places.map((place) => (
-          <Link to={`${place.displayName?.toLowerCase().replace(/\s+/g, "-")}`}>
-            <div key={place.id} className="attractions">
+          <Link to={`${place.displayName?.toLowerCase().replace(/\s+/g, "-")}`} key={place.id}>
+            <div className="attractions">
               {
                 place.photoUrl && 
                 <img src={place.photoUrl} 

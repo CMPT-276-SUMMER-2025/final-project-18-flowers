@@ -1,11 +1,10 @@
-import { APIProvider, Map, type MapCameraChangedEvent, ColorScheme, Marker } from '@vis.gl/react-google-maps';
+import { APIProvider, Map, ColorScheme, Marker } from '@vis.gl/react-google-maps';
 import { citiesLatLng } from '../data/cityData';
 import { useEffect, useState } from 'react';
 import RegionContent from '../components/RegionContent';
 
 const Regions = () => {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-  console.log(apiKey);
 
   const [baseSymbol, setBaseSymbol] = useState<google.maps.Symbol | null>(null); // sets the appearance of the symbol 
   const [hoverSymbol, setHoverSymbol] = useState<google.maps.Symbol | null>(null); // sets the appearance of the symbol when hovered
@@ -17,42 +16,40 @@ const Regions = () => {
   const [cityName, setCityName] = useState("Taipei City");
 
   const taiwanLatLng = { lat: 23.6978, lng: 120.9605 }; 
+
   const mapOptions = { 
     fullscreenControl: false,
     streetViewControl: false,
     mapTypeControl: false,
-    disableDefaultUI: true,
-    keyboardShorcuts: false,
+    keyboardShortcuts: false,
     gestureHandling: 'none'
   }
-
-  
 
   // API related code goes in useEffect
   useEffect(() => { 
     // defines the properties for the symbol icon
     async function defineSymbol() {
-      const { SymbolPath } = await google.maps.importLibrary("core") as google.maps.CoreLibrary; // gets the SymbolPath constants to access symbol types
 
       const baseSymbol = {
-        path: SymbolPath.CIRCLE, // set the symbol to circle type 
-        fillColor: "red", 
-        fillOpacity: 0.5,
-        scale: 16,
+        //path for a custom drop pin marker
+        path: "M0-48c-9.94,0-18,8.06-18,18c0,11.6,18,30,18,30s18-18.4,18-30C18-39.94,9.94-48,0-48z M0-34a6,6 0 1,0 0,12a6,6 0 1,0 0,-12",
+        fillColor: "crimson", 
+        fillOpacity: 1,
+        scale: 0.75,
         strokeColor: 'black',
-        strokeWeight: 2,
+        strokeWeight: 1,
       };
       const hoverSymbol = {
         ...baseSymbol,
-        scale: 32,
+        scale: 1.25,
       };
       const clickedHoveredSymbol = {
         ...hoverSymbol,
-        fillColor: "blue", 
+        fillColor: "DodgerBlue", 
       };
       const clickedSymbol = {
         ...baseSymbol,
-        fillColor: "blue",
+        fillColor: "DodgerBlue",
       };
 
       setBaseSymbol(baseSymbol);
@@ -66,22 +63,22 @@ const Regions = () => {
   return (
     <>
       <div id="dummy-map"></div>
-      <h1 id="regions-title">Regions of Taiwan</h1>
-
-      <div id="regions-container" className='flex flex-col w-full justify-center items-center'>
-        <div className='border-0 rounded-4xl overflow-hidden m-6'>
+      <h1 id="regions-title"><strong>Regions</strong> of Taiwan</h1>
+      <div id="regions-container" className='flex lg:flex-row flex-col w-full justify-center items-center'>
+        <div className='map-container border-0 rounded-4xl overflow-hidden m-6'>
           <APIProvider apiKey={apiKey}>
             <Map 
               id="map"
               defaultZoom={8} 
               defaultCenter={ taiwanLatLng }
-              style={{ width: "600px", height: "720px"}}
+              style={{ width: "600px", height: "750px" }}
               colorScheme={ColorScheme.LIGHT}
-              onCameraChanged={ (ev: MapCameraChangedEvent) =>
-                console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
-              }
+              // onCameraChanged={ (ev: MapCameraChangedEvent) =>
+              //   console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
+              // }
               // @ts-expect-error ensures expected errors
               options={ mapOptions }
+              disableDefaultUI
             >
               { citiesLatLng.map((city) => (
                 <Marker   

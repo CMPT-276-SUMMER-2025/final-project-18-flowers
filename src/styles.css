@@ -444,13 +444,13 @@ div ul li:hover {
 
 /*chat bot*/
 .chatbot {
-  width: 500px;
+  width: 400px;
   height: 400px;
   display: flex;
   flex-direction: column;
-  border: solid 1px black;
+  border: solid 10px #73b7ff;
   border-radius: 10px;
-  padding: 10px;
+  padding: 0px;
   position: fixed;
   right: 20px;
   bottom: 20px;
@@ -460,11 +460,39 @@ div ul li:hover {
   overflow: hidden;
 }
 
-.chat-interface-top-bar{
+.chat-interface-icon-bar{
+  height: 50px;
+  padding: 5px;
+  gap: 15px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: left;
+  align-items: left;
+  background-color: #73b7ff;
+  color: #ffffff;
+}
+
+.chat-interface-icon-bar button {
+  background-color: #73b7ff;
+  border-radius: 5px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border: none;
+  cursor: pointer;
+  margin: 2px;
+  color: #ffffff;
+}
+
+.chat-interface-icon-bar button:hover{
+  background-color: #469fff;
+  color: #a7a7a7;
+}
+
+.chat-interface-top-bar{
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 .chat-interface-top-bar span {
@@ -476,9 +504,14 @@ div ul li:hover {
   color: #000;
   border-radius: 5px;
   font-weight: 600;
-  padding: 4px 12px;
+  padding: 4px 10px;
   border: none;
   cursor: pointer;
+  margin: 2px;
+}
+
+.chat-interface-top-bar button:hover {
+  background-color: #dcdce1;
 }
 
 .chatbot-output-section {
@@ -494,12 +527,16 @@ div ul li:hover {
   display: flex;
   border: solid 0.5px #cacaca;
   box-sizing:border-box;
-  border-radius: 6px;
   box-shadow: rgba(0, 0, 82, 0.15) 0 2px 4px;
   overflow: hidden;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  
 }
 
 .chatbot-input-container input {
+  background-color: white;
   border: none;
   padding: 13px 14px;
   box-sizing: border-box;
@@ -539,19 +576,22 @@ div ul li:hover {
 }
 
 .chatbot-button {
-  box-sizing: border-box;
-  border:solid 1px black;
-  width: 100px;
-  height: 36px;
-  border-radius: 20px;
+position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  background-color: #73b7ff;
+  color: white;
+  padding: 10px;
+  font-size: 28px;
+  border-radius: 50%;
+  border: none;
   cursor: pointer;
-  justify-content:center;
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: 100;
-  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: background 0.3s;
 }
 .chatbot-button:hover {
-  background-color: #92bce9;
+  background-color: #469fff;
 }

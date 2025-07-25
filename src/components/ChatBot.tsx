@@ -75,13 +75,17 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
 
   return (
     <div className="chatbot" style={{ display: visible ? 'block' : 'none'}}>
+      <div className="chat-interface-icon-bar">
+        <button onClick={onClose}>&lt;</button>
+        <img src={"public/logo.png"}></img>
+        <span>AI Chatbot</span>
+      </div>
       <div className="chat-interface-top-bar">
         <span>What would you like to know?</span>
         <button onClick={surprise} disabled={chatHistory.length !== 0}>
           Surprise me!
         </button>
         <button onClick={() => setChatHistory([])}>Reset Chat</button>
-        <button onClick={onClose}>X</button>
       </div>
 
       <div className="chatbot-input-container">
@@ -115,7 +119,7 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
 function ChatButton({ visible, onOpen }: { visible: boolean; onOpen: () => void }) {
   return (
     <>
-      {!visible && <button className="chatbot-button" onClick={onOpen}>Open Chat</button>}
+      {!visible && <button className="chatbot-button" onClick={onOpen}><img src={"public/assets/chatbot/square-chat-bubble.svg"}></img></button>}
     </>
   )
 }

@@ -80,6 +80,7 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
         <button onClick={surprise} disabled={chatHistory.length !== 0}>
           Surprise me!
         </button>
+        <button onClick={() => setChatHistory([])}>Reset Chat</button>
         <button onClick={onClose}>X</button>
       </div>
 

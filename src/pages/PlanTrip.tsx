@@ -3,9 +3,7 @@ import ChatBot from "../components/ChatBot";
 const PlanTrip = () => {
   return (
     <>
-      <div>
-        <ChatBot />
-      </div>
+      <p>Plan a trip</p>
     </>
   )
 }

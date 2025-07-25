@@ -9,9 +9,6 @@ const Home = () => {
         <h1 id="home-title" className="text-amber-50 font-bold text-5xl static left-0 md:absolute md:left-30">Taiwan Explorers</h1>
       </div>
       <Regions></Regions>
-      <div>
-        <ChatBot />
-      </div>
     </>
   )
 }

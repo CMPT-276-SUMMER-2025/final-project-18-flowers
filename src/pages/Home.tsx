@@ -1,6 +1,4 @@
 import Regions from "../components/Regions"
-import ChatBot from "../components/ChatBot";
-
 
 const Home = () => {
   return (

@@ -455,6 +455,9 @@ div ul li:hover {
   right: 20px;
   bottom: 20px;
   background-color: white;
+  z-index: 100;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .chat-interface-top-bar{
@@ -546,6 +549,8 @@ div ul li:hover {
   position: fixed;
   right: 20px;
   bottom: 20px;
+  z-index: 100;
+  background-color: white;
 }
 .chatbot-button:hover {
   background-color: #92bce9;

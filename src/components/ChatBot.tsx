@@ -1,11 +1,17 @@
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 
-function ChatInterface(props) {
+//Define a type for ChatMessage structure
+type ChatMessage = {
+  role: "user" | "model";
+  parts: { text: string }[];
+};
+
+function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => void }) {
   //store user input to send to api
   const [userInput, setUserInput] = useState("");
   const [error, setError] = useState("");
-  const [chatHistory, setChatHistory] = useState([]);
+  const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
 
   const surpriseOptions = [
     "Name top 3 foods in Taiwan",
@@ -20,10 +26,11 @@ function ChatInterface(props) {
   }
 
   async function getResponse() {
-    if (!userInput) {
+    if (!userInput.trim()) {
       setError("Error! Please ask a question!");
       return;
     }
+
     try {
       const options = {
         method: "POST",
@@ -35,8 +42,11 @@ function ChatInterface(props) {
           "Content-Type": "application/json",
         },
       };
+
       const response = await fetch("http://localhost:8000/gemini", options);
       const data = await response.text();
+
+      //Update chat history
       setChatHistory((oldChatHistory) => [
         ...oldChatHistory,
         {
@@ -50,8 +60,9 @@ function ChatInterface(props) {
         },
       ]);
       setUserInput("");
+      setError("");
     } catch (error) {
-      console.error(error);
+      console.error("Fetch error:", error);
       setError("Something went wrong! Please try again later.");
     }
   }
@@ -63,14 +74,15 @@ function ChatInterface(props) {
   }
 
   return (
-    <div className="chatbot" style={{ display: props.visible ? 'block' : 'none'}}>
+    <div className="chatbot" style={{ display: visible ? 'block' : 'none'}}>
       <div className="chat-interface-top-bar">
         <span>What would you like to know?</span>
         <button onClick={surprise} disabled={chatHistory.length !== 0}>
           Surprise me!
         </button>
-        <button onClick={props.onClose}>X</button>
+        <button onClick={onClose}>X</button>
       </div>
+
       <div className="chatbot-input-container">
         <input
           value={userInput}
@@ -80,7 +92,9 @@ function ChatInterface(props) {
         {!error && <button onClick={getResponse}>Send</button>}
         {error && <button onClick={clear}>Clear</button>}
       </div>
+
       {error && <p>{error}</p>}
+
       <div className="chatbot-output-section">
         {chatHistory.map((chatItem, index) => (
           <div key={index} className="chatbot-answer">
@@ -97,10 +111,10 @@ function ChatInterface(props) {
   );
 }
 
-function ChatButton(props) {
+function ChatButton({ visible, onOpen }: { visible: boolean; onOpen: () => void }) {
   return (
     <>
-      {!props.visible && <button className="chatbot-button" onClick={props.onOpen}>Open Chat</button>}
+      {!visible && <button className="chatbot-button" onClick={onOpen}>Open Chat</button>}
     </>
   )
 }

@@ -546,3 +546,6 @@ div ul li:hover {
   right: 20px;
   bottom: 20px;
 }
+.chatbot-button:hover {
+  background-color: #92bce9;
+}

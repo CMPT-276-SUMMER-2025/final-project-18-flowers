@@ -77,7 +77,7 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
     <div className="chatbot" style={{ display: visible ? 'block' : 'none'}}>
       <div className="chat-interface-icon-bar">
         <button onClick={onClose}>&lt;</button>
-        <img src={"public/logo.png"}></img>
+        <img src={"/logo.png"}></img>
         <span>AI Chatbot</span>
       </div>
       <div className="chat-interface-top-bar">
@@ -119,7 +119,7 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
 function ChatButton({ visible, onOpen }: { visible: boolean; onOpen: () => void }) {
   return (
     <>
-      {!visible && <button className="chatbot-button" onClick={onOpen}><img src={"public/assets/chatbot/square-chat-bubble.svg"}></img></button>}
+      {!visible && <button className="chatbot-button" onClick={onOpen}><img src={"/assets/chatbot/square-chat-bubble.svg"}></img></button>}
     </>
   )
 }

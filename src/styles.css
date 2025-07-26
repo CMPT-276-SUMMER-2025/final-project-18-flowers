@@ -4,6 +4,7 @@ body, html {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family:;
 }
 
 :root {
@@ -621,4 +622,70 @@ div ul li:hover {
   position: absolute;
   top: 164px;
   left: 15px;
+}
+
+/* search bar component */
+
+form {
+  background-color: white;
+  border-radius: 16px;
+  padding: 8px;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-xs);
+}
+
+.search-icon {
+  color: black;
+}
+
+/* search card */
+
+.search-card-container {
+  display: flex;
+  justify-content: center;
+}
+
+.search-card {
+  width: 500px;
+  margin: 32px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.search-image {
+  width: 200px;
+  object-fit: cover;
+  margin-right: 16px;
+  border-radius: 16px;
+}
+
+.search-description { 
+  font-size: var(--fs-xs);
+}
+
+.search-location {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-medium);
+  color: blue;
+}
+
+.search-name { 
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-xl);
+}
+
+.long-search-bar {
+  border: 1px solid blue;
+  width: 484px;
+  padding: 2px 8px 2px 8px;
+  border-radius: 8px;
+}
+
+.long-search-bar-container {
+  display: flex;
+  justify-content: center;
 }

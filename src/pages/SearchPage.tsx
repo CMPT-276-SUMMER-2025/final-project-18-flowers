@@ -1,11 +1,15 @@
 import { useState } from "react";
-import SearchScroll from "../components/SearchScroll";
 import SearchList from "../components/SearchList";
 
 //@ts-expect-error
 const SearchPage = ({ results }) => {
   //  set the search field
   const [searchField, setSearchField] = useState("");
+
+  const [searchShow, setSearchShow] = useState(false);
+
+  const [searchFor, setSearchFor] = useState("");
+
   // filter through place details
   const filteredResults = results.filter(
     //@ts-expect-error
@@ -24,24 +28,32 @@ const SearchPage = ({ results }) => {
   //@ts-expect-error
   const handleChange = (event) => {
     setSearchField(event.target.value);
+    if (event.target.value === "") {
+      setSearchShow(false);
+      setSearchFor("");
+    } else {
+      setSearchShow(true);
+      setSearchFor(event.target.value);
+    }
   }
   // function that displays the search list nested in scroll component 
   function searchList() {
     return (
-      <SearchScroll>
-        <SearchList filteredResults={filteredResults}></SearchList>
-      </SearchScroll>
+      <>
+        <h1 className="search-results-title">Showing search results for <strong className="text-blue-600">{searchFor}</strong></h1>
+        {searchShow && <SearchList filteredResults={filteredResults}></SearchList>}
+      </>
     );
   }
 
   return (
     <>
+      <h1 className="home-section-title">Search <strong>Taiwan</strong></h1>
       <div className="long-search-bar-container">
-          <span className="search-icon material-symbols-outlined">search</span>
           <input
-            className="long-search-bar"
+            className="long-search-bar border-blue-600 border-2"
             type = "search" 
-            placeholder = "Search People" 
+            placeholder = "Search" 
             onChange = { handleChange }
           >
           </input>

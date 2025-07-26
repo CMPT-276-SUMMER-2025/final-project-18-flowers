@@ -13,6 +13,7 @@ import Interests from './pages/Interests';
 import CityInterests from './pages/CityInterests';
 import Attraction from './pages/Attraction';
 import PlanTrip from './pages/PlanTrip';
+import ChatBot from './components/ChatBot';
 
 function App() {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
@@ -52,6 +53,7 @@ function AppContent() {
           <Route path="/destinations/:id" element={<CityInterests />} />
           <Route path="/destinations/:id/:attract" element={<Attraction />} />
         </Routes>
+        <ChatBot />
       </>
     );
   }
@@ -68,6 +70,7 @@ function AppContent() {
         <Route path="/destinations/:id" element={<CityInterests />} />
         <Route path="/destinations/:id/:attract" element={<Attraction />} />
       </Routes>
+      <ChatBot />
     </>
     );
   }

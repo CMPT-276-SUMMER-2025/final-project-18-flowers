@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 const SearchBar = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+  // const [searchTerm, setSearchTerm] = useState("");
   return (
     <div>
       <form>

@@ -93,6 +93,11 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
           value={userInput}
           placeholder="Enter your questions here!"
           onChange={(e) => setUserInput(e.target.value)}
+          onKeyDown={(e) => {
+            if(e.key === "Enter") {
+              getResponse();
+            }
+          }}
         />
         {!error && <button onClick={getResponse}>Send</button>}
         {error && <button onClick={clear}>Clear</button>}

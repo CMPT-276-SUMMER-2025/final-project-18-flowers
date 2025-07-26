@@ -109,7 +109,7 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
         {chatHistory.map((chatItem, index) => (
           <div key={index} className="chatbot-answer">
             <h3>
-              <u>{chatItem.role}:</u>
+              <strong>{chatItem.role === 'user' ? 'You:' : 'Assistant:'}</strong>
             </h3>
             <ReactMarkdown>
               {chatItem.parts[0].text}

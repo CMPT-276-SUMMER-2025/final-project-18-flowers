@@ -20,8 +20,12 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
   ];
 
   function surprise() {
-    const randomInput =
-      surpriseOptions[Math.floor(Math.random() * surpriseOptions.length)];
+    let randomInput: string = '';
+    const surpriseOptionIndex: number = Math.floor(Math.random() * surpriseOptions.length);
+    randomInput = surpriseOptions[surpriseOptionIndex];
+    if(randomInput === userInput) {
+      randomInput = surpriseOptions[(surpriseOptionIndex + 1) % (surpriseOptions.length - 1)];
+    }
     setUserInput(randomInput);
   }
 

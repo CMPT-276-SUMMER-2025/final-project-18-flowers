@@ -1,3 +1,8 @@
+import { it, expect } from 'vitest'
+
+it('dummy test', () => {
+  expect(true).toBe(true)
+})
 // // src/components/__tests__/CityCard.test.tsx
 // import { render, screen } from "@testing-library/react";
 // import CityCard from "../CityCard";

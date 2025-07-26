@@ -3,10 +3,14 @@ import { Link } from 'react-router-dom';
 import { mockInterestData } from '../data/cityData';
 
 
+<<<<<<< HEAD
 type interestProps = { 
   cityname: string, // cityname
   type: string  // type of place (e.g., amusement_park, chinese_restaurant, etc.)
 };
+=======
+const saveAPICost = true;
+>>>>>>> 1f8ddea91821b0898657e8872480be0f21746e44
 
 const saveAPICreditsMode = false;    
 

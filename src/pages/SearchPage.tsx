@@ -8,17 +8,16 @@ const SearchPage = ({ results }) => {
 
   const [searchShow, setSearchShow] = useState(false);
 
-  const [searchFor, setSearchFor] = useState("");
+  const [searchFor, setSearchFor] = useState("...");
 
   // filter through place details
   const filteredResults = results.filter(
     //@ts-expect-error
     (result) => {
+      const query = searchField.toLowerCase();
       return ( 
-        result
-        .location
-        .toLowerCase()
-        .includes(searchField.toLowerCase()) 
+        result.location.toLowerCase().includes(query) ||
+        result.name.toLowerCase().includes(query)
       );
     }
   )
@@ -30,7 +29,7 @@ const SearchPage = ({ results }) => {
     setSearchField(event.target.value);
     if (event.target.value === "") {
       setSearchShow(false);
-      setSearchFor("");
+      setSearchFor("...");
     } else {
       setSearchShow(true);
       setSearchFor(event.target.value);

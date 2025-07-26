@@ -40,7 +40,7 @@ const SearchPage = ({ results }) => {
     return (
       <>
         <h1 className="search-results-title">Showing search results for <strong className="text-blue-600">{searchFor}</strong></h1>
-        {searchShow && <SearchList filteredResults={filteredResults}></SearchList>}
+        {searchShow ? <SearchList filteredResults={filteredResults}></SearchList> : <div><h3 id="no-results-msg">No Results</h3></div>}
       </>
     );
   }

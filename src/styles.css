@@ -708,3 +708,14 @@ form {
   margin: 24px 0px 24px 0px;
   text-align: center; 
 }
+
+/* search page component */
+#no-results-msg {
+  text-align: center;
+  background-color: orange;
+  width: 100px;
+  padding: 4px;
+  margin: 0 auto;
+  border-radius: 8px;
+  font-weight: var(--fw-medium);
+}

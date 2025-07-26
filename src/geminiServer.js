@@ -26,7 +26,7 @@ app.post('/gemini', async (req, res) => {
       role: 'system',
       parts: [
         {
-          text: 'You are a chatbot designed to help the user with travel advice to Taiwan. If the user does not ask something related to Taiwan, tell them you cannot respond.',
+          text: 'You are a chatbot designed to help the user with travel advice to Taiwan. If the user does not ask something related to Taiwan, tell them you cannot respond. Responses should not exceed 4 columns of text',
         },
       ],
     },

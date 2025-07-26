@@ -74,7 +74,7 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
   }
 
   return (
-    <div className="chatbot" style={{ display: visible ? 'block' : 'none'}}>
+    <div className={ `chatbot ${visible ? 'show' : ''}` }>
       <div className="chat-interface-icon-bar">
         <button onClick={onClose}>&lt;</button>
         <img src={"/logo.png"}></img>

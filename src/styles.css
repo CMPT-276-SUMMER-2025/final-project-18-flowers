@@ -444,8 +444,8 @@ div ul li:hover {
 
 /*chat bot*/
 .chatbot {
-  width: 400px;
-  height: 400px;
+  width: 460px;
+  height: 500px;
   display: flex;
   flex-direction: column;
   border: solid 10px #73b7ff;
@@ -458,6 +458,16 @@ div ul li:hover {
   z-index: 100;
   box-sizing: border-box;
   overflow: hidden;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  transform: translateY(100%);
+  pointer-events: none;
+}
+
+.chatbot.show {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .chat-interface-icon-bar{
@@ -469,6 +479,10 @@ div ul li:hover {
   align-items: left;
   background-color: #73b7ff;
   color: #ffffff;
+}
+
+.chat-interface-icon-bar img {
+  width: 40px;
 }
 
 .chat-interface-icon-bar button {
@@ -517,7 +531,7 @@ div ul li:hover {
 .chatbot-output-section {
   margin-top: 10px;
   overflow: scroll;
-  height: 70%;
+  height: 65%;
   scrollbar-width: none;
 }
 

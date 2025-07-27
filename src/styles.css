@@ -888,3 +888,22 @@ position: fixed;
 .chatbot-button:hover {
   background-color: #469fff;
 }
+
+/*Itinerary generator*/
+.ig-form {
+  background-color: lightblue;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.ig-adult-children-count-row {
+  display: flex;
+  flex-direction: row;
+}
+
+ig-adult-children-count-row div {
+  flex: 1;
+}

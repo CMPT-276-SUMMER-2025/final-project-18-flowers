@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from 'remark-gfm';
 
 export default function ItineraryGenerator() {
   //track user's chosen selected options
@@ -225,7 +226,7 @@ export default function ItineraryGenerator() {
         <div className="ig-response">
           <h3>Itinerary</h3>
           <section>
-            <ReactMarkdown>
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {response}
             </ReactMarkdown>
           </section>

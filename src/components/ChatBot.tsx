@@ -75,7 +75,7 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
 
     //Check if user input matches a question from FAQ list
     const fuse = new Fuse(faqList, {
-      threshold: 0.5, // how fuzzy the match is (lower is stricter)
+      threshold: 0.4, // how fuzzy the match is (lower is stricter)
       includeScore: true,
     });
 

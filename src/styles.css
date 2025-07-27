@@ -890,20 +890,33 @@ position: fixed;
 }
 
 /*Itinerary generator*/
+.itinerary-generator {
+  height: 500px;
+  border: solid 1px black;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  column-gap: 1vw;
+}
+
 .ig-form {
   background-color: lightblue;
-  height: 500px;
+  height: 100%;
+  width: 500px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
 }
 
+.ig-response {
+  height: 100%;
+  width: 500px;
+  background-color: lightpink;
+  overflow-y: auto;
+}
+
 .ig-adult-children-count-row {
   display: flex;
   flex-direction: row;
-}
-
-ig-adult-children-count-row div {
-  flex: 1;
 }

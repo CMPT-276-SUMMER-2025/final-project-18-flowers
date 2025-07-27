@@ -23,7 +23,9 @@ app.post('/gemini', async (req, res) => {
   console.log(req.headers.purpose);
 
   const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+  
   let chat;
+  let msg = '';
 
   if(req.headers.purpose === "chatbot-response") {
     chat = model.startChat({
@@ -37,12 +39,26 @@ app.post('/gemini', async (req, res) => {
         ],
       },
     });
+    msg = req.body.message;
+  }
+  
+  if(req.headers.purpose === "generate-itinerary") {
+    chat = model.startChat({
+      systemInstruction: {
+        role: 'system',
+        parts: [
+          {
+            text: 'Your task is to generate an itinerary for a trip to Taiwan based on the following options: city to visit, days to stay, interest, number of adults, number of children, and budget. Please strictly limit your response to under 500 words. Do not exceed this limit.'
+          },
+        ],
+      },
+    });
+    msg = `Limit response to 500 words. city: '${req.body.city}', days: '${req.body.days}', interest: '${req.body.interest}', adults: '${req.body.adults}', children: '${req.body.children}', budget: '${req.body.budget}'`;
   }
 
-  const msg = req.body.message;
   const result = await chat.sendMessage(msg, {
     generationConfig: {
-      maxOutputTokens: 120,
+      maxOutputTokens: 1000,
     },
   });
 

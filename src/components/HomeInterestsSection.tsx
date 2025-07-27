@@ -1,4 +1,3 @@
-import { HashLink } from "react-router-hash-link";
 import ViewButton from "./ViewButton";
 import HomeInterest from "./HomeInterest";
 import { homeInterests } from "../data/attractionData";

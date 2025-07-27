@@ -54,6 +54,20 @@ body, html {
   align-items: center;
 }
 
+#dest-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+#dest-show-button {
+  padding: 12px;
+  margin: 24px;
+  border: 1px solid lightgray;
+  border-radius: 36px;
+  z-index: 99;
+  font-weight: var(--fw-medium-bold);
+}
+
 /* city card component */
 
 .dest-card {

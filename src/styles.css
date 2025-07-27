@@ -891,8 +891,8 @@ position: fixed;
 
 /*Itinerary generator*/
 .itinerary-generator {
+  background-color:lightblue;
   height: 500px;
-  border: solid 1px black;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -900,19 +900,21 @@ position: fixed;
 }
 
 .ig-form {
-  background-color: lightblue;
+  border: solid 1px black;
   height: 100%;
-  width: 500px;
+  width: 300px;
+  min-width: 250px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+  border-radius: 0px;
 }
 
 .ig-response {
+  border: solid 1px black;
   height: 100%;
-  width: 500px;
-  background-color: lightpink;
+  min-width: 500px;
   overflow-y: auto;
 }
 

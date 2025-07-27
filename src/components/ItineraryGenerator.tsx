@@ -66,6 +66,18 @@ export default function ItineraryGenerator() {
       console.error("Fetch error: ", error);
     }
   }
+
+  //button to clear the form options and itinerary
+  const handleClear = (event: any) => {
+    event.preventDefault();
+    setCityOption("");
+    setDaysOption("");
+    setInterestOption("");
+    setNumAdultsOption("");
+    setNumChildrenOption("");
+    setBudgetOption("");
+    setResponse("");
+  }
   
   return (
     <>
@@ -166,6 +178,7 @@ export default function ItineraryGenerator() {
                   onChange={(e) => handleChange(e, "num-children-option")}
                 >
                   <option value=""># of children</option>
+                  <option value="0 children">0 children</option>
                   <option value="1 child">1 child</option>
                   <option value="2 children">2 children</option>
                   <option value="3 children">3 children</option>
@@ -199,7 +212,12 @@ export default function ItineraryGenerator() {
               </select>
             </div>
           </div>
-          <button type="submit">Generate Itinerary</button>
+          <div>
+            <button type="submit" className="generate-itinerary-button">Generate Itinerary</button>
+            <button type="button" className="clear-itinerary-button" onClick={handleClear}>
+              Clear
+            </button>
+          </div>
         </form>
 
         <section className="ig-response">

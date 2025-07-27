@@ -48,7 +48,7 @@ app.post('/gemini', async (req, res) => {
         role: 'system',
         parts: [
           {
-            text: 'Your task is to generate an itinerary for a trip to Taiwan that does not exceed 500 words. The options are: city to visit, days to stay, interest, number of adults, number of children, and budget.'
+            text: 'Your task is to generate an itinerary for a trip to Taiwan that does not exceed 500 words. Do not exceed 4 columns of text. The options are: city to visit, days to stay, interest, number of adults, number of children, and budget.'
           },
         ],
       },

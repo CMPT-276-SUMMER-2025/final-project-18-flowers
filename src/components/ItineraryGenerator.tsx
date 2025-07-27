@@ -212,19 +212,24 @@ export default function ItineraryGenerator() {
               </select>
             </div>
           </div>
-          <div>
-            <button type="submit" className="generate-itinerary-button">Generate Itinerary</button>
-            <button type="button" className="clear-itinerary-button" onClick={handleClear}>
+          <div className="ig-form-bottom-buttons">
+            <button type="submit" className="ig-generate-button">
+              Generate Itinerary
+            </button>
+            <button type="button" className="ig-clear-button" onClick={handleClear}>
               Clear
             </button>
           </div>
         </form>
-
-        <section className="ig-response">
-          <ReactMarkdown>
-            {response}
-          </ReactMarkdown>
-        </section>
+        
+        <div className="ig-response">
+          <h3>Itinerary</h3>
+          <section>
+            <ReactMarkdown>
+              {response}
+            </ReactMarkdown>
+          </section>
+        </div>
       </section>
     </>
   );

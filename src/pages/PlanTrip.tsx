@@ -1,8 +1,10 @@
+import PlanTripMap from "../components/PlanTripMap"
+
 const PlanTrip = () => {
   return (
-    <>
-      <p>Plan a trip</p>
-    </>
+    <div>
+      <PlanTripMap></PlanTripMap>
+    </div>
   )
 }
 

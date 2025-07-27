@@ -1,7 +1,11 @@
 const SearchBar = () => {
+  // const [searchTerm, setSearchTerm] = useState("");
   return (
     <div>
-      <input type="text" id="search" name="search"></input>
+      <form>
+        <span className="search-icon material-symbols-outlined">search</span>
+        {/* <input type="text" id="search" name="search" placeholder="Search" value={searchTerm}></input> */}
+      </form>
     </div>
   )
 }

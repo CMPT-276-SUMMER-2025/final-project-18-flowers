@@ -14,6 +14,8 @@ import InterestAttraction from './pages/InterestAttraction';
 import CityInterests from './pages/CityInterests';
 import Attraction from './pages/Attraction';
 import PlanTrip from './pages/PlanTrip';
+import SearchPage from './pages/SearchPage';
+import searchData from './data/searchData';
 import ChatBot from './components/ChatBot';
 
 function App() {
@@ -54,6 +56,7 @@ function AppContent() {
           <Route path='/plantrip' element={<PlanTrip />}></Route>
           <Route path="/destinations/:id" element={<CityInterests />} />
           <Route path="/destinations/:id/:attract" element={<Attraction />} />
+          <Route path="/search" element={<SearchPage results={searchData} />} />
         </Routes>
         <ChatBot />
       </>
@@ -72,6 +75,7 @@ function AppContent() {
         <Route path='/plantrip' element={<PlanTrip />}></Route>
         <Route path="/destinations/:id" element={<CityInterests />} />
         <Route path="/destinations/:id/:attract" element={<Attraction />} />
+        <Route path="/search" element={<SearchPage results={searchData}/>} />
       </Routes>
       <ChatBot />
     </>

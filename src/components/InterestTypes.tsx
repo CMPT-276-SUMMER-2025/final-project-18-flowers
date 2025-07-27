@@ -2,13 +2,12 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { mockInterestData } from '../data/cityData';
 
-
 type interestProps = { 
   cityname: string, // cityname
   type: string  // type of place (e.g., amusement_park, chinese_restaurant, etc.)
 };
 
-const saveAPICreditsMode = false;    
+const saveAPICreditsMode = true;    
 
 // const interestTypesArr = ["shopping mall", "tourist_attraction", "amusement_park"];
 

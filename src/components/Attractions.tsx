@@ -4,7 +4,7 @@ import { mockPlacesAttractions } from '../data/cityData';
 
 type Props = { cityname: string };
 
-const saveAPICost = false;
+const saveAPICost = true;
 
 const Attractions = ({ cityname } : Props) => {
   // type alias TPlace object that holds id, displayName

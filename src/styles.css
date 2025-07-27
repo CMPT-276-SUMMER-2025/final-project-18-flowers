@@ -589,7 +589,6 @@ div ul li:hover {
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   object-fit: cover;
-}
 
 .it-name {
   font-weight: var(--fw-medium);
@@ -718,6 +717,7 @@ form {
   margin: 0 auto;
   border-radius: 8px;
   font-weight: var(--fw-medium);
+
 }
 
 /*chat bot*/

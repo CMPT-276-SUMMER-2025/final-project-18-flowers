@@ -81,7 +81,7 @@ export const citiesLatLng = [
     description: "A major port city with art districts, night markets, historical buildings, and skyline.", 
     region: "Southern Taiwan",
     image: "/assets/destinations/kaohsiung.jpg"
-  }, // kaohsiung
+  }, // Kaohsiung
 
   { 
     id: "tainan", 
@@ -100,6 +100,80 @@ export const citiesLatLng = [
     region: "Central Taiwan",
     image: "/assets/destinations/taichung.jpg"
   }, // Taichung
+
+  // new destinations
+
+  { 
+    id: "newtaipei", 
+    coord: { lat: 25.0163, lng: 121.4628 }, 
+    header: "New Taipei City", 
+    description: "Large surrounding area of Taipei with natural escapes, coastal towns, and historic sites.", 
+    region: "Northern Taiwan",
+    image: "/assets/destinations/newtaipei.jpg"
+  }, // New Taipei
+
+  { 
+    id: "keelung", 
+    coord: { lat: 25.1276, lng: 121.7392 }, 
+    header: "Keelung City", 
+    description: "Northern port city known for seafood night markets, harbor views, and rainy weather.", 
+    region: "Northern Taiwan",
+    image: "/assets/destinations/keelung.jpg"
+  }, // Keelung
+
+  { 
+    id: "taitung", 
+    coord: { lat: 22.7579, lng: 121.1507 }, 
+    header: "Taitung City", 
+    description: "East coast city with indigenous culture, Pacific views, and laid-back island vibes.", 
+    region: "Eastern Taiwan",
+    image: "/assets/destinations/taitung.jpg"
+  }, // Taitung
+
+  { 
+    id: "nantou", 
+    coord: { lat: 23.9090, lng: 120.6834 }, 
+    header: "Nantou County", 
+    description: "Landlocked region with mountains, tea farms, and access to scenic nature spots.", 
+    region: "Central Taiwan",
+    image: "/assets/destinations/nantou.jpg"
+  }, // Nantou
+
+  { 
+    id: "chiayi", 
+    coord: { lat: 23.4750, lng: 120.4497 }, 
+    header: "Chiayi City", 
+    description: "Gateway to Alishan with history, street food, and a slower southern atmosphere.", 
+    region: "Southern Taiwan",
+    image: "/assets/destinations/chiayi.jpg"
+  }, // Chiayi
+
+  { 
+    id: "pingtung", 
+    coord: { lat: 22.6767, lng: 120.4902 }, 
+    header: "Pingtung County", 
+    description: "Southern region best known for Kenting’s beaches, nightlife, and ocean scenery.", 
+    region: "Southern Taiwan",
+    image: "/assets/destinations/pingtung.jpg"
+  }, // Pingtung
+
+  { 
+    id: "miaoli", 
+    coord: { lat: 24.5599, lng: 120.8209 }, 
+    header: "Miaoli County", 
+    description: "Hilly area with Hakka heritage, cultural parks, and quiet countryside landscapes.", 
+    region: "Northern Taiwan",
+    image: "/assets/destinations/miaoli.jpg"
+  }, // Miaoli
+
+  { 
+    id: "changhua", 
+    coord: { lat: 24.0705, lng: 120.5306 }, 
+    header: "Changhua County", 
+    description: "Central town featuring giant Buddha statues, temples, and traditional local charm.", 
+    region: "Central Taiwan",
+    image: "/assets/destinations/changhua.jpg"
+  } // Changhua
 ];
 
 // city interests page data 

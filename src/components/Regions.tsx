@@ -34,23 +34,23 @@ const Regions = () => {
       const baseSymbol = {
         //path for a custom drop pin marker
         path: "M0-48c-9.94,0-18,8.06-18,18c0,11.6,18,30,18,30s18-18.4,18-30C18-39.94,9.94-48,0-48z M0-34a6,6 0 1,0 0,12a6,6 0 1,0 0,-12",
-        fillColor: "crimson", 
+        fillColor: "DodgerBlue", 
         fillOpacity: 1,
-        scale: 0.75,
+        scale: 0.6,
         strokeColor: 'black',
         strokeWeight: 1,
       };
       const hoverSymbol = {
         ...baseSymbol,
-        scale: 1.25,
+        scale: 1.0,
       };
       const clickedHoveredSymbol = {
         ...hoverSymbol,
-        fillColor: "DodgerBlue", 
+        fillColor: "Orange", 
       };
       const clickedSymbol = {
         ...baseSymbol,
-        fillColor: "DodgerBlue",
+        fillColor: "Orange",
       };
 
       setBaseSymbol(baseSymbol);

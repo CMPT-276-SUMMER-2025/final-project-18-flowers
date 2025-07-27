@@ -16,6 +16,7 @@ import Attraction from './pages/Attraction';
 import PlanTrip from './pages/PlanTrip';
 import SearchPage from './pages/SearchPage';
 import searchData from './data/searchData';
+import ChatBot from './components/ChatBot';
 
 function App() {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
@@ -57,6 +58,7 @@ function AppContent() {
           <Route path="/destinations/:id/:attract" element={<Attraction />} />
           <Route path="/search" element={<SearchPage results={searchData} />} />
         </Routes>
+        <ChatBot />
       </>
     );
   }
@@ -75,6 +77,7 @@ function AppContent() {
         <Route path="/destinations/:id/:attract" element={<Attraction />} />
         <Route path="/search" element={<SearchPage results={searchData}/>} />
       </Routes>
+      <ChatBot />
     </>
     );
   }

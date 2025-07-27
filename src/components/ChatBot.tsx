@@ -109,11 +109,11 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
       };
 
       const response = await fetch("http://localhost:8000/gemini", options);
-       if (!response.ok) throw new Error(`Server returned ${response.status}`);
+      if (!response.ok) throw new Error(`Server returned ${response.status}`);
       const data = await response.text();
 
-       const userMessage: ChatMessage = { role: "user", parts: [{ text: userInput }] };
-    const modelMessage: ChatMessage = { role: "model", parts: [{ text: data }] };
+      const userMessage: ChatMessage = { role: "user", parts: [{ text: userInput }] };
+      const modelMessage: ChatMessage = { role: "model", parts: [{ text: data }] };
 
       //Update Update both UI and Gemini-safe chat history
       setChatHistory(prev => [...prev, userMessage, modelMessage]);

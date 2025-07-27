@@ -1,42 +1,20 @@
-import { HashLink } from "react-router-hash-link"
+import { HashLink } from "react-router-hash-link";
+import ViewButton from "./ViewButton";
+import HomeInterest from "./HomeInterest";
+import { homeInterests } from "../data/attractionData";
 
 const HomeInterestsSection = () => {
   return (
     <>
-      <h1 className="home-section-title">Interests</h1>
-      <HashLink to="/interests#shopping_mall">
-        <div className="interest-box">
-          <div className="box-logo-container bg-emerald-500">
-            <img src="logo.png" className="box-logo"></img>
-          </div>
-          <div className="interest-box-text">
-            <h3>Shopping</h3>
-            <p>Discover popular shopping centers to fulfill your desires.</p>
-          </div>
-        </div>
-      </HashLink>
-      <HashLink to="/interests#amusement_park">
-        <div className="interest-box">
-          <div className="box-logo-container bg-blue-600">
-            <img src="logo.png" className="box-logo"></img>
-          </div>
-          <div className="interest-box-text">
-            <h3>Shopping</h3>
-            <p>Discover popular shopping centers to fulfill your desires.</p>
-          </div>
-        </div>
-      </HashLink>
-      <HashLink to="/interests#tourist_attraction">
-        <div className="interest-box">
-          <div className="box-logo-container bg-amber-400">
-            <img src="logo.png" className="box-logo"></img>
-          </div>
-          <div className="interest-box-text">
-            <h3>Shopping</h3>
-            <p>Discover popular shopping centers to fulfill your desires.</p>
-          </div>
-        </div>
-      </HashLink>
+      <div id="home-interests-container">
+        <h1 className="home-section-title">Interests</h1>
+        <HomeInterest details={homeInterests[0]}></HomeInterest>
+        <HomeInterest details={homeInterests[1]}></HomeInterest>
+        <HomeInterest details={homeInterests[2]}></HomeInterest>
+      </div>
+      <div className="home-button-wrapper">
+        <ViewButton path="/interests" direction="View more"></ViewButton>
+      </div>
     </>
   )
 }

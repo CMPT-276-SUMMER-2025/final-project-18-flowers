@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SearchList from "../components/SearchList";
+import "../search.css";
 
 //@ts-expect-error
 const SearchPage = ({ results }) => {

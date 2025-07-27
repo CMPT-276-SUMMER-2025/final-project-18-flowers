@@ -1,4 +1,5 @@
 import InterestTypes from "../components/InterestTypes";
+import "../interestsTypes.css";
 
 const Interests = () => {
   return (

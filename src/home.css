@@ -1,0 +1,143 @@
+/* home component */
+
+#bg-image {
+  width: 100%;
+  height: 60vh;
+  background-image: url("/assets/taipei-night.jpeg");
+  background-repeat: no-repeat;
+  background-position: center center; 
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#bg-image-half-size {
+  width: 100%;
+  height: 30vh;
+  background-image: url("/assets/taipei-night-2.jpg");
+  background-repeat: no-repeat;
+  background-position: center center; 
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#home-interests-container {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 32px auto; 
+}
+
+.home-section-title {
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-2xl);
+  margin: 24px 0px 0px 12px;
+  text-align: center; /* temporary */
+}
+
+/* home interests section component */
+
+.interest-box {
+  margin: 8px;
+  border-radius: 8px;
+  padding: 24px 144px 24px 36px;
+  display: flex;
+  flex-direction: row;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  min-width: 700px;
+}
+
+.box-logo {
+  width: 48px;
+  height: 48px;
+}
+
+.box-logo-container {
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.interest-box-text {
+  margin-left: 24px;
+}
+
+.interest-box-text h3 {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold)
+}
+
+.interest-box-text p {
+  font-size: var(--fs-sm);
+}
+
+/* home attractions section component */
+
+#home-attractions-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+#card-wrapper {
+  display: flex;
+  margin-bottom: 32px;
+}
+
+.attraction-box {
+  margin: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  position: relative;
+  border-radius: 8px;
+}
+
+.top-attraction-photo {
+  width: 225px;
+  height: 165px;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.top-attract-text-content {
+  padding: 24px;
+}
+
+.top-attraction-name {
+  font-weight: var(--fw-bold);
+}
+
+.num-visits {
+  font-size: var(--fs-sm);
+}
+
+.top-rating {
+  font-size: var(--fs-sm);
+  color: rgb(255, 213, 0);
+  font-weight: var(--fw-bold);
+}
+
+.home-button-wrapper {
+  width: 712px;
+  margin: 0 auto;
+}
+
+/* button */
+
+.view-button {
+  padding: 12px;
+  border: 1px solid lightgray;
+  border-radius: 24px;
+  z-index: 99;
+  font-weight: var(--fw-medium);
+}

@@ -1,0 +1,98 @@
+/* search bar component */
+
+form {
+  background-color: white;
+  border-radius: 16px;
+  padding: 8px;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-xs);
+}
+
+.search-icon {
+  color: black;
+}
+
+/* search card */
+
+.search-card-container {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.search-card {
+  width: 500px;
+  margin: 32px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.search-image {
+  width: 200px;
+  object-fit: cover;
+  margin-right: 16px;
+  border-radius: 16px;
+}
+
+.search-description { 
+  font-size: var(--fs-xs);
+}
+
+.search-location {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-medium);
+  color: blue;
+}
+
+.search-name { 
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-xl);
+}
+
+.long-search-bar {
+  width: 484px;
+  padding: 2px 8px 2px 8px;
+  border-radius: 16px;
+}
+
+.long-search-bar-container {
+  display: flex;
+  justify-content: center;
+  margin: 64px;
+}
+
+/* search scroll container */
+
+#scroll-container {
+ display: flex;
+ overflow-y: scroll;
+ height: 80vh;
+ margin: 50%;
+ justify-content: center;
+ margin: 0 auto;
+}
+
+/* search list component */
+
+.search-results-title {
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-2xl);
+  margin: 24px 0px 24px 0px;
+  text-align: center; 
+}
+
+/* search page component */
+
+#no-results-msg {
+  text-align: center;
+  background-color: orange;
+  width: 100px;
+  padding: 4px;
+  margin: 0 auto;
+  border-radius: 8px;
+  font-weight: var(--fw-medium);
+}

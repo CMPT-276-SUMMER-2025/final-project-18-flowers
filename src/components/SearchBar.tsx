@@ -6,6 +6,7 @@ const SearchBar = () => {
         <span className="search-icon material-symbols-outlined">search</span>
         {/* <input type="text" id="search" name="search" placeholder="Search" value={searchTerm}></input> */}
       </form>
+    </div>
   )
 }
 

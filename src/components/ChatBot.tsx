@@ -105,6 +105,7 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
         }),
         headers: {
           "Content-Type": "application/json",
+          "purpose": "chatbot-response",
         },
       };
 

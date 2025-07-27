@@ -5,6 +5,7 @@ export const topAttractions = [
     name: "Taipei 101 Observatory",
     visits: "1.29M Visitors (2023)",
     rating: "4.5 (70K)",
+    rank: 1,
   },
   {
     path: "daan-park",
@@ -12,6 +13,7 @@ export const topAttractions = [
     name: "Daan Park",
     visits: "800K Visitors (2023)",
     rating: "4.6 (41K)",
+    rank: 2,
   },
   {
     path: "sun-moon-lake",
@@ -19,6 +21,7 @@ export const topAttractions = [
     name: "Sun Moon Lake",
     visits: "600K Visitors (2023)",
     rating: "4.2 (2.7K)",
+    rank: 3,
   },
 ];
 

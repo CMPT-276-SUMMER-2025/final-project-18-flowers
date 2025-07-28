@@ -15,7 +15,7 @@ const NavBar = () => {
             <li><Link to="/plantrip">Plan a trip</Link></li>
           </ul>
         </div>
-        <div id="nav-right"><Link to="search"><SearchBar /></Link></div>
+        <div id="nav-right"><SearchBar /></div>
       </nav>
     </>
   )

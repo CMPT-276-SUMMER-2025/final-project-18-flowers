@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import SearchBar from './SearchBar';
+import SearchBarSolid from './SearchBarSolid';
 import "../navbar.css";
 
 const NavBarSolid = () => {
@@ -15,7 +15,7 @@ const NavBarSolid = () => {
             <li><Link to="/plantrip">Plan a trip</Link></li>
           </ul>
         </div>
-        <div id="nav-right"><Link to="search"><SearchBar /></Link></div>
+        <div id="nav-right"><SearchBarSolid /></div>
       </nav>
     </>
   )

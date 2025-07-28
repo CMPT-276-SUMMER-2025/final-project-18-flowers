@@ -160,13 +160,13 @@ body, html {
 
 .attractions {
   position: relative;
-  margin: 12px;
+  margin: 12px 0px 12px 0px;
 }
 
 .attractions::before {
   content: '';
   position: absolute;
-  width: 100%;
+  width: 200px;
   height: 40%; /* only add shading to top 40% */
   background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
   /* make shadow edges rounded */
@@ -179,9 +179,9 @@ body, html {
   font-weight: var(--fw-medium);
   font-size: var(--fw-normal);
   overflow-wrap: break-word;
-  margin-bottom: 24px;
+  margin: 12px;
+  max-width: 180px;
   position: absolute;
-  padding: 8px;
   z-index: 4;
   top: 0;
   left: 0;

@@ -3,6 +3,9 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm';
 
 export default function ItineraryGenerator() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
   //track user's chosen selected options
   const [cityOption, setCityOption] = useState("");
   const [daysOption, setDaysOption] = useState("");
@@ -41,6 +44,18 @@ export default function ItineraryGenerator() {
 
   async function submitHandler(event: any) {
     event.preventDefault();
+    setErrorMessage("");//clear any existing error messages
+
+    // Check if any field is empty
+    if (!cityOption || !daysOption || !interestOption || !numAdultsOption || !numChildrenOption || !budgetOption) {
+      setResponse(""); // Clear previous result
+      setErrorMessage("Please fill in all the fields before generating your itinerary.");
+      return;
+    }
+
+    setIsLoading(true); // Start loading
+    setResponse(""); // Clear previous result
+
     try {
       const requestBody: ItineraryRequest = {
         city: cityOption,
@@ -65,6 +80,9 @@ export default function ItineraryGenerator() {
       setResponse(data);
     } catch(error) {
       console.error("Fetch error: ", error);
+      setErrorMessage("Something went wrong while generating the itinerary :[ ). Please try again.");
+    } finally {
+    setIsLoading(false); // End loading
     }
   }
 
@@ -78,17 +96,19 @@ export default function ItineraryGenerator() {
     setNumChildrenOption("");
     setBudgetOption("");
     setResponse("");
+    setErrorMessage("");
   }
   
   return (
     <>
-      <h1>Itinerary Generator</h1>
+      <h1 className = "ig-title">Itinerary Generator</h1>
       <section className="itinerary-generator">
         <form className="ig-form" onSubmit={submitHandler}>
           <div>
             <label htmlFor="city-option">Where do you plan to go?</label>
-            <div>
+            <div className="ig-form-box">
               <select
+                className="ig-select"
                 id="city-option"
                 value={cityOption}
                 onChange={(e) => handleChange(e, "city-option")}
@@ -106,8 +126,9 @@ export default function ItineraryGenerator() {
 
           <div>
             <label htmlFor="days-option">How many days?</label>
-            <div>
+            <div className="ig-form-box">
               <select
+                className="ig-select"
                 id="days-option"
                 value={daysOption}
                 onChange={(e) => handleChange(e, "days-option")}
@@ -133,8 +154,9 @@ export default function ItineraryGenerator() {
 
           <div>
             <label htmlFor="interest-option">What are you interested in?</label>
-            <div>
+            <div className="ig-form-box"> 
               <select
+                className="ig-select"
                 id="interest-option"
                 value={interestOption}
                 onChange={(e) => handleChange(e, "interest-option")}
@@ -149,9 +171,10 @@ export default function ItineraryGenerator() {
 
           <section className="ig-adult-children-count-row">
             <div>
-              <label htmlFor="num-adults-option">Adults</label>
-              <div>
+              <label htmlFor="num-adults-option">How many adults?</label>
+              <div className="ig-form-box">
                 <select
+                  className="ig-select"
                   id="num-adults-option"
                   value={numAdultsOption}
                   onChange={(e) => handleChange(e, "num-adults-option")}
@@ -171,9 +194,10 @@ export default function ItineraryGenerator() {
               </div>
             </div>
             <div>
-              <label htmlFor="num-children-option">Children</label>
-              <div>
+              <label htmlFor="num-children-option">How many children?</label>
+              <div className="ig-form-box">
                 <select
+                  className="ig-select"
                   id="num-children-option"
                   value={numChildrenOption}
                   onChange={(e) => handleChange(e, "num-children-option")}
@@ -196,9 +220,10 @@ export default function ItineraryGenerator() {
           </section>
 
           <div>
-            <label htmlFor="budget-option">What is your budget</label>
-            <div>
+            <label htmlFor="budget-option">What is your budget?</label>
+            <div className="ig-form-box">
               <select
+                className="ig-select"
                 id="budget-option"
                 value={budgetOption}
                 onChange={(e) => handleChange(e, "budget-option")}
@@ -226,6 +251,8 @@ export default function ItineraryGenerator() {
         <div className="ig-response">
           <h3>Itinerary</h3>
           <section>
+            {errorMessage && <p className="ig-error-message">{errorMessage}</p>}
+            {isLoading && <p className="ig-loading-message">Generating itinerary, please wait...</p>}
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {response}
             </ReactMarkdown>

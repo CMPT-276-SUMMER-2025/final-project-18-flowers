@@ -43,17 +43,31 @@ app.post('/gemini', async (req, res) => {
   }
   
   if(req.headers.purpose === "generate-itinerary") {
+    console.log("Cities from frontend:", req.body.cities);
     chat = model.startChat({
       systemInstruction: {
         role: 'system',
         parts: [
           {
-            text: 'Your task is to generate an itinerary for a trip to Taiwan that does not exceed 500 words. Do not exceed 4 columns of text. The options are: cities to visit, days to stay, interests, number of adults, number of children, and budget.'
+            text: 'Your task is to generate an itinerary for a trip to Taiwan. Only include selected cities.'
           },
         ],
       },
     });
-    msg = `Limit response to 500 words. city: '${req.body.city}', days: '${req.body.days}', interest: '${req.body.interest}', adults: '${req.body.adults}', children: '${req.body.children}', budget: '${req.body.budget}'`;
+    msg = `
+      Generate a detailed travel itinerary (limit 500 words) for a trip to Taiwan. 
+      You must ONLY include the following cities in the itinerary: ${req.body.cities.join(", ")}.
+      Do NOT include any other cities, especially not Taipei, unless it is specifically listed above.
+
+      Trip details:
+      - Duration: ${req.body.days} days
+      - Interests: ${req.body.interest}
+      - Adults: ${req.body.adults}
+      - Children: ${req.body.children}
+      - Budget: ${req.body.budget}
+
+      Avoid suggesting cities not listed. Focus only on the cities provided.
+      `;
   }
 
   const result = await chat.sendMessage(msg, {

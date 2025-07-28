@@ -63,7 +63,14 @@ export default function ItineraryGenerator() {
       !budgetOption
     ) {
       setResponse(""); // Clear previous result
-      setErrorMessage("Please fill in all the fields before generating your itinerary.");
+      errorHandler("unfilled fields"); 
+      return;
+    }
+
+    //check if the number of cities exceeds number of days
+    if(selectedCityValues.length > Number(daysOption.slice(0, 2))) {
+      setResponse(""); //clear previous result
+      errorHandler("not enough days");
       return;
     }
 
@@ -131,6 +138,15 @@ export default function ItineraryGenerator() {
       width: "100%",
     })
   };
+
+  function errorHandler(errorType: string) {
+    if(errorType === "unfilled fields") {
+      setErrorMessage("Please fill in all the fields before generating your itinerary.");
+    }
+    if(errorType === "not enough days") {
+      setErrorMessage("Please ensure that the number of days you plan to stay is greater than or equal to the number of cities you plan to visit \u{1F601}.")
+    }
+  }
   
   return (
     <>
@@ -147,7 +163,7 @@ export default function ItineraryGenerator() {
               onChange={(e) => handleChange(e, "days-option")}
             >
               <option value="">Select # of days</option>
-              {[...Array(14)].map((_, i) => (
+              {[...Array(30)].map((_, i) => (
                 <option key={i + 1} value={`${i + 1} day${i === 0 ? "" : "s"}`}>
                   {i + 1} {i === 0 ? "day" : "days"}
                 </option>

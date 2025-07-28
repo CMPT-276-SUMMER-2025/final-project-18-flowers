@@ -175,7 +175,7 @@ export default function ItineraryGenerator() {
                 onChange={(e) => handleChange(e, "num-adults-option")}
               >
                 <option value=""># of adults</option>
-                {[...Array(10)].map((_, i) => (
+                {[...Array(9)].map((_, i) => (
                   <option key={i} value={`${i + 1} adult${i ? "s" : ""}`}>
                     {i + 1} {i ? "adults" : "adult"}
                   </option>

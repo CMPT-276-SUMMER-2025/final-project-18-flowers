@@ -55,9 +55,9 @@ export default function ItineraryGenerator() {
     console.log("Selected interests: ", selectedInterestValues);
 
     // Check if any field is empty
-    if (cityOptions.length === 0 || 
+    if (selectedCityValues.length === 0 || 
       !daysOption || 
-      interestOptions.length === 0 || 
+      selectedInterestValues.length === 0 || 
       !numAdultsOption || 
       !numChildrenOption || 
       !budgetOption

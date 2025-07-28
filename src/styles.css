@@ -859,13 +859,23 @@ form {
 }
 
 .chatbot-answer {
-  padding: 13px 14px;
+  padding: 10px;
   border: solid 0.5px #cacaca;
   background-color: white;
   margin: 5px;
   font-size: 15px;
   font-weight: 200;
   border-radius: 6px;
+}
+
+.chatbot-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+}
+
+.chatbot-list-item {
+  list-style-position: inside;
 }
 
 .chatbot-button {

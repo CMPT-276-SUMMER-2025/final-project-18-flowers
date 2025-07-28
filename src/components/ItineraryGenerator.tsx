@@ -112,14 +112,33 @@ export default function ItineraryGenerator() {
     setResponse("");
     setErrorMessage("");
   }
+
+  //custom styles react-select
+  const customReactSelectStyles = {
+    control: (base: any) => ({
+      ...base,
+      margin: 0,
+      width: "100%",
+      borderWidth: "2px",
+      borderStyle: "solid",
+      borderColor: "#BCBCBC",
+      borderRadius: "8px",
+      padding: "4px",
+    }),
+    container: (base: any) => ({
+      ...base,
+      margin: 0,
+      width: "100%",
+    })
+  };
   
   return (
     <>
       <h1 className="ig-title">Itinerary Generator</h1>
       <section className="itinerary-generator">
         <form className="ig-form" onSubmit={submitHandler}>
-          <div>
-            <label htmlFor="days-option">How many days?</label>
+          <div className="ig-form-field">
+            <label htmlFor="days-option">How long is your trip?</label>
             <div className="ig-form-box">
             <select
               className="ig-select"
@@ -137,11 +156,11 @@ export default function ItineraryGenerator() {
             </div>
           </div>
 
-          <div>
+          <div className="ig-form-field">
             <label>Where do you plan to go?</label>
-            <div className="ig-form-box">
+            <div>
               <Select
-                className="ig-select"
+                styles={customReactSelectStyles}
                 isMulti
                 options={cityOptions}
                 value={selectedCities}
@@ -151,11 +170,11 @@ export default function ItineraryGenerator() {
             </div>
           </div>
 
-          <div>
+          <div className="ig-form-field">
             <label>What are you interested in?</label>
-            <div className="ig-form-box">
+            <div>
               <Select
-                className="ig-select"
+                styles={customReactSelectStyles}
                 isMulti
                 options={interestOptions}
                 value={selectedInterests}
@@ -165,8 +184,8 @@ export default function ItineraryGenerator() {
           </div>
 
           <section className="ig-adult-children-count-row">
-            <div>
-              <label htmlFor="num-adults-option">How many adults?</label>
+            <div className="ig-form-field">
+              <label htmlFor="num-adults-option">Adults</label>
               <div className="ig-form-box">
               <select
                 className="ig-select"
@@ -185,8 +204,8 @@ export default function ItineraryGenerator() {
               </div>
             </div>
 
-            <div>
-              <label htmlFor="num-children-option">How many children?</label>
+            <div className="ig-form-field">
+              <label htmlFor="num-children-option">Children</label>
               <div className="ig-form-box">
               <select
                 className="ig-select"
@@ -206,7 +225,7 @@ export default function ItineraryGenerator() {
             </div>
           </section>
 
-          <div>
+          <div className="ig-form-field">
             <label htmlFor="budget-option">What is your budget?</label>
             <div className="ig-form-box">
             <select

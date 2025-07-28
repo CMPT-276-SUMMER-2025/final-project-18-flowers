@@ -7,7 +7,7 @@ type interestProps = {
   type: string  // type of place (e.g., amusement_park, chinese_restaurant, etc.)
 };
 
-const saveAPICreditsMode = false;    
+const saveAPICreditsMode = true;    
 
 const InterestTypes = ({ cityname, type } : interestProps) => {
 
@@ -26,6 +26,7 @@ const InterestTypes = ({ cityname, type } : interestProps) => {
     displayName?: string | null;
     photoUrl?: string;
     editorialSummary?: string | null;
+    description?: string; // ← this was missing
   };
 
   const [places, setPlaces] = useState<Place[]>([]);
@@ -60,14 +61,14 @@ const InterestTypes = ({ cityname, type } : interestProps) => {
     const cacheKey = `attractions-${cityname}-${type}`;
     const cachedData = localStorage.getItem(cacheKey);
 
-    if (cachedData) {
-      const parsed = JSON.parse(cachedData) as Place[];
-      const valid = parsed.filter(p => isEnglish(p.displayName));
-      if (valid.length >= 6) {
-        setPlaces(valid.slice(0, 6)); //Only show the first 6 valid results in cache
-        return;
-      }
-    }
+    // if (cachedData) {
+    //   const parsed = JSON.parse(cachedData) as Place[];
+    //   const valid = parsed.filter(p => isEnglish(p.displayName));
+    //   if (valid.length >= 6) {
+    //     setPlaces(valid.slice(0, 6)); //Only show the first 6 valid results in cache
+    //     return;
+    //   }
+    // }
     /* ---- */
 
     async function getAttractions() {
@@ -112,7 +113,7 @@ const InterestTypes = ({ cityname, type } : interestProps) => {
         });
       });
       
-      setPlaces(formattedPlaces);
+      setPlaces(mockInterestData[type as keyof typeof mockInterestData]);
       localStorage.setItem(cacheKey, JSON.stringify(formattedPlaces));
     } 
     getAttractions();
@@ -136,7 +137,7 @@ const InterestTypes = ({ cityname, type } : interestProps) => {
                 }
                 <h3 className='it-name'>{place.displayName}</h3>
                 <img src={`/assets/interest-types/${type}.png`} className={`type-icon ${iconClass}`} alt={typeHeader}/>
-                <p className='it-description'>{"I'm a description"}</p>
+                <p className='it-description'>{place.description}</p>
               </div>
             </Link>
           ))}

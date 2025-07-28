@@ -20,30 +20,39 @@ export const cities = {
 
 export const mockInterestData = {
   "shopping_mall" : [
-    { id: "m1", displayName: "Mall A", photoUrl: "/assets/destinations/taipei.jpg" },
-    { id: "m2", displayName: "Mall B", photoUrl: "/assets/destinations/taipei.jpg" },
-    { id: "m3", displayName: "Mall C", photoUrl: "/assets/destinations/taipei.jpg" },
-    { id: "m4", displayName: "Mall D", photoUrl: "/assets/destinations/taipei.jpg" },
-    { id: "m5", displayName: "Mall E", photoUrl: "/assets/destinations/taipei.jpg" },
-    { id: "m6", displayName: "Mall F", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "m1", displayName: "Taipei 101 Shopping Center", description: "Luxury shopping in an iconic skyscraper.", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "m2", displayName: "Q Square Mall", description: "Trendy urban mall near Taipei Main Station.", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "m3", displayName: "Tai Mall", description: "Spacious mall with shops and entertainment.", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "m4", displayName: "Taipei City Mall", description: "Underground mall for budget shopping.", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "m5", displayName: "Dream Mall", description: "Kaohsiung’s huge mall with a rooftop Ferris wheel.", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "m6", displayName: "T.S. Mall", description: "Modern mall in Tainan with diverse stores.", photoUrl: "/assets/destinations/taipei.jpg" },
   ],
   "amusement_park" : [
-    { id: "p1", displayName: "Park A", photoUrl: "/assets/destinations/taipei.jpg" },
-    { id: "p2", displayName: "Park B", photoUrl: "/assets/destinations/taipei.jpg" },
-    { id: "p3", displayName: "Park C", photoUrl: "/assets/destinations/taipei.jpg" },
-    { id: "p4", displayName: "Park D", photoUrl: "/assets/destinations/taipei.jpg" },
-    { id: "p5", displayName: "Park E", photoUrl: "/assets/destinations/taipei.jpg" },
-    { id: "p6", displayName: "Park F", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "p1", displayName: "Leofoo Village Theme Park", description: "Safari, rides, and fun for all ages.", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "p2", displayName: "Taipei Children's Amusement Park", description: "Kid-friendly rides and attractions.", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "p3", displayName: "Window on World Theme Park", description: "Mini world landmarks and theme rides.", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "p4", displayName: "Formosan Aboriginal Culture Village", description: "Cultural shows and amusement park.", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "p5", displayName: "LIHPAO Discovery Land", description: "Thrilling rides and water park.", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "p6", displayName: "Farglory Ocean Park", description: "Marine-themed park by the coast.", photoUrl: "/assets/destinations/taipei.jpg" },
   ],
   "tourist_attraction" : [  
-    { id: "t1", displayName: "Attraction A", photoUrl: "/assets/destinations/taipei.jpg" },
-    { id: "t2", displayName: "Attraction B", photoUrl: "/assets/destinations/taipei.jpg" },
-    { id: "t3", displayName: "Attraction C", photoUrl: "/assets/destinations/taipei.jpg" },
-    { id: "t4", displayName: "Attraction D", photoUrl: "/assets/destinations/taipei.jpg" },
-    { id: "t5", displayName: "Attraction E", photoUrl: "/assets/destinations/taipei.jpg" },
-    { id: "t6", displayName: "Attraction F", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "t1", displayName: "Yangmingshan National Park", description: "Hot springs, trails, and mountain views.", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "t2", displayName: "Shifen Waterfall", description: "Stunning wide cascade in nature.", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "t3", displayName: "Chiang Kai-shek Memorial Hall", description: "Historic monument with gardens.", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "t4", displayName: "Kenting National Park", description: "Tropical beaches and coral reefs.", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "t5", displayName: "Shuanglong Waterfalls", description: "Twin waterfalls in a forest setting.", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "t6", displayName: "Taiwan Glass Gallery", description: "Artistic glassworks and exhibits.", photoUrl: "/assets/destinations/taipei.jpg" },
   ],
+  "historical_place": [
+    { id: "h1", displayName: "Chiang Kai-shek Memorial Hall", description: "Monument honoring Taiwan’s former leader.", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "h2", displayName: "National Palace Museum", description: "Home to ancient Chinese artifacts.", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "h3", displayName: "Anping Fort", description: "Dutch colonial fort in Tainan.", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "h4", displayName: "Bopiliao Historical Block", description: "Restored Qing-era street in Taipei.", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "h5", displayName: "Presidential Office Building", description: "Japanese-era government building.", photoUrl: "/assets/destinations/taipei.jpg" },
+    { id: "h6", displayName: "National Taiwan Museum", description: "Natural and cultural history museum.", photoUrl: "/assets/destinations/taipei.jpg" },
+  ]
 };
+
 
 // regions map data
 export const citiesLatLng = [

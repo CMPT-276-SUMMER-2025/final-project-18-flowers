@@ -6,6 +6,7 @@ type HomeAttractionProp = {
   name: string,
   visits: string,
   rating: string,
+  rank: number;
 }
 
 const HomeAttraction = ({ details } : { details : HomeAttractionProp }) => {
@@ -14,7 +15,7 @@ const HomeAttraction = ({ details } : { details : HomeAttractionProp }) => {
        <Link to={`/destinations/taipei-city/${details.path}`}>
           <div className="attraction-box">
             <img src={`/assets/home/${details.imgPath}`} className="top-attraction-photo"></img>
-            <p className="text-white font-extrabold inline-block bg-blue-500 px-3 py-1 rounded-4xl absolute top-[150px] left-[20px]">1</p>  
+            <p className="text-white font-extrabold inline-block bg-blue-500 px-3 py-1 rounded-4xl absolute top-[150px] left-[20px]">{details.rank}</p>  
             <div className="top-attract-text-content">
               <h3 className="top-attraction-name">{details.name}</h3>
               <p className="num-visits">{details.visits}</p>

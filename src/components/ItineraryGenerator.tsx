@@ -147,6 +147,17 @@ export default function ItineraryGenerator() {
       setErrorMessage("Please ensure that the number of days you plan to stay is greater than or equal to the number of cities you plan to visit \u{1F601}.")
     }
   }
+
+  //generate random delay for skeleton text loading screen
+  function GenerateTextSkeletonLine(key: number) {
+    const delay = (Math.random() * 1.5).toFixed(2);
+    return (
+      <div 
+      key={key}
+      style={{ animationDelay: `${delay}s`}}
+      ></div>
+    );
+  }
   
   return (
     <>
@@ -276,9 +287,7 @@ export default function ItineraryGenerator() {
           <section>
             {errorMessage && <p className="ig-error-message">{errorMessage}</p>}
             {isLoading && <div className="ig-loading-text-skeleton">
-              {[...Array(14)].map((_, i) => (
-                <div key={i}></div>
-              ))}
+              {[...Array(14)].map((_, i) => GenerateTextSkeletonLine(i))}
             </div>}
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {response}

@@ -943,7 +943,7 @@ position: fixed;
 
 .ig-select {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
 }
 
 .ig-select:focus {
@@ -961,24 +961,24 @@ position: fixed;
   width: 100%;
   display: flex;
   justify-content: space-between;
-  transition: opacity 300ms ease;
-}
-
-.ig-form-bottom-buttons button:hover {
-  opacity: 0.9;
-}
-
-.ig-form-bottom-buttons button:active {
-  opacity: 1;
 }
 
 .ig-form-bottom-buttons button {
   color: white;
   padding: 8px;
-  border-radius: 20px;
+  border-radius: 8px;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
+  transition: scale 100ms ease-in-out;
+}
+
+.ig-form-bottom-buttons button:hover {
+  scale: 1.1;
+}
+
+.ig-form-bottom-buttons button:active {
+  opacity: 0.8;
 }
 
 .ig-generate-button {
@@ -1070,7 +1070,7 @@ position: fixed;
     #dddddd 75%
   );
   background-size: 200% 100%;
-  animation: shimmer 1s ease-in-out infinite; 
+  animation: shimmer 1.5s ease-in-out infinite; 
 }
 
 @keyframes shimmer {

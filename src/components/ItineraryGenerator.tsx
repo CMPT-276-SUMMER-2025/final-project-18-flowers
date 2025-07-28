@@ -275,7 +275,11 @@ export default function ItineraryGenerator() {
           <h3>Itinerary</h3>
           <section>
             {errorMessage && <p className="ig-error-message">{errorMessage}</p>}
-            {isLoading && <p className="ig-loading-message">Generating itinerary, please wait...</p>}
+            {isLoading && <div className="ig-loading-text-skeleton">
+              {[...Array(14)].map((_, i) => (
+                <div key={i}></div>
+              ))}
+            </div>}
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {response}
             </ReactMarkdown>

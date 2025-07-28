@@ -44,6 +44,7 @@ app.post('/gemini', async (req, res) => {
   
   if(req.headers.purpose === "generate-itinerary") {
     console.log("Cities from frontend:", req.body.cities);
+    console.log("Interests from frontend: ", req.body.interests);
     chat = model.startChat({
       systemInstruction: {
         role: 'system',
@@ -61,7 +62,7 @@ app.post('/gemini', async (req, res) => {
 
       Trip details:
       - Duration: ${req.body.days} days
-      - Interests: ${req.body.interest}
+      - Interests: ${req.body.interests.join(", ")}
       - Adults: ${req.body.adults}
       - Children: ${req.body.children}
       - Budget: ${req.body.budget}

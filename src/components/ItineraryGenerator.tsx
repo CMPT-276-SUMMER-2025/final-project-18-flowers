@@ -10,7 +10,7 @@ export default function ItineraryGenerator() {
   //track user's chosen selected options
   const [selectedCities, setSelectedCities] = useState<{ label: string; value: string }[]>([]);
   const [daysOption, setDaysOption] = useState("");
-  const [interestOption, setInterestOption] = useState("");
+  const [selectedInterests, setSelectedInterests] = useState<{label: string, value: string }[]>([]);
   const [numAdultsOption, setNumAdultsOption] = useState("");
   const [numChildrenOption, setNumChildrenOption] = useState("");
   const [budgetOption, setBudgetOption] = useState("");
@@ -25,14 +25,17 @@ export default function ItineraryGenerator() {
     "Toufen", "Yilan", "Yuanlin", "Zhubei"
   ];
 
+  const interests = [
+    "Shopping", "Food", "Themeparks", "Culture", "Nature", "Anime", 
+  ]
+
   const cityOptions = taiwanCities.map((city) => ({ label: city, value: city }));
+  const interestOptions = interests.map((interest) => ({ label: interest, value: interest}));
 
   const handleChange = (event: any, changeFor: string) => {
     if (changeFor === "days-option") {
       setDaysOption(event.target.value);
-    } else if (changeFor === "interest-option") {
-      setInterestOption(event.target.value);
-    } else if (changeFor === "num-adults-option") {
+    }else if (changeFor === "num-adults-option") {
       setNumAdultsOption(event.target.value);
     } else if (changeFor === "num-children-option") {
       setNumChildrenOption(event.target.value);
@@ -48,10 +51,13 @@ export default function ItineraryGenerator() {
     const selectedCityValues = selectedCities.map((c) => c.value);
     console.log("Selected cities:", selectedCityValues);
 
+    const selectedInterestValues = selectedInterests.map((interest) => interest.value); 
+    console.log("Selected interests: ", selectedInterestValues);
+
     // Check if any field is empty
     if (cityOptions.length === 0 || 
       !daysOption || 
-      !interestOption || 
+      interestOptions.length === 0 || 
       !numAdultsOption || 
       !numChildrenOption || 
       !budgetOption
@@ -68,7 +74,7 @@ export default function ItineraryGenerator() {
       const requestBody= {
         cities: selectedCityValues,
         days: daysOption,
-        interest: interestOption,
+        interests: selectedInterestValues,
         adults: numAdultsOption,
         children: numChildrenOption,
         budget: budgetOption,
@@ -99,7 +105,7 @@ export default function ItineraryGenerator() {
     event.preventDefault();
     setSelectedCities([]);
     setDaysOption("");
-    setInterestOption("");
+    setSelectedInterests([]);
     setNumAdultsOption("");
     setNumChildrenOption("");
     setBudgetOption("");
@@ -112,20 +118,6 @@ export default function ItineraryGenerator() {
       <h1 className="ig-title">Itinerary Generator</h1>
       <section className="itinerary-generator">
         <form className="ig-form" onSubmit={submitHandler}>
-          <div>
-            <label>Where do you plan to go?</label>
-            <div className="ig-form-box">
-              <Select
-                className="ig-select"
-                isMulti
-                options={cityOptions}
-                value={selectedCities}
-                onChange={(newValue) => setSelectedCities([...newValue])}
-                placeholder="Select cities in Taiwan..."
-              />
-            </div>
-          </div>
-
           <div>
             <label htmlFor="days-option">How many days?</label>
             <div className="ig-form-box">
@@ -146,21 +138,29 @@ export default function ItineraryGenerator() {
           </div>
 
           <div>
-            <label htmlFor="interest-option">What are you interested in?</label>
+            <label>Where do you plan to go?</label>
             <div className="ig-form-box">
-            <select
-              className="ig-select"
-              id="interest-option"
-              value={interestOption}
-              onChange={(e) => handleChange(e, "interest-option")}
-            >
-              <option value="">Select an interest</option>
-              <option value="Shopping">Shopping</option>
-              <option value="Food">Food</option>
-              <option value="Theme Parks">Theme Parks</option>
-              <option value="Culture">Culture</option>
-              <option value="Nature">Nature</option>
-            </select>
+              <Select
+                className="ig-select"
+                isMulti
+                options={cityOptions}
+                value={selectedCities}
+                onChange={(newValue) => setSelectedCities([...newValue])}
+                placeholder="Select cities in Taiwan..."
+              />
+            </div>
+          </div>
+
+          <div>
+            <label>What are you interested in?</label>
+            <div className="ig-form-box">
+              <Select
+                className="ig-select"
+                isMulti
+                options={interestOptions}
+                value={selectedInterests}
+                onChange={(newValue) => setSelectedInterests([...newValue])}
+              />
             </div>
           </div>
 

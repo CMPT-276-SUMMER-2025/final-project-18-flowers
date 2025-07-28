@@ -1,75 +1,64 @@
-
 import { useState } from "react";
 import "../booking.css";
 
-const Booking = () => {
-  const [destination, setDestination] = useState("");
-  const [checkIn, setCheckIn] = useState("");  
-  const [checkOut, setCheckOut] = useState("");
-  const [adults, setAdults] = useState("1");
-  const [children, setChildren] = useState("0");
+const BookingCars = () => {
+  const [pickup, setPickup] = useState("");
+  const [dropoff, setDropoff] = useState("");
+  const [pickupDate, setPickupDate] = useState("");
+  const [dropoffDate, setDropoffDate] = useState("");
 
-  const getYear = (dateStr : string) => new Date(dateStr).getFullYear();
-  const getMonth = (dateStr : string) => new Date(dateStr).getMonth();
-  const getDate = (dateStr : string) => new Date(dateStr).getDate();
-
+  // Booking.com format: yyyy-mm-dd
+  const formatDate = (dateStr: string) => {
+    if (!dateStr) return ""; // or undefined/null, whichever you prefer
+    return new Date(dateStr).toISOString().split("T")[0];
+  };
+  
   const url =
-    "https://www.booking.com/searchresults.html?" +
-    `ss=${destination}` +
-    `&checkin_year=${getYear(checkIn)}` +
-    `&checkin_month=${getMonth(checkIn)}` +
-    `&checkin_monthday=${getDate(checkIn)}` +
-    `&checkout_year=${getYear(checkOut)}` +
-    `&checkout_month=${getMonth(checkOut)}` +
-    `&checkout_monthday=${getDate(checkOut)}` +
-    `&group_adults=${adults}` +
-    `&group_children=${children}`
-  ;
+    "https://www.booking.com/cars/index.html?" +
+    `location=${pickup}` +
+    `&dropofflocation=${dropoff}` +
+    `&pickup_date=${formatDate(pickupDate)}` +
+    `&dropoff_date=${formatDate(dropoffDate)}`;
 
   return (
     <>
       <div className="booking-container">
         <div className="booking-form-container">
-          <label>City:</label>
-          <select name="cities" id="cities" onChange={ (e) => setDestination(e.target.value) }>
-            <option value="">-- Select an option --</option>
-            <option value="taipei">Taipei</option>
-            <option value="hualien">Hualien</option>
-            <option value="tainan">Tianan</option>
-            <option value="yilan">Yilan</option>
-            <option value="taichung">Taichung</option>
-            <option value="newtaipei">New Taipei</option>
+          <label>Pickup City:</label>
+          <select onChange={(e) => setPickup(e.target.value)}>
+            <option value="">-- Select --</option>
+            <option value="Taipei">Taipei</option>
+            <option value="Hualien">Hualien</option>
+            <option value="Tainan">Tainan</option>
+            <option value="Yilan">Yilan</option>
+            <option value="Taichung">Taichung</option>
+            <option value="New Taipei">New Taipei</option>
           </select>
 
-          <label>Check-in:</label>
-          <input type="date" onChange={ (e) => setCheckIn(e.target.value) }></input>
-
-          <label>Nights:</label>
-          <input type="date" onChange={ (e) => setCheckOut(e.target.value) }></input>
-
-          <label>Adults:</label>
-          <select name="adults" id="adults" onChange={ (e) => setAdults(e.target.value) }>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
+          <label>Drop-off City:</label>
+          <select onChange={(e) => setDropoff(e.target.value)}>
+            <option value="">-- Select --</option>
+            <option value="Taipei">Taipei</option>
+            <option value="Hualien">Hualien</option>
+            <option value="Tainan">Tainan</option>
+            <option value="Yilan">Yilan</option>
+            <option value="Taichung">Taichung</option>
+            <option value="New Taipei">New Taipei</option>
           </select>
 
-          <label>Children:</label>
-          <select name="children" id="children" onChange={ (e) => setChildren(e.target.value) }>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
+          <label>Pickup Date:</label>
+          <input type="date" onChange={(e) => setPickupDate(e.target.value)} />
+
+          <label>Drop-off Date:</label>
+          <input type="date" onChange={(e) => setDropoffDate(e.target.value)} />
         </div>
 
         <div className="booking-button-wrapper">
-          <a href={url} target="_blank" className="booking-button">Search stays</a>
+          <a href={url} target="_blank" className="booking-button">Search cars</a>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Booking
+export default BookingCars;

@@ -1,0 +1,85 @@
+/* interests types component */
+
+#it-page-title {
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-2xl);
+  margin: 64px 0px 64px 0px;
+  text-align: center;
+}
+
+.it-title {
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-2xl);
+  margin: 24px 0px 0px 12px;
+}
+
+.it-element-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+}
+
+#it-container {
+  width: 750px;
+  margin: 0 auto;
+  max-width: 1200px; /* prevent from getting too wide if user monitor is too wide */
+}
+
+.it-element {
+  position: relative;
+  margin: 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  min-width: 240px;
+}
+
+.it-element::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 30%; /* only add shading to top 40% */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
+  /* make shadow edges rounded */
+    border-top-left-radius: 8px;  
+    border-top-right-radius: 8px;
+  z-index: 4;
+}
+
+.it-photo {
+  width: 240px;
+  height: 184px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  object-fit: cover;
+}
+
+.it-name {
+  font-weight: var(--fw-medium);
+  font-size: var(--fw-normal);
+  overflow-wrap: break-word;
+  z-index: 4;
+  color: white;
+  padding: 8px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.it-description {
+  margin: 32px 20px 0px 20px;
+  padding-bottom: 20px;
+  min-height: 75px;
+  font-size: var(--fs-sm);
+}
+
+.type-icon {
+  width: 42px;
+  height: 42px;
+  padding: 8px;
+  border-radius: 96px;
+  position: absolute;
+  top: 164px;
+  left: 15px;
+}

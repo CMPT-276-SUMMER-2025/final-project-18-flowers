@@ -4,7 +4,7 @@ import { mockPlacesAttractions } from '../data/cityData';
 
 type Props = { cityname: string };
 
-const saveAPICost = true;
+const saveAPICost = false; // Set to true to use mock data instead of API calls
 
 const Attractions = ({ cityname } : Props) => {
   // type alias TPlace object that holds id, displayName
@@ -28,16 +28,36 @@ const Attractions = ({ cityname } : Props) => {
       text ? /^[\x00-\x7F]*$/.test(text) : false; //Checks if the result in cache is valid by checking if the result is in ASCII characters
 
     const cacheKey = `attractions-${cityname}`;
-    const cachedData = localStorage.getItem(cacheKey);
+    const cacheTimeKey = `${cacheKey}-timestamp`;
+    const maxAge = 1000 * 60 * 60 * 6; // Set the cache to expire after 6 hours
 
-    if (cachedData) {
-      const parsed = JSON.parse(cachedData) as TPlace[];
-      const valid = parsed.filter(p => isEnglish(p.displayName));
-      if (valid.length >= 9) {
-        setPlaces(valid.slice(0, 9)); //Only show the first 9 valid results in cache
-        return;
+
+    const cachedData = localStorage.getItem(cacheKey);
+    const cachedTime = Number(localStorage.getItem(cacheTimeKey));
+
+    if (cachedData && Date.now() - cachedTime < maxAge) {
+      try {
+        const parsed = JSON.parse(cachedData) as TPlace[];
+        const filtered = parsed.filter(p =>
+          typeof p.id === 'string' &&
+          typeof p.displayName === 'string' &&
+          isEnglish(p.displayName) &&
+          typeof p.photoUrl === 'string' &&
+          p.photoUrl.startsWith('https://')
+        );
+
+        if (filtered.length >= 9) {
+          setPlaces(filtered.slice(0, 9));
+          return;
+        }
+      } catch (err) { // If parsing fails, we assume the cache is invalid
+        console.warn("Cache invalid or corrupted. Refetching...");
       }
     }
+
+    // Clear the cache if it's invalid or expired
+    localStorage.removeItem(cacheKey);
+    localStorage.removeItem(cacheTimeKey);
 
     async function getAttractions() {
       const { Place, SearchByTextRankPreference } = await google.maps.importLibrary('places') as google.maps.PlacesLibrary;
@@ -79,6 +99,7 @@ const Attractions = ({ cityname } : Props) => {
       
       setPlaces(formattedPlaces);
       localStorage.setItem(cacheKey, JSON.stringify(formattedPlaces));
+      localStorage.setItem(cacheTimeKey, String(Date.now()));
 
     } 
     getAttractions();

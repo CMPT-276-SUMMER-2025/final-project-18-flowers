@@ -2,6 +2,7 @@ import { APIProvider, Map, ColorScheme, Marker } from '@vis.gl/react-google-maps
 import { citiesLatLng } from '../data/cityData';
 import { useEffect, useState } from 'react';
 import RegionContent from '../components/RegionContent';
+import "../regions.css"
 
 const Regions = () => {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
@@ -15,7 +16,7 @@ const Regions = () => {
   const [showComponent, setShowComponent] = useState(true); 
   const [cityName, setCityName] = useState("Taipei City");
 
-  const taiwanLatLng = { lat: 23.6978, lng: 120.9605 }; 
+  const taiwanLatLng = { lat: 23.6978, lng: 120.7205 }; 
 
   const mapOptions = { 
     fullscreenControl: false,
@@ -33,23 +34,23 @@ const Regions = () => {
       const baseSymbol = {
         //path for a custom drop pin marker
         path: "M0-48c-9.94,0-18,8.06-18,18c0,11.6,18,30,18,30s18-18.4,18-30C18-39.94,9.94-48,0-48z M0-34a6,6 0 1,0 0,12a6,6 0 1,0 0,-12",
-        fillColor: "crimson", 
+        fillColor: "DodgerBlue", 
         fillOpacity: 1,
-        scale: 0.75,
+        scale: 0.6,
         strokeColor: 'black',
         strokeWeight: 1,
       };
       const hoverSymbol = {
         ...baseSymbol,
-        scale: 1.25,
+        scale: 1.0,
       };
       const clickedHoveredSymbol = {
         ...hoverSymbol,
-        fillColor: "DodgerBlue", 
+        fillColor: "Orange", 
       };
       const clickedSymbol = {
         ...baseSymbol,
-        fillColor: "DodgerBlue",
+        fillColor: "Orange",
       };
 
       setBaseSymbol(baseSymbol);
@@ -64,19 +65,20 @@ const Regions = () => {
     <>
       <div id="dummy-map"></div>
       <h1 id="regions-title"><strong>Regions</strong> of Taiwan</h1>
-      <div id="regions-container" className='flex lg:flex-row flex-col w-full justify-center items-center'>
-        <div className='map-container border-0 rounded-4xl overflow-hidden m-6'>
+      <div id="regions-container" className='flex lg:flex-row flex-col justify-center items-center'>
+        <div className="region-content">{showComponent && <RegionContent key={cityName} cityname={cityName} />}</div>
+        <div className='map-container'>
           <APIProvider apiKey={apiKey}>
             <Map 
               id="map"
-              defaultZoom={8} 
+              defaultZoom={7.6} 
               defaultCenter={ taiwanLatLng }
-              style={{ width: "600px", height: "750px" }}
+              style={{ width: "384px", height: "600px" }}
               colorScheme={ColorScheme.LIGHT}
               // onCameraChanged={ (ev: MapCameraChangedEvent) =>
               //   console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
               // }
-              // @ts-expect-error ensures expected errors
+              //@ts-expect-error
               options={ mapOptions }
               disableDefaultUI
             >
@@ -109,7 +111,6 @@ const Regions = () => {
             </Map>
           </APIProvider>
         </div>
-        <div className="region-content">{showComponent && <RegionContent key={cityName} cityname={cityName} />}</div>
       </div>
     </>
   )

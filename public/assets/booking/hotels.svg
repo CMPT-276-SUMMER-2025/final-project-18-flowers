@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Svg Vector Icons : http://www.onlinewebfonts.com/icon -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 256 256" enable-background="new 0 0 256 256" xml:space="preserve">
-<metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
-<g><g><path fill="#000000" d="M239.3,112.1l-81.1,29.6c-4,1.5-8.1,6.2-8.1,10.5V220c0,4.3,4.3,6.5,8.3,5l81-30.2c4-1.5,6.6-6.2,6.6-10.5v-67.1C246,112.9,243.3,110.6,239.3,112.1z"/><path fill="#000000" d="M90.9,57L36.1,77.1c-3.8,1.4-4.6,4.9-1.7,7.7L55,104.9c2.9,2.8,8.4,3.9,12.1,2.3L122.7,84c3.8-1.6,4.3-5,1.2-7.6l-20.4-17.2C100.4,56.6,94.7,55.6,90.9,57z"/><path fill="#000000" d="M129.6,88.2c-1.1,1.1-2.5,2-4,2.6L69.9,114c-2,0.9-4.3,1.3-6.7,1.3c-0.1,0-0.3,0-0.4,0c-4.9,0-9.8-2-13-5.1L35.5,96.6c0,0-10.8,2.6-10.8,12.1v18.5c0,4,4.8,8.9,8.4,10.8l109.6,57v-42.9c0-7.9,6.6-15.1,13-17.4l38.9-14.2L129.6,88.2z"/><path fill="#000000" d="M17.4,127.2v-18.5c0-9.7,6.9-15.3,12.6-17.9l-0.7-0.7c-3.2-3.2-4.6-7.2-3.8-11.2s3.8-7.1,8-8.7l54.8-20.1c2-0.7,4.1-1.1,6.5-1.1c3.9,0,7.9,1.1,11.1,3V36.1c0-4.3-2.6-6.6-6.7-5.1L18.1,60.6c-4,1.5-8.1,6.2-8.1,10.5v67.8c0,4.3,4.3,6.5,8.3,5l6.9-2.6C21.2,137.9,17.4,132.8,17.4,127.2z"/></g></g>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <g>
+        <path fill="none" d="M0 0h24v24H0z"/>
+        <path d="M22 11v9h-2v-3H4v3H2V4h2v10h8V7h6a4 4 0 0 1 4 4zm-2 3v-3a2 2 0 0 0-2-2h-4v5h6zM8 11a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 2a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+    </g>
 </svg>

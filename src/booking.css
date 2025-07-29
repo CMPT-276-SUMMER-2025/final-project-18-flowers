@@ -35,7 +35,7 @@
 .booking-button {
   background-color: blue;
   color: white;
-  padding: 8px;
+  padding: 12px;
   margin-top: 16px;
   border-radius: 36px;
 }
@@ -54,10 +54,14 @@ select, input {
 }
 
 .booking-button-type {
-  width: 36px;
-  height: 36px;
-  border: 2px solid blue;
+  width: 48px;
+  height: 48px;
+  border: 1px solid lightgrey;
   border-radius: 8px;
-  padding: 2px;
+  padding: 6px;
   margin: 0px 8px 0px 0px;
+}
+
+.booking-button-type img path {
+  fill: blue; 
 }

@@ -66,43 +66,27 @@ app.post('/gemini', async (req, res) => {
       Avoid suggesting cities not listed. Focus only on the cities provided.
       `;
   }
-
-  const result = await chat.sendMessage(msg, {
-    generationConfig: {
-      maxOutputTokens: 1000,
-    },
-  });
-
-//   console.log("HISTORY:", req.body.history);
-//   console.log("MESSAGE:", message);
-//   console.log("PURPOSE:", purpose);
+  console.log("HISTORY:", req.body.history);
+  console.log("MESSAGE:", message);
+  console.log("PURPOSE:", purpose);
 
   try {
     if (purpose === "chatbot-response") {
-      const chat = model.startChat({
-        history: req.body.history,
-        systemInstruction: {
-          role: 'system',
-          parts: [
-            {
-              text: 'You are a chatbot designed to help the user with travel advice to Taiwan. If the user does not ask something related to Taiwan, tell them you cannot respond. Responses should not exceed 4 columns of text',
-            },
-          ],
-        },
-      });
-
-      const result = await chat.sendMessage(message, {
+      const result = await chat.sendMessage(msg, {
         generationConfig: {
           maxOutputTokens: 120,
         },
       });
-
       res.send(result.response.text());
     } 
     else if (purpose === "attraction-description") {
-      const result = await model.generateContent(message);
+      const result = await model.generateContent(msg);
       res.send(result.response.text());
     } 
+    else if(purpose === "generate-itinerary") {
+      const result = await model.generateContent(msg);
+      res.send(result.response.text());
+    }
     else {
       res.status(400).send("Invalid purpose.");
     }

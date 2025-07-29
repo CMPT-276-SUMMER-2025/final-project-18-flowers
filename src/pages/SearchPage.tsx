@@ -51,12 +51,15 @@ const SearchPage = ({ results }) => {
       setSearchFor(event.target.value);
     }
   }
+
   // function that displays the search list nested in scroll component 
   function searchList() {
+    // if searchShow is true 
+    const noResults = searchShow && !(filteredResults.length === 0);
     return (
       <>
         <h1 className="search-results-title">Showing search results for <strong className="text-blue-600">{searchFor}</strong></h1>
-        {searchShow ? <SearchList filteredResults={filteredResults}></SearchList> : <div><h3 id="no-results-msg">No Results</h3></div>}
+        {noResults ? <SearchList filteredResults={filteredResults}></SearchList> : <div><h3 id="no-results-msg">No Results</h3></div>}
       </>
     );
   }

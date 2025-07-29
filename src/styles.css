@@ -298,8 +298,6 @@ body, html {
   font-size: var(--fs-2xl);
 }
 
-/* .commodity-container */
-
 .commodity-photo {
   height: 120px;
   width: 120px;
@@ -319,6 +317,7 @@ body, html {
   margin: 12px 0px 12px 0px;
   border: 1px solid lightgray;
   border-radius: 16px;
+}
 
 /*chat bot*/
 /* compare all code below this comment with other css files and make new dedicated ig css file */

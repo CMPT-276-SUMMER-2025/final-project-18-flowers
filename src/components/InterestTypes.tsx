@@ -7,7 +7,7 @@ type interestProps = {
   type: string  // type of place (e.g., amusement_park, chinese_restaurant, etc.)
 };
 
-const saveAPICreditsMode = true;    
+const saveAPICreditsMode = false;    
 
 const InterestTypes = ({ cityname, type } : interestProps) => {
 
@@ -59,16 +59,34 @@ const InterestTypes = ({ cityname, type } : interestProps) => {
       text ? /^[\x00-\x7F]*$/.test(text) : false; // checks if the result in cache is valid by checking if result is in ASCII characters 
 
     const cacheKey = `attractions-${cityname}-${type}`;
+    const cacheTimeKey = `${cacheKey}-timestamp`;
+    const maxAge = 1000 * 60 * 60 * 6; // Set the cache to expire after 6 hours
     const cachedData = localStorage.getItem(cacheKey);
+    const cachedTime = Number(localStorage.getItem(cacheTimeKey));
 
-    // if (cachedData) {
-    //   const parsed = JSON.parse(cachedData) as Place[];
-    //   const valid = parsed.filter(p => isEnglish(p.displayName));
-    //   if (valid.length >= 6) {
-    //     setPlaces(valid.slice(0, 6)); //Only show the first 6 valid results in cache
-    //     return;
-    //   }
-    // }
+    if (cachedData && Date.now() - cachedTime < maxAge) {
+      try { // If the cache is valid, parse it
+        const parsed = JSON.parse(cachedData) as Place[];
+        const filtered = parsed.filter(p =>
+          typeof p.id === 'string' &&
+          typeof p.displayName === 'string' &&
+          isEnglish(p.displayName) &&
+          typeof p.photoUrl === 'string' &&
+          p.photoUrl.startsWith('https://')
+        );
+
+        if (filtered.length >= 6) {
+          setPlaces(filtered.slice(0, 6));
+          return;
+        }
+      } catch (err) { // If parsing fails, we assume the cache is invalid
+        console.warn("Invalid interest cache format. Refetching...");
+      }
+    }
+
+    // Clear the cache if it's invalid or expired
+    localStorage.removeItem(cacheKey);
+    localStorage.removeItem(cacheTimeKey);
     /* ---- */
 
     async function getAttractions() {

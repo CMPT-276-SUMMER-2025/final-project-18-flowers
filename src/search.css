@@ -71,7 +71,7 @@
 .long-search-bar-container {
   display: flex;
   justify-content: center;
-  margin: 64px;
+  margin: 4px 3rem 0 2rem;
 }
 
 /* search scroll container */

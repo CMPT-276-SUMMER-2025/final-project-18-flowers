@@ -62,15 +62,15 @@ const SearchPage = ({ results }) => {
         <h1 className="search-results-title">Showing search results for <strong className="text-blue-600">{searchFor}</strong></h1>
         {noResults ? <SearchList filteredResults={filteredResults}></SearchList> : <div><h3 id="no-results-msg">No Results</h3></div>}
       </>
-    );
+    );  
   }
 
   return (
     <>
+      <h1 id="search-title">Search <strong>Taiwan</strong></h1>
       <div className="min-h-screen flex flex-col">
       <div className="home-content-container">
         <div className="home-c1">
-          <h1 id="search-title">Search <strong>Taiwan</strong></h1>
           <div className="long-search-bar-container">
               <input
                 className="long-search-bar border-blue-600 border-2"

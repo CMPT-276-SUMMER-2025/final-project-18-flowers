@@ -18,11 +18,64 @@ app.post('/gemini', async (req, res) => {
   const purpose = req.headers.purpose;
   const message = req.body.message;
 
-  console.log("HISTORY:", req.body.history);
-  console.log("MESSAGE:", message);
-  console.log("PURPOSE:", purpose);
-
   const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+  
+  let chat;
+  let msg = '';
+
+  if(req.headers.purpose === "chatbot-response") {
+    chat = model.startChat({
+      history: req.body.history,
+      systemInstruction: {
+        role: 'system',
+        parts: [
+          {
+            text: 'You are a chatbot designed to help the user with travel advice to Taiwan. If the user does not ask something related to Taiwan, tell them you cannot respond. Responses should not exceed 4 columns of text',
+          },
+        ],
+      },
+    });
+    msg = req.body.message;
+  }
+  
+  if(req.headers.purpose === "generate-itinerary") {
+    console.log("Cities from frontend:", req.body.cities);
+    console.log("Interests from frontend: ", req.body.interests);
+    chat = model.startChat({
+      systemInstruction: {
+        role: 'system',
+        parts: [
+          {
+            text: 'Your task is to generate an itinerary for a trip to Taiwan. Only include selected cities.'
+          },
+        ],
+      },
+    });
+    msg = `
+      Generate a detailed travel itinerary (limit 500 words) for a trip to Taiwan. 
+      You must ONLY include the following cities in the itinerary: ${req.body.cities.join(", ")}.
+      Do NOT include any other cities, especially not Taipei, unless it is specifically listed above.
+
+      Trip details:
+      - Duration: ${req.body.days} days
+      - Interests: ${req.body.interests.join(", ")}
+      - Adults: ${req.body.adults}
+      - Children: ${req.body.children}
+      - Budget: ${req.body.budget}
+
+      Avoid suggesting cities not listed. Focus only on the cities provided.
+      `;
+  }
+
+  const result = await chat.sendMessage(msg, {
+    generationConfig: {
+      maxOutputTokens: 1000,
+    },
+  });
+
+//   console.log("HISTORY:", req.body.history);
+//   console.log("MESSAGE:", message);
+//   console.log("PURPOSE:", purpose);
 
   try {
     if (purpose === "chatbot-response") {

@@ -16,7 +16,7 @@ const Regions = () => {
   const [showComponent, setShowComponent] = useState(true); 
   const [cityName, setCityName] = useState("Taipei City");
 
-  const taiwanLatLng = { lat: 23.6978, lng: 120.8205 }; 
+  const taiwanLatLng = { lat: 23.6978, lng: 120.7205 }; 
 
   const mapOptions = { 
     fullscreenControl: false,
@@ -65,14 +65,15 @@ const Regions = () => {
     <>
       <div id="dummy-map"></div>
       <h1 id="regions-title"><strong>Regions</strong> of Taiwan</h1>
-      <div id="regions-container" className='flex lg:flex-row flex-col w-full justify-center items-center'>
-        <div className='map-container border-0 rounded-4xl overflow-hidden'>
+      <div id="regions-container" className='flex lg:flex-row flex-col justify-center items-center'>
+        <div className="region-content">{showComponent && <RegionContent key={cityName} cityname={cityName} />}</div>
+        <div className='map-container'>
           <APIProvider apiKey={apiKey}>
             <Map 
               id="map"
-              defaultZoom={8} 
+              defaultZoom={7.6} 
               defaultCenter={ taiwanLatLng }
-              style={{ width: "550px", height: "750px" }}
+              style={{ width: "384px", height: "600px" }}
               colorScheme={ColorScheme.LIGHT}
               // onCameraChanged={ (ev: MapCameraChangedEvent) =>
               //   console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
@@ -110,7 +111,6 @@ const Regions = () => {
             </Map>
           </APIProvider>
         </div>
-        <div className="region-content">{showComponent && <RegionContent key={cityName} cityname={cityName} />}</div>
       </div>
     </>
   )

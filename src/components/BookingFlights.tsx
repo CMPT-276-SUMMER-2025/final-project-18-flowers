@@ -23,10 +23,16 @@ const Booking = () => {
   return (
     <div className="booking-container">
       <div className="booking-form-container">
-        <label>Destination Airport Code:</label>
+        <label>From:</label>
         <input 
           type="text" 
-          placeholder="e.g. KHH, TSA" 
+          placeholder="" 
+          onChange={(e) => setDestination(e.target.value)} 
+        />
+        <label>To:</label>
+        <input 
+          type="text" 
+          placeholder="" 
           onChange={(e) => setDestination(e.target.value)} 
         />
 
@@ -53,7 +59,7 @@ const Booking = () => {
 
       <div className="booking-button-wrapper">
         <a href={url} target="_blank" className="booking-button">
-          Search Flights
+          Search flights
         </a>
       </div>
     </div>

@@ -1,4 +1,4 @@
-/* home component */
+/* home background image */
 
 #bg-image {
   width: 100%;
@@ -26,23 +26,40 @@
   align-items: center;
 }
 
-#home-interests-container {
-  width: 70%;
+/* home content */
+
+.home-content-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  gap: 2rem;
+  margin: 1rem 0 1rem 0;
   justify-content: center;
-  margin: 0 auto 32px auto; 
+}
+
+/* .home-c1 {
+  background-color: lightcoral;
+} */
+
+.home-c2 {
+  background-color: lightblue;
 }
 
 .home-section-title {
   font-weight: var(--fw-medium);
   font-size: var(--fs-2xl);
-  margin: 24px 0px 0px 12px;
-  text-align: center; /* temporary */
+  margin: 2rem 0px 0px 1rem;
 }
 
-/* home interests section component */
+/* home interests component */
+
+#home-interests-container {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  margin-bottom: 2rem; 
+}
 
 .interest-box {
   margin: 8px;
@@ -51,12 +68,18 @@
   display: flex;
   flex-direction: row;
   box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-  min-width: 700px;
+  max-width: 680px;
+}
+
+.home-interests-title {
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-2xl);
+  margin: 2rem 0px 0px 1rem;
 }
 
 .box-logo {
-  width: 48px;
-  height: 48px;
+  width: 32px;
+  height: 32px;
 }
 
 .box-logo-container {
@@ -77,16 +100,10 @@
   font-size: var(--fs-sm);
 }
 
-/* home attractions section component */
+/* home attractions component */
 
 #home-attractions-container {
-  width: 100%;
   max-width: 1200px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
 }
 
 #card-wrapper {
@@ -102,8 +119,8 @@
 }
 
 .top-attraction-photo {
-  width: 225px;
-  height: 165px;
+  width: 100%;
+  height: 140px;
   object-fit: cover;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
@@ -128,8 +145,6 @@
 }
 
 .home-button-wrapper {
-  width: 712px;
-  margin: 0 auto;
 }
 
 /* button */
@@ -140,4 +155,5 @@
   border-radius: 24px;
   z-index: 99;
   font-weight: var(--fw-medium);
+  margin: 2rem 0px 0px 1rem;
 }

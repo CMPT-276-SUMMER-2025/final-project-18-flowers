@@ -6,7 +6,7 @@ const HomeInterestsSection = () => {
   return (
     <>
       <div id="home-interests-container">
-        <h1 className="home-section-title">Interests</h1>
+        <h1 className="home-interests-title">Interests</h1>
         <HomeInterest details={homeInterests[0]}></HomeInterest>
         <HomeInterest details={homeInterests[1]}></HomeInterest>
         <HomeInterest details={homeInterests[2]}></HomeInterest>

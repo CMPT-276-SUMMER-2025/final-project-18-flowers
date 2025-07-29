@@ -1,9 +1,9 @@
 .booking-title {
   font-weight: var(--fw-medium);
   font-size: var(--fs-2xl);
-  width: 300px;
-  margin: 0 auto;
-  text-align: left; /* temporary */
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-2xl);
+  margin: 2rem 0px 0px 1rem;
 }
 
 .booking-title strong {

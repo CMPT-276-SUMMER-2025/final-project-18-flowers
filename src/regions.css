@@ -18,7 +18,10 @@
 
 .map-container {
   width: 400px;
-  border-radius: 1rem;
+}
+
+.map-container > div {
+  border-radius: 1rem !important;
   overflow: hidden;
 }
 

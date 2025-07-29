@@ -9,31 +9,50 @@ type interestProps = {
 
 const saveAPICreditsMode = false;    
 
-// const interestTypesArr = ["shopping mall", "tourist_attraction", "amusement_park"];
-
 const InterestTypes = ({ cityname, type } : interestProps) => {
+
+  // Record<Keys, Type> (utility type in TypeScript)
+  const colorMap: Record<string, string> = {
+    shopping_mall: "bg-blue-500",
+    tourist_attraction: "bg-yellow-500",
+    amusement_park: "bg-green-500",
+    historical_place: "bg-pink-500",
+  };
+  
+  const iconClass = colorMap[type] || "bg-blue-600";
 
   type Place = {
     id: string;
     displayName?: string | null;
     photoUrl?: string;
+    editorialSummary?: string | null;
+    description?: string; // ← this was missing
   };
 
   const [places, setPlaces] = useState<Place[]>([]);
   const [typeHeader, setTypeHeader] = useState('');
 
+
+  // formats type into presentable header
+  function formatHeader(header: string) {
+    return header
+    .replace(/_/g, " ")
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ") + 's';
+  }
+
   useEffect(() => {
     if (saveAPICreditsMode) { 
-      const formattedType = type.replace(/_/g, " "); 
-      const newFormattedType = formattedType
-      .split(" ")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
-
-      setTypeHeader(newFormattedType + "s");
+      const header = formatHeader(type);
+      setTypeHeader(header);
       setPlaces(mockInterestData[type as keyof typeof mockInterestData]);
-      return; 
+      return;
     }
+
+    const formattedType = type.replace(/_/g, " ");
+    const header = formatHeader(type);
+    setTypeHeader(header);
 
     /* ---- */
     const isEnglish = (text: string | undefined | null) =>
@@ -69,14 +88,6 @@ const InterestTypes = ({ cityname, type } : interestProps) => {
     localStorage.removeItem(cacheKey);
     localStorage.removeItem(cacheTimeKey);
     /* ---- */
-
-    const formattedType = type.replace(/_/g, " "); 
-    const newFormattedType = formattedType
-    .split(" ")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-
-    setTypeHeader(newFormattedType + "s");
 
     async function getAttractions() {
       const { Place, SearchByTextRankPreference } = await google.maps.importLibrary('places') as google.maps.PlacesLibrary;
@@ -115,11 +126,12 @@ const InterestTypes = ({ cityname, type } : interestProps) => {
         return ({
           id: place.id || ' ',
           displayName: place.displayName,
-          photoUrl: firstPhoto?.getURI({ maxWidth: 300, maxHeight: 300 })
+          photoUrl: firstPhoto?.getURI({ maxWidth: 300, maxHeight: 300 }),
+          editorialSummary: place.editorialSummary,
         });
       });
       
-      setPlaces(formattedPlaces);
+      setPlaces(mockInterestData[type as keyof typeof mockInterestData]);
       localStorage.setItem(cacheKey, JSON.stringify(formattedPlaces));
     } 
     getAttractions();
@@ -128,7 +140,7 @@ const InterestTypes = ({ cityname, type } : interestProps) => {
   return (
     <>
       <div id="it-container">
-        <h1 className="it-title" id={type}>{typeHeader}</h1>
+        <h1 className="it-title" id={type}><strong>{typeHeader}</strong></h1>
         <div className="it-element-container">
           {places.map((place) => (
             <Link to={`${place.displayName?.toLowerCase().replace(/\s+/g, "-")}`} key={place.id}>
@@ -142,8 +154,8 @@ const InterestTypes = ({ cityname, type } : interestProps) => {
                   />
                 }
                 <h3 className='it-name'>{place.displayName}</h3>
-                <img src="/assets/interest-types/shopping.png" className='type-icon' alt={typeHeader}/>
-                <p className='it-description'>I'm a description</p>
+                <img src={`/assets/interest-types/${type}.png`} className={`type-icon ${iconClass}`} alt={typeHeader}/>
+                <p className='it-description'>{place.description}</p>
               </div>
             </Link>
           ))}

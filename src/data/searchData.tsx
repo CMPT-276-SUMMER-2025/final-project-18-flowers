@@ -46,7 +46,23 @@ const searchData = [
     location: "Chiayi",
     description: "Scenic mountain railway known for sunrise views, cherry blossoms, and forest walks.",
     path: "/destinations/alishan-forest-railway"
-  }
+  },
+  {
+    id: 7,
+    name: "National Palace Museum",
+    imgPath: "/assets/destinations/taipei.jpg",
+    location: "Taipei",
+    description: "World-renowned museum showcasing Chinese imperial artifacts and treasures.",
+    path: "/destinations/taipei-city/national-palace-museum"
+  },
+  {
+    id: 8,
+    name: "Elephant Mountain Trail",
+    imgPath: "/assets/destinations/taipei.jpg",
+    location: "Taipei",
+    description: "Popular hiking spot offering panoramic views of Taipei and Taipei 101.",
+    path: "/destinations/taipei-city/elephant-mountain-trail"
+  },
 ];
 
 export default searchData;

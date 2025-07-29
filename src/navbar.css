@@ -1,0 +1,58 @@
+/* navbar component */
+
+#nav-clear {
+  top: 0%;
+  position: absolute;
+  display: flex;
+  width: 100%;
+  padding: 0px 28px 0px 28px;
+  color: rgb(226, 226, 226);
+  z-index: 24;
+}
+
+#nav-solid {
+  top: 0%;
+  position: block;
+  display: flex;
+  width: 100%;
+  padding: 0px 28px 0px 28px;
+  background-color: white;
+  color: black;
+  z-index: 24;
+}
+
+#nav-center {
+  width: 40%;
+}
+
+div ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div ul li {
+  padding: 16px 16px 16px 16px;
+  font-weight: 500;
+  font-size: var(--fs-sm);
+}
+
+div ul li:hover {
+  color:dodgerblue;
+}
+
+#nav-left {
+  width: 30%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  font-weight: 500;
+}
+
+#nav-right {
+  width: 30%;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  font-weight: 500;
+}

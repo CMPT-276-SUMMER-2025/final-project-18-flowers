@@ -17,6 +17,7 @@ import PlanTrip from './pages/PlanTrip';
 import SearchPage from './pages/SearchPage';
 import searchData from './data/searchData';
 import ChatBot from './components/ChatBot';
+import Footer from './components/Footer';
 
 function App() {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
@@ -59,6 +60,7 @@ function AppContent() {
           <Route path="/search" element={<SearchPage results={searchData} />} />
         </Routes>
         <ChatBot />
+        <Footer />
       </>
     );
   }
@@ -78,6 +80,7 @@ function AppContent() {
         <Route path="/search" element={<SearchPage results={searchData}/>} />
       </Routes>
       <ChatBot />
+      <Footer />
     </>
     );
   }

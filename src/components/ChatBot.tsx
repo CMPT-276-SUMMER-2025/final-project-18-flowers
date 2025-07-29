@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
+import "../chatbot.css";
 import Fuse from "fuse.js";
-
 
 //Define a type for ChatMessage structure
 type ChatMessage = {
@@ -174,7 +174,12 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
             <h3>
               <strong>{chatItem.role === 'user' ? 'You:' : 'Assistant:'}</strong>
             </h3>
-            <ReactMarkdown>
+            <ReactMarkdown
+            components={{
+              ul: ({ node, ...props}) => <ul className="chatbot-list" {...props} />,
+              li: ({ node, ...props }) => <li className="chatbot-list-item" {...props} />,
+            }}
+            >
               {chatItem.parts[0].text}
             </ReactMarkdown>
           </div>

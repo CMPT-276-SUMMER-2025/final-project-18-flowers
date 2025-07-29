@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
+import "../chatbot.css";
 import Fuse from "fuse.js";
-
 
 //Define a type for ChatMessage structure
 type ChatMessage = {

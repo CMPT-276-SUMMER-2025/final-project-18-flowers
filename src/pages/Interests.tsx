@@ -1,4 +1,5 @@
 import InterestTypes from "../components/InterestTypes";
+import "../interestsTypes.css";
 
 const Interests = () => {
   return (
@@ -7,6 +8,7 @@ const Interests = () => {
       <InterestTypes cityname="Taiwan" type="shopping_mall"></InterestTypes>
       <InterestTypes cityname="Taiwan" type="amusement_park"></InterestTypes>
       <InterestTypes cityname="Taiwan" type="tourist_attraction"></InterestTypes>
+      <InterestTypes cityname="Taiwan" type="historical_place"></InterestTypes>
     </div>
   )
 }

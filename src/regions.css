@@ -1,0 +1,54 @@
+/* regions component */
+
+/* #regions-container {
+} */
+
+#regions-title {
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-2xl);
+  margin: 2rem 0px 2rem 0px;
+  text-align: center;
+} 
+
+.region-card {
+  height: 324px;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+.map-container {
+  width: 400px;
+}
+
+.map-container > div {
+  border-radius: 1rem !important;
+  overflow: hidden;
+}
+
+/* regions content component */
+
+.region-city-img {
+  width: 100%;
+  object-fit: cover;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+.region-txt {
+  margin: 1rem;
+  min-height: 100px;
+}
+
+.region-city-name {
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-xl);
+} 
+
+.region {
+  font-weight: var(--fw-bold);
+  color:rgb(35, 60, 255);
+}
+
+.region-description { 
+  font-size: var(--fs-xs);
+} 

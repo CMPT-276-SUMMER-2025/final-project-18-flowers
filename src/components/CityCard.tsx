@@ -2,10 +2,10 @@ import { useState, useEffect } from "react"; // use effect needed for API handli
 import { Link } from "react-router-dom"; // use to turn city cards into clickable links 
 import { cities } from "../data/cityData"; // get cities object from cityData.tsx 
 
-type Props = { cityname: string }
+type Props = { cityname: string, ranking: number }
 const taiwanLatLng = { lat: 23.7, lng: 121.0 }; // latitude and longitude of Taiwan
 
-export default function CityCard({ cityname } : Props) {
+export default function CityCard({ cityname, ranking } : Props) {
   const [placeName, setPlaceName] = useState("");
 
   useEffect(() => {
@@ -52,6 +52,11 @@ export default function CityCard({ cityname } : Props) {
       <Link to={`/destinations/${formatted}`}>
         <div className="dest-card">
           <img src={imgSrc} className="city-img" alt={placeName}/>
+          <p 
+          className="text-blue-600 text-xs font-extrabold inline-flex items-center justify-center bg-amber-50 border-amber-500 border-2 
+          px-3 py-2 rounded-4xl absolute top-[156px] left-[20px] w-8 h-8"> 
+            {ranking}
+          </p>  
           <div className="city-txt">
             <h3>{placeName || cityName}</h3>
             <p>{description}</p>

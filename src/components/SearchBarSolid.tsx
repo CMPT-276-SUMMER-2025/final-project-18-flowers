@@ -15,11 +15,11 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="search-bar-clear-container">
+    <div className="search-bar-solid-container">
       <form onSubmit={handleSubmit} className="flex items-center">
         <Link to="/search">
           <span className="search-icon material-symbols-outlined">search</span>
-        </Link>       
+        </Link>
         <input
           type="text"
           id="search"
@@ -27,7 +27,7 @@ const SearchBar = () => {
           placeholder="Search"
           value={query}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
-          className="clear-search-bar"
+          className="solid-search-bar"
         />
       </form>
     </div>

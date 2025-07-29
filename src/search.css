@@ -1,18 +1,27 @@
 /* search bar component */
 
-form {
-  background-color: white;
-  border-radius: 16px;
-  padding: 8px;
-  color: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.search-bar-clear-container {
+  color: white;
   font-size: var(--fs-xs);
 }
 
-.search-icon {
+.clear-search-bar {
+  padding: 8px;
+  border-radius: 32px;
+}
+
+.solid-search-bar {
+  padding: 8px;
+  border-radius: 32px;
+}
+
+.search-bar-solid-container{
   color: black;
+  font-size: var(--fs-xs);
+}
+
+.search-icon-clear {
+  color: white;
 }
 
 /* search card */

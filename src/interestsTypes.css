@@ -30,6 +30,7 @@
   margin: 12px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  min-width: 240px;
 }
 
 .it-element::before {
@@ -69,6 +70,7 @@
 .it-description {
   margin: 32px 20px 0px 20px;
   padding-bottom: 20px;
+  min-height: 75px;
   font-size: var(--fs-sm);
 }
 

@@ -48,7 +48,7 @@ const Booking = () => {
           <input type="date" onChange={ (e) => setCheckOut(e.target.value) }></input>
 
           <label>Adults:</label>
-          <select name="adults" id="adults" onChange={ (e) => setAdults(e.target.value) }>
+          <select name="adults" id="adults" onChange={ (e) => setAdults(e.target.value) } defaultValue="1">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -56,7 +56,8 @@ const Booking = () => {
           </select>
 
           <label>Children:</label>
-          <select name="children" id="children" onChange={ (e) => setChildren(e.target.value) }>
+          <select name="children" id="children" onChange={ (e) => setChildren(e.target.value) } defaultValue="0">
+            <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>

@@ -7,7 +7,7 @@ import NearbyRestaurants from "../components/NearbyRestaurants";
 import AttractionPhotos from "../components/AttractionPhotos";
 import AttractionTimetable from "../components/AttractionTimetable";
 import AttractionDescription from "../components/AttractionDescription";
-import Booking from "../components/BookingHotels";
+import Booking from "../components/Booking";
 
 
 type Coord = { lat: number; lng: number };

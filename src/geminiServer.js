@@ -16,13 +16,11 @@ const genAI = new GoogleGenerativeAI(process.env.VITE_GOOGLE_GEMINI_API_KEY);
 
 app.post('/gemini', async (req, res) => {
   const purpose = req.headers.purpose;
-  //message is used for attraction description
   const message = req.body.message;
 
   const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
   
   let chat;
-  //msg is used for chatbot and itinerary generator
   let msg = '';
 
   if(req.headers.purpose === "chatbot-response") {
@@ -33,6 +31,20 @@ app.post('/gemini', async (req, res) => {
         parts: [
           {
             text: 'You are a chatbot designed to help the user with travel advice to Taiwan. If the user does not ask something related to Taiwan, tell them you cannot respond. Responses should not exceed 4 columns of text',
+          },
+        ],
+      },
+    });
+    msg = req.body.message;
+  }
+
+  if(req.headers.purpose === "attraction-description") {
+    chat = model.startChat({
+      systemInstruction: {
+        role: 'system',
+        parts: [
+          {
+            text: 'Your job is to generate a short description of the given city in Taiwan',
           },
         ],
       },
@@ -82,11 +94,15 @@ app.post('/gemini', async (req, res) => {
       res.send(result.response.text());
     } 
     else if (purpose === "attraction-description") {
-      const result = await model.generateContent(message);
+      const result = await chat.sendMessage(msg, {
+        generationConfig: {
+          maxOutputTokens: 500,
+        }
+      });
       res.send(result.response.text());
     } 
     else if(purpose === "generate-itinerary") {
-      const result = await model.sendMessage(msg);
+      const result = await chat.sendMessage(msg);
       res.send(result.response.text());
     }
     else {

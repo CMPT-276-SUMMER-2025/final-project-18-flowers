@@ -84,7 +84,7 @@ app.post('/gemini', async (req, res) => {
       res.send(result.response.text());
     } 
     else if(purpose === "generate-itinerary") {
-      const result = await model.generateContent(msg);
+      const result = await model.sendMessage(msg);
       res.send(result.response.text());
     }
     else {

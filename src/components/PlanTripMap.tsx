@@ -10,15 +10,9 @@ const colorBasedOnMode: Record<TravelMode, string> = {
   BICYCLING: '#F87171', // red
 };
 
-const fullRoute = [
-  { lat: 25.033964, lng: 121.564468 }, // Taipei 101
-  { lat: 24.136829, lng: 120.684524 }, // Taichung TRA Station
-  { lat: 25.1372, lng: 121.5065 }, // New Taipei City
-  { lat: 24.1332, lng: 120.6492 }, // Rainbow Village, Taichung
-];
 
 
-function RouteRenderer({ mode }: { mode: TravelMode }) {
+function RouteRenderer({ mode, fullRoute }: { mode: TravelMode; fullRoute: { lat: number; lng: number }[] }) {
   const map = useMap();
   const [duration, setDuration] = useState<string | null>(null);
   const directionRendererRef = useRef<google.maps.DirectionsRenderer[]>([]);
@@ -218,11 +212,13 @@ function RouteRenderer({ mode }: { mode: TravelMode }) {
   ) : null;
 }
 
-const PlanTripMap = () => {
+const PlanTripMap = ({ routeCoordinates }: { routeCoordinates: { lat: number; lng: number }[] }) => {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
   const taiwanLatLng = { lat: 23.6978, lng: 120.9605 }; 
   const [mode, setMode] = useState<TravelMode | null>(null);
   const [isGoogleReady, setIsGoogleReady] = useState(false);
+
+  const fullRoute = routeCoordinates;
 
   useEffect(() => { // Delay setting the mode until Google Maps is loaded
     if (window.google?.maps?.TravelMode) {
@@ -236,7 +232,7 @@ const PlanTripMap = () => {
     fullscreenControl: false,
     streetViewControl: false,
     mapTypeControl: false,
-    keyboardShortcuts: false,
+    keyboardShortcuts: true,
     gestureHandling: 'none'
   }
 
@@ -259,7 +255,7 @@ const PlanTripMap = () => {
               options={ mapOptions }
               disableDefaultUI
             >
-              {isGoogleReady && mode && <RouteRenderer mode={mode} />} 
+              {isGoogleReady && mode && routeCoordinates.length > 1 && <RouteRenderer mode={mode} fullRoute={fullRoute}/>} 
             </Map>
           </APIProvider>
         </div>

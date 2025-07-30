@@ -85,7 +85,7 @@ app.post('/gemini', async (req, res) => {
     });
     // ensure that gemini is told to use markdown well such that ReactMarkDown can present a good looking generated itinerary
     msg = `
-    Generate a detailed travel itinerary (MAX 500 words) for a trip to Taiwan.
+    Generate a detailed travel itinerary (MAX 1000 words) for a trip to Taiwan.
     
     You must ONLY include these cities in the itinerary: ${req.body.cities.join(", ")}.  
     Do NOT include any other cities, especially not Taipei, unless it is specifically listed above.
@@ -93,25 +93,24 @@ app.post('/gemini', async (req, res) => {
       ---
       
       ### FORMAT INSTRUCTIONS (YOU MUST FOLLOW THIS EXACT STRUCTURE):
-      
       For **each city**, follow this format:
       
-      #### City Name (Day X–Y)
+      # City Name (Day X-Y)
       
       Then for each **day** within that city's stay:
       
-      ##### Day X  
-      - **Morning**:  
-        - Activity 1  
-        - Activity 2  
-      - **Afternoon**:  
-        - Activity 1  
-        - Activity 2  
-      - **Night**:  
-        - Activity 1  
-        - Activity 2
+      ## Day X  
+      - ### **Morning**:  
+        - Attraction 1  
+        - Attraction 2  
+      - ### **Afternoon**:  
+        - Attraction 1  
+        - Attraction 2  
+      - ### **Night**:  
+        - Attraction 1  
+        - Attraction 2
       
-      Use Markdown-style headers as shown above. Do **not** skip any time blocks. Keep the wording compact and vivid. No generic filler like “explore the city” unless it’s tied to a specific activity. Use bullet points. Do NOT include headings like “Itinerary” or “Trip Overview”.
+      Use Markdown-style headers as shown above. Do **not** skip any time blocks. No generic filler like “explore the city” unless it’s tied to a specific activity. Use bullet points. Do NOT include headings like “Itinerary” or “Trip Overview”. Add more details about each attraction and make sure its consistent format.
       
       ---
     
@@ -121,6 +120,8 @@ app.post('/gemini', async (req, res) => {
     - Number of adults: ${req.body.adults}
     - Number of children: ${req.body.children}
     - Budget range: ${req.body.budget}
+
+    After all days are done, provide a brief budget overview, including estimated costs.
     
     At the end of the response, include a <!-- JSON array of coordinates --> for all places mentioned in the itinerary.
     Each object should include: { "name": [place], "lat": [float], "lng": [float] }

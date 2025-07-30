@@ -18,6 +18,8 @@ export default function ItineraryGenerator() {
   const [budgetOption, setBudgetOption] = useState("");
   //store generated itinerary
   const [response, setResponse] = useState(""); 
+  //store route coordinates for the map
+  const [routeCoordinates, setRouteCoordinates] = useState<{ lat: number; lng: number }[]>([]);
 
   const taiwanCities = [
     "Changhua", "Chiayi",  
@@ -102,9 +104,11 @@ export default function ItineraryGenerator() {
       };
 
       const response = await fetch("http://localhost:8000/gemini", options);
-      const data = await response.text();
+      const data = await response.json();
+      console.log("Full response from server:", data);
       console.log("Markdown response content:", response);
-      setResponse(data);
+      setResponse(data.text); 
+      setRouteCoordinates(data.routeCoordinates || []); // The coordinates for the map
     } catch(error) {
       console.error("Fetch error: ", error);
       setErrorMessage("ERROR: Something went wrong while generating the itinerary. Please try again.");
@@ -301,7 +305,7 @@ export default function ItineraryGenerator() {
             </ReactMarkdown>
           </section>
         </div>
-        <PlanTripMap></PlanTripMap>
+        <PlanTripMap routeCoordinates={routeCoordinates} />
       </section>
     </>
   );

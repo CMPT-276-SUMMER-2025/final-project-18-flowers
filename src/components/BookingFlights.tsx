@@ -12,17 +12,7 @@ const BookingFlights = () => {
   const url = useMemo(() => {
     if (!origin || !destination || !checkIn || !checkOut) return "#"; // stay in taiwan explorers
     return (
-      // temporarily set to economy and roundtrip 
-      `https://flights.booking.com/flights/.${origin}-.${destination}
-      /?type=ROUNDTRIP&adults=${adults}
-      &children=${children}
-      &cabinClass=ECONOMY&from= 
-      ${origin}&to=
-      ${destination}&fromCountry=CA&toCountry=TW&fromLocationName=
-      ${origin}&toLocationName=
-      ${destination}&depart=
-      ${checkIn}&return=
-      ${checkOut}&sort=BEST&travelPurpose=leisure`
+      `https://flights.booking.com/flights/.${origin}-.${destination}/?type=ROUNDTRIP&adults=${adults}&children=${children}&cabinClass=ECONOMY&from=${origin}&to=${destination}&fromCountry=CA&toCountry=TW&fromLocationName=${origin}&toLocationName=${destination}&depart=${checkIn}&return=${checkOut}&sort=BEST&travelPurpose=leisure`
     )
   }, [origin, destination, checkIn, checkOut, adults, children]);
 

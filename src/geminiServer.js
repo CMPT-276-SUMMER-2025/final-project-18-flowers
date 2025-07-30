@@ -68,7 +68,17 @@ app.post('/gemini', async (req, res) => {
         role: 'system',
         parts: [
           {
-            text: 'Your task is to generate an itinerary for a trip to Taiwan. Only include selected cities.'
+            text: `Your task is to generate an itinerary for a trip to Taiwan. Only include selected cities. As well as embed a hidden comment block at the end containing coordinates for map routing in JSON format.
+            Return content in this exact format:
+            ---
+            [Itinerary in Markdown]
+            <!--
+            [
+              { "name": "Taipei 101", "lat": 25.033964, "lng": 121.564468 },
+              { "name": "Rainbow Village", "lat": 24.1332, "lng": 120.6492 }
+            ]
+            -->
+            `,
           },
         ],
       },
@@ -111,7 +121,10 @@ app.post('/gemini', async (req, res) => {
     - Number of adults: ${req.body.adults}
     - Number of children: ${req.body.children}
     - Budget range: ${req.body.budget}
-    `;    
+    
+    At the end of the response, include a <!-- JSON array of coordinates --> for all places mentioned in the itinerary.
+    Each object should include: { "name": [place], "lat": [float], "lng": [float] }
+    `;
   }
 
   /*
@@ -157,7 +170,23 @@ msg = `
     // plan a trip AI generated itineraries
     else if(purpose === "generate-itinerary") {
       const result = await chat.sendMessage(msg);
-      res.send(result.response.text());
+      const fullText = result.response.text();
+
+      const coordBlockMatch = fullText.match(/<!--([\s\S]*?)-->/);
+      let routeCoordinates = [];
+      if (coordBlockMatch) {
+        const coordBlock = coordBlockMatch[1].trim();
+        try {
+          routeCoordinates = JSON.parse(coordBlock);
+        } catch (err) {
+          console.error("Failed to parse coordinates:", err);
+        }
+      }
+      const cleanText = fullText.replace(/<!--[\s\S]*?-->/, '').trim();
+      res.send({
+        text: cleanText,
+        routeCoordinates,
+      });
     }
     else {
       res.status(400).send("Invalid purpose.");

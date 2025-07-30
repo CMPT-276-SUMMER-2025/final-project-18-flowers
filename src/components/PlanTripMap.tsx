@@ -27,7 +27,7 @@ function RouteRenderer({ mode }: { mode: TravelMode }) {
 
 
   useEffect(() => {
-    if (!map) return;
+    if (!map || typeof google === 'undefined') return;
 
     async function getDirections() {
       directionRendererRef.current.forEach(renderer => 
@@ -221,7 +221,16 @@ function RouteRenderer({ mode }: { mode: TravelMode }) {
 const PlanTripMap = () => {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
   const taiwanLatLng = { lat: 23.6978, lng: 120.9605 }; 
-  const [mode, setMode] = useState<TravelMode>(google.maps.TravelMode.DRIVING); // Default travel mode
+  const [mode, setMode] = useState<TravelMode | null>(null);
+  const [isGoogleReady, setIsGoogleReady] = useState(false);
+
+  useEffect(() => { // Delay setting the mode until Google Maps is loaded
+    if (window.google?.maps?.TravelMode) {
+      setIsGoogleReady(true);
+      setMode(window.google.maps.TravelMode.DRIVING); // or any default
+    }
+  }, []);
+
   
   const mapOptions = { 
     fullscreenControl: false,
@@ -236,8 +245,8 @@ const PlanTripMap = () => {
       <div id="regions-container" className='flex lg:flex-row flex-col w-full justify-center items-center'>
         <div className="flex gap-4 mt-4">
           {/* Temp travel mode buttons */}
-          {([ google.maps.TravelMode.DRIVING, google.maps.TravelMode.WALKING, google.maps.TravelMode.BICYCLING,
-              google.maps.TravelMode.TRANSIT, ] as google.maps.TravelMode[]).map((m) => (
+          {isGoogleReady && ([ google.maps.TravelMode.DRIVING, google.maps.TravelMode.WALKING, google.maps.TravelMode.BICYCLING,
+            google.maps.TravelMode.TRANSIT, ] as google.maps.TravelMode[]).map((m) => (
             <button
               key={m}
               className={`px-4 py-2 rounded ${
@@ -250,7 +259,7 @@ const PlanTripMap = () => {
           ))}
         </div>
         <div className='map-container border-0 rounded-4xl overflow-hidden m-6'>
-          <APIProvider apiKey={apiKey}>
+          <APIProvider apiKey={apiKey} libraries={['geometry']}>
             <Map 
               id="map"
               defaultZoom={8} 
@@ -265,7 +274,7 @@ const PlanTripMap = () => {
               options={ mapOptions }
               disableDefaultUI
             >
-              <RouteRenderer mode={mode} />
+              {isGoogleReady && mode && <RouteRenderer mode={mode} />} 
             </Map>
           </APIProvider>
         </div>

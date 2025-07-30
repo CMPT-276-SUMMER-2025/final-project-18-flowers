@@ -242,8 +242,28 @@ const PlanTripMap = () => {
 
   return (
     <>
-      <div id="regions-container" className='flex lg:flex-row flex-col w-full justify-center items-center'>
-        <div className="flex gap-4 mt-4">
+      <div id="regions-container" className='flex flex-col'>
+        <div className='plan-map-container'>
+          <APIProvider apiKey={apiKey} libraries={['geometry']}>
+            <Map 
+              id="map"
+              defaultZoom={8} 
+              defaultCenter={ taiwanLatLng }
+              style={{ width: "600px", height: "94vh" }}
+              colorScheme={ColorScheme.LIGHT}
+        
+              // onCameraChanged={ (ev: MapCameraChangedEvent) =>
+              //   console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
+              // }
+              // @ts-expect-error ensures expected errors
+              options={ mapOptions }
+              disableDefaultUI
+            >
+              {isGoogleReady && mode && <RouteRenderer mode={mode} />} 
+            </Map>
+          </APIProvider>
+        </div>
+        <div className="flex gap-4 m-2">
           {/* Temp travel mode buttons */}
           {isGoogleReady && ([ google.maps.TravelMode.DRIVING, google.maps.TravelMode.WALKING, google.maps.TravelMode.BICYCLING,
             google.maps.TravelMode.TRANSIT, ] as google.maps.TravelMode[]).map((m) => (
@@ -257,26 +277,6 @@ const PlanTripMap = () => {
               {m}
             </button>
           ))}
-        </div>
-        <div className='map-container border-0 rounded-4xl overflow-hidden m-6'>
-          <APIProvider apiKey={apiKey} libraries={['geometry']}>
-            <Map 
-              id="map"
-              defaultZoom={8} 
-              defaultCenter={ taiwanLatLng }
-              style={{ width: "600px", height: "750px" }}
-              colorScheme={ColorScheme.LIGHT}
-        
-              // onCameraChanged={ (ev: MapCameraChangedEvent) =>
-              //   console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
-              // }
-              // @ts-expect-error ensures expected errors
-              options={ mapOptions }
-              disableDefaultUI
-            >
-              {isGoogleReady && mode && <RouteRenderer mode={mode} />} 
-            </Map>
-          </APIProvider>
         </div>
       </div>
     </>

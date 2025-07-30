@@ -7,7 +7,6 @@ const PlanTrip = () => {
     <div className="flex flex-col min-h-screen">
       <main className="flex-grow">
         <ItineraryGenerator />
-        {/* <PlanTripMap></PlanTripMap> */}
       </main>
     </div>
   )

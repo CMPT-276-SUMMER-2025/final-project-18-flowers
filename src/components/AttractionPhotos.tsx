@@ -26,7 +26,7 @@ const AttractionPhotos = ({ attract }: Props) => {
         const placePhotos = place?.photos || [];
 
         const imageUrls = placePhotos.map((photo) => ({
-          url: photo.getURI({ maxWidth: 400, maxHeight: 300 }),
+          url: photo.getURI(),
         }));
 
         setPhotos(imageUrls.slice(0,2)); // number of photos

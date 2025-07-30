@@ -6,7 +6,7 @@ type Props = {
   lng: number,
  };
 
-const saveAPICost = true;
+const saveAPICost = false;
 
 const NearbyRestaurants = ({ lat, lng }  : Props) => {
   // type alias TPlace object that holds id, displayName
@@ -64,7 +64,7 @@ const NearbyRestaurants = ({ lat, lng }  : Props) => {
   return (
     <>
       <div className="commodity-container">
-        <h1 className="commodity-title">Nearby Restaurants</h1>
+        <h1 className="attraction-sub-titles">Nearby Restaurants</h1>
         {places.map((place) => (
           <a 
             key = {place.id}

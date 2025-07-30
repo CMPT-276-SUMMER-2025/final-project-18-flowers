@@ -134,14 +134,10 @@ body, html {
 }
 
 .commodities-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 2rem;
   width: 100%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-  /* border: 4px solid black; */
-  margin: 48px 0px 48px 0px;
-  align-items: center;
-  justify-content: space-between;
 }
 
 /* attractions component from city-interest */
@@ -199,6 +195,23 @@ body, html {
 /* attraction (the page not the grids) component */
 
 .attraction-content-container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  margin: 1rem 0 1rem 0;
+  justify-content: center;
+}
+
+.attraction-c1 {
+  /* background-color: lightcoral; */
+} 
+
+.attraction-c2 {
+  margin-top: 18rem;
+  /* background-color: lightblue; */
+}
+
+.attraction-content-container {
   width: 65%;
   margin: 0 auto;
   max-width: 1200px; /* prevent from getting too wide if user monitor is too wide */
@@ -211,29 +224,24 @@ body, html {
 .attraction-title {
   font-weight: var(--fw-medium-bold);
   font-size: var(--fs-3xl);
-  margin: 64px 0px 40px 0px;
-  width: 70%;
-  text-align: left;
+  margin: 2rem 0px 0px 0px;
 }
 
 .section-nav {
   display: flex;
-  justify-content: left;
-  margin: 48px auto;
+  margin: 2rem 0rem 2rem 0rem;
   padding-bottom: 12px;
   border-bottom: 1px solid #ccc;
-  width: 65%;
+  width: 100%;
 }
 
-.section-nav ul {
-  list-style-type: none;
-  padding: 0;
-  gap: 1.5rem;
+.section-nav .anchor-link {
+  padding: 0rem 1rem 0rem 0rem;
 }
 
 .anchor-link {
   text-decoration: none;
-  color: #838383;
+  color: #c3bcbc;
   font-size: var(--fs-sm);
   font-weight: var(--fw-bold);
 }
@@ -245,33 +253,33 @@ body, html {
 }
 
 .attraction-photo {
-  width: 400px;
+  flex-shrink: 0;  
+  width: 300px;   
   height: 300px;
-  object-fit: cover;
-  margin: 16px 32px 16px 0px;
+  object-fit: cover; 
+  margin: 16px 0 16px 0; 
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+
+.attraction-sub-titles {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-medium);
+  margin: 1rem 0rem 1rem 0rem;
 }
 
 .attraction-photo-gallery {
   display: flex;
   align-items: center;
-  justify-content: left;
-}
-
-.map-and-hours-section {
-  display: flex;
-  flex-direction: row;
-}
-
-.opening-hours h2, .attraction-description h2 {
-  font-weight: var(--fw-bold);
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+  justify-content: flex-start;
+  max-width: 100%; 
+  overflow-x: auto; 
+  gap: 16px; 
 }
 
 .attraction-description p {
-  font-size: 1.2rem;
+  font-size: var(--fs-sm);
   margin-bottom: 1.5rem;
 }
 
@@ -301,6 +309,7 @@ body, html {
 .commodity-photo {
   height: 120px;
   width: 120px;
+  min-width: 120px;
   border-top-left-radius: 16px;
   border-bottom-left-radius: 16px;
   object-fit: cover;
@@ -312,9 +321,10 @@ body, html {
   margin: 12px;
 }
 
-.commodity-content { 
+.commodity-content {
   display: flex;
-  margin: 12px 0px 12px 0px;
+  width: 100%;
+  margin: 12px 0;
   border: 1px solid lightgray;
   border-radius: 16px;
 }

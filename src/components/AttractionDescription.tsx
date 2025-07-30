@@ -44,7 +44,7 @@ const AttractionDescription = ({ placeName }: Props) => {
 
   return (
     <div className="attraction-description">
-      <h2>AI Description</h2>
+      <h2 className="attraction-sub-titles">AI Description</h2>
       <ReactMarkdown>{aiDescription}</ReactMarkdown>
     </div>
   );

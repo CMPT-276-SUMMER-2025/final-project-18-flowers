@@ -7,6 +7,7 @@ import NearbyRestaurants from "../components/NearbyRestaurants";
 import AttractionPhotos from "../components/AttractionPhotos";
 import AttractionTimetable from "../components/AttractionTimetable";
 import AttractionDescription from "../components/AttractionDescription";
+import Booking from "../components/Booking";
 
 
 type Coord = { lat: number; lng: number };
@@ -70,57 +71,63 @@ const Attraction = () => {
   }, [attract]);  
 
   return (
-    <div>
+    <div className="attraction-content-container">
+      <div className="attraction-c1">
       {/* Attraction Page Title & 3 Attraction Photos */}
-      <div className="attraction-content-container">
-        <h1 className="attraction-title">{formatAttractionName(attract)}</h1>
-        <AttractionPhotos attract={formatAttractionName(attract)}></AttractionPhotos>
+      <div className="">
+          <h1 className="attraction-title">{formatAttractionName(attract)}</h1>
+          <AttractionPhotos attract={formatAttractionName(attract)}></AttractionPhotos>
+        </div>
+
+        {/* Anchor Navigation Bar */}
+        <nav className="section-nav">
+          <ul>
+            <HashLink to="#overview" className="anchor-link">Overview</HashLink>
+            <HashLink to="#ai-description" className="anchor-link">AI Description</HashLink>
+            <HashLink to="#attraction-map" className="anchor-link">Map</HashLink>
+            <HashLink to="#hours" className="anchor-link">Hours</HashLink>
+            <HashLink to="#hotels" className="anchor-link">Hotels</HashLink>
+            <HashLink to="#restaurants" className="anchor-link">Restaurants</HashLink>
+          </ul>
+        </nav>
+
+        <div className="">
+          {description && (
+            <div id="overview" className="attraction-description">
+              <h2 className="attraction-sub-titles">Overview</h2>
+              <p>{description}</p>
+            </div>
+          )}
+          
+          <div id="ai-description">
+          <AttractionDescription placeName={formatAttractionName(attract)}/>
+          </div>
+
+          <div className="map-and-hours-section">
+            <div id="attraction-map">
+              <h2 className="attraction-sub-titles">Map</h2>
+              {coord && <AttractionMap lat={coord.lat} lng={coord.lng}></AttractionMap>}
+            </div>
+          </div>
+
+          <div id="hours">
+            <AttractionTimetable hours={openingHours} />
+          </div>
+
+          <div className="commodities-container">
+            <div id="hotels">
+              {coord && <NearbyHotels lat={coord.lat} lng={coord.lng}></NearbyHotels>}
+            </div>
+            <div id="restaurants">
+              {coord && <NearbyRestaurants lat={coord.lat} lng={coord.lng}></NearbyRestaurants>}
+            </div>
+          </div>
+
+        </div>  
       </div>
-
-      {/* Anchor Navigation Bar */}
-      <nav className="section-nav">
-        <ul>
-          <HashLink to="#overview" className="anchor-link">Overview</HashLink>
-          <HashLink to="#ai-description" className="anchor-link">AI Description</HashLink>
-          <HashLink to="#attraction-map" className="anchor-link">Map</HashLink>
-          <HashLink to="#hours" className="anchor-link">Hours</HashLink>
-          <HashLink to="#hotels" className="anchor-link">Hotels</HashLink>
-          <HashLink to="#restaurants" className="anchor-link">Restaurants</HashLink>
-        </ul>
-      </nav>
-
-      <div className="attraction-content-container">
-        {description && (
-          <div id="overview" className="attraction-description">
-            <h2>Overview</h2>
-            <p>{description}</p>
-          </div>
-        )}
-        
-        <div id="ai-description">
-        <AttractionDescription placeName={formatAttractionName(attract)}/>
-        </div>
-
-        <div className="map-and-hours-section">
-          <div id="attraction-map" className="attraction-description">
-            <h2>Map</h2>
-            {coord && <AttractionMap lat={coord.lat} lng={coord.lng}></AttractionMap>}
-          </div>
-        </div>
-
-        <div id="hours">
-          <AttractionTimetable hours={openingHours} />
-        </div>
-  
-        <div className="commodities-container">
-          <div id="hotels">
-            {coord && <NearbyHotels lat={coord.lat} lng={coord.lng}></NearbyHotels>}
-          </div>
-          <div id="restaurants">
-            {coord && <NearbyRestaurants lat={coord.lat} lng={coord.lng}></NearbyRestaurants>}
-          </div>
-        </div>
-      </div>  
+      <div className="attraction-c2">
+        <Booking />
+      </div>
     </div>
   )
 }

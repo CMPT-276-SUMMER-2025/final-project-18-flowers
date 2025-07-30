@@ -63,6 +63,7 @@ const searchData = [
     description: "Popular hiking spot offering panoramic views of Taipei and Taipei 101.",
     path: "/destinations/taipei-city/elephant-mountain-trail"
   },
+
 ];
 
 export default searchData;

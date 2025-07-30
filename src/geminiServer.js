@@ -95,7 +95,7 @@ app.post('/gemini', async (req, res) => {
       ### FORMAT INSTRUCTIONS (YOU MUST FOLLOW THIS EXACT STRUCTURE):
       For **each city**, follow this format:
       
-      # City Name (Day X-Y)
+      # ${req.body.days}-Day Taiwanese ${req.body.interests.join(", ")} Tour
       
       Then for each **day** within that city's stay:
       
@@ -123,8 +123,19 @@ app.post('/gemini', async (req, res) => {
 
     After all days are done, provide a brief budget overview, including estimated costs.
     
-    At the end of the response, include a <!-- JSON array of coordinates --> for all places mentioned in the itinerary.
-    Each object should include: { "name": [place], "lat": [float], "lng": [float] }
+    At the end of the response, return only this:
+
+    <!--
+    [
+      { "name": "Taipei 101", "lat": 25.033964, "lng": 121.564468 },
+      { "name": "Rainbow Village", "lat": 24.1332, "lng": 120.6492 }
+    ]
+    -->
+
+    IMPORTANT: 
+    - This block must be **valid JSON**, wrapped in <!-- -->
+    - No Markdown, no headings, no extra text
+    - Only one JSON array, not multiple
     `;
   }
 

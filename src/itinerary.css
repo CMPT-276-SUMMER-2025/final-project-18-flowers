@@ -94,14 +94,31 @@
   display: flex;
   flex-direction: column;
   width: 600px;
-  min-width: 300px;
-  min-height: 100vh; /* since itinerary is not generated yet */
-  background-color:powderblue;
+  min-width: 400px;
+  min-height: 93vh; /* since itinerary is not generated yet */
+  background-color: rgb(246, 246, 246);
 }
 
 .ig-response section {
   overflow-y: auto;
-  padding: 3rem;
+  padding: 2rem;
+}
+
+.ig-response h1 {
+  font-size: var(--fs-xl); 
+  font-weight: var(--fw-medium);
+  margin-bottom: 10px;
+  letter-spacing: -1px;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 16px;
+}
+
+.ig-response h2 {
+  font-size: var(--fs-xl); 
+  font-weight: var(--fw-medium);
+  margin-bottom: 10px;
+  color: blue;
 }
 
 .ig-response h3 {
@@ -141,10 +158,8 @@
 
 .ig-response li {
   font-size: var(--fs-base);
-  padding: 5px;
-  border: 1px solid black;
   border-radius: 8px;
-  margin: 8px 8px 8px 0px;
+  margin: 8px 0px 8px 0px;
   font-size: var(--fs-xs);
 }
 

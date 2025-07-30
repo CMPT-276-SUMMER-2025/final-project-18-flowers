@@ -6,7 +6,7 @@ type Props = {
 const AttractionTimetable = ({ hours }: Props) => {
     return (
         <div className="opening-hours">
-        <h2>Opening Hours</h2>
+        <h2 className="attraction-sub-titles">Opening Hours</h2>
         {hours.length > 0 ? (
             <ul>
             {hours.map((line, idx) => (

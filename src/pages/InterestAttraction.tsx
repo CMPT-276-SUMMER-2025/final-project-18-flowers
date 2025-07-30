@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import AttractionMap from "../components/AttractionMap";
 import NearbyHotels from "../components/NearbyHotels";
 import NearbyRestaurants from "../components/NearbyRestaurants";
 import AttractionPhotos from "../components/AttractionPhotos";
 import AttractionTimetable from "../components/AttractionTimetable";
+import AttractionDescription from "../components/AttractionDescription";
+import Booking from "../components/BookingHotels";
 
 
 type Coord = { lat: number; lng: number };
@@ -72,49 +75,62 @@ const Attraction = () => {
 
   return (
     <>
-    <div>
-      <h1 className="attraction-title">{formatAttractionName(attract)}</h1>
-
-      <AttractionPhotos attract={formatAttractionName(attract)}></AttractionPhotos>
-
-      <nav className="section-nav">
-        <ul>
-          <li><a href="#Overview">Overview</a></li>
-          <li><a href="#Map">Map</a></li>
-          <li><a href="#Hours">Hours</a></li>
-          <li><a href="#Hotels">Hotels</a></li>
-          <li><a href="#Restaurants">Restaurants</a></li>
-        </ul>
-      </nav>
-
-      <div className="container">
-
-        {description && (
-          <div id="Overview" className="attraction-description">
-            <h2>Overview</h2>
-            <p>{description}</p>
-          </div>
-        )}
-
-        <div id="Map">
-          {coord && <AttractionMap lat={coord.lat} lng={coord.lng}></AttractionMap>}
-        </div>
-        
-        <div id="Hours">
-          <AttractionTimetable hours={openingHours} />
+   <div className="attraction-content-container">
+      <div className="attraction-c1">
+      {/* Attraction Page Title & 3 Attraction Photos */}
+      <div className="">
+          <h1 className="attraction-title">{formatAttractionName(attract)}</h1>
+          <AttractionPhotos attract={formatAttractionName(attract)}></AttractionPhotos>
         </div>
 
-        <div className="commodities-container">
+        {/* Anchor Navigation Bar */}
+        <nav className="section-nav">
+          <ul>
+            <HashLink to="#overview" className="anchor-link">Overview</HashLink>
+            <HashLink to="#ai-description" className="anchor-link">AI Description</HashLink>
+            <HashLink to="#attraction-map" className="anchor-link">Map</HashLink>
+            <HashLink to="#hours" className="anchor-link">Hours</HashLink>
+            <HashLink to="#hotels" className="anchor-link">Hotels</HashLink>
+            <HashLink to="#restaurants" className="anchor-link">Restaurants</HashLink>
+          </ul>
+        </nav>
 
-          <div id="Hotels">
-            {coord && <NearbyHotels lat={coord.lat} lng={coord.lng}></NearbyHotels>}
+        <div className="">
+          {description && (
+            <div id="overview" className="attraction-description">
+              <h2 className="attraction-sub-titles">Overview</h2>
+              <p>{description}</p>
+            </div>
+          )}
+          
+          <div id="ai-description">
+          <AttractionDescription placeName={formatAttractionName(attract)}/>
           </div>
 
-          <div id="Restaurants">
-            {coord && <NearbyRestaurants lat={coord.lat} lng={coord.lng}></NearbyRestaurants>}
+          <div className="map-and-hours-section">
+            <div id="attraction-map">
+              <h2 className="attraction-sub-titles">Map</h2>
+              {coord && <AttractionMap lat={coord.lat} lng={coord.lng}></AttractionMap>}
+            </div>
           </div>
 
-        </div>
+          <div id="hours">
+            <AttractionTimetable hours={openingHours} />
+          </div>
+
+          <div className="commodities-container">
+            <div id="hotels">
+              {coord && <NearbyHotels lat={coord.lat} lng={coord.lng}></NearbyHotels>}
+            </div>
+            <div id="restaurants">
+              {coord && <NearbyRestaurants lat={coord.lat} lng={coord.lng}></NearbyRestaurants>}
+            </div>
+          </div>
+
+        </div>  
+      </div>
+      <div className="attraction-c2">
+        <Booking />
       </div>
     </div>
       

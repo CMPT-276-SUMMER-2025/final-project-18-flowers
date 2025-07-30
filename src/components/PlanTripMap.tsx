@@ -10,15 +10,9 @@ const colorBasedOnMode: Record<TravelMode, string> = {
   BICYCLING: '#F87171', // red
 };
 
-const fullRoute = [
-  { lat: 25.033964, lng: 121.564468 }, // Taipei 101
-  { lat: 24.136829, lng: 120.684524 }, // Taichung TRA Station
-  { lat: 25.1372, lng: 121.5065 }, // New Taipei City
-  { lat: 24.1332, lng: 120.6492 }, // Rainbow Village, Taichung
-];
 
 
-function RouteRenderer({ mode }: { mode: TravelMode }) {
+function RouteRenderer({ mode, fullRoute }: { mode: TravelMode; fullRoute: { lat: number; lng: number }[] }) {
   const map = useMap();
   const [duration, setDuration] = useState<string | null>(null);
   const directionRendererRef = useRef<google.maps.DirectionsRenderer[]>([]);
@@ -27,7 +21,7 @@ function RouteRenderer({ mode }: { mode: TravelMode }) {
 
 
   useEffect(() => {
-    if (!map) return;
+    if (!map || typeof google === 'undefined') return;
 
     async function getDirections() {
       directionRendererRef.current.forEach(renderer => 
@@ -218,44 +212,44 @@ function RouteRenderer({ mode }: { mode: TravelMode }) {
   ) : null;
 }
 
-const PlanTripMap = () => {
+const PlanTripMap = ({ routeCoordinates }: { routeCoordinates: { lat: number; lng: number }[] }) => {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
   const taiwanLatLng = { lat: 23.6978, lng: 120.9605 }; 
-  const [mode, setMode] = useState<TravelMode>(google.maps.TravelMode.DRIVING); // Default travel mode
+  const [mode, setMode] = useState<TravelMode | null>(null);
+  const [isGoogleReady, setIsGoogleReady] = useState(false);
+
+  const fullRoute = routeCoordinates;
+
+  useEffect(() => { // Delay setting the mode until Google Maps is loaded
+    const interval = setInterval(() => {
+      if (window.google?.maps?.TravelMode) {
+        setIsGoogleReady(true);
+        setMode(window.google.maps.TravelMode.DRIVING); // or any default
+        clearInterval(interval);
+      }
+    }, 100);
+    
+  }, []);
+
   
   const mapOptions = { 
     fullscreenControl: false,
     streetViewControl: false,
     mapTypeControl: false,
-    keyboardShortcuts: false,
+    keyboardShortcuts: true,
     gestureHandling: 'none'
   }
 
   return (
     <>
-      <div id="regions-container" className='flex lg:flex-row flex-col w-full justify-center items-center'>
-        <div className="flex gap-4 mt-4">
-          {/* Temp travel mode buttons */}
-          {([ google.maps.TravelMode.DRIVING, google.maps.TravelMode.WALKING, google.maps.TravelMode.BICYCLING,
-              google.maps.TravelMode.TRANSIT, ] as google.maps.TravelMode[]).map((m) => (
-            <button
-              key={m}
-              className={`px-4 py-2 rounded ${
-                mode === m ? 'bg-blue-500 text-white' : 'bg-gray-200'
-              }`}
-              onClick={() => setMode(m)}
-            >
-              {m}
-            </button>
-          ))}
-        </div>
-        <div className='map-container border-0 rounded-4xl overflow-hidden m-6'>
-          <APIProvider apiKey={apiKey}>
+      <div id="regions-container" className='flex flex-col'>
+        <div className='plan-map-container relative'>
+          <APIProvider apiKey={apiKey} libraries={['geometry']}>
             <Map 
               id="map"
               defaultZoom={8} 
               defaultCenter={ taiwanLatLng }
-              style={{ width: "600px", height: "750px" }}
+              style={{ width: "40vw", height: "93vh" }}
               colorScheme={ColorScheme.LIGHT}
         
               // onCameraChanged={ (ev: MapCameraChangedEvent) =>
@@ -265,9 +259,24 @@ const PlanTripMap = () => {
               options={ mapOptions }
               disableDefaultUI
             >
-              <RouteRenderer mode={mode} />
+              {isGoogleReady && mode && routeCoordinates.length > 1 && <RouteRenderer mode={mode} fullRoute={fullRoute}/>} 
             </Map>
           </APIProvider>
+        </div>
+        <div className='absolute'>
+          {/* Temp travel mode buttons */}
+          {isGoogleReady && ([ google.maps.TravelMode.DRIVING, google.maps.TravelMode.WALKING, google.maps.TravelMode.BICYCLING,
+            google.maps.TravelMode.TRANSIT, ] as google.maps.TravelMode[]).map((m) => (
+            <button
+              key={m}
+              className={`px-4 py-2 mr-2 ${
+                mode === m ? 'bg-blue-500 text-white' : 'bg-gray-200'
+              }`}
+              onClick={() => setMode(m)}
+            >
+              {m}
+            </button>
+          ))}
         </div>
       </div>
     </>

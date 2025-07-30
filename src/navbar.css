@@ -25,19 +25,19 @@
   width: 40%;
 }
 
-div ul {
+div .nav-links {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-div ul li {
+div .nav-links .nav-link {
   padding: 16px 16px 16px 16px;
   font-weight: 500;
   font-size: var(--fs-sm);
 }
 
-div ul li:hover {
+div .nav-links .nav-link:hover {
   color:dodgerblue;
 }
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import "../chatbot.css";
 import Fuse from "fuse.js";
@@ -16,7 +16,8 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
   //store chat history for UI and backend seperately to prevent sending model-only messages (like FAQ) to the backend
   const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]); // UI
   const [geminiHistory, setGeminiHistory] = useState<ChatMessage[]>([]); // Backend
-
+  //check if a chat message is loading
+  const [isLoading, setIsLoading] = useState(false);
 
   const surpriseOptions = [
     "Name top 3 foods in Taiwan",
@@ -67,6 +68,11 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
     setUserInput(randomInput);
   }
 
+  const bottomRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth"});
+  }, [chatHistory, isLoading]);
+
   async function getResponse() {
     if (!userInput.trim()) {
       setError("Error! Please ask a question!");
@@ -94,6 +100,10 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
       setError("");
       return;
     }
+
+    setIsLoading(true);
+    const inputToSend = userInput;
+    setUserInput("");
     
     try {
       const options = {
@@ -101,7 +111,7 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
         body: JSON.stringify({
           //send chat history to the api
           history: geminiHistory, //only send real messages
-          message: userInput,
+          message: inputToSend,
         }),
         headers: {
           "Content-Type": "application/json",
@@ -120,8 +130,8 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
       setChatHistory(prev => [...prev, userMessage, modelMessage]);
       setGeminiHistory(prev => [...prev, userMessage, modelMessage]);
 
-      setUserInput("");
       setError("");
+      setIsLoading(false);
     } catch (error) {
       console.error("Fetch error:", error);
       setError("Something went wrong! Please try again later.");
@@ -148,12 +158,12 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
         <button onClick={surprise}>
           Surprise me!
         </button>
-        <button onClick={() => setChatHistory([])}>Reset Chat</button>
+        <button onClick={clear}>Reset Chat</button>
       </div>
 
       <div className="chatbot-input-container">
         <input
-          value={userInput}
+          value={isLoading === true ? 'Assistant is thinking...' : userInput}
           placeholder="Enter your questions here!"
           onChange={(e) => setUserInput(e.target.value)}
           onKeyDown={(e) => {
@@ -170,9 +180,9 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
 
       <div className="chatbot-output-section">
         {chatHistory.map((chatItem, index) => (
-          <div key={index} className="chatbot-answer">
-            <h3>
-              <strong>{chatItem.role === 'user' ? 'You:' : 'Assistant:'}</strong>
+          <div key={index} className={`chatbot-text-bubble ${chatItem.role === 'user' ? 'user' : 'assistant'}`}>
+            <h3 className="chatbot-you-header">
+              {chatItem.role === 'user' ? 'You' : ''}
             </h3>
             <ReactMarkdown
             components={{
@@ -184,6 +194,14 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
             </ReactMarkdown>
           </div>
         ))}
+        {isLoading && 
+        <div className="chatbot-output-text-bubble">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>}
+
+        <div ref={bottomRef} />
       </div>
     </div>
   );

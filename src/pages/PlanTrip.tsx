@@ -1,13 +1,15 @@
-import PlanTripMap from "../components/PlanTripMap"
+// import PlanTripMap from "../components/PlanTripMap"
 import ItineraryGenerator from "../components/ItineraryGenerator"
 
 const PlanTrip = () => {
   return (
-    <div>
-      <ItineraryGenerator />
-      <PlanTripMap></PlanTripMap>
+
+    <div className="flex flex-col min-h-screen">
+      <main className="flex-grow">
+        <ItineraryGenerator />
+      </main>
     </div>
   )
 }
 
-export default PlanTrip
+export default PlanTrip;

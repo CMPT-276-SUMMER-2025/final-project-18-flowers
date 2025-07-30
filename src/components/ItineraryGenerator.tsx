@@ -2,6 +2,8 @@ import { useState } from "react";
 import Select from "react-select";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm';
+import PlanTripMap from "./PlanTripMap";
+import "../itinerary.css";
 
 export default function ItineraryGenerator() {
   const [isLoading, setIsLoading] = useState(false);
@@ -16,20 +18,24 @@ export default function ItineraryGenerator() {
   const [budgetOption, setBudgetOption] = useState("");
   //store generated itinerary
   const [response, setResponse] = useState(""); 
+  //store route coordinates for the map
+  const [routeCoordinates, setRouteCoordinates] = useState<{ lat: number; lng: number }[]>([]);
 
   const taiwanCities = [
-    "Changhua", "Chiayi", "Douliu", "Hsinchu",  
-    "Hualien", "Kaohsiung", "Keelung", "Magong", "Miaoli", 
-    "Nantou", "New Taipei", "Pingtung", "Puzi", "Taibao", 
+    "Changhua", "Chiayi",  
+    "Hualien", "Kaohsiung", "Keelung", "Miaoli", 
+    "Nantou", "New Taipei", "Pingtung",
     "Taichung", "Tainan", "Taipei", "Taitung", "Taoyuan",
-    "Toufen", "Yilan", "Yuanlin", "Zhubei"
+    "Yilan", 
   ];
 
   const interests = [
-    "Shopping", "Food", "Themeparks", "Culture", "Nature", "Anime", 
+    "Shopping", "Food", "Themeparks", "Culture", "Nature", "Street Markets",  
   ]
 
+  // create city options that users can choose from
   const cityOptions = taiwanCities.map((city) => ({ label: city, value: city }));
+  // create interest options that users can choose from
   const interestOptions = interests.map((interest) => ({ label: interest, value: interest}));
 
   const handleChange = (event: any, changeFor: string) => {
@@ -55,12 +61,13 @@ export default function ItineraryGenerator() {
     console.log("Selected interests: ", selectedInterestValues);
 
     // Check if any field is empty
-    if (selectedCityValues.length === 0 || 
-      !daysOption || 
-      selectedInterestValues.length === 0 || 
-      !numAdultsOption || 
-      !numChildrenOption || 
-      !budgetOption
+    if (
+      (selectedCityValues.length) === 0 || 
+      (selectedInterestValues.length === 0) || 
+      (!daysOption) || 
+      (!numAdultsOption) || 
+      (!numChildrenOption) || 
+      (!budgetOption)
     ) {
       setResponse(""); // Clear previous result
       errorHandler("unfilled fields"); 
@@ -97,11 +104,14 @@ export default function ItineraryGenerator() {
       };
 
       const response = await fetch("http://localhost:8000/gemini", options);
-      const data = await response.text();
-      setResponse(data);
+      const data = await response.json();
+      console.log("Full response from server:", data);
+      console.log("Markdown response content:", response);
+      setResponse(data.text); 
+      setRouteCoordinates(data.routeCoordinates || []); // The coordinates for the map
     } catch(error) {
       console.error("Fetch error: ", error);
-      setErrorMessage("Something went wrong while generating the itinerary :[ ). Please try again.");
+      setErrorMessage("ERROR: Something went wrong while generating the itinerary. Please try again.");
     } finally {
     setIsLoading(false); // End loading
     }
@@ -161,9 +171,9 @@ export default function ItineraryGenerator() {
   
   return (
     <>
-      <h1 className="ig-title">Itinerary Generator</h1>
       <section className="itinerary-generator">
         <form className="ig-form" onSubmit={submitHandler}>
+          <h1 className="ig-title">Generate Your <strong>Itinerary</strong></h1>
           <div className="ig-form-field">
             <label htmlFor="days-option">How long is your trip?</label>
             <div className="ig-form-box">
@@ -281,19 +291,21 @@ export default function ItineraryGenerator() {
             </button>
           </div>
         </form>
-
+        
+        {/* THIS IS WHERE THE GENERATED IG CONTENT APPEARS */}
         <div className="ig-response">
-          <h3>Itinerary</h3>
           <section>
             {errorMessage && <p className="ig-error-message">{errorMessage}</p>}
             {isLoading && <div className="ig-loading-text-skeleton">
               {[...Array(14)].map((_, i) => GenerateTextSkeletonLine(i))}
             </div>}
+            {/* This converts markdown into html automatically via ReactMarkdown*/}
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {response}
             </ReactMarkdown>
           </section>
         </div>
+        <PlanTripMap routeCoordinates={routeCoordinates} />
       </section>
     </>
   );

@@ -14,6 +14,8 @@
   text-align: center;
 }
 
+/* ig form */
+
 .ig-form {
   height: 100%;
   width: 300px;
@@ -88,6 +90,8 @@
   background-color: rgb(255, 69, 69)
 }
 
+/* ig response */
+
 .ig-response {
   display: flex;
   flex-direction: column;
@@ -97,26 +101,31 @@
 }
 
 .ig-response h3 {
-  font-size: 35px;
+  font-size: 50px;
   font-weight: 700;
   text-align: center;
   margin-bottom: 10px;
   letter-spacing: -1px;
 }
-.ig-response table {
+
+/* .ig-response table {
   padding: 10px;
   border: 1px solid black;
   border-radius: 10px;
   border-collapse: separate;
   margin: 5px;
+} */
+
+.ig-response p {
+  color: green;
 }
+
 .ig-response th, .ig-response td {
   padding-top: 15px;
   padding-bottom: 15px;
 }
 
-.ig-response ul,
-.ig-response ol {
+.ig-response ul, .ig-response ol {
   display: flex;
   flex-direction: row;
   align-items:first baseline;
@@ -139,6 +148,8 @@
   flex-grow: 1;
   background-color: #F9F9F9;
 }
+
+/* other? */
 
 .ig-adult-children-count-row {
   display: flex;

@@ -44,13 +44,16 @@ const BookingFlights = () => {
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
+          <option value="3">4</option>
         </select>
 
         <label>Children:</label>
         <select onChange={(e) => setChildren(e.target.value)} defaultValue="0">
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
+          <option value="">0</option>
+          <option value="3">1</option>
+          <option value="3%2C3">2</option>
+          <option value="3%2C3%2C3">3</option>
+          <option value="3%2C3%2C3%2C3">4</option>
         </select>
       </div>
 

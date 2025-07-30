@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import "../chatbot.css";
 import Fuse from "fuse.js";
@@ -67,6 +67,11 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
     }
     setUserInput(randomInput);
   }
+
+  const bottomRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth"});
+  }, [chatHistory, isLoading]);
 
   async function getResponse() {
     if (!userInput.trim()) {
@@ -189,11 +194,14 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
             </ReactMarkdown>
           </div>
         ))}
-        {isLoading && <div className="chatbot-output-text-bubble">
+        {isLoading && 
+        <div className="chatbot-output-text-bubble">
           <span></span>
           <span></span>
           <span></span>
         </div>}
+
+        <div ref={bottomRef} />
       </div>
     </div>
   );

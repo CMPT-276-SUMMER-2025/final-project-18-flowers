@@ -221,10 +221,14 @@ const PlanTripMap = ({ routeCoordinates }: { routeCoordinates: { lat: number; ln
   const fullRoute = routeCoordinates;
 
   useEffect(() => { // Delay setting the mode until Google Maps is loaded
-    if (window.google?.maps?.TravelMode) {
-      setIsGoogleReady(true);
-      setMode(window.google.maps.TravelMode.DRIVING); // or any default
-    }
+    const interval = setInterval(() => {
+      if (window.google?.maps?.TravelMode) {
+        setIsGoogleReady(true);
+        setMode(window.google.maps.TravelMode.DRIVING); // or any default
+        clearInterval(interval);
+      }
+    }, 100);
+    
   }, []);
 
   
@@ -239,13 +243,13 @@ const PlanTripMap = ({ routeCoordinates }: { routeCoordinates: { lat: number; ln
   return (
     <>
       <div id="regions-container" className='flex flex-col'>
-        <div className='plan-map-container'>
+        <div className='plan-map-container relative'>
           <APIProvider apiKey={apiKey} libraries={['geometry']}>
             <Map 
               id="map"
               defaultZoom={8} 
               defaultCenter={ taiwanLatLng }
-              style={{ width: "600px", height: "94vh" }}
+              style={{ width: "40vw", height: "93vh" }}
               colorScheme={ColorScheme.LIGHT}
         
               // onCameraChanged={ (ev: MapCameraChangedEvent) =>
@@ -259,13 +263,13 @@ const PlanTripMap = ({ routeCoordinates }: { routeCoordinates: { lat: number; ln
             </Map>
           </APIProvider>
         </div>
-        <div className="flex gap-4 m-2">
+        <div className='absolute'>
           {/* Temp travel mode buttons */}
           {isGoogleReady && ([ google.maps.TravelMode.DRIVING, google.maps.TravelMode.WALKING, google.maps.TravelMode.BICYCLING,
             google.maps.TravelMode.TRANSIT, ] as google.maps.TravelMode[]).map((m) => (
             <button
               key={m}
-              className={`px-4 py-2 rounded ${
+              className={`px-4 py-2 mr-2 ${
                 mode === m ? 'bg-blue-500 text-white' : 'bg-gray-200'
               }`}
               onClick={() => setMode(m)}

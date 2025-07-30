@@ -95,7 +95,7 @@ app.post('/gemini', async (req, res) => {
       ### FORMAT INSTRUCTIONS (YOU MUST FOLLOW THIS EXACT STRUCTURE):
       For **each city**, follow this format:
       
-      # City Name (Day X-Y)
+      # ${req.body.days}-Day Taiwanese ${req.body.interests.join(", ")} Tour
       
       Then for each **day** within that city's stay:
       

@@ -69,6 +69,12 @@
   flex-direction: row;
   box-shadow: 0 4px 8px rgba(0,0,0,0.5);
   max-width: 680px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.interest-box:hover {
+  transform: scale(1.02);
+  box-shadow: 0 5px 9px rgba(0,0,0,0.6);
 }
 
 .home-interests-title {
@@ -116,6 +122,13 @@
   box-shadow: 0 4px 8px rgba(0,0,0,0.5);
   position: relative;
   border-radius: 8px;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.attraction-box:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.6);
 }
 
 .top-attraction-photo {

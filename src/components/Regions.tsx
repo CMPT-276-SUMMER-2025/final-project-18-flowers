@@ -64,7 +64,7 @@ const Regions = () => {
   return (
     <>
       <div id="dummy-map"></div>
-      <h1 id="regions-title"><strong>Regions</strong> of Taiwan</h1>
+      <h1 id="regions-title"><strong>Destinations</strong> of Taiwan</h1>
       <div id="regions-container" className='flex lg:flex-row flex-col justify-center items-center'>
         <div className="region-content">{showComponent && <RegionContent key={cityName} cityname={cityName} />}</div>
         <div className='map-container'>

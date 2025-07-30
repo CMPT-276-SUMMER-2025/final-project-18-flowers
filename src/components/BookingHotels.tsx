@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useMemo} from "react";
 import "../booking.css";
 
 const Booking = () => {
@@ -9,22 +9,21 @@ const Booking = () => {
   const [adults, setAdults] = useState("1");
   const [children, setChildren] = useState("0");
 
-  const getYear = (dateStr : string) => new Date(dateStr).getFullYear();
-  const getMonth = (dateStr : string) => new Date(dateStr).getMonth();
-  const getDate = (dateStr : string) => new Date(dateStr).getDate();
+  //const getYear = (dateStr : string) => new Date(dateStr).getFullYear();
+  //const getMonth = (dateStr : string) => new Date(dateStr).getMonth();
+  //const getDay = (dateStr : string) => new Date(dateStr).getDay();
 
-  const url =
-    "https://www.booking.com/searchresults.html?" +
-    `ss=${destination}` +
-    `&checkin_year=${getYear(checkIn)}` +
-    `&checkin_month=${getMonth(checkIn)}` +
-    `&checkin_monthday=${getDate(checkIn)}` +
-    `&checkout_year=${getYear(checkOut)}` +
-    `&checkout_month=${getMonth(checkOut)}` +
-    `&checkout_monthday=${getDate(checkOut)}` +
-    `&group_adults=${adults}` +
-    `&group_children=${children}`
-  ;
+  const url = useMemo(() => {
+      if (!destination || !checkIn || !checkOut) return "#"; // stay in taiwan explorers
+      return (
+        "https://www.booking.com/searchresults.html?" +
+        `ss=${destination}` +
+        `&checkin=${checkIn}` +
+        `&checkout=${checkOut}` +
+        `&group_adults=${adults}` +
+        `&group_children=${children}`
+      )
+    }, [destination, checkIn, checkOut, adults, children]);
 
   return (
     <>
@@ -66,7 +65,17 @@ const Booking = () => {
         </div>
 
         <div className="booking-button-wrapper">
-          <a href={url} target="_blank" className="booking-button">Search stays</a>
+          <a
+            href={url}
+            target="_blank"
+            className="booking-button"
+            style={{ // inform user that they need to provide input
+              pointerEvents: url === "#" ? "none" : "auto", 
+              opacity: url === "#" ? 0.5 : 1 
+            }}
+          >
+            Search stays
+          </a>
         </div>
       </div>
     </>

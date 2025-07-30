@@ -16,11 +16,13 @@ const genAI = new GoogleGenerativeAI(process.env.VITE_GOOGLE_GEMINI_API_KEY);
 
 app.post('/gemini', async (req, res) => {
   const purpose = req.headers.purpose;
+  //message is used for attraction description
   const message = req.body.message;
 
   const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
   
   let chat;
+  //msg is used for chatbot and itinerary generator
   let msg = '';
 
   if(req.headers.purpose === "chatbot-response") {
@@ -80,7 +82,7 @@ app.post('/gemini', async (req, res) => {
       res.send(result.response.text());
     } 
     else if (purpose === "attraction-description") {
-      const result = await model.generateContent(msg);
+      const result = await model.generateContent(message);
       res.send(result.response.text());
     } 
     else if(purpose === "generate-itinerary") {

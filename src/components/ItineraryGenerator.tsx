@@ -2,7 +2,7 @@ import { useState } from "react";
 import Select from "react-select";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm';
-import "../ig.css";
+import "../itinerary.css";
 
 export default function ItineraryGenerator() {
   const [isLoading, setIsLoading] = useState(false);

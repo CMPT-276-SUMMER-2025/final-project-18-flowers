@@ -166,8 +166,8 @@ export default function ItineraryGenerator() {
   
   return (
     <>
-      <h1 className="ig-title">Itinerary Generator</h1>
       <section className="itinerary-generator">
+        <h1 className="ig-title">Generate Your <strong>Itinerary</strong></h1>
         <form className="ig-form" onSubmit={submitHandler}>
           <div className="ig-form-field">
             <label htmlFor="days-option">How long is your trip?</label>
@@ -289,7 +289,6 @@ export default function ItineraryGenerator() {
         
         {/* THIS IS WHERE THE GENERATED IG CONTENT APPEARS */}
         <div className="ig-response">
-          <h3>Itinerary</h3>
           <section>
             {errorMessage && <p className="ig-error-message">{errorMessage}</p>}
             {isLoading && <div className="ig-loading-text-skeleton">

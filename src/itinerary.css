@@ -3,8 +3,9 @@
   height: 500px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   column-gap: 1vw;
+  /* background-color: lightsalmon; */
 }
 
 .ig-title {
@@ -97,7 +98,13 @@
   flex-direction: column;
   width: 600px;
   min-width: 500px;
-  height: 100%;  
+  min-height: 100vh; /* since itinerary is not generated yet */
+  background-color:powderblue;
+}
+
+.ig-response section {
+  overflow-y: auto;
+  padding: 3rem;
 }
 
 .ig-response h3 {
@@ -116,20 +123,26 @@
   margin: 5px;
 } */
 
-.ig-response p {
-  color: green;
+.ig-response p>strong {
+  color: black;
+  background-color:lightskyblue;
+  display: block;
+  padding: 8px;
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-lg);
+  border-radius: 16px;
 }
 
-.ig-response th, .ig-response td {
+/* .ig-response th, .ig-response td {
   padding-top: 15px;
   padding-bottom: 15px;
-}
+} */
 
-.ig-response ul, .ig-response ol {
+/* .ig-response ul, .ig-response ol {
   display: flex;
   flex-direction: row;
   align-items:first baseline;
-}
+} */
 
 .ig-response li {
   font-size: var(--fs-base);
@@ -138,15 +151,6 @@
   border-radius: 8px;
   margin: 8px 8px 8px 0px;
   font-size: var(--fs-xs);
-}
-
-.ig-response section {
-  border: solid 1px #BCBCBC;
-  border-radius: 30px 0px 0px 30px;
-  overflow-y: auto;
-  padding: 16px;
-  flex-grow: 1;
-  background-color: #F9F9F9;
 }
 
 /* other? */
@@ -162,6 +166,8 @@
   font-size: var(--fs-lg);
   color: #F44336;
 }
+
+/* ig generating loading animation */
 
 .ig-loading-text-skeleton {
   display: flex;

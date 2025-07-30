@@ -19,18 +19,20 @@ export default function ItineraryGenerator() {
   const [response, setResponse] = useState(""); 
 
   const taiwanCities = [
-    "Changhua", "Chiayi", "Douliu", "Hsinchu",  
-    "Hualien", "Kaohsiung", "Keelung", "Magong", "Miaoli", 
-    "Nantou", "New Taipei", "Pingtung", "Puzi", "Taibao", 
+    "Changhua", "Chiayi",  
+    "Hualien", "Kaohsiung", "Keelung", "Miaoli", 
+    "Nantou", "New Taipei", "Pingtung",
     "Taichung", "Tainan", "Taipei", "Taitung", "Taoyuan",
-    "Toufen", "Yilan", "Yuanlin", "Zhubei"
+    "Yilan", 
   ];
 
   const interests = [
-    "Shopping", "Food", "Themeparks", "Culture", "Nature", "Anime", 
+    "Shopping", "Food", "Themeparks", "Culture", "Nature", "Street Markets",  
   ]
 
+  // create city options that users can choose from
   const cityOptions = taiwanCities.map((city) => ({ label: city, value: city }));
+  // create interest options that users can choose from
   const interestOptions = interests.map((interest) => ({ label: interest, value: interest}));
 
   const handleChange = (event: any, changeFor: string) => {
@@ -56,12 +58,13 @@ export default function ItineraryGenerator() {
     console.log("Selected interests: ", selectedInterestValues);
 
     // Check if any field is empty
-    if (selectedCityValues.length === 0 || 
-      !daysOption || 
-      selectedInterestValues.length === 0 || 
-      !numAdultsOption || 
-      !numChildrenOption || 
-      !budgetOption
+    if (
+      (selectedCityValues.length) === 0 || 
+      (selectedInterestValues.length === 0) || 
+      (!daysOption) || 
+      (!numAdultsOption) || 
+      (!numChildrenOption) || 
+      (!budgetOption)
     ) {
       setResponse(""); // Clear previous result
       errorHandler("unfilled fields"); 
@@ -99,10 +102,11 @@ export default function ItineraryGenerator() {
 
       const response = await fetch("http://localhost:8000/gemini", options);
       const data = await response.text();
+      console.log("Markdown response content:", response);
       setResponse(data);
     } catch(error) {
       console.error("Fetch error: ", error);
-      setErrorMessage("Something went wrong while generating the itinerary :[ ). Please try again.");
+      setErrorMessage("ERROR: Something went wrong while generating the itinerary. Please try again.");
     } finally {
     setIsLoading(false); // End loading
     }
@@ -162,8 +166,8 @@ export default function ItineraryGenerator() {
   
   return (
     <>
-      <h1 className="ig-title">Itinerary Generator</h1>
       <section className="itinerary-generator">
+        <h1 className="ig-title">Generate Your <strong>Itinerary</strong></h1>
         <form className="ig-form" onSubmit={submitHandler}>
           <div className="ig-form-field">
             <label htmlFor="days-option">How long is your trip?</label>
@@ -282,14 +286,15 @@ export default function ItineraryGenerator() {
             </button>
           </div>
         </form>
-
+        
+        {/* THIS IS WHERE THE GENERATED IG CONTENT APPEARS */}
         <div className="ig-response">
-          <h3>Itinerary</h3>
           <section>
             {errorMessage && <p className="ig-error-message">{errorMessage}</p>}
             {isLoading && <div className="ig-loading-text-skeleton">
               {[...Array(14)].map((_, i) => GenerateTextSkeletonLine(i))}
             </div>}
+            {/* This converts markdown into html automatically via ReactMarkdown*/}
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {response}
             </ReactMarkdown>

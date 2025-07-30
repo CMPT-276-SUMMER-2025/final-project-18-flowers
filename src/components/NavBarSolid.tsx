@@ -8,11 +8,11 @@ const NavBarSolid = () => {
       <nav id="nav-solid"> 
         <div id="nav-left"><Link to="/">Taiwan Explorers</Link></div>
         <div id="nav-center">
-          <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/destinations">Destinations</Link></li>
-            <li><Link to="/interests">Interests</Link></li>
-            <li><Link to="/plantrip">Plan a trip</Link></li>
+          <ul className='nav-links'>
+            <li className='nav-link'><Link to="/">Home</Link></li>
+            <li className='nav-link'><Link to="/destinations">Destinations</Link></li>
+            <li className='nav-link'><Link to="/interests">Interests</Link></li>
+            <li className='nav-link'><Link to="/plantrip">Plan a trip</Link></li>
           </ul>
         </div>
         <div id="nav-right"><SearchBarSolid /></div>

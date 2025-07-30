@@ -3,15 +3,13 @@
   height: 500px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  column-gap: 1vw;
+  justify-content: center;
   /* background-color: lightsalmon; */
 }
 
 .ig-title {
   font-weight: var(--fw-medium);
   font-size: var(--fs-2xl);
-  margin: 64px 0px 64px 0px;
   text-align: center;
 }
 
@@ -24,8 +22,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-start;
-  border-radius: 15px;
+  border-radius: 16px;
+  margin: 4rem;
 }
 
 .ig-form-field {
@@ -38,20 +36,18 @@
 
 .ig-form-box {
   width: 100%;
-  border: solid 2px #BCBCBC;
-  background-color: white;
-  border-radius: 8px;
 }
 
 .ig-select {
   width: 100%;
-  padding: 12px;
+  padding: 1rem;
+  border-radius: 1rem;
 }
 
 .ig-select:focus {
   outline: 1px solid #469fff;
   outline-offset: 2px;
-  border-radius: 8px;
+  border-radius: 12px;
   transition: outline 50ms ease;
 }
 
@@ -63,20 +59,21 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  margin-top: 1rem;
 }
 
 .ig-form-bottom-buttons button {
   color: white;
-  padding: 8px;
-  border-radius: 8px;
+  padding: 12px;
+  border-radius: 1rem;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: var(--fw-medium);
   cursor: pointer;
-  transition: scale 100ms ease-in-out;
+  transition: scale 50ms ease-in-out;
 }
 
 .ig-form-bottom-buttons button:hover {
-  scale: 1.1;
+  scale: 1.05;
 }
 
 .ig-form-bottom-buttons button:active {
@@ -97,7 +94,7 @@
   display: flex;
   flex-direction: column;
   width: 600px;
-  min-width: 500px;
+  min-width: 300px;
   min-height: 100vh; /* since itinerary is not generated yet */
   background-color:powderblue;
 }
@@ -108,7 +105,7 @@
 }
 
 .ig-response h3 {
-  font-size: 50px;
+  font-size: 80px;
   font-weight: 700;
   text-align: center;
   margin-bottom: 10px;

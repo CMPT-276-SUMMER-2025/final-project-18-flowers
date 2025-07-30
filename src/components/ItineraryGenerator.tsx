@@ -2,6 +2,7 @@ import { useState } from "react";
 import Select from "react-select";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm';
+import PlanTripMap from "./PlanTripMap";
 import "../itinerary.css";
 
 export default function ItineraryGenerator() {
@@ -167,8 +168,8 @@ export default function ItineraryGenerator() {
   return (
     <>
       <section className="itinerary-generator">
-        <h1 className="ig-title">Generate Your <strong>Itinerary</strong></h1>
         <form className="ig-form" onSubmit={submitHandler}>
+          <h1 className="ig-title">Generate Your <strong>Itinerary</strong></h1>
           <div className="ig-form-field">
             <label htmlFor="days-option">How long is your trip?</label>
             <div className="ig-form-box">
@@ -300,6 +301,7 @@ export default function ItineraryGenerator() {
             </ReactMarkdown>
           </section>
         </div>
+        <PlanTripMap></PlanTripMap>
       </section>
     </>
   );

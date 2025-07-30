@@ -87,9 +87,8 @@
 }
 
 .chatbot-output-section {
-  margin-top: 10px;
   overflow: scroll;
-  height: 65%;
+  height: 60%;
   scrollbar-width: none;
 }
 

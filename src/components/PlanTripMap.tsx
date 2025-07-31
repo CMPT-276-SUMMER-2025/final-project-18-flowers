@@ -1,7 +1,8 @@
 import { APIProvider, Map, ColorScheme, useMap } from '@vis.gl/react-google-maps';
 import { useEffect, useState, useRef } from 'react';
 
-type TravelMode = google.maps.TravelMode; // Importing google maps TravelMode type
+type TravelMode = 'DRIVING' | 'WALKING' | 'TRANSIT' | 'BICYCLING';
+
 
 const colorBasedOnMode: Record<TravelMode, string> = {
   WALKING: '#06B6D4',   // cyan
@@ -18,6 +19,7 @@ function RouteRenderer({ mode, fullRoute }: { mode: TravelMode; fullRoute: { lat
   const directionRendererRef = useRef<google.maps.DirectionsRenderer[]>([]);
   const polylinesRef = useRef<google.maps.Polyline[]>([]);
   const markerRef = useRef<google.maps.Marker[]>([]);
+  
 
 
   useEffect(() => {
@@ -61,7 +63,7 @@ function RouteRenderer({ mode, fullRoute }: { mode: TravelMode; fullRoute: { lat
           const request: google.maps.DirectionsRequest = {
             origin: start,
             destination: end,
-            travelMode: mode,
+            travelMode: google.maps.TravelMode.TRANSIT,
             region: 'TW',
           };
           await new Promise<void>((resolve) => { 
@@ -128,7 +130,7 @@ function RouteRenderer({ mode, fullRoute }: { mode: TravelMode; fullRoute: { lat
           origin,
           destination,
           waypoints,
-          travelMode: mode,
+          travelMode: google.maps.TravelMode[mode],
           region: 'TW',
         };
         directionService.route(request, (result, status) => {
@@ -217,34 +219,52 @@ const PlanTripMap = ({ routeCoordinates }: { routeCoordinates: { lat: number; ln
   const taiwanLatLng = { lat: 23.6978, lng: 120.9605 }; 
   const [mode, setMode] = useState<TravelMode | null>(null);
   const [isGoogleReady, setIsGoogleReady] = useState(false);
+  const [mapOptions, setMapOptions] = useState<google.maps.MapOptions | undefined>(undefined);
+
 
   const fullRoute = routeCoordinates;
 
   useEffect(() => { // Delay setting the mode until Google Maps is loaded
     const interval = setInterval(() => {
-      if (window.google?.maps?.TravelMode) {
+      if (window.google?.maps?.TravelMode && window.google?.maps?.ControlPosition) {
         setIsGoogleReady(true);
-        setMode(window.google.maps.TravelMode.DRIVING); // or any default
+        setMode('DRIVING'); // Default travel mode
+        setMapOptions({
+          fullscreenControl: false,
+          streetViewControl: false,
+          mapTypeControl: false,
+          zoomControl: true,
+          zoomControlOptions: {
+            position: google.maps.ControlPosition.TOP_RIGHT,
+          },
+          keyboardShortcuts: true,
+          gestureHandling: 'greedy',
+          restriction: {
+            latLngBounds: {
+              north: 25.4,
+              south: 21.7,
+              west: 119.3,
+              east: 122.1,
+            },
+            strictBounds: true,
+          },
+          minZoom: 6,
+          maxZoom: 18,
+        });
         clearInterval(interval);
       }
     }, 100);
-    
   }, []);
 
   
-  const mapOptions = { 
-    fullscreenControl: false,
-    streetViewControl: false,
-    mapTypeControl: false,
-    keyboardShortcuts: true,
-    gestureHandling: 'none'
-  }
+
 
   return (
     <>
       <div id="regions-container" className='flex flex-col'>
         <div className='plan-map-container relative'>
           <APIProvider apiKey={apiKey} libraries={['geometry']}>
+            {isGoogleReady && (
             <Map 
               id="map"
               defaultZoom={8} 
@@ -259,14 +279,14 @@ const PlanTripMap = ({ routeCoordinates }: { routeCoordinates: { lat: number; ln
               options={ mapOptions }
               disableDefaultUI
             >
-              {isGoogleReady && mode && routeCoordinates.length > 1 && <RouteRenderer mode={mode} fullRoute={fullRoute}/>} 
+              {mode && fullRoute.length > 1 && <RouteRenderer mode={mode} fullRoute={fullRoute}/>} 
             </Map>
+            )}
           </APIProvider>
         </div>
         <div className='absolute'>
           {/* Temp travel mode buttons */}
-          {isGoogleReady && ([ google.maps.TravelMode.DRIVING, google.maps.TravelMode.WALKING, google.maps.TravelMode.BICYCLING,
-            google.maps.TravelMode.TRANSIT, ] as google.maps.TravelMode[]).map((m) => (
+          {isGoogleReady && (['DRIVING', 'WALKING', 'BICYCLING', 'TRANSIT'] as google.maps.TravelMode[]).map((m) => (
             <button
               key={m}
               className={`px-4 py-2 mr-2 ${

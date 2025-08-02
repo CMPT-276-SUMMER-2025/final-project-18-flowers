@@ -12,7 +12,7 @@ const HomeInterestsSection = () => {
         <HomeInterest details={homeInterests[2]}></HomeInterest>
       </div>
       <div className="home-button-wrapper">
-        <ViewButton path="/interests" direction="View more"></ViewButton>
+        <ViewButton path="/interests" direction="View More"></ViewButton>
       </div>
     </>
   )

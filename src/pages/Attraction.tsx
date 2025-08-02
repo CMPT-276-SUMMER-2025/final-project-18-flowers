@@ -83,7 +83,7 @@ const Attraction = () => {
         <nav className="section-nav">
           <ul>
             <HashLink to="#overview" className="anchor-link">Overview</HashLink>
-            <HashLink to="#ai-description" className="anchor-link">AI Description</HashLink>
+            <HashLink to="#ai-description" className="anchor-link">Description</HashLink>
             <HashLink to="#attraction-map" className="anchor-link">Map</HashLink>
             <HashLink to="#hours" className="anchor-link">Hours</HashLink>
             <HashLink to="#hotels" className="anchor-link">Hotels</HashLink>

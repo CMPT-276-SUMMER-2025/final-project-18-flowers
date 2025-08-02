@@ -38,13 +38,13 @@ const AttractionDescription = ({ placeName }: Props) => {
     }, [placeName]);
 
 
-  if (loading) return <p>Loading AI description...</p>;
+  if (loading) return <p>Loading description...</p>;
   if (error) return <p>{error}</p>;
   if (!aiDescription) return null;
 
   return (
     <div className="attraction-description">
-      <h2 className="attraction-sub-titles">AI Description</h2>
+      <h2 className="attraction-sub-titles">Description</h2>
       <ReactMarkdown>{aiDescription}</ReactMarkdown>
     </div>
   );

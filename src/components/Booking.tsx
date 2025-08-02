@@ -29,7 +29,7 @@ const Booking = () => {
 
   return (
     <div>
-      <div>
+      <div className="flex flex-col">
         <h1 className="booking-title">Book your <strong>{labels[select]}</strong></h1>
         <div className="booking-buttons-container">
           <button className={`booking-icon ${select === "flights" ? "selected" : "not-selected"}`} onClick={() => {setSelect("flights")}}>
@@ -49,8 +49,6 @@ const Booking = () => {
           </button>
           {/* <button className="booking-button-type" onClick={() => {setSelect("cars")}}><img src="/assets/booking/cars.svg" alt="cars"></img></button> */}
         </div>
-      </div>
-      <div>
         <ReturnForm></ReturnForm>
       </div>
     </div>

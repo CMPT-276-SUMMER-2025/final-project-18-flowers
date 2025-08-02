@@ -10,6 +10,10 @@
   border-radius: 32px;
 }
 
+.clear-search-bar:focus {
+  outline: none;
+}
+
 .solid-search-bar {
   padding: 8px;
   border-radius: 32px;

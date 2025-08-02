@@ -16,7 +16,7 @@ const HomeAttractionsSection = () => {
           </div>
         </div>
         <div className="home-button-wrapper">
-          <ViewButton path="/interests" direction="Discover More"></ViewButton>
+          <ViewButton path="/interests" direction="Discover More ➤"></ViewButton>
         </div>
     </>
   )

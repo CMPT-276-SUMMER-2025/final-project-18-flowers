@@ -21,7 +21,7 @@
 #nav-solid {
   top: 0%;
   height: 64px;
-  position: absolute;
+  position: block;
   display: flex;
   justify-content: space-evenly;
   align-items: center;

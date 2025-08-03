@@ -48,7 +48,6 @@ const Attraction = () => {
       const placeLatLng = myAttraction.location;
       const hours = myAttraction.regularOpeningHours;
 
-      console.log("LATLNG: " + placeLatLng);
       console.log(placeId);
 
       setDescription(summary || null);

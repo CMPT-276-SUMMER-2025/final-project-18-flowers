@@ -71,6 +71,8 @@ div .nav-links .nav-link:hover {
   background-color: white;
   transform: translateX(-100%); /* translate moves an element along the x-axis */
   transition: transform 0.5s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 #nav-side.open {
@@ -78,25 +80,25 @@ div .nav-links .nav-link:hover {
 }
 
 .nav-side-links {
-  display: flex;
-  position: fixed;
   flex-direction: column;
-  justify-content: center;
-  align-items: left;
-  background-color: red;
-  margin: 2rem 0rem 0rem 2rem;
+  margin: 0rem 0rem 0rem 2rem;
 }
 
 .nav-side-links .snav-link {
-  background-color: yellow;
   margin-bottom: 1rem;
+  padding-bottom: 1rem;
   font-size: var(--fs-lg);
   font-weight: var(--fw-medium);
+  border-bottom: 1px solid lightgrey;
+  transition: color 0.2s ease;
+}
+
+.nav-side-links .snav-link:hover {
+  color: blue;
 }
 
 .close-icon {
-  top: 1rem;
-  right: 1rem;
+  margin: 2rem;
 }
 
 .overlay {

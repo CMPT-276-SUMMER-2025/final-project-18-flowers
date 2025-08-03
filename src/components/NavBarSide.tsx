@@ -25,10 +25,10 @@ const NavBarSide = ({ isOpen, setIsOpen } : SideProp) => {
           </button>
       
           <ul className='nav-side-links'>
-            <li className='snav-link'><Link to="/">Home</Link></li>
-            <li className='snav-link'><Link to="/destinations">Destinations</Link></li>
-            <li className='snav-link'><Link to="/interests">Interests</Link></li>
-            <li className='snav-link'><Link to="/plantrip">Plan a trip</Link></li>
+            <li className='snav-link'><Link to="/" onClick={() => setIsOpen(false)}>Home</Link></li>
+            <li className='snav-link'><Link to="/destinations" onClick={() => setIsOpen(false)}>Destinations</Link></li>
+            <li className='snav-link'><Link to="/interests" onClick={() => setIsOpen(false)}>Interests</Link></li>
+            <li className='snav-link'><Link to="/plantrip" onClick={() => setIsOpen(false)}>Plan a trip</Link></li>
           </ul>
         </nav>
       </div>

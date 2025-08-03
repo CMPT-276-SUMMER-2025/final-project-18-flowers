@@ -14,17 +14,13 @@
   box-shadow: 0 4px 8px rgba(0,0,0,0.5);
   width: 100%;
   border-radius: 16px;
-  padding: 16px;
+  padding: 1rem;
 }
 
 .booking-form-container {
   display: flex;
   flex-direction: column;
-  justify-content: left;
-  align-items: left;
-  width: 100%;
   min-width: 300px;
-  max-width: 500px;
   font-size: large;
 }
 

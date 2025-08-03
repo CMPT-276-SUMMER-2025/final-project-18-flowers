@@ -126,9 +126,20 @@ body, html {
   object-fit: cover;
 }
 
+.ci-region {
+  font-weight: var(--fw-medium);
+  color: rgb(70, 69, 69);
+}
+
 .ci-header {
   font-size: 54px;
   font-weight: var(--fw-medium-bold);
+}
+
+.ci-tagline {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-normal);
+  color: rgb(156, 155, 155);
 }
 
 .ci-header-container {

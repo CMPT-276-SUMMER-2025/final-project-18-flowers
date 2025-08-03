@@ -7,18 +7,20 @@ import Restaurants from "../components/Restaurants"; // restaurants component
 const CityInterests = () => {
   const { id } = useParams();
   
-  const wordsArr = id?.replace("-", " ").split(" ") ?? []; 
+  const wordsArr = id?.replaceAll("-", " ").split(" ") ?? []; 
   const header = wordsArr.map((word: string) => 
     word.charAt(0).toUpperCase() + word.slice(1)
   ).join(" ");
 
-  const [imgSrc, description] = cityInterestsData[header as keyof typeof cityInterestsData] || ["", ""];
+  const [imgSrc, description, region, tagline] = cityInterestsData[header as keyof typeof cityInterestsData] || ["", "", "", ""];
   const latLng = cityCoordinates[header as keyof typeof cityCoordinates] || { lat: 0, lng: 0 };
   
   return (
     <div>
       <div className="ci-header-container">
+        <h3 className="ci-region">{region}</h3>
         <h1 className="ci-header">{header}</h1>
+        <h2 className="ci-tagline">{tagline}</h2>
       </div>
       <img src={imgSrc} alt={header} className="ci-thumb"></img>
       <div className="container">

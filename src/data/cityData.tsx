@@ -188,65 +188,92 @@ export const citiesLatLng = [
 
 // city interests page data 
 export const cityInterestsData = {
-  "Taipei City" : [
-    '/assets/taipei-night.jpeg', 
+  "Taipei City": [
+    '/assets/taipei-night.jpeg',
     "Taipei City (台北市, Táiběi Shì) is the capital and largest metropolitan area of Taiwan, serving as the political, economic, and cultural heart of the island. Located in the Taipei Basin and surrounded by lush mountains, the city offers a unique blend of modern skyscrapers, historic temples, and vibrant street culture. Taipei is renowned for its landmarks, including the towering Taipei 101, the National Palace Museum with its world-class collection of Chinese artifacts, and bustling night markets such as Shilin and Raohe.\n\n Historically, Taipei developed from a small trading settlement during the Qing Dynasty into a major administrative and commercial hub under Japanese rule (1895–1945), which left lasting influences on its architecture and infrastructure. Today, Taipei thrives as a global city, known for its efficient MRT system, thriving tech industry, and diverse culinary scene ranging from street food to Michelin-starred restaurants.\n\n Visitors can soak in hot springs in nearby Beitou, hike Elephant Mountain for panoramic views, or enjoy cultural festivals throughout the year. With its mix of modernity, history, and natural surroundings, Taipei stands as one of Asia’s most dynamic and welcoming cities.",
-  ], 
-  "Hualien City" : [
-    '/assets/city-interests/ci-hualien.jpg', 
+    "Northern Taiwan",
+    "Taiwan’s capital and largest city"
+  ],
+  "Hualien City": [
+    '/assets/city-interests/ci-hualien.jpg',
     "Hualien City (花蓮市, Huālián Shì) is the largest city on Taiwan's east coast and the seat of Hualien County. Nestled between the Pacific Ocean and the Central Mountain Range, it is renowned for its stunning natural landscapes and relaxed coastal charm. The city serves as a gateway to some of Taiwan's most famous attractions, including Taroko Gorge, one of the island's top scenic wonders. Historically, Hualien was home to indigenous peoples long before Chinese settlers arrived in the Qing Dynasty. The area developed slowly compared to Taiwan's western plains, preserving much of its natural beauty. During Japanese rule (1895–1945), Hualien underwent significant modernization, and many architectural traces from this era remain today. Modern Hualien blends cultural diversity, vibrant night markets, and a slower pace of life with breathtaking views of mountains and ocean. Visitors can enjoy the local cuisine, explore seaside parks, or venture into the surrounding national parks. For those seeking tranquility and nature, Hualien is one of Taiwan's most captivating destinations.",
+    "Eastern Taiwan",
+    "Gateway to Taroko Gorge and the east coast"
   ],
-  "Yilan City" : [
-    '/assets/city-interests/ci-yilan.jpg', 
+  "Yilan City": [
+    '/assets/city-interests/ci-yilan.jpg',
     "Yilan City (宜蘭市, Yílán Shì) lies along Taiwan's northeastern coast, known for its hot springs, scenic countryside, and strong ties to traditional culture. Surrounded by mountains and ocean, Yilan offers a peaceful alternative to urban life, with attractions like Luodong Night Market, Lanyang Museum, and Jiaoxi's natural hot springs. The area also features rice paddies, farms, and festivals celebrating local art and food. Its laid-back atmosphere and natural beauty make it a favorite weekend getaway for residents of Taipei.",
+    "Northeastern Taiwan",
+    "Hot spring retreat with traditional culture"
   ],
-  "Taichung City" : [
-    '/assets/city-interests/ci-taichung.jpg', 
+  "Taichung City": [
+    '/assets/city-interests/ci-taichung.jpg',
     "Taichung City (台中市, Táizhōng Shì) is located in central Taiwan and is the island's second-largest city. A cultural and economic hub, Taichung is famous as the birthplace of bubble tea and home to the National Taichung Theater, Rainbow Village, and Fengjia Night Market—one of Asia's largest. With a mix of art, shopping, and urban parks, it offers a youthful, modern vibe. Its central location also makes it a convenient base for exploring nearby mountains, lakes, and temples.",
+    "Central Taiwan",
+    "Creative capital and home of bubble tea"
   ],
-  "Tainan City" : [
-    '/assets/city-interests/ci-tainan.jpg', 
+  "Tainan City": [
+    '/assets/city-interests/ci-tainan.jpg',
     "Tainan City (台南市, Táinán Shì) is Taiwan’s oldest city and former capital, rich in temples, forts, and centuries-old streets. Known for its deeply rooted traditions and historic architecture, Tainan offers visitors a journey through time. Famous sites include Chihkan Tower, Anping Old Fort, and the Confucius Temple. The city is equally beloved for its street food scene, featuring dishes like danzai noodles and milkfish soup. Its warm climate and cultural charm make it a must-visit destination.",
+    "Southern Taiwan",
+    "Taiwan’s oldest city and cultural treasure"
   ],
-  "Kaohsiung City" : [
-    '/assets/city-interests/ci-kaohsiung.jpg', 
+  "Kaohsiung City": [
+    '/assets/city-interests/ci-kaohsiung.jpg',
     "Kaohsiung City (高雄市, Gāoxióng Shì) is a vibrant southern metropolis and Taiwan’s largest port. Once heavily industrial, Kaohsiung has transformed into a city of art, green spaces, and modern waterfronts. Popular attractions include the Pier-2 Art Center, Liuhe Night Market, Lotus Pond, and the scenic Love River. Its warm weather, expanding metro system, and relaxed coastal vibe appeal to travelers seeking both culture and comfort. It’s also a gateway to southern islands and beaches.",
+    "Southern Taiwan",
+    "Taiwan’s harbor city turned cultural hub"
   ],
-
-  // new destinations
-  "New Taipei City" : [
+  "New Taipei City": [
     '/assets/city-interests/ci-newtaipei.jpg',
-    "New Taipei City (新北市, Xīnběi Shì) encircles Taipei and is home to many of northern Taiwan's most iconic attractions. It features scenic mountain towns like Jiufen and Pingxi, coastal marvels like Yehliu Geopark, and popular waterfall hikes such as Shifen. With a mix of nature, tradition, and old mining villages turned tourist favorites, New Taipei offers quick escapes from the capital.\n\n Formerly known as Taipei County, it became a special municipality in 2010. Despite being heavily urbanized in areas like Banqiao and Xinzhuang, New Taipei preserves many green spaces and cultural sites that showcase Taiwan’s history and natural beauty. Travelers often day-trip here from Taipei, but the region’s diversity merits longer stays for those exploring the real depth of northern Taiwan."
+    "New Taipei City (新北市, Xīnběi Shì) encircles Taipei and is home to many of northern Taiwan's most iconic attractions. It features scenic mountain towns like Jiufen and Pingxi, coastal marvels like Yehliu Geopark, and popular waterfall hikes such as Shifen. With a mix of nature, tradition, and old mining villages turned tourist favorites, New Taipei offers quick escapes from the capital.\n\n Formerly known as Taipei County, it became a special municipality in 2010. Despite being heavily urbanized in areas like Banqiao and Xinzhuang, New Taipei preserves many green spaces and cultural sites that showcase Taiwan’s history and natural beauty. Travelers often day-trip here from Taipei, but the region’s diversity merits longer stays for those exploring the real depth of northern Taiwan.",
+    "Northern Taiwan",
+    "Taipei’s scenic and cultural outer ring"
   ],
-  "Keelung City" : [
+  "Keelung City": [
     '/assets/city-interests/ci-keelung.jpg',
-    "Keelung City (基隆市, Jīlóng Shì) is a port city located northeast of Taipei, famous for its maritime culture and seafood-rich night market. Often shrouded in misty rain, Keelung exudes a moody charm with its oceanfront views, colonial remnants, and harbor-side temples. A historic gateway for trade and migration, it has long been one of Taiwan’s most important harbors.\n\n Visitors can explore the colorful Zhengbin Fishing Port, climb to mountain-top forts, or enjoy sea views from Lover's Lake. Its accessibility from Taipei makes it a favored half-day or full-day destination, especially for travelers arriving by cruise ships or seeking coastal vibes."
+    "Keelung City (基隆市, Jīlóng Shì) is a port city located northeast of Taipei, famous for its maritime culture and seafood-rich night market. Often shrouded in misty rain, Keelung exudes a moody charm with its oceanfront views, colonial remnants, and harbor-side temples. A historic gateway for trade and migration, it has long been one of Taiwan’s most important harbors.\n\n Visitors can explore the colorful Zhengbin Fishing Port, climb to mountain-top forts, or enjoy sea views from Lover's Lake. Its accessibility from Taipei makes it a favored half-day or full-day destination, especially for travelers arriving by cruise ships or seeking coastal vibes.",
+    "Northern Taiwan",
+    "Taiwan’s rain-kissed harbor city"
   ],
-  "Taitung City" : [
+  "Taitung City": [
     '/assets/city-interests/ci-taitung.jpg',
-    "Taitung City (台東市, Táidōng Shì) lies on Taiwan’s scenic southeastern coast and serves as a laid-back hub for nature lovers and cultural explorers. Surrounded by mountains and the Pacific Ocean, it’s known for its indigenous heritage, relaxed vibe, and proximity to natural wonders along the East Rift Valley and coastline.\n\n Taitung hosts Taiwan’s annual International Balloon Festival in nearby Luye and is also the launching point for ferries to Green Island and Orchid Island. It’s less developed than the west coast cities, but that’s part of its charm—ideal for those seeking hot springs, cycling paths, or slow travel immersed in Taiwan’s rich aboriginal cultures."
+    "Taitung City (台東市, Táidōng Shì) lies on Taiwan’s scenic southeastern coast and serves as a laid-back hub for nature lovers and cultural explorers. Surrounded by mountains and the Pacific Ocean, it’s known for its indigenous heritage, relaxed vibe, and proximity to natural wonders along the East Rift Valley and coastline.\n\n Taitung hosts Taiwan’s annual International Balloon Festival in nearby Luye and is also the launching point for ferries to Green Island and Orchid Island. It’s less developed than the west coast cities, but that’s part of its charm—ideal for those seeking hot springs, cycling paths, or slow travel immersed in Taiwan’s rich aboriginal cultures.",
+    "Southeastern Taiwan",
+    "Indigenous culture and coastal serenity"
   ],
-  "Nantou County" : [
+  "Nantou County": [
     '/assets/city-interests/ci-nantou.jpg',
-    "Nantou County (南投縣, Nántóu Xiàn) is Taiwan’s only landlocked region, located in the mountainous center of the island. Despite lacking a coastline, it’s one of Taiwan’s most popular domestic travel destinations, thanks to Sun Moon Lake, Cingjing Farm, and access to the Central Mountain Range.\n\n Rich in tea-growing culture and forested beauty, Nantou blends agricultural life with tourism, attracting hikers, cyclists, and leisure travelers alike. Visitors can experience scenic cable cars, high-altitude farms, and traditional indigenous villages that reflect the heart of rural Taiwan."
+    "Nantou County (南投縣, Nántóu Xiàn) is Taiwan’s only landlocked region, located in the mountainous center of the island. Despite lacking a coastline, it’s one of Taiwan’s most popular domestic travel destinations, thanks to Sun Moon Lake, Cingjing Farm, and access to the Central Mountain Range.\n\n Rich in tea-growing culture and forested beauty, Nantou blends agricultural life with tourism, attracting hikers, cyclists, and leisure travelers alike. Visitors can experience scenic cable cars, high-altitude farms, and traditional indigenous villages that reflect the heart of rural Taiwan.",
+    "Central Taiwan",
+    "Mountain haven and home of Sun Moon Lake"
   ],
-  "Chiayi City" : [
+  "Chiayi City": [
     '/assets/city-interests/ci-chiayi.jpg',
-    "Chiayi City (嘉義市, Jiāyì Shì) is a quiet city in southwestern Taiwan known as the main gateway to the Alishan mountain area. While the city itself is small and laid-back, it has a distinct cultural identity rooted in forestry, railroads, and local cuisine.\n\n Historically shaped by Japanese colonization, Chiayi retains charming relics such as the Chiayi Old Prison and Hinoki Village. Visitors typically use it as a base for exploring Alishan but can enjoy a relaxed stop here with night markets, woodcraft traditions, and friendly hospitality."
+    "Chiayi City (嘉義市, Jiāyì Shì) is a quiet city in southwestern Taiwan known as the main gateway to the Alishan mountain area. While the city itself is small and laid-back, it has a distinct cultural identity rooted in forestry, railroads, and local cuisine.\n\n Historically shaped by Japanese colonization, Chiayi retains charming relics such as the Chiayi Old Prison and Hinoki Village. Visitors typically use it as a base for exploring Alishan but can enjoy a relaxed stop here with night markets, woodcraft traditions, and friendly hospitality.",
+    "Southwestern Taiwan",
+    "Laid-back city and gateway to Alishan"
   ],
-  "Pingtung County" : [
+  "Pingtung County": [
     '/assets/city-interests/ci-pingtung.jpg',
-    "Pingtung County (屏東縣, Píngdōng Xiàn) occupies Taiwan’s southern tip and is best known for Kenting National Park, with its sunny beaches, coral reefs, and tropical landscapes. While Kenting draws most visitors, the county also offers cultural and indigenous experiences inland.\n\n Pingtung’s warm climate and coastal beauty make it a favorite for vacations, especially among locals. Though other parts of the county are less tourist-oriented, Kenting alone makes Pingtung a must-visit for beach lovers and festivalgoers alike."
+    "Pingtung County (屏東縣, Píngdōng Xiàn) occupies Taiwan’s southern tip and is best known for Kenting National Park, with its sunny beaches, coral reefs, and tropical landscapes. While Kenting draws most visitors, the county also offers cultural and indigenous experiences inland.\n\n Pingtung’s warm climate and coastal beauty make it a favorite for vacations, especially among locals. Though other parts of the county are less tourist-oriented, Kenting alone makes Pingtung a must-visit for beach lovers and festivalgoers alike.",
+    "Southern Taiwan",
+    "Tropical getaway with beaches and reefs"
   ],
-  "Miaoli County" : [
+  "Miaoli County": [
     '/assets/city-interests/ci-miaoli.jpg',
-    "Miaoli County (苗栗縣, Miáolì Xiàn) is a hilly region in north-central Taiwan, known for its Hakka heritage, seasonal farming, and slower rural pace. It lacks the dense tourism infrastructure of Taiwan’s bigger cities, but offers peaceful retreats and cultural depth.\n\n Visitors can explore Hakka villages, try traditional Lei Cha (ground tea), or join seasonal events like strawberry and tung blossom festivals. Miaoli is ideal for travelers looking to experience Taiwan’s countryside and minority cultures away from the usual tourist trail."
+    "Miaoli County (苗栗縣, Miáolì Xiàn) is a hilly region in north-central Taiwan, known for its Hakka heritage, seasonal farming, and slower rural pace. It lacks the dense tourism infrastructure of Taiwan’s bigger cities, but offers peaceful retreats and cultural depth.\n\n Visitors can explore Hakka villages, try traditional Lei Cha (ground tea), or join seasonal events like strawberry and tung blossom festivals. Miaoli is ideal for travelers looking to experience Taiwan’s countryside and minority cultures away from the usual tourist trail.",
+    "North-Central Taiwan",
+    "Quiet countryside with Hakka charm"
   ],
-  "Changhua County" : [
+  "Changhua County": [
     '/assets/city-interests/ci-changhua.jpg',
-    "Changhua County (彰化縣, Zhānghuà Xiàn) sits in central Taiwan and is best known for its historical temples, local markets, and the massive Great Buddha statue at Baguashan. While not a major tourism hotspot, it offers a glimpse into Taiwan’s religious traditions and agricultural heritage.\n\n As one of Taiwan’s earliest Han Chinese settlements, Changhua played a key role in early development on the island. Today, it remains an authentic place to explore folk culture, traditional architecture, and a slower pace of life."
-  ]
+    "Changhua County (彰化縣, Zhānghuà Xiàn) sits in central Taiwan and is best known for its historical temples, local markets, and the massive Great Buddha statue at Baguashan. While not a major tourism hotspot, it offers a glimpse into Taiwan’s religious traditions and agricultural heritage.\n\n As one of Taiwan’s earliest Han Chinese settlements, Changhua played a key role in early development on the island. Today, it remains an authentic place to explore folk culture, traditional architecture, and a slower pace of life.",
+    "Central Taiwan",
+    "Historic county with temples and traditions"
+  ],
 };
+
 
 // attractions data to save costs while developing for city interests page
 export const mockPlacesAttractions = [

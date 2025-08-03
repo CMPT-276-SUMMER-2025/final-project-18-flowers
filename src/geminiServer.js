@@ -52,7 +52,7 @@ app.post('/gemini', async (req, res) => {
         role: 'system',
         parts: [
           {
-            text: 'Your job is to generate a short description of the given city in Taiwan',
+            text: 'Your job is to generate a short description of the given attraction in Taiwan',
           },
         ],
       },

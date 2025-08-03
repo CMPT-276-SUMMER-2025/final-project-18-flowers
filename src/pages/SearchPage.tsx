@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import SearchList from "../components/SearchList";
-import Booking from "../components/BookingFlights";
+import Booking from "../components/Booking";
 import "../search.css";
 
 //@ts-expect-error

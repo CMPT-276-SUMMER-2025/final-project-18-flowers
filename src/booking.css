@@ -3,7 +3,7 @@
   font-size: var(--fs-2xl);
   font-weight: var(--fw-medium);
   font-size: var(--fs-2xl);
-  margin: 2rem 0px 0px 1rem;
+  margin: 2rem 0px 0.5rem 0px;
 }
 
 .booking-title strong {
@@ -11,19 +11,16 @@
 }
 
 .booking-container {
-  margin: 4px auto 32px auto;
   box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-  width: 300px;
+  width: 100%;
   border-radius: 16px;
-  padding: 16px;
+  padding: 1rem;
 }
 
 .booking-form-container {
   display: flex;
   flex-direction: column;
-  justify-content: left;
-  align-items: left;
-  width: 100%;
+  min-width: 300px;
   font-size: large;
 }
 
@@ -53,15 +50,46 @@ select, input {
   font-size: var(--fs-xs);
 }
 
-.booking-button-type {
-  width: 48px;
-  height: 48px;
-  border: 1px solid lightgrey;
-  border-radius: 8px;
-  padding: 6px;
-  margin: 0px 8px 0px 0px;
+.booking-buttons-container {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
-.booking-button-type img path {
-  fill: blue; 
+.booking-icon {
+  display: flex;
+  flex-direction: column;
 }
+
+.booking-icon svg {
+  width: 48px;
+  height: 48px;
+  border: 2px solid lightgrey;
+  border-radius: 8px;
+  padding: 6px;
+}
+
+.selected svg {
+  background-color: blue;
+  fill: white;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.selected .booking-type {
+  color: black;
+  font-weight: var(--fw-medium);
+}
+
+.not-selected:hover {
+  fill: blue;
+  background-color: rgb(249, 249, 249);
+}
+
+.booking-type {
+  font-size: var(--fs-sm);
+  color: rgb(108, 107, 107);
+}
+

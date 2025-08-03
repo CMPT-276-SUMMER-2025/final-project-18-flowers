@@ -2,11 +2,14 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { mockPlacesRestaurants } from '../data/cityData';
 
-type Props = { cityname: string };
+type Props = { 
+  cityname: string,
+  latLng: { lat: number, lng: number }
+};
 
-const saveAPICost = true;
+const saveAPICost = false;
 
-const Restaurants = ({ cityname } : Props) => {
+const Restaurants = ({ cityname, latLng } : Props) => {
   // type alias TPlace object that holds id, displayName
   type TPlace = {
     id: string;
@@ -18,8 +21,8 @@ const Restaurants = ({ cityname } : Props) => {
   const [places, setPlaces] = useState<TPlace[]>([]);
   const { id } = useParams();  
   console.log(id);
+  console.log("cityname: " + cityname);
 
-  // temporary, the center property is also temporary and needs to match cityname id lat lng
   const placeRadius = 3000; 
 
   useEffect(() => {
@@ -27,18 +30,17 @@ const Restaurants = ({ cityname } : Props) => {
       setPlaces(mockPlacesRestaurants);
       return; 
     }
-    console.log("You just spent money!");
     async function getHotels() {
       const { Place, SearchNearbyRankPreference } = await google.maps.importLibrary('places') as google.maps.PlacesLibrary;
       const myRequest = {
         locationRestriction: { 
-          center: { lat: 24.7571, lng: 121.7539 }, 
+          center: latLng, 
           radius: placeRadius,
         },
         fields: ["id", "displayName", "photos"], // save cost by specifying only displayName field and photos (essentials tier => cheaper)
-        includedTypes: ["chinese_restaurant"], 
+        includedTypes: ["restaurant"], 
         rankPreference: SearchNearbyRankPreference.POPULARITY, // only request relevant to query 
-        maxResultCount: 4, // only request 9 places total
+        maxResultCount: 4, // only request 4 places total
         language: "en-US",
         region: 'us',
       }
@@ -68,7 +70,7 @@ const Restaurants = ({ cityname } : Props) => {
         {places.map((place) => (
           <a 
             key = {place.id}
-            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.displayName || '')}`}
+            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.displayName + ' ' + cityname)}`}
             target="_blank"
             rel="noopener noreferrer"
           >

@@ -7,7 +7,8 @@ import { GoogleGenerativeAI } from '@google/generative-ai'; // Gemini API SDK th
 dotenv.config(); // Load API key from .env file
 
 const app = express(); // app is our server
-const PORT = 8000; // the server "app" will run on the "localhost:8000"
+const PORT = process.env.PORT || 8000; // default port is 8000, but can be overridden by environment variable for live build
+
 
 app.use(cors()); // allows frontend to talk to backend 
 app.use(express.json()); // automatically parse JSON in incoming requests 

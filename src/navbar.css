@@ -59,3 +59,49 @@ div .nav-links .nav-link:hover {
 .nav-right {
   width: 20%;
 }
+
+/* nav bar side */
+
+#nav-side {
+  top: 0;
+  left: 0;
+  position: fixed;
+  height: 100%;
+  width: 30vh;
+  background-color: white;
+  transform: translateX(-100%); /* translate moves an element along the x-axis */
+  transition: transform 0.5s ease;
+}
+
+#nav-side.open {
+  transform: translateX(0); /* if isOpen, move sidebar back to x=0 */
+}
+
+.nav-side-links {
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  background-color: red;
+  margin: 2rem 0rem 0rem 2rem;
+}
+
+.nav-side-links .snav-link {
+  background-color: yellow;
+  margin-bottom: 1rem;
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-medium);
+}
+
+.close-icon {
+  top: 1rem;
+  right: 1rem;
+}
+
+.overlay {
+  inset: 0; /* applies same offset to top, left, bottom, right at once */
+  background-color: rgba(0,0,0,0.5);
+  position: fixed;
+  z-index: 40;
+}

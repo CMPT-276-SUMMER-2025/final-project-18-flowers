@@ -20,6 +20,8 @@ export default function ItineraryGenerator() {
   const [response, setResponse] = useState(""); 
   //store route coordinates for the map
   const [routeCoordinates, setRouteCoordinates] = useState<{ lat: number; lng: number }[]>([]);
+  const [resetMapTrigger, setResetMapTrigger] = useState(0); // trigger map reset
+
 
   const taiwanCities = [
     "Changhua", "Chiayi",  
@@ -53,6 +55,7 @@ export default function ItineraryGenerator() {
   async function submitHandler(event: any) {
     event.preventDefault();
     setErrorMessage("");//clear any existing error messages
+    
 
     const selectedCityValues = selectedCities.map((c) => c.value);
     console.log("Selected cities:", selectedCityValues);
@@ -81,6 +84,7 @@ export default function ItineraryGenerator() {
       return;
     }
 
+    setRouteCoordinates([]); // Clear previous route coordinates
     setIsLoading(true); // Start loading
     setResponse(""); // Clear previous result
 
@@ -108,7 +112,11 @@ export default function ItineraryGenerator() {
       console.log("Full response from server:", data);
       console.log("Markdown response content:", response);
       setResponse(data.text); 
-      setRouteCoordinates(data.routeCoordinates || []); // The coordinates for the map
+      setRouteCoordinates([]); // clear previous route coordinates
+      setTimeout(() => {
+        setRouteCoordinates(data.routeCoordinates || []); // Set new route coordinates for the map
+        setResetMapTrigger(prev => prev + 1); // triggers map reset
+      }, 0); // force the map to re-render with new coordinates
     } catch(error) {
       console.error("Fetch error: ", error);
       setErrorMessage("ERROR: Something went wrong while generating the itinerary. Please try again.");
@@ -128,6 +136,8 @@ export default function ItineraryGenerator() {
     setBudgetOption("");
     setResponse("");
     setErrorMessage("");
+    setRouteCoordinates([]); // Clear the route coordinates for the map
+    setResetMapTrigger(prev => prev + 1);
   }
 
   //custom styles react-select
@@ -305,7 +315,7 @@ export default function ItineraryGenerator() {
             </ReactMarkdown>
           </section>
         </div>
-        <PlanTripMap routeCoordinates={routeCoordinates} />
+        <PlanTripMap routeCoordinates={routeCoordinates} resetTrigger={resetMapTrigger} />
       </section>
     </>
   );

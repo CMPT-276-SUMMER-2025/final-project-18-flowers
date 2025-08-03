@@ -92,21 +92,22 @@ const Attraction = () => {
         </nav>
 
         <div className="">
-          {description && (
-            <div id="overview" className="attraction-description">
-              <h2 className="attraction-sub-titles">Overview</h2>
-              <p>{description}</p>
-            </div>
-          )}
-          
-          <div id="ai-description">
-          <AttractionDescription placeName={formatAttractionName(attract)}/>
-          </div>
-
-          <div className="map-and-hours-section">
-            <div id="attraction-map">
-              <h2 className="attraction-sub-titles">Map</h2>
-              {coord && <AttractionMap lat={coord.lat} lng={coord.lng}></AttractionMap>}
+          <div className="commodities-container">
+            {description && (
+              <div id="overview" className="attraction-description">
+                <h2 className="attraction-sub-titles">Overview</h2>
+                <p>{description}</p>
+                <div className="map-and-hours-section">
+                  <div id="attraction-map">
+                    <h2 className="attraction-sub-titles">Map</h2>
+                    {coord && <AttractionMap lat={coord.lat} lng={coord.lng}></AttractionMap>}
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            <div id="ai-description">
+            <AttractionDescription placeName={formatAttractionName(attract)}/>
             </div>
           </div>
 

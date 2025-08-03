@@ -34,7 +34,7 @@ const AttractionMap = ({ lat, lng }: Coord) => {
   }, []);
 
   return (
-    <div className="border-0 rounded-3xl overflow-hidden" style={{ width: "600px", height: "400px" }}>
+    <div className="attraction-map" style={{ width: "500px", height: "350px"}}>
       <APIProvider apiKey={apiKey}>
         <Map
           center={{ lat, lng }}

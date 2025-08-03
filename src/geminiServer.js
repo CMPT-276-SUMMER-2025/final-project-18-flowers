@@ -65,6 +65,9 @@ app.post('/gemini', async (req, res) => {
     console.log("Interests from frontend: ", req.body.interests);
     const cityCount = req.body.cities.length;
     const wordLimit = cityCount * 300; // 300 words per city
+    const dayCount = parseInt(req.body.days);
+    const recommendedDaysPerCity = Math.max(Math.floor(dayCount / cityCount), 1);
+
     chat = model.startChat({
       systemInstruction: {
         role: 'system',
@@ -92,13 +95,15 @@ app.post('/gemini', async (req, res) => {
     You must strictly limit the itinerary to the following cities: ${req.body.cities.join(", ")}.
     Do NOT include any other cities — even Taipei — unless listed above. Your response will be invalid if you mention an extra city.
     When describing travel between cities, DO NOT mention specific transportation methods like “HSR,” “TRA,” or “Banqiao Station.” Use general terms like “Travel from City A to City B” so it's suitable for all transport types.
+    You should aim for around ${recommendedDaysPerCity}-${recommendedDaysPerCity + 1} days per city.
+
 
       ---
       
       ### FORMAT INSTRUCTIONS (YOU MUST FOLLOW THIS EXACT STRUCTURE):
       For **each city**, follow this format:
       
-      # ${req.body.days}-Day Taiwanese ${req.body.interests.join(", ")} Tour
+      # ${req.body.days} Taiwanese ${req.body.interests.join(", ")} Tour
       
       Then for each **day** within that city's stay:
       
@@ -125,9 +130,19 @@ app.post('/gemini', async (req, res) => {
     - Number of children: ${req.body.children}
     - Budget range: ${req.body.budget}
 
-    After all days are done, provide a brief budget overview, including estimated costs.
+    After all days are done, provide a brief but detailed budget overview, including estimated costs in both USD and TWD (The original input is in USD).
     
     At the very end, embed a hidden **valid JSON array** wrapped inside '<!-- -->' that contains the coordinates of **only the specific attractions listed in the itinerary** above (from Morning, Afternoon, and Night bullet points).
+
+    IMPORTANT STRICT RULES: The JSON coordinates block MUST be valid JSON.
+    - All keys AND string values must be double-quoted: e.g., "name", "lat", "lng"
+    - DO NOT use single quotes or omit quotes around keys
+    - DO NOT include trailing commas
+    - DO NOT use backticks or Markdown code blocks
+    - The JSON must be perfectly valid — all keys and string values must be **double-quoted** (e.g., "name", not name)
+    - NO trailing commas
+    - DO NOT include backticks, markdown, explanations, or headings
+    - The comment must contain ONLY the raw JSON array and nothing else
 
     Format example:
     <!--
@@ -136,12 +151,6 @@ app.post('/gemini', async (req, res) => {
         { "name": "Taroko Gorge", "lat": 24.1632, "lng": 121.5396 }
       ]
     -->
-
-    STRICT RULES:
-    - The JSON must be perfectly valid — all keys and string values must be **double-quoted** (e.g., "name", not name)
-    - NO trailing commas
-    - DO NOT include backticks, markdown, explanations, or headings
-    - The comment must contain ONLY the raw JSON array and nothing else
     `;
   }
 

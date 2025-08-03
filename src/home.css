@@ -48,7 +48,7 @@
 .home-section-title {
   font-weight: var(--fw-medium);
   font-size: var(--fs-2xl);
-  margin: 2rem 0px 0px 1rem;
+  margin: 3rem 0px 0.5rem 1rem;
 }
 
 /* home interests component */
@@ -76,12 +76,6 @@
 .interest-box:hover {
   transform: scale(1.02);
   box-shadow: 0 5px 9px rgba(0,0,0,0.6);
-}
-
-.home-interests-title {
-  font-weight: var(--fw-medium);
-  font-size: var(--fs-2xl);
-  margin: 2rem 0px 0px 1rem;
 }
 
 .box-logo {

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import SearchBar from './SearchBar';
+import SearchBarSolid from './SearchBarSolid';
 import "../navbar.css";
 import { useState } from 'react';
 import NavBarSide from './NavBarSide';
@@ -33,7 +33,7 @@ const NavBarSolid = () => {
           </ul>
           <Link to="/" className='te-logo block lg:hidden'>Taiwan Explorers</Link>
         </div>
-        <div className="nav-right justify-end lg:justify-start"><SearchBar /></div>
+        <div className="nav-right justify-end lg:justify-start"><SearchBarSolid /></div>
       </nav>
     </>
   )

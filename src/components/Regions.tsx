@@ -73,7 +73,7 @@ const Regions = () => {
               id="map"
               defaultZoom={7.6} 
               defaultCenter={ taiwanLatLng }
-              style={{ width: "384px", height: "600px" }}
+              style={{ width: "400px", height: "600px" }}
               colorScheme={ColorScheme.LIGHT}
               // onCameraChanged={ (ev: MapCameraChangedEvent) =>
               //   console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)

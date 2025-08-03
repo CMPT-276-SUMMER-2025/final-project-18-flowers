@@ -2,18 +2,20 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { mockPlacesHotels } from '../data/cityData';
 
-type Props = { cityname: string };
+type Props = { 
+  cityname: string,
+  latLng: { lat: number, lng: number }
+};
 
-const saveAPICost = true;
+const saveAPICost = false;
 
-const Hotels = ({ cityname } : Props) => {
+const Hotels = ({ cityname, latLng } : Props) => {
   // type alias TPlace object that holds id, displayName
   type TPlace = {
     id: string;
     displayName?: string | null;
     photoUrl?: string;
   };
-
 
   const [places, setPlaces] = useState<TPlace[]>([]);
   const { id } = useParams();  
@@ -26,16 +28,15 @@ const Hotels = ({ cityname } : Props) => {
       setPlaces(mockPlacesHotels);
       return; 
     }
-    console.log("You just spent money!");
     async function getHotels() {
       const { Place, SearchNearbyRankPreference } = await google.maps.importLibrary('places') as google.maps.PlacesLibrary;
       const myRequest = {
         locationRestriction: { 
-          center: { lat: 24.7571, lng: 121.7539 }, 
+          center: latLng, 
           radius: placeRadius,
         },
         fields: ["id", "displayName", "photos"], // save cost by specifying only displayName field and photos (essentials tier => cheaper)
-        includedTypes: ["hotel", "resort_hotel"], 
+        includedTypes: ["hotel"], 
         rankPreference: SearchNearbyRankPreference.POPULARITY, // only request relevant to query 
         maxResultCount: 4, // only request 9 places total
         language: "en-US",

@@ -344,3 +344,20 @@ export const mockPlacesRestaurants = [
     photoUrl: '/assets/restaurants/res-4.jpg',
   },
 ];
+
+export const cityCoordinates = {
+  "Taipei City": { lat: 25.0330, lng: 121.5654 },
+  "Hualien City": { lat: 23.9878, lng: 121.6044 },
+  "Yilan City": { lat: 24.7546, lng: 121.7550 },
+  "Kaohsiung City": { lat: 22.6273, lng: 120.3014 },
+  "Tainan City": { lat: 22.9999, lng: 120.2270 },
+  "Taichung City": { lat: 24.1477, lng: 120.6736 },
+  "New Taipei City": { lat: 25.0169, lng: 121.4628 },
+  "Keelung City": { lat: 25.1283, lng: 121.7419 },
+  "Taitung": { lat: 22.7583, lng: 121.1442 },
+  "Nantou County": { lat: 23.8388, lng: 120.9876 },
+  "Chiayi City": { lat: 23.4800, lng: 120.4499 },
+  "Pingtung County": { lat: 22.6775, lng: 120.4905 },
+  "Miaoli County": { lat: 24.5607, lng: 120.8219 },
+  "Changhua County": { lat: 24.0681, lng: 120.5440 }
+};

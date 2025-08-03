@@ -6,13 +6,13 @@ const HomeInterestsSection = () => {
   return (
     <>
       <div id="home-interests-container">
-        <h1 className="home-interests-title">Interests</h1>
+        <h1 className="home-section-title"><strong>Interests</strong></h1>
         <HomeInterest details={homeInterests[0]}></HomeInterest>
         <HomeInterest details={homeInterests[1]}></HomeInterest>
         <HomeInterest details={homeInterests[2]}></HomeInterest>
       </div>
       <div className="home-button-wrapper">
-        <ViewButton path="/interests" direction="View more"></ViewButton>
+        <ViewButton path="/interests" direction="View More ➤"></ViewButton>
       </div>
     </>
   )

@@ -9,7 +9,10 @@ describe('Hotels component', () => {
     render(
       <MemoryRouter initialEntries={[`/hotels/123`]}>
         <Routes>
-          <Route path="/hotels/:id" element={<Hotels cityname="Yilan" />} />
+          <Route 
+            path="/hotels/:id" 
+            element={<Hotels cityname="Yilan" latLng={{ lat: 24.7571, lng: 121.7539 }} />}
+          />        
         </Routes>
       </MemoryRouter>
     );

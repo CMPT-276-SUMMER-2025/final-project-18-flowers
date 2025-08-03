@@ -68,6 +68,11 @@ body, html {
   font-weight: var(--fw-medium-bold);
 }
 
+#dest-show-button:hover {
+  background-color: rgb(239, 239, 239);
+  cursor: pointer;
+}
+
 /* city card component */
 
 .dest-card {
@@ -78,6 +83,13 @@ body, html {
   display: flex;
   flex-direction: column;
   position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dest-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+  z-index: 5;
 }
 
 .city-img {
@@ -114,9 +126,20 @@ body, html {
   object-fit: cover;
 }
 
+.ci-region {
+  font-weight: var(--fw-medium);
+  color: rgb(70, 69, 69);
+}
+
 .ci-header {
   font-size: 54px;
   font-weight: var(--fw-medium-bold);
+}
+
+.ci-tagline {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-normal);
+  color: rgb(156, 155, 155);
 }
 
 .ci-header-container {
@@ -150,25 +173,26 @@ body, html {
 #attractions-container {
   width: 100%;
   display: grid;
+  justify-content: space-between;
   grid-template-columns: repeat(3, auto);
-  column-gap: 48px;
+  margin-bottom: 3rem;
 }
 
 .attractions {
   position: relative;
-  margin: 12px 0px 12px 0px;
+  margin: 1rem 0rem 0.5rem 0rem;
+  transition: transform 0.2s ease;
 }
 
 .attractions::before {
   content: '';
   position: absolute;
-  width: 200px;
+  width: 100%;
   height: 40%; /* only add shading to top 40% */
-  background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
+  background: linear-gradient(to bottom, rgba(0,0,0,0.4), transparent);
   /* make shadow edges rounded */
-    border-top-left-radius: 8px;  
-    border-top-right-radius: 8px;
-  z-index: 4;
+  border-top-left-radius: 8px;  
+  border-top-right-radius: 8px;
 }
 
 .attractions-name {
@@ -185,11 +209,15 @@ body, html {
 }
 
 .attractions-photo {
-  width: 200px;
+  width: 232px;
   height: 200px;
   border-radius: 8px;
   object-fit: cover;
   box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+.attractions:hover {
+  transform: scale(1.05);
 }
 
 /* attraction (the page not the grids) component */
@@ -202,9 +230,10 @@ body, html {
   justify-content: center;
 }
 
-.attraction-c1 {
-  /* background-color: lightcoral; */
-} 
+
+/* .attraction-c1 {
+  background-color: lightcoral;
+} */
 
 .attraction-c2 {
   margin-top: 18rem;

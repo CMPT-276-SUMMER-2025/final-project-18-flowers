@@ -8,7 +8,7 @@ type ViewButtonProps = {
 const ViewButton = ({ path, direction } : ViewButtonProps ) => {
   return (
     <Link to={path} className="view-button">
-      {direction}
+      {direction} 
     </Link>
   );
 }

@@ -64,7 +64,7 @@ const Regions = () => {
   return (
     <>
       <div id="dummy-map"></div>
-      <h1 id="regions-title"><strong>Regions</strong> of Taiwan</h1>
+      <h1 id="regions-title"><strong>Destinations</strong> of Taiwan</h1>
       <div id="regions-container" className='flex lg:flex-row flex-col justify-center items-center'>
         <div className="region-content">{showComponent && <RegionContent key={cityName} cityname={cityName} />}</div>
         <div className='map-container'>
@@ -73,7 +73,7 @@ const Regions = () => {
               id="map"
               defaultZoom={7.6} 
               defaultCenter={ taiwanLatLng }
-              style={{ width: "384px", height: "600px" }}
+              style={{ width: "400px", height: "600px" }}
               colorScheme={ColorScheme.LIGHT}
               // onCameraChanged={ (ev: MapCameraChangedEvent) =>
               //   console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)

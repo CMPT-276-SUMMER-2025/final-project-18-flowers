@@ -64,6 +64,8 @@ app.post('/gemini', async (req, res) => {
   if(req.headers.purpose === "generate-itinerary") {
     console.log("Cities from frontend:", req.body.cities);
     console.log("Interests from frontend: ", req.body.interests);
+    const cityCount = req.body.cities.length;
+    const wordLimit = cityCount * 300; // 300 words per city
     chat = model.startChat({
       systemInstruction: {
         role: 'system',
@@ -75,8 +77,8 @@ app.post('/gemini', async (req, res) => {
             [Itinerary in Markdown]
             <!--
             [
-              { "name": "Taipei 101", "lat": 25.033964, "lng": 121.564468 },
-              { "name": "Rainbow Village", "lat": 24.1332, "lng": 120.6492 }
+              { "name": "Place 1", "lat": 23.123, "lng": 120.456 },
+              ...
             ]
             -->
             `,
@@ -86,11 +88,12 @@ app.post('/gemini', async (req, res) => {
     });
     // ensure that gemini is told to use markdown well such that ReactMarkDown can present a good looking generated itinerary
     msg = `
-    Generate a detailed travel itinerary (MAX 1000 words) for a trip to Taiwan.
+    Generate a detailed travel itinerary (limit ${wordLimit} words) for a trip to Taiwan.
     
-    You must ONLY include these cities in the itinerary: ${req.body.cities.join(", ")}.  
-    Do NOT include any other cities, especially not Taipei, unless it is specifically listed above.
-    
+    You must strictly limit the itinerary to the following cities: ${req.body.cities.join(", ")}.
+    Do NOT include any other cities — even Taipei — unless listed above. Your response will be invalid if you mention an extra city.
+    When describing travel between cities, DO NOT mention specific transportation methods like “HSR,” “TRA,” or “Banqiao Station.” Use general terms like “Travel from City A to City B” so it's suitable for all transport types.
+
       ---
       
       ### FORMAT INSTRUCTIONS (YOU MUST FOLLOW THIS EXACT STRUCTURE):
@@ -111,7 +114,8 @@ app.post('/gemini', async (req, res) => {
         - Attraction 1  
         - Attraction 2
       
-      Use Markdown-style headers as shown above. Do **not** skip any time blocks. No generic filler like “explore the city” unless it’s tied to a specific activity. Use bullet points. Do NOT include headings like “Itinerary” or “Trip Overview”. Add more details about each attraction and make sure its consistent format.
+      Use Markdown-style headers as shown above. Do **not** skip any time blocks. Avoid vague terms like “explore the city” or “visit local shops.” Instead, name specific attractions (e.g., “Taroko Gorge,” “Alishan Railway”). 
+      Use bullet points. DO NOT repeat the city header more than once. No headings like “Itinerary” or “Trip Overview”. Add more details about each attraction and make sure its consistent format.
       
       ---
     
@@ -124,19 +128,21 @@ app.post('/gemini', async (req, res) => {
 
     After all days are done, provide a brief budget overview, including estimated costs.
     
-    At the end of the response, return only this:
+    At the very end, embed a hidden **valid JSON array** wrapped inside '<!-- -->' that contains the coordinates of **only the specific attractions listed in the itinerary** above (from Morning, Afternoon, and Night bullet points).
 
+    Format example:
     <!--
-    [
-      { "name": "Taipei 101", "lat": 25.033964, "lng": 121.564468 },
-      { "name": "Rainbow Village", "lat": 24.1332, "lng": 120.6492 }
-    ]
+      [
+        { "name": "Alishan Forest Railway", "lat": 23.5100, "lng": 120.8030 },
+        { "name": "Taroko Gorge", "lat": 24.1632, "lng": 121.5396 }
+      ]
     -->
 
-    IMPORTANT: 
-    - This block must be **valid JSON**, wrapped in <!-- -->
-    - No Markdown, no headings, no extra text
-    - Only one JSON array, not multiple
+    STRICT RULES:
+    - The JSON must be perfectly valid — all keys and string values must be **double-quoted** (e.g., "name", not name)
+    - NO trailing commas
+    - DO NOT include backticks, markdown, explanations, or headings
+    - The comment must contain ONLY the raw JSON array and nothing else
     `;
   }
 

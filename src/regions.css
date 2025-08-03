@@ -6,7 +6,7 @@
 #regions-title {
   font-weight: var(--fw-medium);
   font-size: var(--fs-2xl);
-  margin: 2rem 0px 2rem 0px;
+  margin: 3rem 0px 1.5rem 0px;
   text-align: center;
 } 
 
@@ -14,6 +14,13 @@
   height: 324px;
   border-radius: 16px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.region-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+  z-index: 5;
 }
 
 .map-container {

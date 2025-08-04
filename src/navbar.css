@@ -2,18 +2,29 @@
 
 #nav-clear {
   top: 0%;
+  height: 64px;
   position: absolute;
   display: flex;
+  justify-content: space-evenly;
+  align-items: center;
   width: 100%;
   padding: 0px 28px 0px 28px;
   color: rgb(226, 226, 226);
   z-index: 24;
 }
 
+.te-logo {
+  font-weight: bold;
+  font-size: var(--fs-lg);
+}
+
 #nav-solid {
   top: 0%;
+  height: 64px;
   position: block;
   display: flex;
+  justify-content: space-evenly;
+  align-items: center;
   width: 100%;
   padding: 0px 28px 0px 28px;
   background-color: white;
@@ -22,37 +33,77 @@
 }
 
 #nav-center {
-  width: 40%;
+  width: 60%;
+  text-align: center;
 }
 
 div .nav-links {
-  display: flex;
   justify-content: center;
   align-items: center;
 }
 
 div .nav-links .nav-link {
   padding: 16px 16px 16px 16px;
-  font-weight: 500;
+  font-weight: var(--fw-bold);
   font-size: var(--fs-sm);
 }
 
 div .nav-links .nav-link:hover {
-  color:dodgerblue;
+  color: #3F00FF;
 }
 
-#nav-left {
-  width: 30%;
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  font-weight: 500;
+.nav-left {
+  width: 20%;
 }
 
-#nav-right {
-  width: 30%;
+.nav-right {
+  width: 20%;
+}
+
+/* nav bar side */
+
+#nav-side {
+  top: 0;
+  left: 0;
+  position: fixed;
+  height: 100%;
+  width: 30vh;
+  background-color: white;
+  transform: translateX(-100%); /* translate moves an element along the x-axis */
+  transition: transform 0.5s ease;
   display: flex;
-  justify-content: right;
-  align-items: center;
-  font-weight: 500;
+  flex-direction: column;
+}
+
+#nav-side.open {
+  transform: translateX(0); /* if isOpen, move sidebar back to x=0 */
+}
+
+.nav-side-links {
+  flex-direction: column;
+  margin: 0rem 0rem 0rem 2rem;
+}
+
+.nav-side-links .snav-link {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-medium);
+  border-bottom: 1px solid lightgrey;
+  transition: color 0.2s ease;
+}
+
+.nav-side-links .snav-link:hover {
+  color: blue;
+}
+
+.close-icon {
+  margin: 2rem;
+}
+
+.overlay {
+  inset: 0; /* applies same offset to top, left, bottom, right at once */
+  background-color: rgba(0,0,0,0.5);
+  position: fixed;
+  z-index: 40;
 }

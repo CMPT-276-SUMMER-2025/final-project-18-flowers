@@ -33,28 +33,38 @@ const BookingFlights = () => {
           <option value="khh">Kaohsiung International Airport</option>
         </select>
 
-        <label>Departure Date:</label>
-        <input type="date" onChange={(e) => setCheckIn(e.target.value)} />
-
-        <label>Return Date:</label>
-        <input type="date" onChange={(e) => setCheckOut(e.target.value)} />
-
-        <label>Adults:</label>
-        <select onChange={(e) => setAdults(e.target.value)} defaultValue="1">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="3">4</option>
-        </select>
-
-        <label>Children:</label>
-        <select onChange={(e) => setChildren(e.target.value)} defaultValue="0">
-          <option value="">0</option>
-          <option value="3">1</option>
-          <option value="3%2C3">2</option>
-          <option value="3%2C3%2C3">3</option>
-          <option value="3%2C3%2C3%2C3">4</option>
-        </select>
+        <div className="grid grid-cols-2 gap-4">
+          <div className="flex flex-col">
+            <label>Departure Date:</label>
+            <input type="date" onChange={(e) => setCheckIn(e.target.value)} />
+          </div>
+          <div className="flex flex-col">
+            <label>Return Date:</label>
+            <input type="date" onChange={(e) => setCheckOut(e.target.value)} />
+          </div>
+        </div>
+    
+        <div className="grid grid-cols-2 gap-4">
+          <div className="flex flex-col">
+            <label>Adults:</label>
+            <select onChange={(e) => setAdults(e.target.value)} defaultValue="1">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="3">4</option>
+            </select>
+          </div>
+          <div className="flex flex-col">
+            <label>Children:</label>
+            <select onChange={(e) => setChildren(e.target.value)} defaultValue="0">
+              <option value="">0</option>
+              <option value="3">1</option>
+              <option value="3%2C3">2</option>
+              <option value="3%2C3%2C3">3</option>
+              <option value="3%2C3%2C3%2C3">4</option>
+            </select>
+          </div>
+        </div>
       </div>
 
       <div className="booking-button-wrapper">

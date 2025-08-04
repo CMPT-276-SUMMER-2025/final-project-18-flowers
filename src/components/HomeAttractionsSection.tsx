@@ -6,7 +6,7 @@ const HomeAttractionsSection = () => {
   return (
     <>
 
-      <h1 className="home-section-title">Top <strong>Attractions</strong> 2025</h1>
+      <h1 className="home-section-title">Top <strong>Attractions</strong></h1>
 
         <div id="home-attractions-container">
           <div id="card-wrapper">
@@ -16,7 +16,7 @@ const HomeAttractionsSection = () => {
           </div>
         </div>
         <div className="home-button-wrapper">
-          <ViewButton path="/interests" direction="Discover more"></ViewButton>
+          <ViewButton path="/interests" direction="Discover More ➤"></ViewButton>
         </div>
     </>
   )

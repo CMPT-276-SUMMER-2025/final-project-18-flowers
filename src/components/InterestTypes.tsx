@@ -7,7 +7,7 @@ type interestProps = {
   type: string  // type of place (e.g., amusement_park, chinese_restaurant, etc.)
 };
 
-const saveAPICreditsMode = false;    
+const saveAPICreditsMode = true;    
 
 const InterestTypes = ({ cityname, type } : interestProps) => {
 

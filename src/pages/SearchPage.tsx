@@ -53,14 +53,15 @@ const SearchPage = ({ results }) => {
     }
   }
 
+  // if searchShow is true 
+  const resultsExist = searchShow && !(filteredResults.length === 0);
+
   // function that displays the search list nested in scroll component 
   function searchList() {
-    // if searchShow is true 
-    const noResults = searchShow && !(filteredResults.length === 0);
     return (
       <>
         <h1 className="search-results-title">Showing search results for <strong className="text-blue-600">{searchFor}</strong></h1>
-        {noResults ? <SearchList filteredResults={filteredResults}></SearchList> : <div><h3 id="no-results-msg">No Results</h3></div>}
+        {resultsExist ? <SearchList filteredResults={filteredResults}></SearchList> : <div><h3 id="no-results-msg">No Results</h3></div>}
       </>
     );  
   }
@@ -69,28 +70,36 @@ const SearchPage = ({ results }) => {
     <>
       <h1 id="search-title">Search <strong>Taiwan</strong></h1>
       <div className="min-h-screen flex flex-col">
-      <div className="home-content-container">
-        <div className="home-c1">
-          <div className="long-search-bar-container">
-              <input
-                className="long-search-bar border-blue-600 border-2"
-                type = "search" 
-                placeholder = "Search" 
-                value={searchField}
-                onChange = { handleChange }
-              >
-              </input>
-              {/* <button className="search-button bg-blue-600 rounded-4xl pt-[4px] pr-[12px] pb-[4px] pl-[12px] ml-2 text-white font-semibold">
-                Search
-              </button> */}
+        <div className="home-content-container">
+          <div className="home-c1">
+            <div className="long-search-bar-container">
+                <input
+                  className="long-search-bar border-blue-600 border-2"
+                  type = "search" 
+                  placeholder = "Search" 
+                  value={searchField}
+                  onChange = { handleChange }
+                >
+                </input>
+                {/* <button className="search-button bg-blue-600 rounded-4xl pt-[4px] pr-[12px] pb-[4px] pl-[12px] ml-2 text-white font-semibold">
+                  Search
+                </button> */}
+            </div>
+            {searchList()}
           </div>
-          {searchList()}
+          <div className="home-c2 hidden xl:block">
+            <Booking />
+          </div> 
         </div>
-        <div className="home-c2">
+        {(!resultsExist) ? 
+          <div className="h-[55vh] xl:hidden" />
+          :
+          <div></div>
+        }
+        <div className="block xl:hidden w-[90%] max-w-[44rem] mx-auto mb-24">
+          <hr></hr>
           <Booking />
         </div>
-      </div>
-  
       </div>
     </>
   )

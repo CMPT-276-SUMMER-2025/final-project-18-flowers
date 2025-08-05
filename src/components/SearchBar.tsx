@@ -19,7 +19,7 @@ const SearchBar = () => {
       <form onSubmit={handleSubmit} className="flex items-center">
         <Link to="/search" className="mr-2">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>        
-        </Link>       
+        </Link>
         <input
           type="text"
           id="search"
@@ -27,7 +27,7 @@ const SearchBar = () => {
           placeholder="Search"
           value={query}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
-          className="clear-search-bar"
+          className="clear-search-bar hidden md:block"
         />
       </form>
     </div>
@@ -35,3 +35,4 @@ const SearchBar = () => {
 };
 
 export default SearchBar;
+

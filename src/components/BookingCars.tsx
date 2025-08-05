@@ -1,6 +1,13 @@
-//import { useState } from "react";
 import "../booking.css";
 
+/**
+ * This is a component for the car section of booking feature.
+ */
+
+/**
+ * Provides a button that is linked to an external website for booking cars.
+ * @returns booking button for cars
+ */
 const BookingCars = () => {
   return (
     
@@ -13,7 +20,7 @@ const BookingCars = () => {
             rel="noopener noreferrer"
             className="booking-button"
           >
-            Rent a Car in Taiwan
+            Search cars
           </a>
         </div>
       </div>

@@ -16,8 +16,7 @@ const Attraction = () => {
 
   const { attract } = useParams();
 
-  console.log(attract);
-
+  
   function formatAttractionName(slug: string | undefined) {
     if (!slug) return '';
     return slug

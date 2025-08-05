@@ -36,11 +36,10 @@ body, html {
   width: 100%;
   max-width: 750px;
   margin: 0 auto; 
-  max-width: 1200px; /* prevent from getting too wide if user monitor is too wide */
 }
 
 .ci-thumb {
-  width: 100vw;
+  width: 100%;
   height: 45vh;
   object-fit: cover;
 }
@@ -51,7 +50,7 @@ body, html {
 }
 
 .ci-header {
-  font-size: 54px;
+  font-size: 3.5rem;
   font-weight: var(--fw-medium-bold);
 }
 
@@ -63,44 +62,67 @@ body, html {
 
 .ci-header-container {
   width: 100%;
+  max-width: 750px;
   text-align: left;
   padding: 3rem 0 3rem 0;
-  max-width: 750px;
-  margin: 1rem;
+  margin: 1rem auto 1rem auto;
 }
 
 .ci-description {
-  margin: 3rem 0 3rem 0;
   white-space: pre-line;
   font-size: var(--fs-base);
-  margin: 1rem;
+  width: 100%;
+  max-width: 750px;
+  padding: 0 1rem; 
+  box-sizing: border-box;
+  margin: 1rem auto; 
 }
 
 .commodities-container {
+  width: 100%;
+  max-width: 750px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  gap: 1rem;
+  margin: 0 auto;
+}
+
+@media (max-width: 684px) {
+  .ci-header-container {
+    padding: 1rem;
+  }
+  .commodities-container {
+    flex-direction: column;
+    gap: 0rem;
+  }
+  .commodity-container {
+    margin: 1rem; 
+  }
 }
 
 /* attractions component from city-interest */
 
 #attractions-title {
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
   font-weight: var(--fw-medium);
   font-size: var(--fs-2xl);
 }
 
 @media (max-width: 684px) {
-  
   #attractions-title {
-    margin-left: 1rem;
+    padding: 0rem 1rem 0rem 1rem;
   }
 }
 
 #attractions-container {
   width: 100%;
+  max-width: 750px;
   display: grid;
   justify-content: space-between;
   grid-template-columns: repeat(3, auto);
-  margin-bottom: 3rem;
+  margin: 1rem auto 3rem auto;
 }
 
 .attractions {
@@ -120,6 +142,14 @@ body, html {
   border-top-right-radius: 8px;
 }
 
+.attractions-photo {
+  width: 232px;
+  height: 200px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
 .attractions-name {
   font-weight: var(--fw-medium);
   font-size: var(--fw-normal);
@@ -131,14 +161,6 @@ body, html {
   top: 0;
   left: 0;
   color: white;
-}
-
-.attractions-photo {
-  width: 232px;
-  height: 200px;
-  border-radius: 8px;
-  object-fit: cover;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
 }
 
 .attractions:hover {
@@ -314,12 +336,6 @@ body, html {
   margin-top: 0px;
 }
 
-@media (max-width: 684px) {
-  .commodity-container {
-    margin: 1rem;
-  }
-}
-
 /* navbar anchor */
 
 .section-nav {
@@ -340,4 +356,19 @@ body, html {
   color: #727272;
   font-size: var(--fs-sm);
   font-weight: var(--fw-bold);
+}
+
+@media (max-width: 430px) {
+  #attractions-container {
+    grid-template-columns: 1fr; /* single column */
+    width: 100%;
+    padding: 0 1rem 1rem 1rem;
+    margin: 0rem;
+  }
+ 
+  .attractions-photo {
+    width: 100%;
+    height: 200px;
+  }
+  
 }

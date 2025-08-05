@@ -27,7 +27,7 @@ const SearchBar = () => {
           placeholder="Search"
           value={query}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
-          className="solid-search-bar"
+          className="solid-search-bar hidden md:block"
         />
       </form>
     </div>

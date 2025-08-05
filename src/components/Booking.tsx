@@ -1,27 +1,33 @@
 import { useState } from "react";
 import BookingFlights from "../components/BookingFlights";
 import BookingHotels from "../components/BookingHotels";
-// import BookingCars from "../components/BookingCars";
 
+/**
+ * This is a component for the booking feature.
+ */
+
+/**
+ * Displays an interface with booking options for flights or hotels.
+ * @returns an interface with booking options
+ */
 const Booking = () => {
-
-  // const [select, setSelect] = useState<"flights" | "hotels" | "cars">("flights"); 
   const [select, setSelect] = useState<"flights" | "hotels">("flights"); 
 
   const labels = {
     flights: "flight",
     hotels: "hotel",
-    // cars: "car",
   };
 
+  /**
+   * Renders the selected booking form based on the user's choice.
+   * @returns the selected booking form component
+   */
   const ReturnForm = () => {
     switch (select) {
       case "flights":
         return <BookingFlights></BookingFlights>
       case "hotels":
         return <BookingHotels></BookingHotels>
-      // case "cars":
-      //   return <BookingCars></BookingCars>
       default:
         return null;
     };
@@ -32,6 +38,7 @@ const Booking = () => {
       <div className="flex flex-col">
         <h1 className="booking-title">Book your <strong>{labels[select]}</strong></h1>
         <div className="booking-buttons-container">
+          { /* Highlights the selected button and shows the flights booking form when clicked. */}
           <button className={`booking-icon ${select === "flights" ? "selected" : "not-selected"}`} onClick={() => {setSelect("flights")}}>
             <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
               <path d="M20.36 18"/>
@@ -40,6 +47,7 @@ const Booking = () => {
             </svg>
             <p className="booking-type">Flights</p>
           </button>
+          { /* Highlights the selected button and shows the hotels booking form when clicked. */}
           <button className={`booking-icon ${select === "hotels" ? "selected" : "not-selected"}`} onClick={() => {setSelect("hotels")}}>
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path fill="none" d="M0 0h24v24H0z"/>
@@ -47,7 +55,6 @@ const Booking = () => {
             </svg>
             <p className="booking-type">Hotels</p>
           </button>
-          {/* <button className="booking-button-type" onClick={() => {setSelect("cars")}}><img src="/assets/booking/cars.svg" alt="cars"></img></button> */}
         </div>
         <ReturnForm></ReturnForm>
       </div>

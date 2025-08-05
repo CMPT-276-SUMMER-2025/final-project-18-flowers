@@ -11,7 +11,7 @@ type Props = {
 
 /**
  * Displays an AI-generated description of a tourist attraction in Taiwan based on the provided place name
- * @param param0 Props containing the place name
+ * @param PlaceName Containing the place name
  * @returns description of the attraction
  */
 const AttractionDescription = ({ placeName }: Props) => {

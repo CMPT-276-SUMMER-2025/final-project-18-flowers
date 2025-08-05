@@ -1,13 +1,24 @@
 import { useState, useEffect } from "react";
 
+/**
+ * This is a component for the attraction photos on an attraction page.
+ */
+
 type Props = { attract: string; }
 type TPhoto = { url: string; };
 
-
+/**
+ * Loads and displays photos of as attraction in Taiwan based on the provided attraction name
+ * @param attract containing the attraction name
+ * @returns photos of the attraction
+ */
 const AttractionPhotos = ({ attract }: Props) => {
   const [photos, setPhotos] = useState<TPhoto[]>([]);
   const [loading, setLoading] = useState(true);
 
+  /**
+   * Fetches photos of the attraction using Google Places API and sets the state with the fetched photos
+   */
   useEffect(() => {
     async function fetchPhotos() {
       try {
@@ -22,9 +33,7 @@ const AttractionPhotos = ({ attract }: Props) => {
 
         const { places } = await Place.searchByText(request);
         const place = places?.[0];
-
         const placePhotos = place?.photos || [];
-
         const imageUrls = placePhotos.map((photo) => ({
           url: photo.getURI(),
         }));
@@ -47,6 +56,7 @@ const AttractionPhotos = ({ attract }: Props) => {
 
   return (
     <div className="attraction-photo-gallery">
+      {/* Renders photos one by one from the photos array */}
       {photos.map((photo, index) => (
         <img
           key={index}

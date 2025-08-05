@@ -16,7 +16,7 @@ type Coord = {
 
 /**
  * Renders a Google Map centered at the given coordinates with a custom marker
- * @param param0 Props containing the latitude and longitude of the attraction
+ * @param Coord Containing the latitude and longitude of the attraction
  * @returns Google Map with a custom marker at the attraction's location
  */
 const AttractionMap = ({ lat, lng }: Coord) => {

@@ -6,7 +6,7 @@ type Props = {
   lng: number,
  };
 
-const saveAPICost = true;
+const saveAPICost = false;
 
 const NearbyHotels = ({ lat, lng }  : Props) => {
   // type alias TPlace object that holds id, displayName
@@ -14,6 +14,7 @@ const NearbyHotels = ({ lat, lng }  : Props) => {
     id: string;
     displayName?: string | null;
     photoUrl?: string;
+    rating?: number | null;
   };
 
 
@@ -34,7 +35,7 @@ const NearbyHotels = ({ lat, lng }  : Props) => {
           center: { lat, lng }, 
           radius: placeRadius,
         },
-        fields: ["id", "displayName", "photos"], // save cost by specifying only displayName field and photos (essentials tier => cheaper)
+        fields: ["id", "displayName", "photos", "rating"], // save cost by specifying only displayName field and photos (essentials tier => cheaper)
         includedTypes: ["hotel", "resort_hotel"], 
         rankPreference: SearchNearbyRankPreference.POPULARITY, // only request relevant to query 
         maxResultCount: 4, // only request 9 places total
@@ -50,11 +51,25 @@ const NearbyHotels = ({ lat, lng }  : Props) => {
         return ({
           id: place.id || ' ',
           displayName: place.displayName,
-          photoUrl: firstPhoto?.getURI({ maxWidth: 300, maxHeight: 300 })
+          photoUrl: firstPhoto?.getURI({ maxWidth: 300, maxHeight: 300 }),
+          rating: place.rating ?? null,
         });
       });
+
+      const isMostlyEnglish = (text: string | undefined | null) => {
+        if (!text) {
+          return false;
+        }
+        const englishChars = text.match(/[\x00-\x7F]/g)?.length ?? 0;
+        const totalChars = text.length;
+        return englishChars / totalChars > 0.7;
+      };
       
-      setPlaces(formattedPlaces);
+      const filteredPlaces = formattedPlaces.filter((place) =>
+        typeof place.displayName === "string" && isMostlyEnglish(place.displayName) 
+      );
+
+      setPlaces(filteredPlaces);
 
     } 
     getHotels();
@@ -81,7 +96,15 @@ const NearbyHotels = ({ lat, lng }  : Props) => {
                       className="commodity-photo"
                 />
               }
-              <h3 className='commodity-name'>{place.displayName}</h3>
+              <div className="commodity-text">
+                <h3 className='commodity-name'>{place.displayName}</h3>
+
+                {place.rating !== undefined && place.rating !== null && (
+                  <p className="commodity-rating">
+                    ★ {place.rating.toFixed(1)} / 5
+                  </p>
+                )}
+              </div>
             </div>
           </a>
         ))}

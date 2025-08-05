@@ -17,11 +17,11 @@ const __dirname = path.dirname(__filename);
 app.use(cors()); // allows frontend to talk to backend 
 app.use(express.json()); // automatically parse JSON in incoming requests 
 
-app.use(express.static(path.join(__dirname, 'dist')));
-
+app.use(express.static(path.resolve(__dirname, '../dist')));
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  res.sendFile(path.resolve(__dirname, '../dist', 'index.html'));
 });
+
 
 // create a genAI object for us to use to talk to Gemini
 const genAI = new GoogleGenerativeAI(process.env.VITE_GOOGLE_GEMINI_API_KEY);

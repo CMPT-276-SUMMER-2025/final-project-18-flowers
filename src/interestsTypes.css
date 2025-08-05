@@ -21,9 +21,9 @@
 }
 
 #it-container {
-  width: 750px;
+  width: 100%;
   margin: 0 auto;
-  max-width: 1200px; /* prevent from getting too wide if user monitor is too wide */
+  max-width: 750px; /* prevent from getting too wide if user monitor is too wide */
 }
 
 .it-element {

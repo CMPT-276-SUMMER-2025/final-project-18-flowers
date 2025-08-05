@@ -107,7 +107,7 @@ export default function ItineraryGenerator() {
         },
       };
 
-      const response = await fetch("https://taiwanexplorers.onrender.com/gemini", options); // Adjust the URL to the server endpoint
+      const response = await fetch("http://localhost:8000/gemini", options);
       const data = await response.json();
       console.log("Full response from server:", data);
       console.log("Markdown response content:", response);

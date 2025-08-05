@@ -119,7 +119,7 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
         },
       };
 
-      const response = await fetch("https://taiwanexplorers.onrender.com/gemini", options); // Adjust the URL to the server endpoint
+      const response = await fetch("http://localhost:8000/gemini", options);
       if (!response.ok) throw new Error(`Server returned ${response.status}`);
       const data = await response.text();
 

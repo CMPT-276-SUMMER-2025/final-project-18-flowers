@@ -6,7 +6,7 @@ import {
 } from '@vis.gl/react-google-maps';
 
 /**
- * This is a component for the map of an attraction page.
+ * This is a component for the map of an Attraction page.
  */
 
 type Coord = {
@@ -15,9 +15,9 @@ type Coord = {
 };
 
 /**
- * Renders a Google Map centered at the given coordinates with a custom marker
- * @param Coord Containing the latitude and longitude of the attraction
- * @returns Google Map with a custom marker at the attraction's location
+ * Renders a Google Map centered at the given coordinates with a custom marker.
+ * @param Coord containing the latitude and longitude of the attraction
+ * @returns a Google Map with a custom marker at the attraction's location
  */
 const AttractionMap = ({ lat, lng }: Coord) => {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
@@ -25,7 +25,7 @@ const AttractionMap = ({ lat, lng }: Coord) => {
   const [symbol, setSymbol] = useState<google.maps.Symbol | null>(null);
 
   /**
-   * Sets a custom marker symbol for the map
+   * Sets a custom marker symbol for the map.
    */
   useEffect(() => {
     async function defineSymbol() {
@@ -60,7 +60,7 @@ const AttractionMap = ({ lat, lng }: Coord) => {
           keyboardShortcuts={false}
           gestureHandling='none'
         >
-          {/* If an symbol exists, render a marker with the symbol as icon at the attraction's coordinates */}
+          {/* If an symbol exists, render a marker with the symbol as icon at the attraction's coordinates. */}
           {symbol && (
             <Marker position={{ lat, lng }} icon={symbol} />
           )}

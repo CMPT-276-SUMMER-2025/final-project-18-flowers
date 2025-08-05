@@ -3,15 +3,25 @@ import express from 'express'; // library to handle HTTP request (e.g., POST, GE
 import cors from 'cors'; // library that fixes cross-origin issues (i.e. browser security)
 import dotenv from 'dotenv'; // library that allows us to load .env with API key inside
 import { GoogleGenerativeAI } from '@google/generative-ai'; // Gemini API SDK that'll allow us to talk to the API 
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 dotenv.config(); // Load API key from .env file
 
 const app = express(); // app is our server
 const PORT = process.env.PORT || 8000; // default port is 8000, but can be overridden by environment variable for live build
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 app.use(cors()); // allows frontend to talk to backend 
 app.use(express.json()); // automatically parse JSON in incoming requests 
+
+app.use(express.static(path.join(__dirname, 'dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 
 // create a genAI object for us to use to talk to Gemini
 const genAI = new GoogleGenerativeAI(process.env.VITE_GOOGLE_GEMINI_API_KEY);

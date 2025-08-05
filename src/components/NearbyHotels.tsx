@@ -38,7 +38,7 @@ const NearbyHotels = ({ lat, lng }  : Props) => {
         fields: ["id", "displayName", "photos", "rating"], // save cost by specifying only displayName field and photos (essentials tier => cheaper)
         includedTypes: ["hotel", "resort_hotel"], 
         rankPreference: SearchNearbyRankPreference.POPULARITY, // only request relevant to query 
-        maxResultCount: 4, // only request 9 places total
+        maxResultCount: 9, // only request 9 places total
         language: "en-US",
         region: 'us',
       }
@@ -67,7 +67,7 @@ const NearbyHotels = ({ lat, lng }  : Props) => {
       
       const filteredPlaces = formattedPlaces.filter((place) =>
         typeof place.displayName === "string" && isMostlyEnglish(place.displayName) 
-      );
+      ).slice(0, 4); // Only show the first 4 valid results
 
       setPlaces(filteredPlaces);
 

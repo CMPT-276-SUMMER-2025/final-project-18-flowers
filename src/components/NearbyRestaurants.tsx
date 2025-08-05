@@ -57,7 +57,7 @@ const NearbyRestaurants = ({ lat, lng }  : Props) => {
           id: place.id || ' ',
           displayName: place.displayName,
           photoUrl: firstPhoto?.getURI({ maxWidth: 300, maxHeight: 300 }),
-          rating: place.rating,
+          rating: place.rating ?? null,
         });
       });
       
@@ -84,7 +84,7 @@ const NearbyRestaurants = ({ lat, lng }  : Props) => {
         isMostlyEnglish(place.displayName) &&
         isNotHotel(place.displayName)
       ).slice(0, 4); // Only show the first 4 valid results
-      
+
       setPlaces(filteredPlaces);
 
     } 

@@ -27,14 +27,9 @@
 
 #it-container {
   width: 100%;
-<<<<<<< HEAD
   max-width: 800px;
   padding: 0 1rem;
   margin: 0 auto;
-=======
-  margin: 0 auto;
-  max-width: 750px; /* prevent from getting too wide if user monitor is too wide */
->>>>>>> b6289172fdeee56df64075642a25027c0ecb3233
 }
 
 

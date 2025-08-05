@@ -5,7 +5,7 @@ import { cities } from "../data/cityData"; // get cities object from cityData.ts
 type Props = { cityname: string, ranking: number }
 const taiwanLatLng = { lat: 23.7, lng: 121.0 }; // latitude and longitude of Taiwan
 
-export default function CityCard({ cityname, ranking } : Props) {
+export default function CityCardMobile({ cityname, ranking } : Props) {
   const [placeName, setPlaceName] = useState("");
 
   useEffect(() => {
@@ -40,7 +40,7 @@ export default function CityCard({ cityname, ranking } : Props) {
 
   // assign 2 values to 2 variables through "array destructing assignment"
   // this works because if you look in cityData.tsx, the values are arrays of size 2, ["img value", "description value"]
-  const [cityName, imgSrc, description] = cities[cityname as keyof typeof cities] || [" ", "", ""]; // 
+  const [cityName, imgSrc ] = cities[cityname as keyof typeof cities] || ["", ""]; // 
 
   // create a clean url path (Hualien%20City -> hualien-city)
   const formatted = cityname.toLowerCase().replace(/\s+/g, "-");
@@ -50,16 +50,15 @@ export default function CityCard({ cityname, ranking } : Props) {
   return( 
     <div>
       <Link to={`/destinations/${formatted}`}>
-        <div className="dest-card m-[0.5rem]">
-          <img src={imgSrc} className="city-img" alt={placeName}/>
+        <div className="dest-card-mobile">
+          <img src={imgSrc} className="city-img-mobile" alt={placeName}/>
           <p 
           className="text-blue-600 text-xs font-extrabold inline-flex items-center justify-center bg-amber-50 border-amber-500 border-2 
-          px-3 py-2 rounded-4xl absolute top-[156px] left-[20px] w-8 h-8"> 
+          px-3 py-2 rounded-4xl absolute top-[1.5rem] left-[100px] w-8 h-8"> 
             {ranking}
           </p>  
-          <div className="city-txt min-h-[92px] mx-5 mt-5">
+          <div className="city-txt flex items-center justify-center ml-[1.8rem] mr-[0.4rem]">
             <h3>{placeName || cityName}</h3>
-            <p>{description}</p>
           </div>
         </div>
       </Link>

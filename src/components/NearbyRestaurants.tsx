@@ -6,7 +6,7 @@ type Props = {
   lng: number,
  };
 
-const saveAPICost = true;
+const saveAPICost = false;
 
 const NearbyRestaurants = ({ lat, lng }  : Props) => {
   // type alias TPlace object that holds id, displayName
@@ -14,6 +14,7 @@ const NearbyRestaurants = ({ lat, lng }  : Props) => {
     id: string;
     displayName?: string | null;
     photoUrl?: string;
+    rating?: number | null; 
   };
 
 
@@ -22,6 +23,10 @@ const NearbyRestaurants = ({ lat, lng }  : Props) => {
   const placeRadius = 3000; 
 
   useEffect(() => {
+    if (!window.google || !google.maps) {
+      console.warn("Google Maps JS API not yet loaded");
+      return;
+    }
     if (saveAPICost) { 
       setPlaces(mockPlacesRestaurants);
       return; 
@@ -35,10 +40,10 @@ const NearbyRestaurants = ({ lat, lng }  : Props) => {
           center: { lat, lng }, 
           radius: placeRadius,
         },
-        fields: ["id", "displayName", "photos"], // save cost by specifying only displayName field and photos (essentials tier => cheaper)
-        includedTypes: ["chinese_restaurant"], 
+        fields: ["id", "displayName", "photos", "rating"], // save cost by specifying only displayName field and photos (essentials tier => cheaper)
+        includedTypes: ["restaurant"], 
         rankPreference: SearchNearbyRankPreference.POPULARITY, // only request relevant to query 
-        maxResultCount: 4, // only request 9 places total
+        maxResultCount: 12, // only request 9 places total
         language: "en-US",
         region: 'us',
       }
@@ -51,11 +56,36 @@ const NearbyRestaurants = ({ lat, lng }  : Props) => {
         return ({
           id: place.id || ' ',
           displayName: place.displayName,
-          photoUrl: firstPhoto?.getURI({ maxWidth: 300, maxHeight: 300 })
+          photoUrl: firstPhoto?.getURI({ maxWidth: 300, maxHeight: 300 }),
+          rating: place.rating ?? null,
         });
       });
       
-      setPlaces(formattedPlaces);
+      const isMostlyEnglish = (text: string | undefined | null) => { // checks if more than 70% of the characters are English
+        if (!text) {
+          return false;
+        }
+        const englishCharacters = text.match(/[\x00-\x7F]/g)?.length ?? 0; // Count of ASCII characters
+        const totalCharacters = text.length; // Total characters in the string
+        return englishCharacters / totalCharacters > 0.7; // More than 70% English characters
+      };
+
+      const isNotHotel = (text: string | undefined | null) => { // filters out places with keywords related to hotels
+        if (!text) {
+          return false;
+        }
+        const lower = text.toLowerCase();
+        const hotelKeywords = [ "hotel", "inn", "resort", "motel", "villa", "homestay"];
+        return !hotelKeywords.some((keyword) => lower.includes(keyword)); // returns true if none of the keywords are found
+      };
+
+      const filteredPlaces = formattedPlaces.filter((place) =>
+        typeof place.displayName === "string" &&
+        isMostlyEnglish(place.displayName) &&
+        isNotHotel(place.displayName)
+      ).slice(0, 4); // Only show the first 4 valid results
+
+      setPlaces(filteredPlaces);
 
     } 
     getHotels();
@@ -81,7 +111,16 @@ const NearbyRestaurants = ({ lat, lng }  : Props) => {
                       className="commodity-photo"
                 />
               }
-              <h3 className='commodity-name'>{place.displayName}</h3>
+              <div className="commodity-text">
+                <h3 className='commodity-name'>{place.displayName}</h3>
+
+                {place.rating !== undefined && place.rating !== null && (
+                  <p className="commodity-rating">
+                    ★ {place.rating.toFixed(1)} / 5
+                  </p>
+                )}
+
+              </div>
             </div>
           </a>
         ))}

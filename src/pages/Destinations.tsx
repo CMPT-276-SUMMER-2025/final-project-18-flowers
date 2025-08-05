@@ -2,7 +2,7 @@ import { useState } from 'react';
 import CityCard from '../components/CityCard';
 import CityCardMobile from '../components/CityCardMobile';
 import Regions from "../components/Regions";
-import taipeiThumbnail from "/assets/taipei-night.jpeg";
+import taipeiThumbnail from "/assets/destination-thumb.jpg";
 import "../destinations.css";
 
 /* 
@@ -39,11 +39,13 @@ const Destinations = () => {
 
   return (
     <>
+      <h1 className="dest-title mt-10 mb-10"><strong>Taiwan</strong><br></br>Find Your Destination</h1>
       <div>
         <img src={taipeiThumbnail} alt="Thumbnail of Destination Page" id="dest-thumb" />
       </div>
 
-      <h1 id="dest-title">Find Your <strong>Destination</strong></h1>
+      <h1 className='dest-title mt-10'>Top <strong>Destinations</strong> in Taiwan</h1>
+      <h2 id="dest-sub-title">Recommended by Taiwan Explorers</h2>
       <div id="" className="dest-grid hidden sm:grid">
         {(cityNames)
           .slice(0, showMore ? cityNames.length : initShow)

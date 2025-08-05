@@ -79,7 +79,7 @@ const NearbyHotels = ({ lat, lng }  : Props) => {
   return (
     <>
       <div className="commodity-container">
-        <h1 className="attraction-sub-titles">Nearby Hotels</h1>
+        <h3 className="attraction-sub-titles">Nearby Hotels</h3>
         {places.map((place) => (
           <a 
             key = {place.id}

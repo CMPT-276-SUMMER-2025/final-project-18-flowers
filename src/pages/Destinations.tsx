@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import CityCard from '../components/CityCard';
+import CityCardMobile from '../components/CityCardMobile';
 import Regions from "../components/Regions";
 import taipeiThumbnail from "/assets/taipei-night.jpeg";
+import "../destinations.css";
 
 /* 
 Note: somtimes you might see content doubled
@@ -42,11 +44,19 @@ const Destinations = () => {
       </div>
 
       <h1 id="dest-title">Find Your <strong>Destination</strong></h1>
-      <div id="dest-grid" className="grid grid-cols-[repeat(2,auto)] lg:grid-cols-[repeat(3,auto)]">
+      <div id="" className="dest-grid hidden sm:grid">
         {(cityNames)
           .slice(0, showMore ? cityNames.length : initShow)
           .map((name, index) => (
             <CityCard key={name} cityname={name} ranking={index + 1} />
+        ))}
+      </div>
+
+      <div className="dest-grid grid sm:hidden">
+        {(cityNames)
+          .slice(0, showMore ? cityNames.length : initShow)
+          .map((name, index) => (
+            <CityCardMobile key={name} cityname={name} ranking={index + 1} />
         ))}
       </div>
       

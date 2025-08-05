@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-const SearchBar = () => {
+const SearchBarSolid = () => {
   const navigate = useNavigate();
 
   const [query, setQuery] = useState("");
@@ -27,11 +27,11 @@ const SearchBar = () => {
           placeholder="Search"
           value={query}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
-          className="solid-search-bar"
+          className="solid-search-bar hidden md:block"
         />
       </form>
     </div>
   );
 };
 
-export default SearchBar;
+export default SearchBarSolid;

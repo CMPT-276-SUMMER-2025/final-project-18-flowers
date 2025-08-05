@@ -15,7 +15,7 @@ const NavBar = () => {
       <NavBarSide isOpen={isOpen} setIsOpen={setIsOpen} />
       <nav id="nav-clear"> 
         <div className="nav-left">
-          <Link to="/" className='te-logo hidden justify-end lg:flex lg:justify-end'>Taiwan Explorers</Link>
+          <Link to="/" className='te-logo hidden lg:flex lg:ml-auto'>Taiwan Explorers</Link>
           <button className="flex justify-start lg:justify-end lg:hidden" onClick={ 
             () => {
               setIsOpen(!isOpen);

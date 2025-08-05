@@ -21,9 +21,7 @@
 #nav-solid {
   top: 0%;
   height: 64px;
-  position: block;
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
   width: 100%;
   padding: 0px 28px 0px 28px;
@@ -33,7 +31,7 @@
 }
 
 #nav-center {
-  width: 60%;
+  width: 50%;
   text-align: center;
 }
 
@@ -53,11 +51,13 @@ div .nav-links .nav-link:hover {
 }
 
 .nav-left {
-  width: 20%;
+  display: flex;
+  width: 25%;
 }
 
 .nav-right {
-  width: 20%;
+  display: flex;
+  width: 25%;
 }
 
 /* nav bar side */

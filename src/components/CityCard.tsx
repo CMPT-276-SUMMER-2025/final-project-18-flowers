@@ -50,14 +50,14 @@ export default function CityCard({ cityname, ranking } : Props) {
   return( 
     <div>
       <Link to={`/destinations/${formatted}`}>
-        <div className="dest-card">
+        <div className="dest-card m-[0.5rem]">
           <img src={imgSrc} className="city-img" alt={placeName}/>
           <p 
           className="text-blue-600 text-xs font-extrabold inline-flex items-center justify-center bg-amber-50 border-amber-500 border-2 
           px-3 py-2 rounded-4xl absolute top-[156px] left-[20px] w-8 h-8"> 
             {ranking}
           </p>  
-          <div className="city-txt">
+          <div className="city-txt min-h-[92px] mx-5 mt-5">
             <h3>{placeName || cityName}</h3>
             <p>{description}</p>
           </div>

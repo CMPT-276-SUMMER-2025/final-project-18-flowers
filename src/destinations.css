@@ -73,6 +73,8 @@
   box-shadow: 0 4px 8px rgba(0,0,0,0.5);
   display: flex;
   width: 100%;
+  min-width: 295px;
+  max-width: 295px;
   min-height: 80px;
   margin: 0.5rem;
   flex-direction: row;

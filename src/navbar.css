@@ -52,10 +52,12 @@ div .nav-links .nav-link:hover {
 }
 
 .nav-left {
+  display: flex;
   width: 25%;
 }
 
 .nav-right {
+  display: flex;
   width: 25%;
 }
 

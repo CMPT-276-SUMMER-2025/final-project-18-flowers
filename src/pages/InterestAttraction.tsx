@@ -11,7 +11,7 @@ import NavBarAnchor from "../components/NavBarAnchor";
 
 type Coord = { lat: number; lng: number };
 
-const Attraction = () => {
+const InterestAttraction = () => {
   const { attract } = useParams();
 
   function formatAttractionName(slug: string | undefined) {
@@ -126,6 +126,6 @@ const Attraction = () => {
   )
 }
 
-export default Attraction
+export default InterestAttraction;
 
 

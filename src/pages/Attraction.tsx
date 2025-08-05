@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import NavBarAnchor from "../components/NavBarAnchor";
 import AttractionMap from "../components/AttractionMap";
-import AttractionPhotos from "../components/AttractionPhotos";  
-import AttractionTimetable from "../components/AttractionTimetable";
-import AttractionDescription from "../components/AttractionDescription";
 import NearbyHotels from "../components/NearbyHotels";
 import NearbyRestaurants from "../components/NearbyRestaurants";
+import AttractionPhotos from "../components/AttractionPhotos";
+import AttractionTimetable from "../components/AttractionTimetable";
+import AttractionDescription from "../components/AttractionDescription";
 import Booking from "../components/Booking";
+import NavBarAnchor from "../components/NavBarAnchor";
 
 type Coord = { lat: number; lng: number };
 
 const Attraction = () => {
-
   const { attract } = useParams();
+
   function formatAttractionName(slug: string | undefined) {
     if (!slug) return '';
     return slug
@@ -35,6 +35,7 @@ const Attraction = () => {
         fields: [
           "displayName", 
           "formattedAddress", 
+          "id", 
           "editorialSummary",  
           "location", 
           "regularOpeningHours",
@@ -53,19 +54,15 @@ const Attraction = () => {
       setDescription(summary || null);
 
       if (placeLatLng) {
-        setCoord({
-          lat: placeLatLng.lat(),
-          lng: placeLatLng.lng(),
-        });
+        setCoord({ lat: placeLatLng.lat(), lng: placeLatLng.lng(), });
       } else {
         setCoord(null);
       }
 
       if (hours?.weekdayDescriptions) {
-        setOpeningHours(hours.weekdayDescriptions);
+      setOpeningHours(hours.weekdayDescriptions);
       }
     }
-
     getAttractionInfo();
   }, [attract]);  
 
@@ -73,49 +70,38 @@ const Attraction = () => {
     <>
       <div className="attraction-content-container">
         <div className="attraction-c1">
-          {/* Attraction Page Title & 2 Attraction Photos */}
-          <div className="">
+        {/* Attraction Page Title & 3 Attraction Photos */}
+        <div className="">
             <h1 className="attraction-title">{formatAttractionName(attract)}</h1>
             <AttractionPhotos attract={formatAttractionName(attract)}></AttractionPhotos>
           </div>
 
           {/* Anchor Navigation Bar */}
-          <NavBarAnchor />
+         <NavBarAnchor />
 
-          <div>
-            {/* Overview, AI Description,and Map */}
+          <div className="">
             <div className="commodities-container">
-              {description && (
-                <>    
-                <div id="overview" className="attraction-description">
-                  {/* Overview */}
-                  <div>
-                    <h2 className="attraction-sub-titles">Overview</h2>
-                    <p>{description}</p>
-                  </div>
-                  <div className="map-and-hours-section"> 
-                    {/* AI Description */}
-                    <div id="ai-description">
-                      <AttractionDescription placeName={formatAttractionName(attract)}/>
-                    </div>
+              <div className="attraction-description">
+                <h2 className="attraction-sub-titles">Overview</h2>
+                {description && (
+                  <p>{description}</p>
+                )}
+                <div id="ai-description">
+                  <AttractionDescription placeName={formatAttractionName(attract)}/>
+                </div>
+                <div className="attraction-map-container">
+                  <div id="attraction-map">
+                    <h2 className="attraction-sub-titles">Map</h2>
+                    {coord && <AttractionMap lat={coord.lat} lng={coord.lng}></AttractionMap>}
                   </div>
                 </div>
-                 {/* Map */}
-                 <div id="attraction-map">
-                    <h2 className="attraction-sub-titles">Map</h2>
-                    { coord && 
-                      <AttractionMap lat={coord.lat} lng={coord.lng}>
-                      </AttractionMap>
-                    }
-                 </div>
-                </>
-              )}
+              </div>  
             </div>
-            {/* Opening Hours */}
+
             <div id="hours">
               <AttractionTimetable hours={openingHours} />
             </div>
-            {/* Nearby Hotels & Nearby Restaurants */}
+
             <div className="commodities-container">
               <div id="hotels">
                 {coord && <NearbyHotels lat={coord.lat} lng={coord.lng}></NearbyHotels>}
@@ -124,19 +110,22 @@ const Attraction = () => {
                 {coord && <NearbyRestaurants lat={coord.lat} lng={coord.lng}></NearbyRestaurants>}
               </div>
             </div>
-          </div>  
+
+          </div>
         </div>
-        {/* Booking component when screen is large */}
+        {/* Booking component when screen is large */} 
         <div className="attraction-c2 hidden xl:block">
           <Booking />
-        </div>
+        </div> 
       </div>
-      {/* Booking component when screen is small */}
-      <div className="block xl:hidden w-[60%] mx-auto mb-24">
+
+      <div className="block xl:hidden w-[90%] max-w-[44rem] mx-auto mb-24">
         <Booking />
       </div>
     </>
   )
 }
 
-export default Attraction
+export default Attraction;
+
+

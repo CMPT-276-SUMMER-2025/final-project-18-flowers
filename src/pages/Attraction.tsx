@@ -76,9 +76,11 @@ const Attraction = () => {
             <AttractionPhotos attract={formatAttractionName(attract)}></AttractionPhotos>
           </div>
 
+
           {/* Anchor Navigation Bar */}
          <NavBarAnchor />
 
+       
           <div className="">
             <div className="commodities-container">
               <div className="attraction-description">

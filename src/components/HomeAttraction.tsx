@@ -14,9 +14,9 @@ type HomeAttractionProp = {
 }
 
 /**
- * Styles and displays an individual attraction detail with a link to the attraction page.
+ * Styles and displays attraction details with a link to the Attraction page.
  * @param detail containing the details of the attraction
- * @returns styled individual attraction detail with a link to the attraction page
+ * @returns styled individual attraction details with a link to the Attraction page
  */
 const HomeAttraction = ({ details } : { details : HomeAttractionProp }) => {
   return (

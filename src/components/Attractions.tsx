@@ -43,7 +43,7 @@ const Attractions = ({ cityname } : Props) => {
     /**
      * Checks if the result is in English by checking if the result is in ASCII characters.
      * @param text string to check if it contains only ASCII characters
-     * @returns {@code true} if the text is in English, {@code false} otherwise
+     * @returns {boolean} true if the text is in English, false otherwise
      */
     const isEnglish = (text: string | undefined | null) =>
       text ? /^[\x00-\x7F]*$/.test(text) : false; 

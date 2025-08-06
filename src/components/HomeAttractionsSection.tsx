@@ -8,7 +8,7 @@ import { topAttractions } from "../data/attractionData";
 
 /**
  * Uses stored data and displays the Top Attractions section of Home page with a title, a list of attractions and a Discover More button.
- * @returns top Attractions section of Home page
+ * @returns Top Attractions section of Home page
  */
 const HomeAttractionsSection = () => {
   return (

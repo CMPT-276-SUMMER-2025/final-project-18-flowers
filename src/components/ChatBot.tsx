@@ -20,13 +20,13 @@ type ChatMessage = {
  * @returns 
  */
 function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => void }) {
-  //store user input to send to api
+  //Stores user input to send to api.
   const [userInput, setUserInput] = useState("");
   const [error, setError] = useState("");
-  //store one chat history for visual only and the other one for backend seperately to prevent sending model-only messages (like FAQ) to the backend
+  //Stores one chat history for visual only and the other one for backend seperately to prevent sending model-only messages (like FAQ) to the backend.
   const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]); // UI
   const [geminiHistory, setGeminiHistory] = useState<ChatMessage[]>([]); // Backend
-  //check if a chat message is loading
+  //Checks if a chat message is loading.
   const [isLoading, setIsLoading] = useState(false);
 
   const surpriseOptions = [
@@ -63,7 +63,7 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
    * Displays the FAQ list in the chat output.
    */
   function showFAQ() {
-    // Loops though the faqList and format it as a string.
+    //Loops though the faqList and format it as a string.
     const faqText = faqList.map((q, i) => `${i + 1}. ${q}`).join("\n");
     const faqMessages: ChatMessage = {
       role: "model",
@@ -136,8 +136,8 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
       const options = {
         method: "POST",
         body: JSON.stringify({
-          //send chat history to the api
-          history: geminiHistory, //only send real messages
+          //Sends chat history to the api.
+          history: geminiHistory, //Only sends real messages.
           message: inputToSend,
         }),
         headers: {
@@ -153,7 +153,7 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
       const userMessage: ChatMessage = { role: "user", parts: [{ text: userInput }] };
       const modelMessage: ChatMessage = { role: "model", parts: [{ text: data }] };
 
-      //Update Update both UI and Gemini-safe chat history
+      //Updates both UI and Gemini-safe chat history.
       setChatHistory(prev => [...prev, userMessage, modelMessage]);
       setGeminiHistory(prev => [...prev, userMessage, modelMessage]);
 
@@ -254,7 +254,7 @@ function ChatButton({ visible, onOpen }: { visible: boolean; onOpen: () => void 
 }
 
 export default function ChatBot() { 
-  //keep track of whether chat is open or not
+  //Keeps track of whether chat is open or not.
   const [chatIsOpen, setChatIsOpen] = useState(false);
 
   return (

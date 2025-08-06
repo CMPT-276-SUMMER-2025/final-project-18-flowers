@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom"
 
+/**
+ * This is a component for the individual attractions of Home page.
+ */
+
 type HomeAttractionProp = {
   path: string,
   imgPath: string,
@@ -9,6 +13,11 @@ type HomeAttractionProp = {
   rank: number;
 }
 
+/**
+ * Styles and displays an individual attraction detail with a link to the attraction page.
+ * @param detail containing the details of the attraction
+ * @returns styled individual attraction detail with a link to the attraction page
+ */
 const HomeAttraction = ({ details } : { details : HomeAttractionProp }) => {
   return (
     <div>

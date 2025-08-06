@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { mockPlacesHotels } from '../data/cityData';
+import "../styles/commodity.css";
 
 /**
  * This is a component for displaying the Hotels section of CityInterests page.

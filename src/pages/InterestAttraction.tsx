@@ -8,6 +8,7 @@ import AttractionTimetable from "../components/AttractionTimetable";
 import AttractionDescription from "../components/AttractionDescription";
 import Booking from "../components/Booking";
 import NavBarAnchor from "../components/NavBarAnchor";
+import "../styles/attraction.css";
 
 type Coord = { lat: number; lng: number };
 

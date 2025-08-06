@@ -1,4 +1,5 @@
-import { HashLink } from "react-router-hash-link"
+import { HashLink } from "react-router-hash-link";
+import "../styles/navbar.css";
 
 const NavBarAnchor = () => {
   return (

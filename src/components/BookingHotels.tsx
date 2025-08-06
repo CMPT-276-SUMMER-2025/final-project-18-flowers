@@ -1,5 +1,5 @@
 import { useState, useMemo} from "react";
-import "../booking.css";
+import "../styles/booking.css";
 
 /**
  * This is a component for the hotel section of booking feature.

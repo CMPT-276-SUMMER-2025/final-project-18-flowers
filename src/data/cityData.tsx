@@ -189,7 +189,7 @@ export const citiesLatLng = [
 // city interests page data 
 export const cityInterestsData = {
   "Taipei City": [
-    '/assets/taipei-night.jpeg',
+    '/assets/city-interests/ci-taipei.jpg',
     "Taipei City (台北市, Táiběi Shì) is the capital and largest metropolitan area of Taiwan, serving as the political, economic, and cultural heart of the island. Located in the Taipei Basin and surrounded by lush mountains, the city offers a unique blend of modern skyscrapers, historic temples, and vibrant street culture. Taipei is renowned for its landmarks, including the towering Taipei 101, the National Palace Museum with its world-class collection of Chinese artifacts, and bustling night markets such as Shilin and Raohe.\n\n Historically, Taipei developed from a small trading settlement during the Qing Dynasty into a major administrative and commercial hub under Japanese rule (1895–1945), which left lasting influences on its architecture and infrastructure. Today, Taipei thrives as a global city, known for its efficient MRT system, thriving tech industry, and diverse culinary scene ranging from street food to Michelin-starred restaurants.\n\n Visitors can soak in hot springs in nearby Beitou, hike Elephant Mountain for panoramic views, or enjoy cultural festivals throughout the year. With its mix of modernity, history, and natural surroundings, Taipei stands as one of Asia’s most dynamic and welcoming cities.",
     "Northern Taiwan",
     "Taiwan’s capital and largest city"

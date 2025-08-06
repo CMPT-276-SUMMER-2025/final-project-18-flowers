@@ -1,5 +1,5 @@
 import InterestTypes from "../components/InterestTypes";
-import "../interestsTypes.css";
+import "../styles/interestsTypes.css";
 
 const Interests = () => {
   return (

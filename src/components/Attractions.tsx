@@ -31,9 +31,13 @@ const Attractions = ({ cityname } : Props) => {
    * Re-fetches attractions whenever cityname changes.
    */
   useEffect(() => {
-
     localStorage.clear();
-    
+
+    //Checks if Google Maps JS API is not yet loaded.
+    if (!window.google || !google.maps) {
+      console.warn("Google Maps JS API not yet loaded");
+      return;
+    }
     //If saveAPICost is true, use mock data instead of API calls.
     if (saveAPICost) { 
       setPlaces(mockPlacesAttractions);

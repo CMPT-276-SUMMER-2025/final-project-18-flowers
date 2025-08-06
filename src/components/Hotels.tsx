@@ -17,7 +17,7 @@ const saveAPICost = false;
  * Displays a list of hotels based on a city's name and coordinates using Google Places API.
  * @param cityname containing the name of the city
  * @param latLng containing the latitude and longitude of the city 
- * @returns 
+ * @returns a list of hotels' names, photos and rating
  */
 const Hotels = ({ cityname, latLng } : Props) => {
   // type alias TPlace object that holds id, displayName
@@ -35,6 +35,11 @@ const Hotels = ({ cityname, latLng } : Props) => {
   const placeRadius = 3000;
 
   useEffect(() => {
+    //Checks if Google Maps JS API is not yet loaded.
+    if (!window.google || !google.maps) {
+      console.warn("Google Maps JS API not yet loaded");
+      return;
+    }
     //If true, use mock data instead of API calls.
     if (saveAPICost) { 
       setPlaces(mockPlacesHotels);
@@ -79,7 +84,7 @@ const Hotels = ({ cityname, latLng } : Props) => {
        * @returns {boolean} true if the text is mostly in English, false otherwise or if text does not exist
        */
       const isMostlyEnglish = (text: string | undefined | null) => {
-        //Checks if a place name exists
+        //Checks if a place name exists.
         if (!text) {
           return false;
         }
@@ -87,9 +92,10 @@ const Hotels = ({ cityname, latLng } : Props) => {
         const totalChars = text.length;
         return englishChars / totalChars > 0.7;
       };
-      
+
       const filteredPlaces = formattedPlaces.filter((place) =>
-        typeof place.displayName === "string" && isMostlyEnglish(place.displayName) 
+        typeof place.displayName === "string" && 
+        isMostlyEnglish(place.displayName)
       ).slice(0, 4); // Only show the first 4 valid results.
 
       setPlaces(filteredPlaces);

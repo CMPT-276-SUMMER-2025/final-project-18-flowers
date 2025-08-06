@@ -21,6 +21,12 @@ const AttractionPhotos = ({ attract }: Props) => {
    */
   useEffect(() => {
     async function fetchPhotos() {
+      //Check if Google Maps JS API is not yet loaded.
+      if (!window.google || !google.maps) {
+        console.warn("Google Maps JS API not yet loaded");
+        return;
+      }
+      
       try {
         const { Place } = await google.maps.importLibrary("places") as google.maps.PlacesLibrary;
 

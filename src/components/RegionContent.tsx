@@ -9,6 +9,11 @@ export default function CityCard({ cityname } : Props) {
   const [placeName, setPlaceName] = useState("");
 
   useEffect(() => {
+    //Checks if Google Maps JS API is not yet loaded.
+    if (!window.google || !google.maps) {
+      console.warn("Google Maps JS API not yet loaded");
+      return;
+    }
     async function getCity() {
       const { PlacesService } = await google.maps.importLibrary("places") as google.maps.PlacesLibrary; // access places service
 

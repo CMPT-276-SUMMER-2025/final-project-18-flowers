@@ -2,6 +2,10 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { mockPlacesRestaurants } from '../data/cityData';
 
+/**
+ * This is a component for displaying the restaurants section of CityInterests page.
+ */
+
 type Props = { 
   cityname: string,
   latLng: { lat: number, lng: number }
@@ -9,6 +13,12 @@ type Props = {
 
 const saveAPICost = false;
 
+/**
+ * Displays a list of restaurants based on a city's name and coordinates using Google Places API.
+ * @param cityname containing the name of the city
+ * @param latLng containing the latitude and longitude of the city 
+ * @returns a list of restaurants' names, photos and rating
+ */
 const Restaurants = ({ cityname, latLng } : Props) => {
   // type alias TPlace object that holds id, displayName
   type TPlace = {
@@ -18,7 +28,6 @@ const Restaurants = ({ cityname, latLng } : Props) => {
     rating?: number | null; 
   };
 
-
   const [places, setPlaces] = useState<TPlace[]>([]);
   const { id } = useParams();  
   console.log(id);
@@ -27,11 +36,21 @@ const Restaurants = ({ cityname, latLng } : Props) => {
   const placeRadius = 3000; 
 
   useEffect(() => {
+    //Checks if Google Maps JS API is not yet loaded.
+    if (!window.google || !google.maps) {
+      console.warn("Google Maps JS API not yet loaded");
+      return;
+    }
+    //If true, use mock data instead of API calls.
     if (saveAPICost) { 
       setPlaces(mockPlacesRestaurants);
       return; 
     }
-    async function getHotels() {
+
+    /**
+     * Fetches restaurants near the given coordinates using Google Places API and sets the places to be the fetched restaurants.
+     */
+    async function getRestaurants() {
       const { Place, SearchNearbyRankPreference } = await google.maps.importLibrary('places') as google.maps.PlacesLibrary;
       const myRequest = {
         locationRestriction: { 
@@ -59,6 +78,11 @@ const Restaurants = ({ cityname, latLng } : Props) => {
         });
       });
 
+      /**
+       * Checks if more than 70% of the characters in a place name are ASCII (English characters).
+       * @param text containing the text for checking
+       * @returns {boolean} true if the text is mostly in English, false otherwise or if text does not exist
+       */
       const isMostlyEnglish = (text: string | undefined | null) => { // checks if more than 70% of the characters are English
         if (!text) {
           return false;
@@ -67,16 +91,22 @@ const Restaurants = ({ cityname, latLng } : Props) => {
         const totalCharacters = text.length; // Total characters in the string
         return englishCharacters / totalCharacters > 0.7; // More than 70% English characters
       };
-
+      
+      /**
+       * Checks and make sure the name is not a hotel name.
+       * @param text containing the hotel name for checking
+       * @returns {boolean} true if it is not a hotel, false otherwise or if text does not exist
+       */
       const isNotHotel = (text: string | undefined | null) => { // filters out places with keywords related to hotels
+        //Checks if a hotel name exists.
         if (!text) {
           return false;
         }
         const lower = text.toLowerCase();
         const hotelKeywords = [ "hotel", "inn", "resort", "motel", "villa", "homestay"];
-        return !hotelKeywords.some((keyword) => lower.includes(keyword)); // returns true if none of the keywords are found
+        return !hotelKeywords.some((keyword) => lower.includes(keyword)); 
       };
-      
+
       const filteredPlaces = formattedPlaces.filter((place) =>
         typeof place.displayName === "string" &&
         isMostlyEnglish(place.displayName) &&
@@ -86,13 +116,14 @@ const Restaurants = ({ cityname, latLng } : Props) => {
       setPlaces(filteredPlaces);
 
     } 
-    getHotels();
+    getRestaurants();
   }, [cityname]);
   
   return (
     <>
       <div className="commodity-container">
         <h1 className="commodity-title">Restaurants</h1>
+        {/* Creates a clickable container for each place, with its photo, name and rating. */}
         {places.map((place) => (
           <a 
             key = {place.id}

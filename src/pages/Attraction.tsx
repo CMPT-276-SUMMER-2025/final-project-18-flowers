@@ -27,6 +27,12 @@ const Attraction = () => {
   const [description, setDescription] = useState<string | null>(null);
 
   useEffect(() => {
+    //Check if Google Maps JS API is not yet loaded.
+    if (!window.google || !google.maps) {
+      console.warn("Google Maps JS API not yet loaded");
+      return;
+    }
+    
     async function getAttractionInfo() { 
       const { Place } = await google.maps.importLibrary("places") as google.maps.PlacesLibrary;
 

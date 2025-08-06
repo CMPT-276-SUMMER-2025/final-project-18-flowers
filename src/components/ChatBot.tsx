@@ -3,20 +3,30 @@ import ReactMarkdown from "react-markdown";
 import "../chatbot.css";
 import Fuse from "fuse.js";
 
+/**
+ * This is the component for the chatbot feature.
+ */
+
 //Define a type for ChatMessage structure
 type ChatMessage = {
   role: "user" | "model";
   parts: { text: string }[];
 };
 
+/**
+ * The main component managing the chat UI, user input, chat history, and responses from the backend or FAQ.
+ * @param visible whether the chat interface is visible or not
+ * @param onClose function to close the chat interface 
+ * @returns 
+ */
 function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => void }) {
-  //store user input to send to api
+  //Stores user input to send to api.
   const [userInput, setUserInput] = useState("");
   const [error, setError] = useState("");
-  //store chat history for UI and backend seperately to prevent sending model-only messages (like FAQ) to the backend
+  //Stores one chat history for visual only and the other one for backend seperately to prevent sending model-only messages (like FAQ) to the backend.
   const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]); // UI
   const [geminiHistory, setGeminiHistory] = useState<ChatMessage[]>([]); // Backend
-  //check if a chat message is loading
+  //Checks if a chat message is loading.
   const [isLoading, setIsLoading] = useState(false);
 
   const surpriseOptions = [
@@ -48,20 +58,29 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
     "Where is the route/itinerary planner?": "In the top navigation bar, the itinerary planner is located in the 'Plan a trip' section. You can create a personalized travel itinerary by selecting attractions and adding them to your plan.",
     "I have encountered a bug/error, what should I do?": "The best way to report a bug or error is to use the 'Report a Bug' button located in the footer of the website (not yet finished). Please provide as much detail as possible about the issue you encountered.",
   };
-  //Show FAQs in chat
+
+  /**
+   * Displays the FAQ list in the chat output.
+   */
   function showFAQ() {
+    //Loops though the faqList and format it as a string.
     const faqText = faqList.map((q, i) => `${i + 1}. ${q}`).join("\n");
     const faqMessages: ChatMessage = {
       role: "model",
       parts: [{ text: `FAQ:\n\n${faqText}` }]
     };
+    //Does not update geminiHistory since this is just a FAQ message.
     setChatHistory((oldChatHistory) => [...oldChatHistory, faqMessages]);
-    //does not update geminiHistory since this is just a FAQ message
   }
+
+  /**
+   * Picks a random question from a list of surprise questions and sets it as the user input.
+   */
   function surprise() {
     let randomInput: string = '';
     const surpriseOptionIndex: number = Math.floor(Math.random() * surpriseOptions.length);
     randomInput = surpriseOptions[surpriseOptionIndex];
+    //Prevents showing the same question as the user input.
     if(randomInput === userInput) {
       randomInput = surpriseOptions[(surpriseOptionIndex + 1) % (surpriseOptions.length - 1)];
     }
@@ -69,25 +88,33 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
   }
 
   const bottomRef = useRef<HTMLDivElement>(null);
+  //Scrolls to the bottom of the chat output section when the chat history or loading state changes.
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth"});
   }, [chatHistory, isLoading]);
 
+  /**
+   * Fetches a response from the backend or checks the FAQ list for a matching question.
+   * @returns If matched a FAQ question, it replies with the answer. Otherwise, it sends the user input to the backend for processing.
+   */
   async function getResponse() {
+    //Checks if user input is empty and set an error message if it is.
     if (!userInput.trim()) {
       setError("Error! Please ask a question!");
       return;
     }
 
-    //Check if user input matches a question from FAQ list
+    //Checks if user input matches a question from FAQ list.
     const fuse = new Fuse(faqList, {
       threshold: 0.4, // how fuzzy the match is (lower is stricter)
       includeScore: true,
     });
 
     const matches = fuse.search(userInput);
+    //Checks if there are any matches and gets the first match if it exists.
     const matchedFAQ = matches.length > 0 ? matches[0].item : null;
 
+    //If matched a FAQ question, it replies with the answer.
     if (matchedFAQ && faqAnswers[matchedFAQ]) {
       const faqReply = faqAnswers[matchedFAQ];
       setChatHistory((prev) => [
@@ -109,8 +136,8 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
       const options = {
         method: "POST",
         body: JSON.stringify({
-          //send chat history to the api
-          history: geminiHistory, //only send real messages
+          //Sends chat history to the api.
+          history: geminiHistory, //Only sends real messages.
           message: inputToSend,
         }),
         headers: {
@@ -126,7 +153,7 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
       const userMessage: ChatMessage = { role: "user", parts: [{ text: userInput }] };
       const modelMessage: ChatMessage = { role: "model", parts: [{ text: data }] };
 
-      //Update Update both UI and Gemini-safe chat history
+      //Updates both UI and Gemini-safe chat history.
       setChatHistory(prev => [...prev, userMessage, modelMessage]);
       setGeminiHistory(prev => [...prev, userMessage, modelMessage]);
 
@@ -138,6 +165,9 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
     }
   }
 
+  /**
+   * Clears the visual chat history, gemini chat history, user input, and error message.
+   */
   function clear() {
     setUserInput("");
     setError("");
@@ -174,6 +204,7 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
             }
           }}
         />
+        {/* Shows "Send" or "Clear" button depending on whether an error exists. */}
         {!error && <button onClick={getResponse}>Send</button>}
         {error && <button onClick={clear}>Clear</button>}
       </div>
@@ -181,6 +212,7 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
       {error && <p>{error}</p>}
 
       <div className="chatbot-output-section">
+        {/* Renders chat history with user and assistant messages as chat bubbles. */}
         {chatHistory.map((chatItem, index) => (
           <div key={index} className={`chatbot-text-bubble ${chatItem.role === 'user' ? 'user' : 'assistant'}`}>
             <h3 className="chatbot-you-header">
@@ -209,6 +241,12 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
   );
 }
 
+/**
+ * Controls the chat's visibility state (chatIsOpen).
+ * @param visible whether the chat button is visible or not
+ * @param onOpen function to open the chat interface 
+ * @returns rendered chat button and chat interface depending on visibility
+ */
 function ChatButton({ visible, onOpen }: { visible: boolean; onOpen: () => void }) {
   return (
     <>
@@ -218,7 +256,7 @@ function ChatButton({ visible, onOpen }: { visible: boolean; onOpen: () => void 
 }
 
 export default function ChatBot() { 
-  //keep track of whether chat is open or not
+  //Keeps track of whether chat is open or not.
   const [chatIsOpen, setChatIsOpen] = useState(false);
 
   return (

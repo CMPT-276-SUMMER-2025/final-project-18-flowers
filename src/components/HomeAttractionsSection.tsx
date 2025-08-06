@@ -2,10 +2,17 @@ import ViewButton from "./ViewButton";
 import HomeAttraction from "./HomeAttraction";
 import { topAttractions } from "../data/attractionData";
 
+/**
+ * This is a component for displaying the Top Attractions section of Home page.
+ */
+
+/**
+ * Uses stored data and displays the Top Attractions section of Home page with a title, a list of attractions and a Discover More button.
+ * @returns Top Attractions section of Home page
+ */
 const HomeAttractionsSection = () => {
   return (
     <>
-
       <h1 className="home-section-title">Top <strong>Attractions</strong></h1>
 
         <div id="home-attractions-container">

@@ -2,13 +2,27 @@ import { useState, useEffect } from "react"; // use effect needed for API handli
 import { Link } from "react-router-dom"; // use to turn city cards into clickable links 
 import { cities } from "../data/cityData"; // get cities object from cityData.tsx 
 
+/**
+ * This is a component for the city cards on the Destination page.
+ */
+
 type Props = { cityname: string, ranking: number }
 const taiwanLatLng = { lat: 23.7, lng: 121.0 }; // latitude and longitude of Taiwan
 
+/**
+ * Dynamically generates a city card from Google Places API based on the city name and ranking.
+ * @param cityname containing the name of the city
+ * @param ranking containing the ranking of the city
+ * @returns cities card with the city name, image, and description
+ */
 export default function CityCard({ cityname, ranking } : Props) {
   const [placeName, setPlaceName] = useState("");
 
   useEffect(() => {
+    /**
+     * Fetches and displaces cities' information from Google Places API using text search and sets the place name's state.
+     * @returns a city card with the city name, image, description and order ranking
+     */
     async function getCity() {
       const { PlacesService } = await google.maps.importLibrary("places") as google.maps.PlacesLibrary; // access places service
 

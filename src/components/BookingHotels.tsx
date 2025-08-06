@@ -1,18 +1,26 @@
-
 import { useState, useMemo} from "react";
 import "../booking.css";
 
+/**
+ * This is a component for the hotel section of booking feature.
+ */
+
+/**
+ * Provides options and a button that is linked to an external website for booking hotels.
+ * @returns booking options for hotels
+ */
 const Booking = () => {
   const [destination, setDestination] = useState("");
   const [checkIn, setCheckIn] = useState("");  
   const [checkOut, setCheckOut] = useState("");
   const [adults, setAdults] = useState("1");
   const [children, setChildren] = useState("0");
-
-  //const getYear = (dateStr : string) => new Date(dateStr).getFullYear();
-  //const getMonth = (dateStr : string) => new Date(dateStr).getMonth();
-  //const getDay = (dateStr : string) => new Date(dateStr).getDay();
-
+  
+  /**
+   * Constructs the URL for booking hotels based on user input.
+   * Uses Booking.com format for the date and hotel details.
+   * @returns formatted URL for booking hotels
+   */
   const url = useMemo(() => {
       if (!destination || !checkIn || !checkOut) return "#"; // stay in taiwan explorers
       return (

@@ -1,5 +1,9 @@
 import { HashLink } from "react-router-hash-link"
 
+/**
+ * This is a component for displaying the Interests on Home page.
+ */
+
 type HomeInterestProp = {
   hash: string,
   classColor: string,
@@ -8,6 +12,11 @@ type HomeInterestProp = {
   description: string, 
 }
 
+/**
+ * Styles and displays interests details with a link to the Interests page.
+ * @param detail containing the details of the attraction
+ * @returns styled interests details with a link to the Interests page
+ */
 const HomeInterest = ({ details } : { details : HomeInterestProp }) => {
   return (
     <HashLink to={`/interests#${details.hash}`}>

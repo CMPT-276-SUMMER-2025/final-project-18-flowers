@@ -1,21 +1,21 @@
 import { useState, useEffect } from "react"; // use effect needed for API handling, use state to trigger UI updates 
 import { Link } from "react-router-dom"; // use to turn city cards into clickable links 
-import { citiesLatLng } from "../data/cityData"; // get cities object from cityData.tsx 
+import { cities } from "../data/cityData"; // get cities object from cityData.tsx 
 
-type Props = { cityname: string }
+type Props = { cityname: string, ranking: number }
 const taiwanLatLng = { lat: 23.7, lng: 121.0 }; // latitude and longitude of Taiwan
 
-export default function CityCard({ cityname } : Props) {
+export default function CityCardMobile({ cityname, ranking } : Props) {
   const [placeName, setPlaceName] = useState("");
 
   useEffect(() => {
     async function getCity() {
       const { PlacesService } = await google.maps.importLibrary("places") as google.maps.PlacesLibrary; // access places service
 
-      const map = document.getElementById('dummy-map') as HTMLDivElement; // get map for PlacesService constructor 
-      if (!map) return (console.log("ERROR: map could not be found")) // check for error if map can't be accessed
+      const dummyMap = document.getElementById('dummy-map') as HTMLDivElement; // create dummy map for PlacesService constructor 
+      if (!dummyMap) return (console.log("ERROR: Dummy map could not be found")) // check for error if map can't be accessed
 
-      const service = new PlacesService(map as HTMLDivElement); // create new instance of object called service to access methods 
+      const service = new PlacesService(dummyMap as HTMLDivElement); // create new instance of object called service to access methods 
       const status = google.maps.places.PlacesServiceStatus; // access status to get access to status constants
 
       const myRequest = { // request to feed textSearch method of service 
@@ -38,12 +38,10 @@ export default function CityCard({ cityname } : Props) {
     getCity(); // call method 
   }, [cityname]); // the effect function will only re-run only when the cityname dependency changes values between renders 
 
-  const cityInfo = citiesLatLng.find(city => city.header === cityname);
+  // assign 2 values to 2 variables through "array destructing assignment"
+  // this works because if you look in cityData.tsx, the values are arrays of size 2, ["img value", "description value"]
+  const [cityName, imgSrc ] = cities[cityname as keyof typeof cities] || ["", ""]; // 
 
-  const description = cityInfo?.description;
-  const region = cityInfo?.region;
-  const header = cityInfo?.header;
-  const imgSrc = cityInfo?.image;
   // create a clean url path (Hualien%20City -> hualien-city)
   const formatted = cityname.toLowerCase().replace(/\s+/g, "-");
 
@@ -52,14 +50,15 @@ export default function CityCard({ cityname } : Props) {
   return( 
     <div>
       <Link to={`/destinations/${formatted}`}>
-        <div className="region-card ml-0 mb-[1rem] lg:mb-[0rem] lg:mr-[1rem] w-[380px] h-[200px] lg:w-[284px] lg:h-[300px]">
-          <div>
-            <img src={imgSrc} alt={header} className="region-city-img h-[175px]"></img>
-            <div className="region-txt">
-              <h3 className="region-city-name">{header || placeName}</h3>
-              <h3 className="region">{region}</h3>
-              <p className="region-description">{description}</p>
-            </div>
+        <div className="dest-card-mobile">
+          <img src={imgSrc} className="city-img-mobile" alt={placeName}/>
+          <p 
+          className="text-blue-600 text-xs font-extrabold inline-flex items-center justify-center bg-amber-50 border-amber-500 border-2 
+          px-3 py-2 rounded-4xl absolute top-[1.5rem] left-[100px] w-8 h-8"> 
+            {ranking}
+          </p>  
+          <div className="city-txt flex items-center justify-center ml-[1.8rem] mr-[0.4rem]">
+            <h3>{placeName || cityName}</h3>
           </div>
         </div>
       </Link>

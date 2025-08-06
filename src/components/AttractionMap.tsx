@@ -46,13 +46,12 @@ const AttractionMap = ({ lat, lng }: Coord) => {
   }, []);
 
   return (
-    <div className="attraction-map" style={{ width: "500px", height: "350px"}}>
+    <div className="attraction-map" style={{ width: "", height: "320px"}}>
       <APIProvider apiKey={apiKey}>
         <Map
           center={{ lat, lng }}
           zoom={15}
           mapId=""
-          style={{ width: "100%", height: "100%" }}
           fullscreenControl={false}
           streetViewControl={false}
           mapTypeControl={false}

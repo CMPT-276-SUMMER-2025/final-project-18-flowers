@@ -31,6 +31,9 @@ const Attractions = ({ cityname } : Props) => {
    * Re-fetches attractions whenever cityname changes.
    */
   useEffect(() => {
+
+    localStorage.clear();
+    
     //If saveAPICost is true, use mock data instead of API calls.
     if (saveAPICost) { 
       setPlaces(mockPlacesAttractions);
@@ -84,12 +87,12 @@ const Attractions = ({ cityname } : Props) => {
     async function getAttractions() {
       const { Place, SearchByTextRankPreference } = await google.maps.importLibrary('places') as google.maps.PlacesLibrary;
       const myRequest = {
-        textQuery: `${cityname} tourist attractions locations`, // query 
+        textQuery: `${cityname}'s most visited tourist attractions`, // query 
         fields: ["id", "displayName", "photos"], // save cost by specifying only displayName field and photos (essentials tier => cheaper)
         includedType: "tourist_attraction", // only request tourist attractions
         rankPreference: SearchByTextRankPreference.RELEVANCE, // only request relevant to query 
-        minRating: 3.5, // only request places with 4.0 <= rating <= 5.0
-        maxResultCount: 15, // requests 15 places total, in case there are invalid results that includes non-english titles
+        minRating: 3.7, // only request places with 4.0 <= rating <= 5.0
+        maxResultCount: 24, // requests 15 places total, in case there are invalid results that includes non-english titles
         language: "en",
         region: 'us',
         useStrictTypeFiltering: true,
@@ -101,7 +104,10 @@ const Attractions = ({ cityname } : Props) => {
       const filteredPlaces = myPlaces.filter( //Filters the 15 results with only english display names.
         (place) =>
           typeof place.displayName === "string" &&
-          isEnglish(place.displayName)
+          isEnglish(place.displayName) && // keep if english
+          !place.displayName.toLowerCase().includes("tour") && // exclude if "tour" is included
+          !place.displayName.toLowerCase().includes("bell") && 
+          !place.displayName.toLowerCase().includes("steles") 
       );
 
       //Limits the results to 9 and transforms each into a { id, displayName, photoUrl } object.

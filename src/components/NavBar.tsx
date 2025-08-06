@@ -4,6 +4,10 @@ import "../navbar.css";
 import { useState } from 'react';
 import NavBarSide from './NavBarSide';
 
+/**
+ * This is the component for the navigation bar on top of Home page.
+ */
+
 const NavBar = () => {
 
   // used to track whether or not to open nav bar side

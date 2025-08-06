@@ -1,11 +1,21 @@
 import { Link } from 'react-router-dom';
 import "../navbar.css";
 
+/**
+ * This component creates responsive mobile layouts where a collapsible menu is needed for the navigation bar.
+ */
+
 type SideProp = {
   isOpen: boolean;
   setIsOpen: (open : boolean) => void;
 }
 
+
+/**
+ * Renders a working sidebar when needed.
+ * @param isOpen When isOpen is true, the overlay is visible, else invisible and not interactive
+ * @returns a collasible menu for navigation bar
+ */
 const NavBarSide = ({ isOpen, setIsOpen } : SideProp) => {
   return (
     <>

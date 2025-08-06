@@ -4,14 +4,16 @@ import "../navbar.css";
 import { useState } from 'react';
 import NavBarSide from './NavBarSide';
 
-const NavBarSolid = () => {
+/**
+ * This is the component for the navigation bar on top of all pages except Home page.
+ */
 
+const NavBarSolid = () => {
   // used to track whether or not to open nav bar side
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-    
       <NavBarSide isOpen={isOpen} setIsOpen={setIsOpen} />
       <nav id="nav-solid"> 
         <div className="nav-left">

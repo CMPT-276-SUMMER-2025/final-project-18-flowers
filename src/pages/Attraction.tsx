@@ -90,9 +90,11 @@ const Attraction = () => {
           <div className="">
             <div className="commodities-container">
               <div className="attraction-description">
-                <h2 className="attraction-sub-titles">Overview</h2>
-                {description && (
+                <h2 className="attraction-sub-titles" id="overview">Overview</h2>
+                {description ? (
                   <p>{description}</p>
+                ) : (
+                  <p>No overview is available for this attraction.</p>
                 )}
                 <div id="ai-description">
                   <AttractionDescription placeName={formatAttractionName(attract)}/>

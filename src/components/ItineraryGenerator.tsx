@@ -5,6 +5,14 @@ import remarkGfm from 'remark-gfm';
 import PlanTripMap from "./PlanTripMap";
 import "../itinerary.css";
 
+/**
+ * This is the component for the Itinerary Generator feature on the PlanTrip page.
+ */
+
+/**
+ * Fetches and displays an itinerary from Google Gemini api.
+ * @returns generated itinerary text
+ */
 export default function ItineraryGenerator() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -16,9 +24,9 @@ export default function ItineraryGenerator() {
   const [numAdultsOption, setNumAdultsOption] = useState("");
   const [numChildrenOption, setNumChildrenOption] = useState("");
   const [budgetOption, setBudgetOption] = useState("");
-  //store generated itinerary
+  //Stores generated itinerary.
   const [response, setResponse] = useState(""); 
-  //store route coordinates for the map
+  //Stores route coordinates for the map.
   const [routeCoordinates, setRouteCoordinates] = useState<{ lat: number; lng: number }[]>([]);
   const [resetMapTrigger, setResetMapTrigger] = useState(0); // trigger map reset
 
@@ -35,11 +43,16 @@ export default function ItineraryGenerator() {
     "Shopping", "Food", "Themeparks", "Culture", "Nature", "Street Markets",  
   ]
 
-  // create city options that users can choose from
+  //Creates city options that users can choose from.
   const cityOptions = taiwanCities.map((city) => ({ label: city, value: city }));
-  // create interest options that users can choose from
+  //Creates interest options that users can choose from.
   const interestOptions = interests.map((interest) => ({ label: interest, value: interest}));
 
+  /**
+   * Handles change events from dropdown fields like day, number of adults/children, and budget.
+   * @param event change event from dropdown field
+   * @param changeFor string input from user
+   */
   const handleChange = (event: any, changeFor: string) => {
     if (changeFor === "days-option") {
       setDaysOption(event.target.value);
@@ -52,18 +65,23 @@ export default function ItineraryGenerator() {
     }
   };
 
+  /**
+   * Prevents page reload, collects and validates form input, fetch data from backend, and updates state with the response or error messages.
+   * @param event change event in the form
+   * @returns generated and stylized itinerary
+   */
   async function submitHandler(event: any) {
     event.preventDefault();
-    setErrorMessage("");//clear any existing error messages
+    setErrorMessage("");//Clears any existing error messages.
     
-
+    //Extracts .value field from selected dropdown menu.
     const selectedCityValues = selectedCities.map((c) => c.value);
     console.log("Selected cities:", selectedCityValues);
 
     const selectedInterestValues = selectedInterests.map((interest) => interest.value); 
     console.log("Selected interests: ", selectedInterestValues);
 
-    // Check if any field is empty
+    //Checks if any field is empty.
     if (
       (selectedCityValues.length) === 0 || 
       (selectedInterestValues.length === 0) || 
@@ -72,12 +90,12 @@ export default function ItineraryGenerator() {
       (!numChildrenOption) || 
       (!budgetOption)
     ) {
-      setResponse(""); // Clear previous result
+      setResponse(""); //Clears previous result.
       errorHandler("unfilled fields"); 
       return;
     }
 
-    //check if the number of cities exceeds number of days
+    //Checks if the number of cities exceeds number of days.
     if(selectedCityValues.length > Number(daysOption.slice(0, 2))) {
       setResponse(""); //clear previous result
       errorHandler("not enough days");
@@ -125,7 +143,10 @@ export default function ItineraryGenerator() {
     }
   }
 
-  //button to clear the form options and itinerary
+  /**
+   * Displays a button to clear the form options and itinerary.
+   * @param event change event in the form
+   */
   const handleClear = (event: any) => {
     event.preventDefault();
     setSelectedCities([]);
@@ -159,6 +180,10 @@ export default function ItineraryGenerator() {
     })
   };
 
+  /**
+   * Warns user with an error message when there is an error.
+   * @param errorType type of error in the form
+   */
   function errorHandler(errorType: string) {
     if(errorType === "unfilled fields") {
       setErrorMessage("Please fill in all the fields before generating your itinerary.");
@@ -168,7 +193,11 @@ export default function ItineraryGenerator() {
     }
   }
 
-  //generate random delay for skeleton text loading screen
+  /**
+   * Generates random delay for skeleton text loading screen.
+   * @param key number to use as key for the skeleton line
+   * @returns a random animation delay that simulates the loading line
+   */
   function GenerateTextSkeletonLine(key: number) {
     const delay = (Math.random() * 1.5).toFixed(2);
     return (
@@ -194,6 +223,7 @@ export default function ItineraryGenerator() {
               onChange={(e) => handleChange(e, "days-option")}
             >
               <option value="">Select # of days</option>
+              {/* Generates the "days" dropdown option */}
               {[...Array(30)].map((_, i) => (
                 <option key={i + 1} value={`${i + 1} day${i === 0 ? "" : "s"}`}>
                   {i + 1} {i === 0 ? "day" : "days"}
@@ -241,6 +271,7 @@ export default function ItineraryGenerator() {
                 onChange={(e) => handleChange(e, "num-adults-option")}
               >
                 <option value=""># of adults</option>
+                {/* Generates dropdowns for Adults:1-9, 10+ Children: 0-9, 10+ */}
                 {[...Array(9)].map((_, i) => (
                   <option key={i} value={`${i + 1} adult${i ? "s" : ""}`}>
                     {i + 1} {i ? "adults" : "adult"}
@@ -305,8 +336,10 @@ export default function ItineraryGenerator() {
         {/* THIS IS WHERE THE GENERATED IG CONTENT APPEARS */}
         <div className="ig-response">
           <section>
+            {/* Checks used to conditionally show UI components */}
             {errorMessage && <p className="ig-error-message">{errorMessage}</p>}
             {isLoading && <div className="ig-loading-text-skeleton">
+              {/* Generates 14 skeleton lines to simulate loading lines. */}
               {[...Array(14)].map((_, i) => GenerateTextSkeletonLine(i))}
             </div>}
             {/* This converts markdown into html automatically via ReactMarkdown*/}

@@ -156,9 +156,11 @@ function ChatInterface({ visible, onClose }: { visible: boolean; onClose: () => 
         <span>What would you like to know?</span>
         <button onClick={showFAQ}>FAQ</button>
         <button onClick={surprise}>
-          Surprise me!
+          Surprise!
         </button>
-        <button onClick={clear}>Reset Chat</button>
+        <button onClick={clear}>
+          <img src="/assets/chatbot/reset-icon.png"></img>
+        </button>
       </div>
 
       <div className="chatbot-input-container">

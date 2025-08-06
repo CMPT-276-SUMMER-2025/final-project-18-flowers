@@ -79,6 +79,11 @@
   border: none;
   cursor: pointer;
   margin: 2px;
+  min-height: 2em;
+}
+
+.chat-interface-top-bar img {
+  width: 1.5em;
 }
 
 .chat-interface-top-bar button:hover {

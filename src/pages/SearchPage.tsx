@@ -4,6 +4,10 @@ import SearchList from "../components/SearchList";
 import Booking from "../components/Booking";
 import "../styles/search.css";
 
+/**
+ * This is the Search page of the webstie.
+ */
+
 //@ts-expect-error
 const SearchPage = ({ results }) => {
   const location = useLocation();
@@ -20,6 +24,7 @@ const SearchPage = ({ results }) => {
   const [searchFor, setSearchFor] = useState(query);
 
   useEffect(() => {
+    //Sets the search field if there is user input
     if (query) {
       setSearchField(query);
       setSearchFor(query);
@@ -27,7 +32,7 @@ const SearchPage = ({ results }) => {
     }
   }, [query]);
 
-  // filter through place details
+  //Filters through place details.
   const filteredResults = results.filter(
     //@ts-expect-error
     (result) => {
@@ -39,8 +44,10 @@ const SearchPage = ({ results }) => {
     }
   )
 
-  // handle the event change and set the target's value 
-  
+  /**
+   * handle the event change and set the target's value 
+   * @param event event changed
+   */
   //@ts-expect-error
   const handleChange = (event) => {
     setSearchField(event.target.value);

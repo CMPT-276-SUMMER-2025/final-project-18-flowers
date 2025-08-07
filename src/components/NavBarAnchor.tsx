@@ -1,6 +1,14 @@
 import { HashLink } from "react-router-hash-link";
 import "../styles/navbar.css";
 
+/**
+ * This is the component for the anchor link of the mid page navigation bar on Attraction page.
+ */
+
+/**
+ * Creates linked text in the navigation bar.
+ * @returns an unordered list of hashlink text
+ */
 const NavBarAnchor = () => {
   return (
     <nav className="section-nav">

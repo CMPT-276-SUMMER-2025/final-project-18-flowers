@@ -27,7 +27,6 @@ export default function CityCardMobile({ cityname, ranking } : Props) {
       const { PlacesService } = await google.maps.importLibrary("places") as google.maps.PlacesLibrary; // access places service
 
       const dummyMap = document.getElementById('dummy-map') as HTMLDivElement; // create dummy map for PlacesService constructor 
-      if (!dummyMap) return (console.log("ERROR: Dummy map could not be found")) // check for error if map can't be accessed
 
       const service = new PlacesService(dummyMap as HTMLDivElement); // create new instance of object called service to access methods 
       const status = google.maps.places.PlacesServiceStatus; // access status to get access to status constants
@@ -44,8 +43,6 @@ export default function CityCardMobile({ cityname, ranking } : Props) {
           if (results && (results.length > 0)) // TypeScript double checking to ensure results is not null
           setPlaceName(results[0].name!); // set place name using useState to the city name
           // extra checking for typescript validity
-        } else {
-          console.log("ERROR: Could not find valid result from textSearch()"); // could not find the city 
         }
       });
     }

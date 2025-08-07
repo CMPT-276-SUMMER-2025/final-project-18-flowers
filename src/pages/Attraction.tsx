@@ -10,11 +10,24 @@ import Booking from "../components/Booking";
 import NavBarAnchor from "../components/NavBarAnchor";
 import "../styles/attraction.css";
 
+/**
+ * This is the Attraction page of the webstie.
+ */
+
 type Coord = { lat: number; lng: number };
 
+/**
+ * Passes data to child components and renders the page containing all the details of the attraction.
+ * @returns data and rendered page
+ */
 const Attraction = () => {
   const { attract } = useParams();
 
+  /**
+   * Converts a hyphenated slug (like "taipei-101") into a readable name ("Taipei 101").
+   * @param slug hyphenated slug
+   * @returns readable name
+   */
   function formatAttractionName(slug: string | undefined) {
     if (!slug) return '';
     return slug
@@ -27,6 +40,7 @@ const Attraction = () => {
   const [openingHours, setOpeningHours] = useState<string[]>([]);
   const [description, setDescription] = useState<string | null>(null);
 
+  //Fetches data from Google Maps Places API whenever the attract slug changes (i.e., the user navigates to a different attraction page).
   useEffect(() => {
     //Check if Google Maps JS API is not yet loaded.
     if (!window.google || !google.maps) {
@@ -34,6 +48,9 @@ const Attraction = () => {
       return;
     }
     
+    /**
+     * Fetches attraction data from the Google Maps Places API.
+     */
     async function getAttractionInfo() { 
       const { Place } = await google.maps.importLibrary("places") as google.maps.PlacesLibrary;
 
@@ -60,12 +77,13 @@ const Attraction = () => {
 
       setDescription(summary || null);
 
+      //Sets coordinates.
       if (placeLatLng) {
         setCoord({ lat: placeLatLng.lat(), lng: placeLatLng.lng(), });
       } else {
         setCoord(null);
       }
-
+      //Sets opening hours if available.
       if (hours?.weekdayDescriptions) {
       setOpeningHours(hours.weekdayDescriptions);
       }
@@ -91,9 +109,12 @@ const Attraction = () => {
           <div className="">
             <div className="commodities-container">
               <div className="attraction-description">
-                <h2 className="attraction-sub-titles">Overview</h2>
-                {description && (
+                <h2 className="attraction-sub-titles" id="overview">Overview</h2>
+                {/* Displays a message when no overview is fetched. */}
+                {description ? (
                   <p>{description}</p>
+                ) : (
+                  <p>No overview is available for this attraction.</p>
                 )}
                 <div id="ai-description">
                   <AttractionDescription placeName={formatAttractionName(attract)}/>
@@ -127,7 +148,7 @@ const Attraction = () => {
           <Booking />
         </div> 
       </div>
-
+        {/* Booking component with responsive design */} 
       <div className="block xl:hidden w-[90%] max-w-[44rem] mx-auto mb-24">
         <Booking />
       </div>

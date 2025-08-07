@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { mockPlacesAttractions } from '../data/cityData';
 
 /**
@@ -24,8 +24,6 @@ const Attractions = ({ cityname } : Props) => {
   };
 
   const [places, setPlaces] = useState<TPlace[]>([]);
-  const { id } = useParams();  
-  console.log(id);
 
   /**
    * Re-fetches attractions whenever cityname changes.

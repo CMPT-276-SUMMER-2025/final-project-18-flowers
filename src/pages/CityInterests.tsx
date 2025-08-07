@@ -5,6 +5,14 @@ import Hotels from "../components/Hotels"; // hotels component
 import Restaurants from "../components/Restaurants"; // restaurants component
 import "../styles/city.css";
 
+/**
+ * This is the CityInterests page of the webstie.
+ */
+
+/**
+ * Passes data to child components and renders the page containing all the details of the city.
+ * @returns data and rendered page
+ */
 const CityInterests = () => {
   const { id } = useParams();
   

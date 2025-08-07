@@ -5,7 +5,11 @@ import Regions from "../components/Regions";
 import taipeiThumbnail from "/assets/destinations/destination-thumb.jpg";
 import "../styles/destinations.css";
 
-// array of names of the places we're working with, change this array to display the cities you want
+/**
+ * This is the Destination page of the webstie.
+ */
+
+// array of names of the places we're working with 
 const cityNames = [
   "Taipei City", 
   "Hualien City", 
@@ -22,6 +26,10 @@ const cityNames = [
   "Pingtung County",
 ];
 
+/**
+ * Passes data to child components and renders the page containing cities of Taiwan and a map.
+ * @returns data and rendered page
+ */
 const Destinations = () => {
 
   const [showMore, setShowMore] = useState(false);
@@ -56,7 +64,6 @@ const Destinations = () => {
       <div id="dest-button-container">
         { !showMore && <button id="dest-show-button" onClick={ 
           () => { 
-            console.log(showMore);
             setShowMore(!showMore); 
           }
         }>View more</button>}

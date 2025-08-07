@@ -230,22 +230,3 @@ hr {
     background-position: -200% 0;
   }
 }
-
-@media (max-width: 1450px) {
-  .itinerary-generator {
-    flex-direction: column;
-    align-items: stretch; /* stretch to full container width */
-  }
-
-  .ig-form {
-    width: 50%;        /* smaller width for the form */
-    max-width: 600px;  /* cap max width */
-    margin: 1rem auto; /* center horizontally */
-  }
-
-  .itinerary {
-    width: 100%;       /* map full width */
-    max-width: none;
-    margin: 1rem 0;
-  }
-}

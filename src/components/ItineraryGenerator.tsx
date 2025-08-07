@@ -3,7 +3,7 @@ import Select from "react-select";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm';
 import PlanTripMap from "./PlanTripMap";
-import "../itinerary.css";
+import "../styles/itinerary.css";
 
 export default function ItineraryGenerator() {
   const [isLoading, setIsLoading] = useState(false);
@@ -24,11 +24,18 @@ export default function ItineraryGenerator() {
 
 
   const taiwanCities = [
-    "Changhua", "Chiayi",  
-    "Hualien", "Kaohsiung", "Keelung", "Miaoli", 
-    "Nantou", "New Taipei", "Pingtung",
-    "Taichung", "Tainan", "Taipei", "Taitung", "Taoyuan",
-    "Yilan", 
+    "Taipei",
+    "Hualien",
+    "Yilan",
+    "Kaohsiung",
+    "Tainan",
+    "Taichung",
+    "New Taipei",
+    "Keelung",
+    "Taitung",
+    "Nantou",
+    "Chiayi",
+    "Pingtung"
   ];
 
   const interests = [
@@ -146,10 +153,10 @@ export default function ItineraryGenerator() {
       ...base,
       margin: 0,
       width: "100%",
-      borderWidth: "2px",
+      borderWidth: "1px",
       borderStyle: "solid",
-      borderColor: "#BCBCBC",
-      borderRadius: "8px",
+      borderColor: "#D1D5DB",
+      borderRadius: "1rem",
       padding: "4px",
     }),
     container: (base: any) => ({
@@ -181,9 +188,9 @@ export default function ItineraryGenerator() {
   
   return (
     <>
-      <section className="itinerary-generator">
+      <div className="itinerary-generator">
         <form className="ig-form" onSubmit={submitHandler}>
-          <h1 className="ig-title">Generate Your <strong>Itinerary</strong></h1>
+          <h1 className="ig-title"><strong>Itinerary</strong> Generator</h1>
           <div className="ig-form-field">
             <label htmlFor="days-option">How long is your trip?</label>
             <div className="ig-form-box">
@@ -234,20 +241,20 @@ export default function ItineraryGenerator() {
             <div className="ig-form-field">
               <label htmlFor="num-adults-option">Adults</label>
               <div className="ig-form-box">
-              <select
-                className="ig-select"
-                id="num-adults-option"
-                value={numAdultsOption}
-                onChange={(e) => handleChange(e, "num-adults-option")}
-              >
-                <option value=""># of adults</option>
-                {[...Array(9)].map((_, i) => (
-                  <option key={i} value={`${i + 1} adult${i ? "s" : ""}`}>
-                    {i + 1} {i ? "adults" : "adult"}
-                  </option>
-                ))}
-                <option value="10+ adults">10+ adults</option>
-              </select>
+                <select
+                  className="ig-select"
+                  id="num-adults-option"
+                  value={numAdultsOption}
+                  onChange={(e) => handleChange(e, "num-adults-option")}
+                >
+                  <option value=""># of adults</option>
+                  {[...Array(9)].map((_, i) => (
+                    <option key={i} value={`${i + 1} adult${i ? "s" : ""}`}>
+                      {i + 1} {i ? "adults" : "adult"}
+                    </option>
+                  ))}
+                  <option value="10+ adults">10+ adults</option>
+                </select>
               </div>
             </div>
 
@@ -301,22 +308,26 @@ export default function ItineraryGenerator() {
             </button>
           </div>
         </form>
+
         
-        {/* THIS IS WHERE THE GENERATED IG CONTENT APPEARS */}
-        <div className="ig-response">
-          <section>
-            {errorMessage && <p className="ig-error-message">{errorMessage}</p>}
-            {isLoading && <div className="ig-loading-text-skeleton">
-              {[...Array(14)].map((_, i) => GenerateTextSkeletonLine(i))}
-            </div>}
-            {/* This converts markdown into html automatically via ReactMarkdown*/}
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {response}
-            </ReactMarkdown>
-          </section>
+        <div className="itinerary">
+          {/* THIS IS WHERE THE GENERATED IG CONTENT APPEARS */}
+          <div className="ig-response">
+            <section>
+              {errorMessage && <p className="ig-error-message">{errorMessage}</p>}
+              {isLoading && <div className="ig-loading-text-skeleton">
+                {[...Array(14)].map((_, i) => GenerateTextSkeletonLine(i))}
+              </div>}
+              {/* This converts markdown into html automatically via ReactMarkdown*/}
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {response}
+              </ReactMarkdown>
+            </section>
+          </div>
+          <PlanTripMap routeCoordinates={routeCoordinates} resetTrigger={resetMapTrigger} />
         </div>
-        <PlanTripMap routeCoordinates={routeCoordinates} resetTrigger={resetMapTrigger} />
-      </section>
+  
+      </div>
     </>
   );
 }

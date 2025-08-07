@@ -1,4 +1,4 @@
-import "../booking.css";
+import "../styles/booking.css";
 
 /**
  * This is a component for the car section of booking feature.

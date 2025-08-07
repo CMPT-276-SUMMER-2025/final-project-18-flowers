@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { mockPlacesHotels } from '../data/cityData';
+import "../styles/commodity.css";
 
 /**
  * This is a component for displaying the Nearby Hotels section of Attraction page.
@@ -104,7 +105,7 @@ const NearbyHotels = ({ lat, lng }  : Props) => {
   
   return (
     <>
-      <div className="commodity-container">
+      <div>
         <h3 className="attraction-sub-titles">Nearby Hotels</h3>
         {/* Creates a clickable container for each place, with its photo, name and rating. */}
         {places.map((place) => (

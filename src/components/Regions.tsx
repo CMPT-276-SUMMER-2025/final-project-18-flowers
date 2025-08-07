@@ -2,7 +2,7 @@ import { APIProvider, Map, ColorScheme, Marker } from '@vis.gl/react-google-maps
 import { citiesLatLng } from '../data/cityData';
 import { useEffect, useState } from 'react';
 import RegionContent from '../components/RegionContent';
-import "../regions.css"
+import "../styles/regions.css"
 
 const Regions = () => {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;

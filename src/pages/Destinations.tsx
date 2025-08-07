@@ -2,17 +2,10 @@ import { useState } from 'react';
 import CityCard from '../components/CityCard';
 import CityCardMobile from '../components/CityCardMobile';
 import Regions from "../components/Regions";
-import taipeiThumbnail from "/assets/destination-thumb.jpg";
-import "../destinations.css";
+import taipeiThumbnail from "/assets/destinations/destination-thumb.jpg";
+import "../styles/destinations.css";
 
-/* 
-Note: somtimes you might see content doubled
-----
-React 19 (the React version we're working with) in Strict Mode (look in App.tsx) intentionally runs the useEffect() function twice in development only, 
-not in production
-*/
-
-// array of names of the places we're working with 
+// array of names of the places we're working with, change this array to display the cities you want
 const cityNames = [
   "Taipei City", 
   "Hualien City", 
@@ -27,8 +20,6 @@ const cityNames = [
   "Nantou County",
   "Chiayi City",
   "Pingtung County",
-  "Miaoli County",
-  "Changhua County"
 ];
 
 const Destinations = () => {

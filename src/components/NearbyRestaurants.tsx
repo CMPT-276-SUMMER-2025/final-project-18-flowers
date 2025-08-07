@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
 import { mockPlacesRestaurants } from '../data/cityData';
+import "../styles/commodity.css";
+
+/**
+ * This is a component for displaying the Nearby Restaurants section of Attraction page.
+ */
 
 type Props = {
   lat: number,
@@ -8,8 +13,14 @@ type Props = {
 
 const saveAPICost = false;
 
+/**
+ * Displays a list of restaurants based on a attraction's name and coordinates using Google Places API.
+ * @param lat the latitude of the attraction
+ * @param lng the longitude of the attraction
+ * @returns 
+ */
 const NearbyRestaurants = ({ lat, lng }  : Props) => {
-  // type alias TPlace object that holds id, displayName
+  //type alias TPlace object that holds id, displayName
   type TPlace = {
     id: string;
     displayName?: string | null;
@@ -23,16 +34,18 @@ const NearbyRestaurants = ({ lat, lng }  : Props) => {
   const placeRadius = 3000; 
 
   useEffect(() => {
+    //Checks if Google Maps JS API is not yet loaded.
     if (!window.google || !google.maps) {
       console.warn("Google Maps JS API not yet loaded");
       return;
     }
+    //If true, use mock data instead of API calls.
     if (saveAPICost) { 
       setPlaces(mockPlacesRestaurants);
       return; 
     }
     console.log("You just spent money!");
-    async function getHotels() {
+    async function getRestaurants() {
         const { Place, SearchNearbyRankPreference } = await google.maps.importLibrary('places') as google.maps.PlacesLibrary;
 
         const myRequest = {
@@ -51,6 +64,7 @@ const NearbyRestaurants = ({ lat, lng }  : Props) => {
       // oldName: newName 
       const { places: myPlaces } = await Place.searchNearby(myRequest);
 
+      //Transforms the places into a more usable format.
       const formattedPlaces = myPlaces.map((place) => {
         const firstPhoto = place.photos?.[0];
         return ({
@@ -61,6 +75,11 @@ const NearbyRestaurants = ({ lat, lng }  : Props) => {
         });
       });
       
+      /**
+       * Checks if more than 70% of the characters in a place name are ASCII (English characters).
+       * @param text containing the text for checking
+       * @returns {boolean} true if the text is mostly in English, false otherwise or if text does not exist
+       */
       const isMostlyEnglish = (text: string | undefined | null) => { // checks if more than 70% of the characters are English
         if (!text) {
           return false;
@@ -70,13 +89,19 @@ const NearbyRestaurants = ({ lat, lng }  : Props) => {
         return englishCharacters / totalCharacters > 0.7; // More than 70% English characters
       };
 
+      /**
+       * Checks and make sure the name is not a hotel name.
+       * @param text containing the hotel name for checking
+       * @returns {boolean} true if it is not a hotel, false otherwise or if text does not exist
+       */
       const isNotHotel = (text: string | undefined | null) => { // filters out places with keywords related to hotels
+        //Checks if a hotel name exists.
         if (!text) {
           return false;
         }
         const lower = text.toLowerCase();
         const hotelKeywords = [ "hotel", "inn", "resort", "motel", "villa", "homestay"];
-        return !hotelKeywords.some((keyword) => lower.includes(keyword)); // returns true if none of the keywords are found
+        return !hotelKeywords.some((keyword) => lower.includes(keyword)); 
       };
 
       const filteredPlaces = formattedPlaces.filter((place) =>
@@ -88,13 +113,14 @@ const NearbyRestaurants = ({ lat, lng }  : Props) => {
       setPlaces(filteredPlaces);
 
     } 
-    getHotels();
+    getRestaurants();
   }, [lat, lng]);
   
   return (
     <>
-      <div className="commodity-container">
+      <div>
         <h3 className="attraction-sub-titles">Nearby Restaurants</h3>
+        {/* Creates a clickable container for each place, with its photo, name and rating. */}
         {places.map((place) => (
           <a 
             key = {place.id}

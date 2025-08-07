@@ -1,6 +1,14 @@
 import { useState, useMemo } from "react";
-import "../booking.css";
+import "../styles/booking.css";
 
+/**
+ * This is a component for the flight section of booking feature.
+ */
+
+/**
+ * Provides options and a button that is linked to an external website for booking flights.
+ * @returns booking options for flights
+ */
 const BookingFlights = () => {
   const [origin, setOrigin] = useState("YVR");
   const [destination, setDestination] = useState("tpe");
@@ -9,6 +17,11 @@ const BookingFlights = () => {
   const [adults, setAdults] = useState("1");
   const [children, setChildren] = useState("0");
 
+  /**
+   * Constructs the URL for booking flights based on user input.
+   * Uses Booking.com format for the date and flight details.
+   * @returns formatted URL for booking flights
+   */
   const url = useMemo(() => {
     if (!origin || !destination || !checkIn || !checkOut) return "#"; // stay in taiwan explorers
     return (

@@ -2,13 +2,27 @@ import { useState, useEffect } from "react"; // use effect needed for API handli
 import { Link } from "react-router-dom"; // use to turn city cards into clickable links 
 import { cities } from "../data/cityData"; // get cities object from cityData.tsx 
 
+/**
+ * This is a component for the city cards on the Destination page.
+ */
+
 type Props = { cityname: string, ranking: number }
 const taiwanLatLng = { lat: 23.7, lng: 121.0 }; // latitude and longitude of Taiwan
 
+/**
+ * Dynamically generates a city card from Google Places API based on the city name and ranking.
+ * @param cityname containing the name of the city
+ * @param ranking containing the ranking of the city
+ * @returns cities card with the city name, image, and description
+ */
 export default function CityCardMobile({ cityname, ranking } : Props) {
   const [placeName, setPlaceName] = useState("");
 
   useEffect(() => {
+    /**
+     * Fetches and displaces cities' information from Google Places API using text search and sets the place name's state.
+     * @returns a city card with the city name, image, description and order ranking
+     */
     async function getCity() {
       const { PlacesService } = await google.maps.importLibrary("places") as google.maps.PlacesLibrary; // access places service
 
@@ -38,11 +52,11 @@ export default function CityCardMobile({ cityname, ranking } : Props) {
     getCity(); // call method 
   }, [cityname]); // the effect function will only re-run only when the cityname dependency changes values between renders 
 
-  // assign 2 values to 2 variables through "array destructing assignment"
+  // assigns 2 values to 2 variables through "array destructing assignment"
   // this works because if you look in cityData.tsx, the values are arrays of size 2, ["img value", "description value"]
   const [cityName, imgSrc ] = cities[cityname as keyof typeof cities] || ["", ""]; // 
 
-  // create a clean url path (Hualien%20City -> hualien-city)
+  // creates a clean url path (Hualien%20City -> hualien-city)
   const formatted = cityname.toLowerCase().replace(/\s+/g, "-");
 
   // Note: For this project, it's heavily recommended to not access DOM such as .innerHTML, or methods like createElement("element")

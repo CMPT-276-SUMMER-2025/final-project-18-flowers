@@ -107,3 +107,26 @@ div .nav-links .nav-link:hover {
   position: fixed;
   z-index: 40;
 }
+
+
+/* navbar anchor */
+
+.section-nav {
+  display: flex;
+  margin: 2rem 0rem 2rem 0rem;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  overflow-x: auto; /* enable scrolling if overfill */
+}
+
+.section-nav .anchor-link {
+  padding: 0rem 1rem 0rem 0rem;
+}
+
+.anchor-link {
+  text-decoration: none;
+  color: #727272;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+}

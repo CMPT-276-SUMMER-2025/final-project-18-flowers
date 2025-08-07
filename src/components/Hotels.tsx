@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { mockPlacesHotels } from '../data/cityData';
+import "../styles/commodity.css";
+
+/**
+ * This is a component for displaying the Hotels section of CityInterests page.
+ */
 
 type Props = { 
   cityname: string,
@@ -9,6 +14,12 @@ type Props = {
 
 const saveAPICost = false;
 
+/**
+ * Displays a list of hotels based on a city's name and coordinates using Google Places API.
+ * @param cityname containing the name of the city
+ * @param latLng containing the latitude and longitude of the city 
+ * @returns a list of hotels' names, photos and rating
+ */
 const Hotels = ({ cityname, latLng } : Props) => {
   // type alias TPlace object that holds id, displayName
   type TPlace = {
@@ -25,10 +36,20 @@ const Hotels = ({ cityname, latLng } : Props) => {
   const placeRadius = 3000;
 
   useEffect(() => {
+    //Checks if Google Maps JS API is not yet loaded.
+    if (!window.google || !google.maps) {
+      console.warn("Google Maps JS API not yet loaded");
+      return;
+    }
+    //If true, use mock data instead of API calls.
     if (saveAPICost) { 
       setPlaces(mockPlacesHotels);
       return; 
     }
+
+    /**
+     * Fetches hotels near the given coordinates using Google Places API and sets the places to be the fetched hotels.
+     */
     async function getHotels() {
       const { Place, SearchNearbyRankPreference } = await google.maps.importLibrary('places') as google.maps.PlacesLibrary;
       const myRequest = {
@@ -47,6 +68,7 @@ const Hotels = ({ cityname, latLng } : Props) => {
       // oldName: newName 
       const { places: myPlaces } = await Place.searchNearby(myRequest);
 
+      //Transforms the places into a more usable format.
       const formattedPlaces = myPlaces.map((place) => {
         const firstPhoto = place.photos?.[0];
         return ({
@@ -57,7 +79,13 @@ const Hotels = ({ cityname, latLng } : Props) => {
         });
       });
       
+      /**
+       * Checks if more than 70% of the characters in a place name are ASCII (English characters).
+       * @param text containing the text for checking
+       * @returns {boolean} true if the text is mostly in English, false otherwise or if text does not exist
+       */
       const isMostlyEnglish = (text: string | undefined | null) => {
+        //Checks if a place name exists.
         if (!text) {
           return false;
         }
@@ -65,10 +93,11 @@ const Hotels = ({ cityname, latLng } : Props) => {
         const totalChars = text.length;
         return englishChars / totalChars > 0.7;
       };
-      
+
       const filteredPlaces = formattedPlaces.filter((place) =>
-        typeof place.displayName === "string" && isMostlyEnglish(place.displayName) 
-      ).slice(0, 4); // Only show the first 4 valid results
+        typeof place.displayName === "string" && 
+        isMostlyEnglish(place.displayName)
+      ).slice(0, 4); // Only show the first 4 valid results.
 
       setPlaces(filteredPlaces);
 
@@ -80,6 +109,7 @@ const Hotels = ({ cityname, latLng } : Props) => {
     <>
       <div className="commodity-container">
         <h1 className="commodity-title">Hotels</h1>
+        {/* Creates a clickable container for each place, with its photo, name and rating. */}
         {places.map((place) => (
           <a 
             key = {place.id}

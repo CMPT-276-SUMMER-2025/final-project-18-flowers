@@ -62,7 +62,7 @@ const Booking = () => {
               <input type="date" onChange={ (e) => setCheckIn(e.target.value) }></input>
             </div>
             <div className="flex flex-col">
-              <label>Nights:</label>
+              <label>Check-out:</label>
               <input type="date" onChange={ (e) => setCheckOut(e.target.value) }></input>
             </div>
           </div>

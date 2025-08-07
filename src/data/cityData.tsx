@@ -38,7 +38,7 @@ export const mockInterestData = {
   "tourist_attraction" : [  
     { id: "t1", displayName: "Yangmingshan National Park", description: "Hot springs, trails, and mountain views.", photoUrl: "/assets/interest-attractions/yangmingshan-national-park.jpg" },
     { id: "t2", displayName: "Shifen Waterfall", description: "Stunning wide cascade in nature.", photoUrl: "/assets/interest-attractions/shifen-waterfall.jpg" },
-    { id: "t3", displayName: "Chiang Kai-shek Memorial Hall", description: "Historic monument with gardens.", photoUrl: "/assets/interest-attractions/chiang-kai-shek-memorial-hall.jpg" },
+    { id: "t3", displayName: "Taroko Gorge", description: "Stunning marble canyon with trails and waterfalls.", photoUrl: "/assets/interest-attractions/taroko-gorge.jpg" },
     { id: "t4", displayName: "Kenting National Park", description: "Tropical beaches and coral reefs.", photoUrl: "/assets/interest-attractions/kenting-national-park.jpg" },
     { id: "t5", displayName: "Shuanglong Waterfalls", description: "Twin waterfalls in a forest setting.", photoUrl: "/assets/interest-attractions/shuanglong-waterfalls.jpg" },
     { id: "t6", displayName: "Taiwan Glass Gallery", description: "Artistic glassworks and exhibits.", photoUrl: "/assets/interest-attractions/taiwan-glass-gallery.jpg" },

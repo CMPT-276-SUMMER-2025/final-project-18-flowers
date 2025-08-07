@@ -817,10 +817,14 @@ const searchData = [
     location: "Taipei",
     description: "Presidential Office Building is a popular destination located in Taipei, Taiwan.",
     path: "/interests/presidential-office-building"
+  },
+  {
+    id: 118,
+    name: "Taroko Gorge",
+    location: "Hualien",
+    description: "Taroko Gorge is a popular destination located in Hualien, Taiwan.",
+    path: "/interests/taroko-gorge"
   }
-
-
-
 
 
 

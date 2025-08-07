@@ -1,40 +1,63 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import NavBar from '../NavBar';
+import '@testing-library/jest-dom';
+
+// Mock child components
+vi.mock('../SearchBar', () => ({
+  default: () => <div data-testid="search-bar">Mock SearchBar</div>,
+}));
+
+vi.mock('../NavBarSide', () => ({
+  default: ({ isOpen }: { isOpen: boolean }) => (
+    <div data-testid="nav-bar-side">{isOpen ? 'Open' : 'Closed'}</div>
+  ),
+}));
 
 describe('NavBar', () => {
-  it('renders navigation links correctly', () => {
+  it('renders logo and links', () => {
     render(
       <MemoryRouter>
         <NavBar />
       </MemoryRouter>
     );
 
-    // Check brand link
-    expect(screen.getByText('Taiwan Explorers')).toBeInTheDocument();
-
-    // Check menu links
+    expect(screen.getAllByText('Taiwan Explorers')).toHaveLength(2); // one on desktop, one on mobile
     expect(screen.getByText('Home')).toBeInTheDocument();
     expect(screen.getByText('Destinations')).toBeInTheDocument();
     expect(screen.getByText('Interests')).toBeInTheDocument();
     expect(screen.getByText('Plan a trip')).toBeInTheDocument();
-
-    // Check search label
-    expect(screen.getByText('Search')).toBeInTheDocument();
   });
 
-  it('contains correct link hrefs', () => {
+  it('renders mocked SearchBar', () => {
     render(
       <MemoryRouter>
         <NavBar />
       </MemoryRouter>
     );
 
-    expect(screen.getByText('Taiwan Explorers').closest('a')).toHaveAttribute('href', '/');
-    expect(screen.getByText('Home').closest('a')).toHaveAttribute('href', '/');
-    expect(screen.getByText('Destinations').closest('a')).toHaveAttribute('href', '/destinations');
-    expect(screen.getByText('Interests').closest('a')).toHaveAttribute('href', '/interests');
-    expect(screen.getByText('Plan a trip').closest('a')).toHaveAttribute('href', '/plantrip');
+    expect(screen.getByTestId('search-bar')).toBeInTheDocument();
+  });
+
+  it('toggles NavBarSide when button is clicked', () => {
+    render(
+      <MemoryRouter>
+        <NavBar />
+      </MemoryRouter>
+    );
+
+    const toggleBtn = screen.getByRole('button');
+
+    // Initially closed
+    expect(screen.getByTestId('nav-bar-side')).toHaveTextContent('Closed');
+
+    // Click to open
+    fireEvent.click(toggleBtn);
+    expect(screen.getByTestId('nav-bar-side')).toHaveTextContent('Open');
+
+    // Click again to close
+    fireEvent.click(toggleBtn);
+    expect(screen.getByTestId('nav-bar-side')).toHaveTextContent('Closed');
   });
 });

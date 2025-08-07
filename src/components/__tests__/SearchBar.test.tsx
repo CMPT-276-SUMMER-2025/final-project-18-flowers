@@ -1,6 +1,5 @@
-// src/components/__tests__/SearchBar.test.tsx
-
 import { describe, it, expect, vi } from 'vitest';
+import type { Mock } from 'vitest'; 
 import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter, useNavigate } from 'react-router-dom';
 import SearchBar from '../SearchBar';
@@ -28,7 +27,7 @@ describe('SearchBar', () => {
 
   it('navigates to correct URL when submitted', () => {
     const mockedNavigate = vi.fn();
-    (useNavigate as unknown as vi.Mock).mockReturnValue(mockedNavigate);
+    (useNavigate as unknown as Mock).mockReturnValue(mockedNavigate); 
 
     render(
       <MemoryRouter>
@@ -47,7 +46,7 @@ describe('SearchBar', () => {
 
   it('does not navigate when input is empty', () => {
     const mockedNavigate = vi.fn();
-    (useNavigate as unknown as vi.Mock).mockReturnValue(mockedNavigate);
+    (useNavigate as unknown as Mock).mockReturnValue(mockedNavigate); 
 
     render(
       <MemoryRouter>

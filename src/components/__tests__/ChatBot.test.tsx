@@ -3,7 +3,7 @@ import { render, fireEvent, screen } from '@testing-library/react';
 import ChatBot from '../ChatBot';
 
 beforeAll(() => {
-  Element.prototype.scrollIntoView = vi.fn(); // or jest.fn() if using Jest
+  Element.prototype.scrollIntoView = vi.fn(); 
 });
 
 describe('ChatBot', () => {
@@ -41,7 +41,7 @@ describe('ChatBot', () => {
     fireEvent.change(input, { target: { value: 'Test message' } });
     fireEvent.click(screen.getByText('Send'));
     const buttons = screen.getAllByRole('button');
-    const clearButton = buttons[buttons.length - 1]; // it's the last button in the icon bar
+    const clearButton = buttons[buttons.length - 1]; 
     fireEvent.click(clearButton);
     expect(screen.queryByText(/You:/i)).not.toBeInTheDocument();
   });

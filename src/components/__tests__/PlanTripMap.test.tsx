@@ -18,7 +18,7 @@ vi.mock('@vis.gl/react-google-maps', async () => {
 
 // Mock window.google.maps before each test
 beforeEach(() => {
-  global.window.google = {
+  globalThis.google = {
     maps: {
       TravelMode: {
         DRIVING: 'DRIVING',
@@ -32,7 +32,6 @@ beforeEach(() => {
     },
   } as any;
 });
-
 describe('PlanTripMap', () => {
   it('renders the map component when Google Maps is ready', async () => {
     render(<PlanTripMap routeCoordinates={[]} resetTrigger={0} />);

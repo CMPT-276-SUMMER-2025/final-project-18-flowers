@@ -2,11 +2,20 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
+/**
+ * This is the component for the search bar on top right corner of every page except for Home page.
+ */
+
+/**
+ * This displays a styled search bar on the page.
+ * @returns an icon and a search bar
+ */
 const SearchBarSolid = () => {
+  //Allows navigation.
   const navigate = useNavigate();
-
+  //Initializes query(the text inside the search input) and updates the state as use types.
   const [query, setQuery] = useState("");
-
+  //Called when the form is submitted, prevent empty input and navigates to what user searched.
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (query.trim()) {

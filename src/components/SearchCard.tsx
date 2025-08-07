@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
 
+/**
+ * This is a component that displays the search results on the Search page.
+ */
+
 type dataProp = {
   id: number,
   name: string,
@@ -8,7 +12,7 @@ type dataProp = {
   path: string,
 }
 
-// PARAM: object with property data where data is of type dataProp
+//Displays object dataProp into a properly formatted search result.
 export default function SearchCard({ data }: { data : dataProp }) {
   return (
     <div className="search-card-container">

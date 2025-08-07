@@ -2,9 +2,18 @@ import { useState, useEffect } from "react"; // use effect needed for API handli
 import { Link } from "react-router-dom"; // use to turn city cards into clickable links 
 import { citiesLatLng } from "../data/cityData"; // get cities object from cityData.tsx 
 
+/**
+ * This component renders a city card for the Home and Destination page's region map.
+ */
+
 type Props = { cityname: string }
 const taiwanLatLng = { lat: 23.7, lng: 121.0 }; // latitude and longitude of Taiwan
 
+/**
+ * Wraps the city and detail inside a styled and lined city card.
+ * @param cityname the name of the city
+ * @returns a city card with city details
+ */
 export default function CityCard({ cityname } : Props) {
   const [placeName, setPlaceName] = useState("");
 
@@ -18,7 +27,6 @@ export default function CityCard({ cityname } : Props) {
       const { PlacesService } = await google.maps.importLibrary("places") as google.maps.PlacesLibrary; // access places service
 
       const map = document.getElementById('dummy-map') as HTMLDivElement; // get map for PlacesService constructor 
-      if (!map) return (console.log("ERROR: map could not be found")) // check for error if map can't be accessed
 
       const service = new PlacesService(map as HTMLDivElement); // create new instance of object called service to access methods 
       const status = google.maps.places.PlacesServiceStatus; // access status to get access to status constants
@@ -34,9 +42,6 @@ export default function CityCard({ cityname } : Props) {
         if (currStatus === status.OK) {
           if (results && (results.length > 0)) // TypeScript double checking to ensure results is not null
           setPlaceName(results[0].name!); // set place name using useState to the city name
-          // extra checking for typescript validity
-        } else {
-          console.log("ERROR: Could not find valid result from textSearch()"); // could not find the city 
         }
       });
     }

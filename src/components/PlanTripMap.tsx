@@ -2,8 +2,11 @@ import { APIProvider, Map, ColorScheme, useMap } from '@vis.gl/react-google-maps
 import { useEffect, useState, useRef } from 'react';
 import "../styles/planTripMap.css";
 
-type TravelMode = 'DRIVING' | 'WALKING' | 'TRANSIT' | 'BICYCLING';
+/**
+ * This component renders a Google Map on the PlanTrip page.
+ */
 
+type TravelMode = 'DRIVING' | 'WALKING' | 'TRANSIT' | 'BICYCLING';
 
 const colorBasedOnMode: Record<TravelMode, string> = {
   WALKING: '#06B6D4',   // cyan
@@ -12,8 +15,12 @@ const colorBasedOnMode: Record<TravelMode, string> = {
   BICYCLING: '#F87171', // red
 };
 
-
-
+/**
+ * Clear existing map and displays a map with marker, travel mode, travel time and route.
+ * @param mode current travel mode
+ * @param fullRoute array of coordinates
+ * @returns a map with marker, travel mode, travel time and route
+ */
 function RouteRenderer({ mode, fullRoute }: { mode: TravelMode; fullRoute: { lat: number; lng: number }[] }) {
   const map = useMap();
   const [duration, setDuration] = useState<string | null>(null);
@@ -21,26 +28,28 @@ function RouteRenderer({ mode, fullRoute }: { mode: TravelMode; fullRoute: { lat
   const polylinesRef = useRef<google.maps.Polyline[]>([]);
   const markerRef = useRef<google.maps.Marker[]>([]);
   
-
-
   useEffect(() => {
+    //Ensures Google Maps is loaded before proceeding.
     if (!map || typeof google === 'undefined') return;
 
+    /**
+     * Handles rendering logic, chooses between full route or segment-by-segment rendering and updates duration state to be shown in UI.
+     */
     async function getDirections() {
       directionRendererRef.current.forEach(renderer => 
-        renderer.setMap(null) // Clear previous directions
+        renderer.setMap(null) // Clears previous directions.
       );
-      directionRendererRef.current = []; // Reset the ref
+      directionRendererRef.current = []; // Resets the ref.
 
       polylinesRef.current.forEach(polyline => 
-        polyline.setMap(null) // Clear previous polylines
+        polyline.setMap(null) // Clears previous polylines.
       );
-      polylinesRef.current = []; // Reset the polylines array
+      polylinesRef.current = []; // Resets the polylines array.
 
       markerRef.current.forEach(marker => 
-        marker.setMap(null) // Clear previous markers
+        marker.setMap(null) // Clears previous markers.
       );
-      markerRef.current = []; // Reset the markers array
+      markerRef.current = []; // Resets the markers array.
 
       
       
@@ -52,6 +61,13 @@ function RouteRenderer({ mode, fullRoute }: { mode: TravelMode; fullRoute: { lat
       let totalSeconds = 0; // Initialize total seconds for duration calculation
       const directionService = new DirectionsService();
 
+      /**
+       * Draws a route segment between start and end points.
+       * @param start start point
+       * @param end end point
+       * @param segmentMode travel mode
+       * @returns rendered route on the map
+       */
       const renderSegment = (start: google.maps.LatLngLiteral, end: google.maps.LatLngLiteral, segmentMode: google.maps.TravelMode) => {
         return new Promise<void>((resolve) => {
           const request: google.maps.DirectionsRequest = {
@@ -63,7 +79,9 @@ function RouteRenderer({ mode, fullRoute }: { mode: TravelMode; fullRoute: { lat
 
           directionService.route(request, (result, status) => { 
             if (status === google.maps.DirectionsStatus.OK && result) {
-              const steps = result.routes[0]?.legs.flatMap(leg => leg.steps ?? []); // Flatten the steps from all legs
+              //Flatten the steps from all legs
+              const steps = result.routes[0]?.legs.flatMap(leg => leg.steps ?? []); 
+              //Calculates duration of the trip.
               steps.forEach((step) => {
                 if (step.duration?.value) {
                   totalSeconds += step.duration.value;
@@ -86,6 +104,7 @@ function RouteRenderer({ mode, fullRoute }: { mode: TravelMode; fullRoute: { lat
           });
         });
       };
+      //Decide whether to render the full route at once or segment it.
       if(mode != google.maps.TravelMode.TRANSIT && fullRoute.length <= 27) { // If mode is not transit and route is short enough
         // Create a DirectionsRenderer for the entire route
         const origin = fullRoute[0];
@@ -117,8 +136,10 @@ function RouteRenderer({ mode, fullRoute }: { mode: TravelMode; fullRoute: { lat
             const hours = Math.floor(totalSeconds / 3600);
             const minutes = Math.round((totalSeconds % 3600) / 60);
             let durationStr = '';
-            if (hours > 0) durationStr += `${hours} hour${hours > 1 ? 's' : ''}`; // Only add hours if they are greater than 0
-            if (minutes > 0) durationStr += (durationStr ? ' ' : '') + `${minutes} min`; // Only add minutes if they are greater than 0
+            // Only add hours if they are greater than 0
+            if (hours > 0) durationStr += `${hours} hour${hours > 1 ? 's' : ''}`; 
+            // Only add minutes if they are greater than 0
+            if (minutes > 0) durationStr += (durationStr ? ' ' : '') + `${minutes} min`; 
             setDuration(durationStr.trim());
           } else {
             console.error('Directions request failed:', status);
@@ -233,12 +254,6 @@ const PlanTripMap = ({ routeCoordinates, resetTrigger }: { routeCoordinates: { l
     }
   }, [resetTrigger]);
 
-  
-
-
-  
-
-
   return (
     <>
       <div id="regions-container">
@@ -251,10 +266,6 @@ const PlanTripMap = ({ routeCoordinates, resetTrigger }: { routeCoordinates: { l
               defaultCenter={ taiwanLatLng }
               style={{ width: "100%", height: "93vh" }}
               colorScheme={ColorScheme.LIGHT}
-        
-              // onCameraChanged={ (ev: MapCameraChangedEvent) =>
-              //   console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
-              // }
               // @ts-expect-error ensures expected errors
               options={ mapOptions }
               disableDefaultUI

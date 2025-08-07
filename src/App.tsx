@@ -19,6 +19,14 @@ import searchData from './data/searchData';
 import ChatBot from './components/ChatBot';
 import Footer from './components/Footer';
 
+/**
+ * This is the main root component.
+ */
+
+/**
+ * Loads Google Maps API, wraps the application in a router, passes API key and renders AppContent.
+ * @returns loaded Google Maps API, router and app content
+ */
 function App() {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
@@ -26,9 +34,6 @@ function App() {
     <>
       <APIProvider 
         apiKey={apiKey} 
-        onLoad={() => {
-          console.log("Message: Maps API has loaded. Happy Developing!");
-        }}
       >
         <Router>
           <AppContent />
@@ -38,12 +43,15 @@ function App() {
   );
 }
 
+/**
+ * Renders routes and components.
+ * @returns components of the application
+ */
 function AppContent() {
   const location = useLocation(); // get current route 
   const { pathname } = location; // get pathname (e.g., /destinations)
 
-  console.log("pathname: " + pathname);
-
+  //If user is on the home page, shows a transparent navigation bar, else shows solid navigation bar.
   if (pathname === "/") {
     return (
       <>

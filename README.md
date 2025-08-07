@@ -24,11 +24,12 @@ A website designed to make exploring and planning a trip to Taiwan simple and ac
 #### Project Report Links<br>
 [M0 Project Proposal Report](docs/project_reports/CMPT276-Group18-M0-Project-Proposal-Report.pdf) <br>
 [M1 Project Planning Report](docs/project_reports/CMPT276-Group18-M1-Project-Planning-Report.pdf) <br>
+[M2 Project Final Report](docs/project_reports/CMPT276-Group18-M2-Project-Final-Report.pdf) <br>
 
 #### Video Presentation Links<br>
 [M1 Video Presentation](https://www.youtube.com/watch?v=Kaw-i_qLPcI) <br>
 
-## Setup
+## Setup 
 ### Step 1
 To get a copy, start by cloning the repository onto your local machine.
 ```PowerShell
@@ -45,7 +46,7 @@ Open VsCode and in your terminal, run npm install.
 npm install 
 ```
 ### Step 4
-Finally, run the following command to see active changes while making changes to the code on your local machine. This starts the vite dev server.
+Finally, run the following command to see active changes while making changes to the code on your local machine. This starts the vite dev server. (Please ensure you have the .env file in your local repository) 
  ```
 npm run dev 
 ```

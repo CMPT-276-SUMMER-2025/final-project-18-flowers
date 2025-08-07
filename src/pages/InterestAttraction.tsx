@@ -10,11 +10,24 @@ import Booking from "../components/Booking";
 import NavBarAnchor from "../components/NavBarAnchor";
 import "../styles/attraction.css";
 
+/**
+ * This is an attraction page that leads from the Interests page.
+ */
+
 type Coord = { lat: number; lng: number };
 
+/**
+ * Passes data to child components and renders the page containing all the details of the attraction.
+ * @returns data and rendered page
+ */
 const InterestAttraction = () => {
   const { attract } = useParams();
 
+  /**
+   * Converts a hyphenated slug (like "taipei-101") into a readable name ("Taipei 101").
+   * @param slug hyphenated slug
+   * @returns readable name
+   */
   function formatAttractionName(slug: string | undefined) {
     if (!slug) return '';
     return slug
@@ -27,7 +40,16 @@ const InterestAttraction = () => {
   const [openingHours, setOpeningHours] = useState<string[]>([]);
   const [description, setDescription] = useState<string | null>(null);
 
+  //Fetches data from Google Maps Places API whenever the attract slug changes (i.e., the user navigates to a different attraction page).
   useEffect(() => {
+    //Check if Google Maps JS API is not yet loaded.
+    if (!window.google || !google.maps) {
+      console.warn("Google Maps JS API not yet loaded");
+      return;
+    }
+    /**
+     * Fetches attraction data from the Google Maps Places API.
+     */
     async function getAttractionInfo() { 
       const { Place } = await google.maps.importLibrary("places") as google.maps.PlacesLibrary;
 
@@ -54,12 +76,13 @@ const InterestAttraction = () => {
 
       setDescription(summary || null);
 
+      //Sets coordinates.
       if (placeLatLng) {
         setCoord({ lat: placeLatLng.lat(), lng: placeLatLng.lng(), });
       } else {
         setCoord(null);
       }
-
+      //Sets opening hours if available.
       if (hours?.weekdayDescriptions) {
       setOpeningHours(hours.weekdayDescriptions);
       }

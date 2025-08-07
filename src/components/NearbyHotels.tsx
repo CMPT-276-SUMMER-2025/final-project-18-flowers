@@ -42,7 +42,6 @@ const NearbyHotels = ({ lat, lng }  : Props) => {
       setPlaces(mockPlacesHotels);
       return; 
     }
-    console.log("You just spent money!");
 
     /**
      * Fetches hotels near the given coordinates using Google Places API and sets the places to be the fetched hotels.

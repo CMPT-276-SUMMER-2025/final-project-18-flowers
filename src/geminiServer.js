@@ -6,6 +6,10 @@ import { GoogleGenerativeAI } from '@google/generative-ai'; // Gemini API SDK th
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+/**
+ * This is the gemini server.
+ */
+
 dotenv.config(); // Load API key from .env file
 
 const app = express(); // app is our server
@@ -25,6 +29,7 @@ app.get('*', (req, res) => {
 
 // create a genAI object for us to use to talk to Gemini
 const genAI = new GoogleGenerativeAI(process.env.VITE_GOOGLE_GEMINI_API_KEY);
+
 
 // MAIN CODE: When someone does a POST request to /gemini, runs this function that sends a package that contains purpose and message
 app.post('/gemini', async (req, res) => {
@@ -72,8 +77,6 @@ app.post('/gemini', async (req, res) => {
   
   // creates an itinerary given input from user form 
   if(req.headers.purpose === "generate-itinerary") {
-    console.log("Cities from frontend:", req.body.cities);
-    console.log("Interests from frontend: ", req.body.interests);
     const cityCount = req.body.cities.length;
     const wordLimit = cityCount * 300; // 300 words per city
     const dayCount = parseInt(req.body.days);
@@ -165,27 +168,6 @@ app.post('/gemini', async (req, res) => {
     `;
   }
 
-  /*
-msg = `
-      Generate a detailed travel itinerary (limit 500 words) for a trip to Taiwan. 
-      You must ONLY include the following cities in the itinerary: ${req.body.cities.join(", ")}.
-      Do NOT include any other cities, especially not Taipei, unless it is specifically listed above.
-
-      Trip details :
-      - Duration: ${req.body.days} days
-      - Interests: ${req.body.interests.join(", ")}
-      - Adults: ${req.body.adults}
-      - Children: ${req.body.children}
-      - Budget: ${req.body.budget}
-
-      Avoid suggesting cities not listed. Focus only on the cities provided.
-      `;
-  */
-
-  console.log("HISTORY:", req.body.history);
-  console.log("MESSAGE:", message);
-  console.log("PURPOSE:", purpose);
-
   try {
     if (purpose === "chatbot-response") {
       // chatbot messages
@@ -235,4 +217,4 @@ msg = `
   }
 });
 
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+app.listen(PORT);

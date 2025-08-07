@@ -69,7 +69,6 @@ const AttractionPhotos = ({ attract }: Props) => {
           src={photo.url}
           alt={`Photo of ${attract}`}
           className="attraction-photo"
-          loading="lazy"
         />
       ))}
     </div>

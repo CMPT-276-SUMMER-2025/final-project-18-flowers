@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import "../navbar.css";
+import "../styles/navbar.css";
 
 /**
  * This component creates responsive mobile layouts where a collapsible menu is needed for the navigation bar.

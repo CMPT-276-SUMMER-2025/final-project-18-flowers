@@ -8,6 +8,7 @@ import AttractionTimetable from "../components/AttractionTimetable";
 import AttractionDescription from "../components/AttractionDescription";
 import Booking from "../components/Booking";
 import NavBarAnchor from "../components/NavBarAnchor";
+import "../styles/attraction.css";
 
 /**
  * This is the Attraction page of the webstie.
@@ -132,10 +133,10 @@ const Attraction = () => {
             </div>
 
             <div className="commodities-container">
-              <div id="hotels">
+              <div id="hotels" className="commodity-container">
                 {coord && <NearbyHotels lat={coord.lat} lng={coord.lng}></NearbyHotels>}
               </div>
-              <div id="restaurants">
+              <div id="restaurants" className="commodity-container">
                 {coord && <NearbyRestaurants lat={coord.lat} lng={coord.lng}></NearbyRestaurants>}
               </div>
             </div>

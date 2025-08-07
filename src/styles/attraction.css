@@ -1,0 +1,129 @@
+/* attraction and interest attraction component */
+
+.attraction-title {
+  font-weight: var(--fw-medium-bold);
+  font-size: var(--fs-3xl);
+  margin: 2rem 0 0 0;
+}
+
+.attraction-sub-titles {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-medium);
+  margin: 1rem 0;
+}
+
+.attraction-content-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap; /* allow stacking on mobile */
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem 0 1rem; /* in mobile, prevent content from touching the edge */
+}
+
+.attraction-c1 {
+  width: 100%;          
+  max-width: 700px;
+}
+
+.attraction-c2 {
+  margin-top: 18rem;
+}
+
+.attraction-map-container {
+  max-width: 44rem;
+}
+
+.attraction-map {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.attraction-photo-gallery {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  overflow-x: auto; /* enable scrolling if overfill */
+  gap: 1rem; /* gap between photos */
+}
+
+.attraction-photo {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  margin: 16px 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+.attraction-description {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.attraction-description-container {
+  background-color: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  margin: 0;
+  position: relative;
+  height: auto;
+  min-height: 300px;
+}
+
+.attraction-description-button {
+  background-color: blue;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 10px;
+  font-weight: var(--fw-medium);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 0;
+}
+
+.attraction-description-button:hover {
+  background-color: #469fff;
+}
+
+.attraction-description-output {
+  margin-top: 10px;
+  overflow-y: auto;
+  height: 100%;
+  scrollbar-width: thin;
+}
+
+.attraction-description p {
+  font-size: var(--fs-sm);
+  margin-bottom: 1.5rem;
+}
+
+/* opening hours */
+
+.opening-hours li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0rem 0.6rem 0rem;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 0.95rem;
+  font-family: monospace;
+  transition: background-color 0.2s ease;
+}
+
+.commodities-container {
+  width: 100%;
+  max-width: 750px;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin: 0 auto;
+}

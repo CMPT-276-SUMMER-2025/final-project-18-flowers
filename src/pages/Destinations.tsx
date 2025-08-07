@@ -2,8 +2,8 @@ import { useState } from 'react';
 import CityCard from '../components/CityCard';
 import CityCardMobile from '../components/CityCardMobile';
 import Regions from "../components/Regions";
-import taipeiThumbnail from "/assets/destination-thumb.jpg";
-import "../destinations.css";
+import taipeiThumbnail from "/assets/destinations/destination-thumb.jpg";
+import "../styles/destinations.css";
 
 /**
  * This is the Destination page of the webstie.
@@ -24,8 +24,6 @@ const cityNames = [
   "Nantou County",
   "Chiayi City",
   "Pingtung County",
-  "Miaoli County",
-  "Changhua County"
 ];
 
 /**

@@ -161,7 +161,6 @@ const InterestTypes = ({ cityname, type } : interestProps) => {
                   place.photoUrl && 
                   <img src={place.photoUrl} 
                         alt={ place.displayName || 'Interest Attraction' } 
-                        loading="lazy"
                         className="it-photo"
                   />
                 }

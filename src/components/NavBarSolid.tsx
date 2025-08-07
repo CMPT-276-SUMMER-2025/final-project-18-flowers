@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import SearchBarSolid from './SearchBarSolid';
-import "../navbar.css";
+import "../styles/navbar.css";
 import { useState } from 'react';
 import NavBarSide from './NavBarSide';
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import SearchList from "../components/SearchList";
 import Booking from "../components/Booking";
-import "../search.css";
+import "../styles/search.css";
 
 /**
  * This is the Search page of the webstie.

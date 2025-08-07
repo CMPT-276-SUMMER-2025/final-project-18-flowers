@@ -3,6 +3,7 @@ import { cityCoordinates, cityInterestsData } from "../data/cityData";
 import Attractions from "../components/Attractions"; // attractions component
 import Hotels from "../components/Hotels"; // hotels component 
 import Restaurants from "../components/Restaurants"; // restaurants component
+import "../styles/city.css";
 
 /**
  * This is the CityInterests page of the webstie.

@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
-import "../chatbot.css";
+import "../styles/chatbot.css";
 import Fuse from "fuse.js";
 
 /**

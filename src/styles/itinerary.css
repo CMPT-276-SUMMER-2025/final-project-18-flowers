@@ -1,0 +1,232 @@
+/*Itinerary generator*/
+
+.itinerary-generator {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.itinerary {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 64rem;
+}
+
+.ig-title {
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-2xl);
+  text-align: center;
+  margin: 1rem auto;
+}
+
+/* ig form */
+
+.ig-form {
+  height: 100%;
+  width: 24rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  margin: 4rem 2rem 2rem 2rem;
+  padding: 3rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+.ig-form-field {
+  width: 100%;
+}
+
+.ig-form label { 
+  display: block;/* labels are inline elements by default so we do display block here s.t. margins/paddings work */
+  margin: 0.5rem 0rem 0.2rem 0.4rem;
+  font-size: var(--fs-sm);
+}
+
+.ig-form-box {
+  width: 100%;
+}
+
+.ig-select {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.ig-select:focus {
+  outline: 2px solid #469fff;
+  outline-offset: 2px;
+  border-radius: 1rem;
+  transition: outline 50ms ease;
+}
+
+.ig-select:focus:hover {
+  outline: 2px solid #469fff;
+}
+
+.ig-form-bottom-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.ig-form-bottom-buttons button {
+  color: white;
+  padding: 0.6rem 1rem 0.6rem 1rem;
+  border-radius: 2rem;
+  font-size: 16px;
+  font-weight: var(--fw-medium);
+  cursor: pointer;
+  transition: scale 50ms ease-in-out;
+}
+
+.ig-form-bottom-buttons button:hover {
+  scale: 1.05;
+}
+
+.ig-form-bottom-buttons button:active {
+  opacity: 0.8;
+}
+
+.ig-generate-button {
+  background-color: #125DE9;
+}
+
+.ig-clear-button {
+  background-color: rgb(240, 115, 115)
+}
+
+/* ig response */
+
+.ig-response {
+  display: flex;
+  flex-direction: column;
+  width: 32rem;
+  min-width: 400px;
+  margin: 1rem;
+  height: calc(100vh - 6rem); /* subtract the height of solid nav bar */
+  background-color: rgb(250, 247, 237);
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3); 
+  color: #3e3d3d;
+}
+
+.ig-response section {
+  overflow-y: auto;
+  padding: 2rem;
+  scrollbar-width: thin;
+  scrollbar-color: #c7c5c5 transparent; /* first colour is for the scroll itself, transparent background of where it can scroll */
+}
+
+.ig-response h1, .ig-response h2 {
+  font-weight: var(--fw-bold);
+  margin-bottom: 1rem;
+  background-color: white;
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  color: #0b3d91; 
+}
+
+.ig-response h1 {
+  font-size: 1.8rem;
+}
+
+.ig-response h2 {
+  font-size: 1.5rem;
+}
+
+.ig-response h3 {
+  font-size: 1.25rem;
+  font-weight: var(--fw-bold);
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em; /* letters too close together */
+  color: #125de9;
+}
+
+.ig-response p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #474646;
+}
+
+.ig-response p > strong {
+  color: rgb(42, 42, 42); 
+  background-color: rgb(104, 241, 133);
+  display: inline-block;
+  border-radius: 1rem;
+  font-weight: var(--fw-bold);
+  font-size: 1.25rem;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  margin-bottom: 1rem;
+}
+
+.ig-response ul, .ig-response ol {
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ig-response li {
+  font-size: var(--fs-base);
+  margin: 0.5rem 0;
+  border-radius: 6px;
+  padding-left: 4px;
+}
+
+.ig-response a {
+  color: #125de9;
+}
+
+hr {
+  color: transparent; /* hide divider at top */
+}
+
+/* other */
+
+.ig-adult-children-count-row {
+  display: flex;
+  flex-direction: row;
+  column-gap: 40px;
+  width: 100%;
+}
+
+.ig-error-message {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  margin: 2rem;
+  text-align: center;
+  color: rgb(230, 58, 35) !important;
+}
+
+/* ig generating loading animation */
+
+.ig-loading-text-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.ig-loading-text-skeleton div{
+  height: 20px;
+  border-radius: 10px;
+  background: linear-gradient(
+    to right, 
+    #dddddd 25%,
+    #eeeeee 50%,
+    #dddddd 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite; 
+}
+
+@keyframes shimmer {
+  0% { 
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

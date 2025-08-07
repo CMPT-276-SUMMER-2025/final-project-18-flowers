@@ -1,48 +1,58 @@
-import { it, expect } from 'vitest'
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { render, screen, waitFor } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import CityCard from '../CityCard';
+import '@testing-library/jest-dom';
 
-it('dummy test', () => {
-  expect(true).toBe(true)
-})
-// // src/components/__tests__/CityCard.test.tsx
-// import { render, screen } from "@testing-library/react";
-// import CityCard from "../CityCard";
-// import { MemoryRouter } from "react-router-dom";
-// import { vi, beforeEach, describe, it, expect } from "vitest";
+// Mock city data
+vi.mock('../../data/cityData', () => ({
+  cities: {
+    'Taipei City': ['Test Name', 'https://example.com/photo.jpg', 'A beautiful city.'],
+  },
+}));
 
-// // Mock DOM for dummy-map
-// beforeEach(() => {
-//   document.body.innerHTML = '<div id="dummy-map"></div>';
+// Setup dummy map and mock Google Maps
+beforeEach(() => {
+  // Inject dummy-map div into DOM
+  const dummyDiv = document.createElement('div');
+  dummyDiv.id = 'dummy-map';
+  document.body.appendChild(dummyDiv);
 
-//   globalThis.google = {
-//     maps: {
-//       importLibrary: vi.fn().mockResolvedValue({
-//         PlacesService: class {
-//           textSearch = (req: any, cb: any) => {
-//             cb([{ name: "Taipei City" }], "OK");
-//           };
-//         },
-//         PlacesServiceStatus: {
-//           OK: "OK"
-//         }
-//       }),
-//     },
-//   } as any;
-// });
+  // Mock google maps
+  const mockTextSearch = vi.fn((_, callback) => {
+    callback([{ name: 'Taipei City' }], 'OK');
+  });
 
-// describe("CityCard Component", () => {
-//   it("renders city name and description", async () => {
-//     render(
-//       <MemoryRouter>
-//         <CityCard cityname="Taipei City" />
-//       </MemoryRouter>
-//     );
+  globalThis.google = {
+    maps: {
+      importLibrary: vi.fn().mockResolvedValue({
+        PlacesService: function () {
+          return { textSearch: mockTextSearch };
+        },
+      }),
+      places: {
+        PlacesServiceStatus: {
+          OK: 'OK',
+        },
+      },
+    },
+  } as any;
+});
 
-//     // Wait for async useEffect to finish (city name from mock)
-//     const heading = await screen.findByRole("heading", {
-//       name: /taipei city/i,
-//     });
+describe('CityCard', () => {
+  it('renders city data and ranking from props', async () => {
+    render(
+      <MemoryRouter>
+        <CityCard cityname="Taipei City" ranking={1} />
+      </MemoryRouter>
+    );
 
-//     expect(heading).toBeInTheDocument();
-//     expect(screen.getByText(/the capital of taiwan/i)).toBeInTheDocument();
-//   });
-// });
+    await waitFor(() => {
+      // It may fallback to cityData name instead of Google API, so match either
+      expect(screen.getByRole('img')).toBeInTheDocument();
+    });
+
+    expect(screen.getByText('1')).toBeInTheDocument(); // ranking
+    expect(screen.getByText('A beautiful city.')).toBeInTheDocument(); // description
+  });
+});

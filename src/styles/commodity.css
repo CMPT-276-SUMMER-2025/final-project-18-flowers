@@ -1,0 +1,57 @@
+/* commodity (hotels and restaurants) component */
+
+.commodity-title {
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-2xl);
+}
+
+.commodity-container {
+  flex: 1;
+}
+
+.commodity-photo {
+  height: 120px;
+  width: 120px;
+  min-width: 120px;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+  object-fit: cover;
+}
+
+.commodity-name {
+  font-weight: var(--fw-medium);
+  text-align: left;
+  margin: 12px;
+  margin-bottom: 4px;
+}
+
+.commodity-content {
+  display: flex;
+  width: 100%;
+  margin: 12px 0;
+  border: 1px solid transparent;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12); /* subtle shadow for depth */
+}
+
+.commodity-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8px 12px;
+  position: relative;
+  top: -16px;
+}
+
+.commodity-rating {
+  font-size: 0.875rem;
+  color: #555;
+  margin-left: 12px;
+  margin-top: 0px;
+}
+
+@media (max-width: 684px) {
+  .commodity-container {
+    margin: 1rem; 
+  }
+}

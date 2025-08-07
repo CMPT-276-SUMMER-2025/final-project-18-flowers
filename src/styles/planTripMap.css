@@ -1,0 +1,21 @@
+/* plan trip map component */
+
+.plan-map-container {
+  width: 32rem;
+  margin: 1rem;
+  position: relative;
+  height: calc(100vh - 6rem); 
+  background-color: red;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.mode-buttons {
+  margin: 0.6rem;
+  top: 0.1rem;      
+  left: 0.4rem; 
+  font-weight: var(--fw-normal);
+  font-size: var(--fs-base);
+  position: absolute;
+  z-index: 24;
+}

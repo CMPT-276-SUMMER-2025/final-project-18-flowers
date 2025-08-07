@@ -1,5 +1,6 @@
 import { APIProvider, Map, ColorScheme, useMap } from '@vis.gl/react-google-maps';
 import { useEffect, useState, useRef } from 'react';
+import "../styles/planTripMap.css";
 
 /**
  * This component renders a Google Map on the PlanTrip page.
@@ -188,9 +189,10 @@ function RouteRenderer({ mode, fullRoute }: { mode: TravelMode; fullRoute: { lat
     <div
       style={{ // Temp. styling for the duration display
         position: 'absolute',
-        bottom: '10px',
+        bottom: '42px',
         left: '10px',
-        background: 'white',
+        background: 'limegreen',
+        color: 'black',
         padding: '8px 12px',
         borderRadius: '8px',
         boxShadow: '0 2px 6px rgba(0,0,0,0.3)',
@@ -260,7 +262,7 @@ const PlanTripMap = ({ routeCoordinates, resetTrigger }: { routeCoordinates: { l
 
   return (
     <>
-      <div id="regions-container" className='flex flex-col'>
+      <div id="regions-container">
         <div className='plan-map-container relative'>
           <APIProvider apiKey={apiKey} libraries={['geometry']}>
             {isGoogleReady && (
@@ -268,7 +270,7 @@ const PlanTripMap = ({ routeCoordinates, resetTrigger }: { routeCoordinates: { l
               id="map"
               defaultZoom={8} 
               defaultCenter={ taiwanLatLng }
-              style={{ width: "40vw", height: "93vh" }}
+              style={{ width: "100%", height: "93vh" }}
               colorScheme={ColorScheme.LIGHT}
               // @ts-expect-error ensures expected errors
               options={ mapOptions }
@@ -278,20 +280,20 @@ const PlanTripMap = ({ routeCoordinates, resetTrigger }: { routeCoordinates: { l
             </Map>
             )}
           </APIProvider>
-        </div>
-        <div className='absolute'>
-          {/* Renders each travel mode button */}
-          {isGoogleReady && (['DRIVING', 'WALKING', 'BICYCLING', 'TRANSIT'] as google.maps.TravelMode[]).map((m) => (
-            <button
-              key={m}
-              className={`px-4 py-2 mr-2 ${
-                mode === m ? 'bg-blue-500 text-white' : 'bg-gray-200'
-              }`}
-              onClick={() => setMode(m)}
-            >
-              {m}
-            </button>
-          ))}
+          <div className='mode-buttons'>
+            {/* Temp travel mode buttons */}
+            {isGoogleReady && (['DRIVING', 'WALKING', 'BICYCLING', 'TRANSIT'] as google.maps.TravelMode[]).map((m) => (
+              <button
+                key={m}
+                className={`px-4 py-2 mr-2 rounded-xl ${
+                  mode === m ? 'bg-blue-500 text-white' : 'bg-gray-100'
+                }`}
+                onClick={() => setMode(m)}
+              >
+                {m}
+              </button>
+              ))}
+          </div>
         </div>
       </div>
     </>

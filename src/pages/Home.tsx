@@ -2,7 +2,7 @@ import Regions from "../components/Regions";
 import HomeInterestsSection from "../components/HomeInterestsSection";
 import HomeAttractionsSection from "../components/HomeAttractionsSection";
 import Booking from "../components/Booking";
-import "../home.css";
+import "../styles/home.css";
 
 /**
  * This is the Destination page of the webstie.

@@ -49,14 +49,7 @@
   flex-direction: row;
 }
 
-.search-image {
-  width: 30vw;
-  max-width: 200px;
-  min-width: 100px;
-  object-fit: cover;
-  margin-right: 16px;
-  border-radius: 16px;
-}
+
 
 .search-description { 
   font-size: var(--fs-xs);

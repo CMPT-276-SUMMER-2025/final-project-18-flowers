@@ -1,4 +1,5 @@
-import { HashLink } from "react-router-hash-link"
+import { HashLink } from "react-router-hash-link";
+import "../styles/navbar.css";
 
 /**
  * This is the component for the anchor link of the mid page navigation bar on Attraction page.

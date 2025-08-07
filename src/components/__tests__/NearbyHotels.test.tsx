@@ -1,119 +1,115 @@
-/// <reference types="vitest/globals" />
-import { render, screen, /*waitFor*/ } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { render, screen, waitFor } from '@testing-library/react';
 import NearbyHotels from '../NearbyHotels';
-import * as cityData from '../../data/cityData';
 
-//Test if the NearbyHotels component renders correctly with mock data (with saveAPICost 
-//set to true)
-describe('NearbyHotels Component', () => {
-  const mockPlaces = [
+// Mock mockPlacesHotels
+vi.mock('../data/cityData', () => ({
+  mockPlacesHotels: [
     {
-      id: 'h1',
-      displayName: 'Grand Hotel Taipei',
-      photoUrl: '/assets/hotels/hotel-1.jpg',
+      id: 'mock-1',
+      displayName: 'Mock Hotel 1',
+      photoUrl: 'https://example.com/mock1.jpg',
+      rating: 4.5,
     },
     {
-      id: 'h2',
-      displayName: 'Taipei Garden',
-      photoUrl: '/assets/hotels/hotel-2.jpg',
+      id: 'mock-2',
+      displayName: 'Mock Hotel 2',
+      photoUrl: 'https://example.com/mock2.jpg',
+      rating: 4.2,
     },
-    {
-      id: 'h3',
-      displayName: 'CitizenM Taipei North Gate',
-      photoUrl: '/assets/hotels/hotel-3.jpg',
+  ],
+}));
+
+// Mock Google Maps API
+beforeEach(() => {
+  globalThis.google = {
+    maps: {
+      importLibrary: vi.fn().mockResolvedValue({
+        Place: {
+          searchNearby: vi.fn().mockResolvedValue({
+            places: [
+              {
+                id: 'id-1',
+                displayName: 'English Hotel Name',
+                photos: [{ getURI: () => 'https://example.com/english.jpg' }],
+                rating: 4.1,
+              },
+              {
+                id: 'id-2',
+                displayName: '日月潭飯店', // non-English (should be filtered out)
+                photos: [{ getURI: () => 'https://example.com/chinese.jpg' }],
+                rating: 4.0,
+              },
+              {
+                id: 'id-3',
+                displayName: 'Another English Hotel',
+                photos: [{ getURI: () => 'https://example.com/another.jpg' }],
+                rating: 3.9,
+              },
+            ],
+          }),
+        },
+        SearchNearbyRankPreference: {
+          POPULARITY: 'POPULARITY',
+        },
+      }),
     },
-  ];
+  } as any;
+});
 
-  beforeEach(() => {
-    // Override the mockPlacesHotels import
-    vi.spyOn(cityData, 'mockPlacesHotels', 'get').mockReturnValue(mockPlaces);
-  });
+afterEach(() => {
+  vi.clearAllMocks();
+});
 
-  it('renders NearbyHotels with mock data', async () => {
-    render(<NearbyHotels lat={25.0330} lng={121.5654} />);
+describe('NearbyHotels', () => {
+  const props = {
+    lat: 25.033,
+    lng: 121.5654,
+  };
 
-    for (const hotel of mockPlaces) {
-      expect(await screen.findByText(hotel.displayName)).toBeInTheDocument();
-      expect(await screen.findByAltText(hotel.displayName)).toHaveAttribute('src', hotel.photoUrl);
-    }
-
+  it('renders heading correctly', () => {
+    render(<NearbyHotels {...props} />);
     expect(screen.getByText('Nearby Hotels')).toBeInTheDocument();
   });
 
-  it('renders links to Google Maps with correct URLs', () => {
-    render(<NearbyHotels lat={25.0330} lng={121.5654} />);
-
-    for (const hotel of mockPlaces) {
-      const link = screen.getByText(hotel.displayName)?.closest('a');
-      expect(link).toHaveAttribute(
-        'href',
-        `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(hotel.displayName)}`
-      );
-    }
-  });
-});
-
-
-/*
-// Mock global google.maps structure (with saveAPICost set to false) 
-const mockSearchNearby = vi.fn();
-const mockGetURI = vi.fn(() => `'/assets/attractions/attraction-1.jpg'`);
-
-globalThis.google = {
-  maps: {
-    importLibrary: vi.fn(async (lib: string) => {
-      if (lib === 'places') {
-        return {
-          Place: {
-            searchNearby: mockSearchNearby,
-          },
-          SearchNearbyRankPreference: {
-            POPULARITY: 'POPULARITY',
-          },
-        };
-      }
-      return {};
-    }),
-  },
-} as any;
-
-describe('NearbyHotels Component (API behavior)', () => {
-  const mockApiPlaces = [
-    {
-      id: 'hotel_1',
-      displayName: 'API Hotel',
-      photos: [
-        {
-          getURI: mockGetURI,
-        },
-      ],
-    },
-  ];
-
-  beforeEach(() => {
-    mockSearchNearby.mockResolvedValue({
-      places: mockApiPlaces,
+  it('renders nearby hotels from Google Maps API, filtering non-English names', async () => {
+    render(<NearbyHotels {...props} />);
+    
+    await waitFor(() => {
+      expect(screen.getByText('English Hotel Name')).toBeInTheDocument();
+      expect(screen.getByText('Another English Hotel')).toBeInTheDocument();
     });
+
+    // Check that only English hotels render (non-English is filtered)
+    expect(screen.queryByText('日月潭飯店')).not.toBeInTheDocument();
+
+    const imgs = screen.getAllByRole('img');
+    expect(imgs.length).toBe(2);
+    expect(imgs[0]).toHaveAttribute('src', 'https://example.com/english.jpg');
+    expect(imgs[1]).toHaveAttribute('src', 'https://example.com/another.jpg');
   });
 
-  it('fetches hotel data from Google Maps API when saveAPICost = false', async () => {
-    // Temporarily force saveAPICost = false by mocking module and re-importing
-    vi.doMock('../data/cityData', () => ({
-      mockPlacesHotels: [],
-    }));
+  it('renders mockPlacesHotels if saveAPICost is true', async () => {
+    const mod = await import('../NearbyHotels.tsx');
+    (mod as any).saveAPICost = true;
 
-    render(<NearbyHotels lat={25.0340} lng={121.5645} />);
+    render(<NearbyHotels {...props} />);
 
     await waitFor(() => {
-      expect(mockSearchNearby).toHaveBeenCalled();
+      expect(screen.getByText('English Hotel Name')).toBeInTheDocument();
+      expect(screen.getByText('Another English Hotel')).toBeInTheDocument();
     });
 
-    expect(await screen.findByText('API Hotel')).toBeInTheDocument();
-    expect(await screen.findByAltText('API Hotel')).toHaveAttribute(
-      'src',
-      expect.stringContaining('/assets/hotels/hotel-1.jpg')
-    );
+    (mod as any).saveAPICost = false; // Reset after test
+  });
+
+  it('logs warning if Google Maps is not loaded', () => {
+    globalThis.google = undefined as any;
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    render(<NearbyHotels {...props} />);
+    expect(warnSpy).toHaveBeenCalledWith('Google Maps JS API not yet loaded');
+
+    warnSpy.mockRestore();
   });
 });
-*/

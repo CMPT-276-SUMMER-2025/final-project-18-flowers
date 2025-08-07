@@ -254,12 +254,6 @@ const PlanTripMap = ({ routeCoordinates, resetTrigger }: { routeCoordinates: { l
     }
   }, [resetTrigger]);
 
-  
-
-
-  
-
-
   return (
     <>
       <div id="regions-container">

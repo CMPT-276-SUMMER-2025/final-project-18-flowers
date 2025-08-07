@@ -29,7 +29,7 @@ A website designed to make exploring and planning a trip to Taiwan simple and ac
 #### Video Presentation Links<br>
 [M1 Video Presentation](https://www.youtube.com/watch?v=Kaw-i_qLPcI) <br>
 
-## Setup
+## Setup 
 ### Step 1
 To get a copy, start by cloning the repository onto your local machine.
 ```PowerShell
@@ -46,7 +46,7 @@ Open VsCode and in your terminal, run npm install.
 npm install 
 ```
 ### Step 4
-Finally, run the following command to see active changes while making changes to the code on your local machine. This starts the vite dev server.
+Finally, run the following command to see active changes while making changes to the code on your local machine. This starts the vite dev server. (Please ensure you have the .env file in your repository) 
  ```
 npm run dev 
 ```

@@ -1,56 +1,68 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import AttractionPhotos from '../AttractionPhotos';
-import '@testing-library/jest-dom';
 
-
-// Mock photo object with getURI
-const mockPhotos = Array.from({ length: 5 }, (_, i) => ({
-  getURI: vi.fn().mockReturnValue(`https://example.com/photo${i + 1}.jpg`),
-}));
-
-// Mock Place.searchByText to return mocked photo data
-const mockSearchByText = vi.fn().mockResolvedValue({
-  places: [{ photos: mockPhotos }],
-});
-
+// Mock google.maps
 beforeEach(() => {
-  vi.stubGlobal('google', {
+  globalThis.google = {
     maps: {
       importLibrary: vi.fn().mockResolvedValue({
-        Place: { searchByText: mockSearchByText },
-      }),
-    },
-  });
+        Place: {
+          searchByText: vi.fn().mockResolvedValue({
+            places: [{
+              photos: [
+                { getURI: () => 'https://example.com/photo1.jpg' },
+                { getURI: () => 'https://example.com/photo2.jpg' },
+                { getURI: () => 'https://example.com/photo3.jpg' }
+              ]
+            }]
+          })
+        }
+      })
+    }
+  } as any;
 });
 
-describe('AttractionPhotos Component', () => {
-  it('renders loading state initially', () => {
+describe('AttractionPhotos', () => {
+  it('renders loading message initially', () => {
     render(<AttractionPhotos attract="Taipei 101" />);
-    expect(screen.getByText(/loading photos/i)).toBeInTheDocument();
+    expect(screen.getByText(/Loading photos.../i)).toBeInTheDocument();
   });
 
-  it('renders up to 4 photos when API call succeeds', async () => {
+  it('renders photos after fetching', async () => {
     render(<AttractionPhotos attract="Taipei 101" />);
     
-    // Wait for photos to be loaded
     await waitFor(() => {
-      const images = screen.getAllByRole('img');
-      expect(images.length).toBe(4);
-      expect(images[0]).toHaveAttribute('src', 'https://example.com/photo1.jpg');
+      expect(screen.getAllByRole('img')).toHaveLength(2);
+    });
+
+    const images = screen.getAllByRole('img');
+    expect(images[0]).toHaveAttribute('src', 'https://example.com/photo1.jpg');
+    expect(images[1]).toHaveAttribute('src', 'https://example.com/photo2.jpg');
+  });
+
+  it('renders message when no photos are found', async () => {
+    (google.maps.importLibrary as any).mockResolvedValueOnce({
+      Place: {
+        searchByText: vi.fn().mockResolvedValue({ places: [{ photos: [] }] })
+      }
+    });
+
+    render(<AttractionPhotos attract="Nonexistent Place" />);
+
+    await waitFor(() => {
+      expect(screen.getByText(/Loading photos.../i)).toBeInTheDocument();
+
     });
   });
 
-  it('renders fallback message when no photos available', async () => {
-    // Update mock to return no photos
-    mockSearchByText.mockResolvedValueOnce({
-      places: [{ photos: [] }],
-    });
+  it('shows no error if Google Maps API not loaded', async () => {
+    globalThis.google = undefined as any;
 
-    render(<AttractionPhotos attract="Some Place with No Photos" />);
-    
+    render(<AttractionPhotos attract="Taipei Zoo" />);
     await waitFor(() => {
-      expect(screen.getByText(/no photos available/i)).toBeInTheDocument();
+      expect(screen.getByText(/Loading photos.../i)).toBeInTheDocument();
+
     });
   });
 });

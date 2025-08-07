@@ -4,6 +4,14 @@ import { useEffect, useState } from 'react';
 import RegionContent from '../components/RegionContent';
 import "../regions.css"
 
+/**
+ * This component renders a region map with the markers for the Home and Destination page.
+ */
+
+/**
+ * Displays a region map with the markers for the Home and Destination page.
+ * @returns 
+ */
 const Regions = () => {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
@@ -75,9 +83,6 @@ const Regions = () => {
               defaultCenter={ taiwanLatLng }
               style={{ width: "380px", height: "600px" }}
               colorScheme={ColorScheme.LIGHT}
-              // onCameraChanged={ (ev: MapCameraChangedEvent) =>
-              //   console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
-              // }
               //@ts-expect-error
               options={ mapOptions }
               disableDefaultUI

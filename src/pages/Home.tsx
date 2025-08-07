@@ -4,6 +4,14 @@ import HomeAttractionsSection from "../components/HomeAttractionsSection";
 import Booking from "../components/Booking";
 import "../home.css";
 
+/**
+ * This is the Destination page of the webstie.
+ */
+
+/**
+ * Renders each section on the Home page.
+ * @returns rendered Home page sections
+ */
 const Home = () => {
   return (
     <>

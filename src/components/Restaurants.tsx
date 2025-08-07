@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { mockPlacesRestaurants } from '../data/cityData';
 
 /**
@@ -29,9 +28,6 @@ const Restaurants = ({ cityname, latLng } : Props) => {
   };
 
   const [places, setPlaces] = useState<TPlace[]>([]);
-  const { id } = useParams();  
-  console.log(id);
-  console.log("cityname: " + cityname);
 
   const placeRadius = 3000; 
 

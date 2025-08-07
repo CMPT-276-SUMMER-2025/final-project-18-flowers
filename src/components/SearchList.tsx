@@ -1,5 +1,9 @@
 import SearchCard from "./SearchCard";
 
+/**
+ * This is a component that maps the search results as a list on the Search page.
+ */
+
 //@ts-expect-error
 const SearchList = ({ filteredResults }) => {
   //@ts-expect-error

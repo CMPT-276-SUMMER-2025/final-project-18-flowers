@@ -1,6 +1,15 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
+/**
+ * This component scrolls to top of the page.
+ */
+
+/**
+ * Scrolls to top of the page.
+ * @returns 
+ */
+
 const ScrollToTop = () => {
   const { pathname, hash } = useLocation();
 

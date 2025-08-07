@@ -5,12 +5,9 @@ import Regions from "../components/Regions";
 import taipeiThumbnail from "/assets/destination-thumb.jpg";
 import "../destinations.css";
 
-/* 
-Note: somtimes you might see content doubled
-----
-React 19 (the React version we're working with) in Strict Mode (look in App.tsx) intentionally runs the useEffect() function twice in development only, 
-not in production
-*/
+/**
+ * This is the Destination page of the webstie.
+ */
 
 // array of names of the places we're working with 
 const cityNames = [
@@ -31,6 +28,10 @@ const cityNames = [
   "Changhua County"
 ];
 
+/**
+ * Passes data to child components and renders the page containing cities of Taiwan and a map.
+ * @returns data and rendered page
+ */
 const Destinations = () => {
 
   const [showMore, setShowMore] = useState(false);
@@ -65,7 +66,6 @@ const Destinations = () => {
       <div id="dest-button-container">
         { !showMore && <button id="dest-show-button" onClick={ 
           () => { 
-            console.log(showMore);
             setShowMore(!showMore); 
           }
         }>View more</button>}

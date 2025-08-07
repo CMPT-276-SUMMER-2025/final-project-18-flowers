@@ -76,10 +76,7 @@ export default function ItineraryGenerator() {
     
     //Extracts .value field from selected dropdown menu.
     const selectedCityValues = selectedCities.map((c) => c.value);
-    console.log("Selected cities:", selectedCityValues);
-
     const selectedInterestValues = selectedInterests.map((interest) => interest.value); 
-    console.log("Selected interests: ", selectedInterestValues);
 
     //Checks if any field is empty.
     if (
@@ -127,8 +124,6 @@ export default function ItineraryGenerator() {
 
       const response = await fetch("https://taiwanexplorers.onrender.com/gemini", options);
       const data = await response.json();
-      console.log("Full response from server:", data);
-      console.log("Markdown response content:", response);
       setResponse(data.text); 
       setRouteCoordinates([]); // clear previous route coordinates
       setTimeout(() => {

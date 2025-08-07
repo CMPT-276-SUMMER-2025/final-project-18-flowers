@@ -43,7 +43,7 @@ const NearbyRestaurants = ({ lat, lng }  : Props) => {
       setPlaces(mockPlacesRestaurants);
       return; 
     }
-    console.log("You just spent money!");
+
     async function getRestaurants() {
         const { Place, SearchNearbyRankPreference } = await google.maps.importLibrary('places') as google.maps.PlacesLibrary;
 

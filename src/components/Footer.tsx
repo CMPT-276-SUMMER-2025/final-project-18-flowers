@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import '/src/footer.css'; 
+import '../styles/footer.css'; 
 
 const Footer = () => {
   return (
@@ -22,13 +22,13 @@ const Footer = () => {
         </div>
         <div className="footer-socials">
           <a href="https://x.com/TaiwanExplorers" target="_blank" rel="noopener noreferrer">
-            <img src="/x-logo.png" alt="X" />
+            <img src="/assets/footer-logos/x-logo.png" alt="X" />
           </a>
           <a href="https://www.instagram.com/taiwanexplorers" target="_blank" rel="noopener noreferrer">
-            <img src="/instagram-logo.png" alt="Instagram" />
+            <img src="/assets/footer-logos/instagram-logo.png" alt="Instagram" />
           </a>
           <a href="https://www.youtube.com/@Taiwan-Explorers" target="_blank" rel="noopener noreferrer">
-            <img src="/youtube-logo.png" alt="YouTube" />
+            <img src="/assets/footer-logos/youtube-logo.png" alt="YouTube" />
           </a>
         </div>
       </div>

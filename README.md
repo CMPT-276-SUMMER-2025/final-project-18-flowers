@@ -20,6 +20,7 @@ A website designed to make exploring and planning a trip to Taiwan simple and ac
 [M1 Video AI Forms](docs/AI_declaration_forms/M1-Video_AI_Declaration_Forms/) <br>
 [M2 Report AI Forms](docs/AI_declaration_forms/M2-Report_AI_Declaration_Forms/) <br>
 [M2 Code AI Forms](docs/AI_declaration_forms/M2-Code_AI_Declaration_Forms/) <br>
+[M2 Video AI Forms](docs/AI_declaration_forms/M2-Video_AI_Declaration_Forms/) <br>
 
 #### Project Report Links<br>
 [M0 Project Proposal Report](docs/project_reports/CMPT276-Group18-M0-Project-Proposal-Report.pdf) <br>

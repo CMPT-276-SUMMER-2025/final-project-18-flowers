@@ -29,6 +29,7 @@ A website designed to make exploring and planning a trip to Taiwan simple and ac
 
 #### Video Presentation Links<br>
 [M1 Video Presentation](https://www.youtube.com/watch?v=Kaw-i_qLPcI) <br>
+[M2 Video Presentation](https://www.youtube.com/watch?v=EBnJ_IwQrlw) <br>
 
 ## Setup 
 ### Step 1
